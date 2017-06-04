@@ -247,7 +247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/05/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/05/Hexo-配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZeroZhong">
@@ -269,8 +269,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/06/05/hello-world/" itemprop="url">
-                  hello world
+                <a class="post-title-link" href="/2017/06/05/Hexo-配置/" itemprop="url">
+                  Hexo 配置
                 </a>
               
             
@@ -286,7 +286,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-05T02:34:51+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-05T02:20:06+08:00">
                 2017-06-05
               </time>
             
@@ -324,7 +324,167 @@
       
         
           
-            <p>hello world</p>
+            <ul>
+<li>git安装</li>
+<li>node环境安装</li>
+<li>hexo安装<br> npm install hexo-cli -g<br> hexo init 初始化hexo<br> npm install 安装依赖包<br> npm install hexo-deployer-git –save 安装hexo发布使用git</li>
+<li><p>配置_config.yml</p>
+</li>
+<li><p>Hexo 最常用的几个命令</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/31/Git远程库操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZeroZhong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="浩瀚星海">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/31/Git远程库操作/" itemprop="url">
+                  Git远程库操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-31T02:19:47+08:00">
+                2017-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>git remote</li>
+</ol>
+<ul>
+<li>git remote -v   管理主机名</li>
+<li>git remote show &lt;主机名&gt;  查看该主机的详细信息</li>
+<li>git remote add &lt;主机名&gt; &lt;网址&gt;  添加远程主机</li>
+<li>git remote rm &lt;主机名&gt;  删除远程主机</li>
+<li>git remote rename &lt;原主机名&gt; &lt;新主机名&gt; 远程主机的改名</li>
+</ul>
+<ol>
+<li>git fetch</li>
+</ol>
+<ul>
+<li>git fetch &lt;远程主机名&gt;  取回所有分支（branch）的更新</li>
+<li>git fetch &lt;远程主机名&gt; &lt;分支名&gt;  取回特定分支的更新</li>
+</ul>
+<ol>
+<li>git pull</li>
+</ol>
+<ul>
+<li>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt; 取回远程主机某个分支的更新，再与本地的指定分支合并</li>
+<li>手动建立追踪关系 git branch –set-upstream master origin/test</li>
+</ul>
+<ol>
+<li>git push </li>
+</ol>
+<ul>
+<li>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</li>
+<li>git push origin :remote_branch //删除远程分支（the_branch）</li>
+<li>git push origin local_branch   //本地分支（local_branch）重新建立远程分支</li>
+</ul>
 
           
         
@@ -404,7 +564,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
