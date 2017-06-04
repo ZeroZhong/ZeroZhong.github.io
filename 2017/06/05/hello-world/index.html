@@ -1,45 +1,173 @@
-extends base
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hello world | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="hello world">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hello world">
+<meta property="og:url" content="http://yoursite.com/2017/06/05/hello-world/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="hello world">
+<meta property="og:updated_time" content="2017-06-04T18:35:10.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hello world">
+<meta name="twitter:description" content="hello world">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-block title
-  title= page.title + ' - ' + config.title
+</head>
 
-block content
-  if page.toc
-    div(id='pageToc')
-      span(class='dropdown-toggle icon-list')
-      div(id='toc' class='toc-article pull-right')
-        div(class='toc-title') 目录
-        hr
-        != toc(page.content, {list_number: false})
-    script.
-      var toc_clickHandler = function(e){
-        var target = $(e.target);
-        // toc
-        event.stopPropagation();
-      }
-      $("#pageToc .dropdown-toggle").click(function(){
-        if($("#toc").is(":hidden")){
-          $("#toc").show();
-          //$(document).bind("click",toc_clickHandler);
-        }else{
-          $("#toc").hide();
-          //$(document).unbind("click",toc_clickHandler);
-        }
-      });
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/05/hello-world/" class="article-date">
+  <time datetime="2017-06-04T18:34:51.000Z" itemprop="datePublished">2017-06-05</time>
+</a>
     
-  .post
-    h1.post-title= page.title
-    .post-meta= page.date.format('ll')
-      if theme.busuanzi == true
-        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js',type='text/javascript')
-        span(class='meta-space')='  |  '
-        span#busuanzi_container_page_pv
-          span#busuanzi_value_page_pv
-          span= ' ' + __('浏览')
+  </div>
+  <div class="article-inner">
     
-    .post-content
-      != page.content
     
-    include _partial/tag
-    if page.comments
-      include _partial/comments
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hello world
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>hello world</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/05/hello-world/" data-id="cj3j1z4al00006wwythynxbms" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/05/hello-world/">hello world</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 ZeroZhong<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
