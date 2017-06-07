@@ -152,6 +152,233 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/08/二叉树/">二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/08/二叉树/" class="archive-article-date">
+  	<time datetime="2017-06-07T16:27:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>计算机</strong>：<em>二叉树是每个节点最多有两个子树的树结构</em><br><strong>图论</strong>：<em>二叉树是一个连通的无环图，并且每一个顶点的度不大于3。有根二叉树还要满足根结点的度不大于2</em></p>
+</blockquote>
+<p>#####1  五种形态</p>
+<ul>
+<li><strong>空二叉树</strong></li>
+<li><strong>只有一个根结点的二叉树</strong></li>
+<li><strong>只有左子树</strong></li>
+<li><strong>只有右子树</strong></li>
+<li><strong>完全二叉树</strong></li>
+</ul>
+<p>#####2 遍历<br>遍历是对树的一种最基本的运算，所谓遍历二叉树，就是按一定的规则和顺序走遍二叉树的所有结点，使每一个结点都被访问一次，而且只被访问一次。</p>
+<p>设L、D、R分别表示遍历左子树、访问根结点和遍历右子树， 则对一棵二叉树的遍历有三种情况：DLR（称为先根次序遍历），LDR（称为中根次序遍历），LRD （称为后根次序遍历）</p>
+<ul>
+<li><strong>先序遍历</strong><br>首先访问根，再先序遍历左（右）子树，最后先序遍历右（左）子树</li>
+<li><strong>中序遍历</strong><br>首先中序遍历左（右）子树，再访问根，最后中序遍历右（左）子树</li>
+<li><strong>后序遍历</strong><br>首先后序遍历左（右）子树，再后序遍历右（左）子树，最后访问根</li>
+<li><strong>层次遍历</strong><br>即按照层次访问。访问根，访问子女，再访问子女的子女</li>
+</ul>
+<p>#####3 性质</p>
+<ul>
+<li><strong>一个二叉树第i 层的最大结点数为：2i-1，i ≥ 1 </strong></li>
+<li><strong>深度为k 的二叉树有最大结点总数为：2k-1，k ≥ 1 </strong></li>
+<li><strong>对任何非空二叉树T，若n0 表示叶结点的个数，n2 是度为2 的非叶结点个数，那么两者满足关系n0 = n2 + 1  </strong></li>
+</ul>
+<p>#####4 程序描述</p>
+<ul>
+<li><p><strong>数据来源</strong><br>括号表示法，以及类似表示方法</p>
+</li>
+<li><p><strong>类型</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">typedef struct BTNode * BinaryTree;   </div><div class="line">typedef char ElementType;</div><div class="line">typedef struct Node&#123;   </div><div class="line">    ElementType data;   </div><div class="line">    struct Node * left;   </div><div class="line">    struct Node * right;   </div><div class="line">&#125; BTNode;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>函数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">BinaryTree InitBinaryTree()：创建一个二叉树，通过某个方式构建二叉树</div><div class="line">boolean IsEmpty(BinaryTree tree)：判别BT 是否为空</div><div class="line">BTNode * InsertNode(BTNode * parent, BTNode * new，int position) ：插入新节点（0，左；1，右）</div><div class="line">void Traversal(BinaryTree tree)：遍历，按某顺序访问每个结点</div><div class="line">void PreOrder(BinaryTree tree)：先序——根、左子树、右子树</div><div class="line">void InOrder(BinaryTree tree)：中序——左子树、根、右子树</div><div class="line">void PostOrder(BinaryTree tree)：后序——左子树、右子树、根</div><div class="line">void HierarchyOrder(BinaryTree tree)：层次遍历——从上到下</div><div class="line">void Print(BinaryTree tree)：打印二叉树</div><div class="line">void Destroy(BinaryTree tree)：销毁二叉树</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>其他操作</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">BTNode * Search(BinaryTree tree,ElementType x) ： 二叉树中查找元素</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="链接"><a href="#链接" class="headerlink" title="链接:"></a><em>链接:</em></h6><ul>
+<li><a href="http://chuansong.me/n/729497552547" target="_blank" rel="external">http://chuansong.me/n/729497552547</a></li>
+<li><a href="http://baike.baidu.com/link?url=lSedf3Bn9hC4mcaRfrrZtaQnwlU0vtL8h8MOgFNnAHc-MzElQiobVsH3WjFj3LnjVu8VUFsbtF5vdYuFyVVW-RZsMUGLyE39xEKFFWzaHSjmCE4B8aOliy-D75iF1cdc" target="_blank" rel="external">百度百科</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/08/二叉树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/08/树/">树</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/08/树/" class="archive-article-date">
+  	<time datetime="2017-06-07T16:26:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####树的定义</p>
+<p><strong>树（Tree）：n（n ≥ 0）个结点构成的有限集合。</strong></p>
+<ul>
+<li>当n = 0 时，称为空树。</li>
+<li>对于任一颗非空树（n &gt; 0），它具备以下性质：<br>树中有一个称为”根（Root）”的特殊结点，用r 表示；<br>其余结点（与r 相关联的）可分为m（m  &gt; 0）个互不相交的有限集T1，T2，…，Tm，其中每个集合本身又是一颗树，称为原来树的”子树（SubTree）”。</li>
+</ul>
+<p><strong>树与非树？</strong></p>
+<ul>
+<li>子树是不相交的</li>
+<li>除了根结点外，每个结点有且仅有一个父节点<br>一颗N个结点的树有N-1条边（我认为可以用构造性的存在性证明或是数学归纳法来证明这一点）</li>
+</ul>
+<p>####树的一些基本术语：</p>
+<ul>
+<li><strong>结点的度（Degree）</strong>：结点的子树个数</li>
+<li><strong>树的度</strong>：树的所有结点中最大的度数</li>
+<li><strong>叶结点（Leaf）</strong>：度为0的结点</li>
+<li><strong>父结点（Parent）</strong>：有子树的结点是其子树的根结点的父结点</li>
+<li><strong>子结点（Child）</strong>：若A结点是B结点的父结点，则称B结点是A结点的子结点；子结点也称孩子结点</li>
+<li><strong>兄弟结点（Sibling）</strong>：具有同一父结点的各结点彼此是兄弟结点</li>
+<li><strong>路径和路径长度（Path）</strong>：从结点n1到nk的路径为一个结点序列n1，n2，…，nk，ni是ni+1的父结点，路径所包含的边的个数为路径的长度</li>
+<li><strong>祖先结点（Ancestor）</strong>：沿树根到某一结点路径上的所有结点都是这个结点的祖先结点</li>
+<li><strong>子孙结点（Descendant）</strong>：某一结点的子树中的所有结点都是这个结点子孙</li>
+<li><strong>结点的层次（Level）</strong>：规定根结点在1层，其它任一结点的层数时其父节点的层数加1</li>
+<li><strong>树的深度（Depth）</strong>：树中所有结点中的最大层次是这棵树的深度</li>
+</ul>
+<p>####树的表示</p>
+<ul>
+<li><strong>儿子-兄弟表示法</strong></li>
+<li><strong>括号表示法</strong></li>
+</ul>
+<p>####树的算法实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">typedef char ElementType;</div><div class="line">typedef struct Node&#123;   </div><div class="line">    ElementType data;   </div><div class="line">    struct Node * child;   </div><div class="line">    struct Node * sibling;   </div><div class="line">&#125; TreeNode;</div></pre></td></tr></table></figure></p>
+<h6 id="链接"><a href="#链接" class="headerlink" title="链接:"></a><em>链接:</em></h6><ul>
+<li><a href="http://chuansong.me/n/729497552547" target="_blank" rel="external">http://chuansong.me/n/729497552547</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法/" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/08/树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Hexo-配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -423,15 +650,27 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
