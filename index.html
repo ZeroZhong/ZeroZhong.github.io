@@ -152,6 +152,75 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/02/策略模式/">策略模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/02/策略模式/" class="archive-article-date">
+  	<time datetime="2018-10-02T01:27:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">class Strategy</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    Strategy();</div><div class="line">    virtual ~Strategy();</div><div class="line">    virtual void algrithm() = 0;</div><div class="line">&#125;;</div><div class="line">Strategy::Strategy()&#123;&#125;</div><div class="line">Strategy::~Strategy()&#123;&#125;</div><div class="line"></div><div class="line">class Context</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    Context(Strategy * strategy);</div><div class="line">    ~Context();</div><div class="line"></div><div class="line">    void doAction();</div><div class="line"></div><div class="line">private:</div><div class="line">    Strategy * m_Strategy;</div><div class="line">&#125;;</div><div class="line">Context::Context(Strategy * strategy)&#123;m_Strategy = strategy;&#125;</div><div class="line">Context::~Context()&#123;&#125;</div><div class="line">void Context::doAction()&#123;m_Strategy-&gt;algrithm(); &#125;</div><div class="line"></div><div class="line">class StrategyA : public Strategy</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    virtual void algrithm();</div><div class="line">&#125;;</div><div class="line">void StrategyA::algrithm()&#123; cout &lt;&lt; &quot;StrategyA algrithm&quot; &lt;&lt; endl;&#125;</div><div class="line"></div><div class="line">class StrategyB : public Strategy</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    virtual void algrithm();</div><div class="line">&#125;;</div><div class="line">void StrategyB::algrithm()&#123; cout &lt;&lt; &quot;StrategyB algrithm&quot; &lt;&lt; endl;&#125;</div><div class="line"></div><div class="line">int main( int argc, char ** argv)</div><div class="line">&#123;</div><div class="line">    Strategy *a = new StrategyA();</div><div class="line">    Strategy *b = new StrategyB();</div><div class="line"></div><div class="line">    Context * context = new Context(a);</div><div class="line">    context-&gt;doAction();</div><div class="line"></div><div class="line">    delete context;</div><div class="line">    delete a;</div><div class="line">    delete b;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/设计模式/" class="article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/02/策略模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-foxmail邮件部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -225,27 +294,33 @@
 
 
   
-    <article id="post-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python绘制曲线" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/02/策略模式/">策略模式</a>
+      <a class="article-title" href="/2018/02/28/python绘制曲线/">python绘制曲线</a>
     </h1>
   
 
         
-        <a href="/2018/10/02/策略模式/" class="archive-article-date">
-  	<time datetime="2018-10-02T01:27:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
+        <a href="/2018/02/28/python绘制曲线/" class="archive-article-date">
+  	<time datetime="2018-02-28T13:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">class Strategy</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    Strategy();</div><div class="line">    virtual ~Strategy();</div><div class="line">    virtual void algrithm() = 0;</div><div class="line">&#125;;</div><div class="line">Strategy::Strategy()&#123;&#125;</div><div class="line">Strategy::~Strategy()&#123;&#125;</div><div class="line"></div><div class="line">class Context</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    Context(Strategy * strategy);</div><div class="line">    ~Context();</div><div class="line"></div><div class="line">    void doAction();</div><div class="line"></div><div class="line">private:</div><div class="line">    Strategy * m_Strategy;</div><div class="line">&#125;;</div><div class="line">Context::Context(Strategy * strategy)&#123;m_Strategy = strategy;&#125;</div><div class="line">Context::~Context()&#123;&#125;</div><div class="line">void Context::doAction()&#123;m_Strategy-&gt;algrithm(); &#125;</div><div class="line"></div><div class="line">class StrategyA : public Strategy</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    virtual void algrithm();</div><div class="line">&#125;;</div><div class="line">void StrategyA::algrithm()&#123; cout &lt;&lt; &quot;StrategyA algrithm&quot; &lt;&lt; endl;&#125;</div><div class="line"></div><div class="line">class StrategyB : public Strategy</div><div class="line">&#123;</div><div class="line">public:</div><div class="line">    virtual void algrithm();</div><div class="line">&#125;;</div><div class="line">void StrategyB::algrithm()&#123; cout &lt;&lt; &quot;StrategyB algrithm&quot; &lt;&lt; endl;&#125;</div><div class="line"></div><div class="line">int main( int argc, char ** argv)</div><div class="line">&#123;</div><div class="line">    Strategy *a = new StrategyA();</div><div class="line">    Strategy *b = new StrategyB();</div><div class="line"></div><div class="line">    Context * context = new Context(a);</div><div class="line">    context-&gt;doAction();</div><div class="line"></div><div class="line">    delete context;</div><div class="line">    delete a;</div><div class="line">    delete b;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <blockquote>
+<p>python绘制曲线</p>
+</blockquote>
+<ul>
+<li>python绘制曲线</li>
+</ul>
+
       
 
       
@@ -253,33 +328,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/设计模式/" class="article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/02/策略模式/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/02/28/python绘制曲线/">展开全文 >></a>
         </p>
       
 
@@ -343,59 +396,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/02/28/python入门准备/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-python绘制曲线" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/28/python绘制曲线/">python绘制曲线</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/28/python绘制曲线/" class="archive-article-date">
-  	<time datetime="2018-02-28T13:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>python绘制曲线</p>
-</blockquote>
-<ul>
-<li>python绘制曲线</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/28/python绘制曲线/">展开全文 >></a>
         </p>
       
 
@@ -958,10 +958,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -970,23 +966,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">软件</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">邮件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1014,6 +1002,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
@@ -1022,15 +1022,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>

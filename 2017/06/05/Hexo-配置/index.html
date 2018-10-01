@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://www.zhongweimin.me/2017/06/05/Hexo-配置/index.html">
 <meta property="og:site_name" content="浩瀚星海">
 <meta property="og:description" content="git安装 node环境安装 hexo安装 npm install hexo-cli -g hexo init #初始化hexo npm install #安装依赖包 npm install hexo-deployer-git –save #安装hexo发布使用git 配置_config.yml  Hexo 最常用的几个命令hexo new “博客” 简写 hexo n “博客”  #新建文章h">
-<meta property="og:updated_time" content="2017-07-17T01:22:55.826Z">
+<meta property="og:updated_time" content="2018-10-01T17:24:04.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo 配置">
 <meta name="twitter:description" content="git安装 node环境安装 hexo安装 npm install hexo-cli -g hexo init #初始化hexo npm install #安装依赖包 npm install hexo-deployer-git –save #安装hexo发布使用git 配置_config.yml  Hexo 最常用的几个命令hexo new “博客” 简写 hexo n “博客”  #新建文章h">
@@ -178,9 +178,20 @@
 <li>hexo安装<br> npm install hexo-cli -g<br> hexo init #初始化hexo<br> npm install #安装依赖包<br> npm install hexo-deployer-git –save #安装hexo发布使用git</li>
 <li><p>配置_config.yml</p>
 </li>
-<li><p>Hexo 最常用的几个命令<br>hexo new “博客” 简写 hexo n “博客”  #新建文章<br>hexo publish 简写 hexo p<br>hexo generate 简写 hexo g  #生成<br>hexo server  简写 hexo s  #启动服务预览<br>hexo deploy 简写 hexo d #部署</p>
+<li><p>Hexo 最常用的几个命令<br>hexo new “博客” 简写 hexo n “博客”  #新建文章<br>hexo publish 简写 hexo p  #可以不使用用<br>hexo generate 简写 hexo g  #生成<br>hexo server  简写 hexo s  #启动服务预览<br>hexo deploy 简写 hexo d #部署</p>
 </li>
 <li><p>文章内容<br>title: 使用Hexo搭建个人博客<br>date: 2017-06-05 02:20:06<br>categories: Blog<br>tags: [Hexo]</p>
+</li>
+<li><p>问题</p>
+<ol>
+<li>不能添加图片<br>[解决] </li>
+<li>把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true</li>
+<li>hexo目录下执行npm install hexo-asset-image –save，(安装一个可以上传本地图片的插件)</li>
+<li>此时运行hexo n “xxxx” 生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹  </li>
+<li>最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后在xxxx.md中按照markdown的格式引入图片<br>(注意:xxxx是这个md文件的名字，也是同名文件夹的名字。引用图片时,使用相对路径)</li>
+<li>最后检查一下，hexo g生成页面后，进入public目录查看生成情况，然后使用hexo s 预览</li>
+<li>出错重复上述步骤</li>
+</ol>
 </li>
 </ul>
 
@@ -417,10 +428,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -429,23 +436,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">软件</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">邮件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,6 +472,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
@@ -481,15 +492,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">红黑树</a>
               </li>
             
             <div class="clearfix"></div>
