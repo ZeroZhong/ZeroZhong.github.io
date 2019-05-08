@@ -143,6 +143,345 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-门面模式、代理模式、适配器模式的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/门面模式、代理模式、适配器模式的区别/">门面模式、代理模式、适配器模式的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/门面模式、代理模式、适配器模式的区别/" class="archive-article-date">
+  	<time datetime="2019-05-08T17:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>门面模式、代理模式、适配器模式，这三种模式都很接近，他们的区别是：</p>
+<p>1、门面模式：</p>
+<p>为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，简化了系统的使用；</p>
+<p>银行柜台办理业务可以理解为门面模式的一种，客户通过银行柜台办理业务，无需了解银行内部复杂的业务逻辑处理，柜台办理员只是把银行能提供的业务为客户端办理，银行没有提供的服务，柜台办理员也无法办理的。</p>
+<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Facade-Pattern.png" alt="门面模式"></p>
+<p>2、代理模式：</p>
+<p>为其他对象提供一种代理以控制对这个对象的访问。客户访问不到被代理对象，可以通过代理对象间接的访问；代理对象可以对上次的访问结果进行缓存，下次有相同的请求时可以直接返回缓存而不用去访问被代理对象；代理对象可以拒绝没有访问权限的用户，使其不能访问被代理对象；因此代理模式比门面模式更高级、信息更丰富；</p>
+<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Proxy-Pattern.png" alt="代理模式"></p>
+<p>3、适配器模式：</p>
+<p>将一个接口转换成客户希望的另外一个接口，使得原本接口不兼容而不能一起工作的那些类可以一起工作。</p>
+<p>因为接口的不同，为了让用户使用到统一的接口，把原先的对象通过适配器让用户统一使用，或者扩充新的功能，大多用在代码维护的后期，或者借用第三方库的情况下。</p>
+<p>适配器模式比代理模式更复杂，他不仅仅能让客户端访问到实体对象，更能把一堆接口不兼容的实体对象进行有序管理和组织起来，使得他们能协同工作；</p>
+<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Adapter-Pattern.png" alt="适配器模式"></p>
+<p>####参考<br><a href="https://www.cnblogs.com/laoxia/p/8026201.html" target="_blank" rel="noopener">https://www.cnblogs.com/laoxia/p/8026201.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pattern</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/门面模式、代理模式、适配器模式的区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-状态机模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/状态机模式/">状态机模式</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/状态机模式/" class="archive-article-date">
+  	<time datetime="2019-05-08T17:00:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####状态机模式定义<br>　　状态模式，又称状态对象模式（Pattern of Objects for States），状态模式是对象的行为模式。<br>　　状态模式允许一个对象在其内部状态改变的时候改变其行为。这个对象看上去就像是改变了它的类一样。</p>
+<p>####结构和角色<br>状态模式所涉及到的角色有：<br>　　●　　环境(Context)角色，也成上下文：定义客户端所感兴趣的接口，并且保留一个具体状态类的实例。这个具体状态类的实例给出此环境对象的现有状态。<br>　　●　　抽象状态(State)角色：定义一个接口，用以封装环境（Context）对象的一个特定的状态所对应的行为。<br>　　●　　具体状态(ConcreteState)角色：每一个具体状态类都实现了环境（Context）的一个状态所对应的行为。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Java,Pattern</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/状态机模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-适配器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/适配器模式/">适配器模式</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/适配器模式/" class="archive-article-date">
+  	<time datetime="2019-05-08T16:59:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#####应用实例：<br>1、美国电器 110V，中国 220V，就要有一个适配器将 110V 转化为 220V。 2、JAVA JDK 1.1 提供了 Enumeration 接口，而在 1.2 中提供了 Iterator 接口，想要使用 1.2 的 JDK，则要将以前系统的 Enumeration 接口转化为 Iterator 接口，这时就需要适配器模式。 3、在 LINUX 上运行 WINDOWS 程序。 4、JAVA 中的 jdbc。</p>
+<p>#####优点：<br>1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。</p>
+<p>#####缺点：<br>1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</p>
+<p>#####使用场景：<br>有动机地修改一个正常运行的系统的接口，这时应该考虑使用适配器模式。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Java,Pattern</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/适配器模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/工厂模式/">工厂模式</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/工厂模式/" class="archive-article-date">
+  	<time datetime="2019-05-08T16:56:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>工厂方法模式（Factory Method）</p>
+<p>工厂方法模式分为三种：<br>普通工厂模式，多个工厂方法模式，抽象工厂模式</p>
+<p>###工厂产品设计（发送邮件和发送短信为例）<br>接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Sender &#123;  </span><br><span class="line">        public void Send();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>短信<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class SmsSender implements Sender &#123;  </span><br><span class="line">      </span><br><span class="line">            @Override  </span><br><span class="line">            public void Send() &#123;  </span><br><span class="line">                    System.out.println(&quot;this is sms sender!&quot;);  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>邮件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class MailSender implements Sender &#123;  </span><br><span class="line">        @Override  </span><br><span class="line">            public void Send() &#123;  </span><br><span class="line">                    System.out.println(&quot;this is mailsender!&quot;);  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####1、普通工厂模式，就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。</p>
+<p>工厂类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class SendFactory &#123;  </span><br><span class="line">      </span><br><span class="line">            public Sender produce(String type) &#123;  </span><br><span class="line">                    if (&quot;mail&quot;.equals(type)) &#123;  </span><br><span class="line">                            return new MailSender();  </span><br><span class="line">                            &#125; else if (&quot;sms&quot;.equals(type)) &#123;  </span><br><span class="line">                                    return new SmsSender();  </span><br><span class="line">                                    &#125; else &#123;  </span><br><span class="line">                                            System.out.println(&quot;请输入正确的类型!&quot;);  </span><br><span class="line">                                                return null;  </span><br><span class="line">                                            &#125;  </span><br><span class="line">                                        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class FactoryTest &#123;  </span><br><span class="line">      </span><br><span class="line">            public static void main(String[] args) &#123;  </span><br><span class="line">                    SendFactory factory = new SendFactory();  </span><br><span class="line">                        Sender sender = factory.produce(&quot;sms&quot;);  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####2、多个工厂方法模式，是对普通工厂方法模式的改进，在普通工厂方法模式中，如果传递的字符串出错，则不能正确创建对象，而多个工厂方法模式是提供多个工厂方法，分别创建对象。</p>
+<p>工厂类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class SendFactory &#123;  </span><br><span class="line">       public Sender produceMail()&#123;  </span><br><span class="line">                return new MailSender();  </span><br><span class="line">                &#125; </span><br><span class="line"></span><br><span class="line">                public Sender produceSms()&#123;  </span><br><span class="line">                        return new SmsSender();  </span><br><span class="line">                        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class FactoryTest &#123;  </span><br><span class="line">      </span><br><span class="line">            public static void main(String[] args) &#123;  </span><br><span class="line">                    SendFactory factory = new SendFactory();  </span><br><span class="line">                        Sender sender = factory.produceMail();  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>扩展：静态工厂方法模式，将上面的多个工厂方法模式里的方法置为静态的，不需要创建实例，直接调用即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class SendFactory &#123;  </span><br><span class="line">          </span><br><span class="line">            public static Sender produceMail()&#123;  </span><br><span class="line">                    return new MailSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">                      </span><br><span class="line">                    public static Sender produceSms()&#123;  </span><br><span class="line">                            return new SmsSender();  </span><br><span class="line">                            &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class FactoryTest &#123;  </span><br><span class="line">      </span><br><span class="line">            public static void main(String[] args) &#123;      </span><br><span class="line">                    Sender sender = SendFactory.produceMail();  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####3、抽象工厂模式（Abstract Factory）</p>
+<p>工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则，所以，从设计角度考虑，有一定的问题，如何解决？就用到抽象工厂模式，创建多个工厂类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Provider &#123;  </span><br><span class="line">        public Sender produce();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>工厂类：<br>邮件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class SendMailFactory implements Provider &#123;  </span><br><span class="line">          </span><br><span class="line">            @Override  </span><br><span class="line">            public Sender produce()&#123;  </span><br><span class="line">                    return new MailSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>短信<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class SendSmsFactory implements Provider&#123;  </span><br><span class="line">      </span><br><span class="line">            @Override  </span><br><span class="line">            public Sender produce() &#123;  </span><br><span class="line">                    return new SmsSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">``` </span><br><span class="line">测试类：</span><br></pre></td></tr></table></figure></p>
+<p>public class Test {  </p>
+<pre><code>public static void main(String[] args) {  
+        Provider provider = new SendMailFactory();  
+            Sender sender = provider.produce();  
+            sender.Send();  
+        }  
+</code></pre><p>}<br><code>`</code></p>
+<p>####参考<br><a href="https://blog.csdn.net/llussize/article/details/80276627" target="_blank" rel="noopener">https://blog.csdn.net/llussize/article/details/80276627</a> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Java,Pattern</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/工厂模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android系统源码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -186,7 +525,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android,Java</a>
         		</li>
       		
 		</ul>
@@ -284,6 +623,17 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android,Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -368,7 +718,7 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring,Java</a>
         		</li>
       		
 		</ul>
@@ -379,6 +729,89 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/05/08/Bean-生命周期/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/31/单例模式/">单例模式</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/31/单例模式/" class="archive-article-date">
+  	<time datetime="2019-01-31T15:32:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>选用<br>-单例对象 占用资源少，不需要延时加载，枚举 好于 饿汉<br>-单例对象 占用资源多，需要延时加载，静态内部类 好于 懒汉式</p>
+<p>#####适合单线程环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance=null;</span><br><span class="line">    private Singleton()&#123;  </span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance==null)&#123;</span><br><span class="line">            instance=new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#####多线程的情况可以用，懒汉式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance=null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static synchronized Singleton getInstance()&#123;</span><br><span class="line">        if(instance==null)&#123;</span><br><span class="line">            instance=new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#####Double CheckLock实现单例，加同步锁时，前后两次判断实例是否存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance=null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance==null)&#123;</span><br><span class="line">            synchronized(Singleton.class)&#123;</span><br><span class="line">                if(instance==null)&#123;</span><br><span class="line">                    instance=new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>####饿汉式（建议使用）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance=new Singleton();</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>####静态内部内。（建议使用）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    private static class SingletonHolder&#123;</span><br><span class="line">        private final static Singleton instance=new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return SingletonHolder.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>####枚举类（线程安全，调用效率高，不能延时加载，可以天然的防止反射和反序列化调用）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">    //枚举元素本身就是单例</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    //添加自己需要的操作</span><br><span class="line">    public void singletonOperation()&#123;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Java,Pattern</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/31/单例模式/">展开全文 >></a>
         </p>
       
 
@@ -428,7 +861,27 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        Strategy();</span><br><span class="line">        virtual ~Strategy();</span><br><span class="line">        virtual void algrithm() = 0;</span><br><span class="line">&#125;;</span><br><span class="line">Strategy::Strategy()&#123;&#125;</span><br><span class="line">Strategy::~Strategy()&#123;&#125;</span><br><span class="line">class Context</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        Context(Strategy * strategy);</span><br><span class="line">        ~Context();</span><br><span class="line">        void doAction();</span><br><span class="line">    private:</span><br><span class="line">        Strategy * m_Strategy;</span><br><span class="line">&#125;;</span><br><span class="line">Context::Context(Strategy * strategy)&#123;m_Strategy = strategy;&#125;</span><br><span class="line">Context::~Context()&#123;&#125;</span><br><span class="line">void Context::doAction()&#123;m_Strategy-&gt;algrithm(); &#125;</span><br><span class="line">class StrategyA : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        virtual void algrithm();</span><br><span class="line">&#125;;</span><br><span class="line">void StrategyA::algrithm()&#123; cout &lt;&lt; &quot;StrategyA algrithm&quot; &lt;&lt; endl;&#125;</span><br><span class="line">class StrategyB : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        virtual void algrithm();</span><br><span class="line">&#125;;</span><br><span class="line">void StrategyB::algrithm()&#123; cout &lt;&lt; &quot;StrategyB algrithm&quot; &lt;&lt; endl;&#125;</span><br><span class="line">int main( int argc, char ** argv)</span><br><span class="line">&#123;</span><br><span class="line">    Strategy *a = new StrategyA();</span><br><span class="line">    Strategy *b = new StrategyB();</span><br><span class="line">    Context * context = new Context(a);</span><br><span class="line">    context-&gt;doAction();</span><br><span class="line">    delete context;</span><br><span class="line">    delete a;</span><br><span class="line">    delete b;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="一、策略模式定义"><a href="#一、策略模式定义" class="headerlink" title="一、策略模式定义"></a>一、策略模式定义</h2><p>Strategy模式也叫策略模式是行为模式之一，它对一系列的算法加以封装，为所有算法定义一个抽象的算法接口，并通过继承该抽象算法接口对所有的算法加以封装和实现，具体的算法选择交由客户端决定（策略）。Strategy模式主要用来平滑地处理算法的切换 。</p>
+<h2 id="二、策略模式的结构"><a href="#二、策略模式的结构" class="headerlink" title="二、策略模式的结构"></a>二、策略模式的结构</h2><ul>
+<li>封装类：也叫上下文，对策略进行二次封装，目的是避免高层模块对策略的直接调用。</li>
+<li>抽象策略：通常情况下为一个接口，当各个实现类中存在着重复的逻辑时，则使用抽象类来封装这部分公共的代码，此时，策略模式看上去更像是模版方法模式。</li>
+<li>具体策略：具体策略角色通常由一组封装了算法的类来担任，这些类之间可以根据需要自由替换。</li>
+</ul>
+<h2 id="三、策略模式的特点"><a href="#三、策略模式的特点" class="headerlink" title="三、策略模式的特点"></a>三、策略模式的特点</h2><ul>
+<li>策略模式提供了可以替换继承关系的办法。</li>
+<li>使用策略模式可以避免使用多重条件转移语句。</li>
+</ul>
+<h2 id="四、策略模式的缺点"><a href="#四、策略模式的缺点" class="headerlink" title="四、策略模式的缺点"></a>四、策略模式的缺点</h2><p>1. 客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道所有的算法或行为的情况。</p>
+<p>2. 策略模式造成很多的策略类。有时候可以通过把依赖于环境的状态保存到客户端里面，而将策略类设计成可共享的，这样策略类实例可以被不同客户端使用。换言之，可以使用享元模式来减少对象的数量。</p>
+<h2 id="五、实现"><a href="#五、实现" class="headerlink" title="五、实现"></a>五、实现</h2><p>抽象策略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Strategy &#123; //加密</span><br><span class="line">        public void encrypt();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体策略<br>md5<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class MD5Strategy implements Strategy&#123; </span><br><span class="line">       public void encrypt() &#123;</span><br><span class="line">                   System.out.println(&quot;执行MD5加密&quot;);</span><br><span class="line">                       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>sha1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class SHA1Strategy implements Strategy&#123; </span><br><span class="line">    public void encrypt() &#123;</span><br><span class="line">                System.out.println(&quot;执行SHA1加密&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="封装类"><a href="#封装类" class="headerlink" title="封装类"></a>封装类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Context &#123; </span><br><span class="line">      private Strategy strategy; </span><br><span class="line">        public Context(Strategy strategy) &#123; </span><br><span class="line">                    this.strategy = strategy;</span><br><span class="line">                        &#125; </span><br><span class="line">          public void encrypt() &#123; </span><br><span class="line">                    this.strategy.encrypt();</span><br><span class="line">                        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class MainClass &#123; </span><br><span class="line">    public static void main(String[] args) &#123; </span><br><span class="line">                // Strategy stra = new SHA1Strategy(); </span><br><span class="line">                // stra.encrypt();</span><br><span class="line">                Context context = new Context(new MD5Strategy());</span><br><span class="line">                        context.encrypt();</span><br><span class="line">                            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###<em>评价</em></p>
+<p>######简直和工厂模式一模一样</p>
+<p>####实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        Strategy();</span><br><span class="line">        virtual ~Strategy();</span><br><span class="line">        virtual void algrithm() = 0;</span><br><span class="line">&#125;;</span><br><span class="line">Strategy::Strategy()&#123;&#125;</span><br><span class="line">Strategy::~Strategy()&#123;&#125;</span><br><span class="line">class Context</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        Context(Strategy * strategy);</span><br><span class="line">        ~Context();</span><br><span class="line">        void doAction();</span><br><span class="line">    private:</span><br><span class="line">        Strategy * m_Strategy;</span><br><span class="line">&#125;;</span><br><span class="line">Context::Context(Strategy * strategy)&#123;m_Strategy = strategy;&#125;</span><br><span class="line">Context::~Context()&#123;&#125;</span><br><span class="line">void Context::doAction()&#123;m_Strategy-&gt;algrithm(); &#125;</span><br><span class="line">class StrategyA : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        virtual void algrithm();</span><br><span class="line">&#125;;</span><br><span class="line">void StrategyA::algrithm()&#123; cout &lt;&lt; &quot;StrategyA algrithm&quot; &lt;&lt; endl;&#125;</span><br><span class="line">class StrategyB : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        virtual void algrithm();</span><br><span class="line">&#125;;</span><br><span class="line">void StrategyB::algrithm()&#123; cout &lt;&lt; &quot;StrategyB algrithm&quot; &lt;&lt; endl;&#125;</span><br><span class="line">int main( int argc, char ** argv)</span><br><span class="line">&#123;</span><br><span class="line">    Strategy *a = new StrategyA();</span><br><span class="line">    Strategy *b = new StrategyB();</span><br><span class="line">    Context * context = new Context(a);</span><br><span class="line">    context-&gt;doAction();</span><br><span class="line">    delete context;</span><br><span class="line">    delete a;</span><br><span class="line">    delete b;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -437,6 +890,17 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Java,Pattern</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -500,379 +964,22 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Tool,Email</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/10/02/Foxmail邮件部署/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/08/python入门/">python入门</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/08/python入门/" class="archive-article-date">
-  	<time datetime="2018-02-08T08:12:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>环境搭建</p>
-<p>1.学习完整</p>
-<p>Python官网：<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a><br>Python文档：<a href="https://www.python.org/doc/" target="_blank" rel="noopener">https://www.python.org/doc/</a><br>2.环境</p>
-<p>window环境<br><a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener">https://www.python.org/downloads/windows/</a><br>Window平台安装包，包格式为：python-XYZ.msi 文件 ， XYZ 为你要安装的版本号</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/08/python入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux用户命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/linux用户命令/">linux用户命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/07/linux用户命令/" class="archive-article-date">
-  	<time datetime="2017-12-07T08:11:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>useradd</p>
-<p>建立一个新用户账户testuser1，并设置UID为544，主目录为/usr/testuser1，属于users组<br>1</p>
-<p>#useradd -u 544 -d /usr/testuser1  -g users -m  testuser1<br>(加-m 如果主目录不存在则自动创建)</p>
-<pre><code>adduser 和 passwd
-
-使用管理员账号登陆系统，建立用户tmp_3452 密码3sdt5:Eawhg
-1
-2
-</code></pre><h1 id="adduser-tmp-3452"><a href="#adduser-tmp-3452" class="headerlink" title="adduser tmp_3452"></a>adduser tmp_3452</h1><h1 id="passwd-tmp-3452"><a href="#passwd-tmp-3452" class="headerlink" title="passwd tmp_3452"></a>passwd tmp_3452</h1><pre><code>userdel删除用户
-
-删除刚创建的账号 tmp_3452
-
-1
-</code></pre><h1 id="userdel-tmp-3452"><a href="#userdel-tmp-3452" class="headerlink" title="userdel tmp_3452"></a>userdel tmp_3452</h1><pre><code>连同用户目录一并删除
-
-1
-</code></pre><h1 id="userdel-f-tmp-3452"><a href="#userdel-f-tmp-3452" class="headerlink" title="userdel -f tmp_3452"></a>userdel -f tmp_3452</h1><pre><code>强制退出已经登陆用户
-
-查看当前登陆用户
-
-1
-</code></pre><h1 id="w"><a href="#w" class="headerlink" title="w"></a>w</h1><pre><code>强制退出命令pkill
-(命令原型： pkill -kill -t [TTY])
-
-1
-</code></pre><h1 id="pkill-kill-t-ps1"><a href="#pkill-kill-t-ps1" class="headerlink" title="pkill -kill -t ps1"></a>pkill -kill -t ps1</h1>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/07/linux用户命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/08/二叉树/">二叉树</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/08/二叉树/" class="archive-article-date">
-  	<time datetime="2017-06-08T08:09:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>计算机：二叉树是每个节点最多有两个子树的树结构<br>图论：二叉树是一个连通的无环图，并且每一个顶点的度不大于3。有根二叉树还要满足根结点的度不大于2</p>
-<p>#####1 五种形态</p>
-<p>空二叉树<br>只有一个根结点的二叉树<br>只有左子树<br>只有右子树<br>完全二叉树</p>
-<p>#####2 遍历<br>遍历是对树的一种最基本的运算，所谓遍历二叉树，就是按一定的规则和顺序走遍二叉树的所有结点，使每一个结点都被访问一次，而且只被访问一次。</p>
-<p>设L、D、R分别表示遍历左子树、访问根结点和遍历右子树， 则对一棵二叉树的遍历有三种情况：DLR（称为先根次序遍历），LDR（称为中根次序遍历），LRD （称为后根次序遍历）</p>
-<p>先序遍历<br>首先访问根，再先序遍历左（右）子树，最后先序遍历右（左）子树<br>中序遍历<br>首先中序遍历左（右）子树，再访问根，最后中序遍历右（左）子树<br>后序遍历<br>首先后序遍历左（右）子树，再后序遍历右（左）子树，最后访问根<br>层次遍历<br>即按照层次访问。访问根，访问子女，再访问子女的子女</p>
-<p>#####3 性质</p>
-<p>一个二叉树第i 层的最大结点数为：2i-1，i ≥ 1<br>深度为k 的二叉树有最大结点总数为：2k-1，k ≥ 1<br>对任何非空二叉树T，若n0 表示叶结点的个数，n2 是度为2 的非叶结点个数，那么两者满足关系n0 = n2 + 1</p>
-<p>#####4 程序描述</p>
-<p>数据来源<br>括号表示法，以及类似表示方法</p>
-<p>类型</p>
-<p>typedef struct BTNode <em> BinaryTree;<br>typedef char ElementType;<br>typedef struct Node{<br>        ElementType data;<br>            struct Node </em> left;<br>                struct Node * right;<br>} BTNode;<br>函数</p>
-<p>BinaryTree InitBinaryTree()：创建一个二叉树，通过某个方式构建二叉树<br>boolean IsEmpty(BinaryTree tree)：判别BT 是否为空<br>BTNode <em> InsertNode(BTNode </em> parent, BTNode * new，int position) ：插入新节点（0，左；1，右）<br>void Traversal(BinaryTree tree)：遍历，按某顺序访问每个结点<br>void PreOrder(BinaryTree tree)：先序——根、左子树、右子树<br>void InOrder(BinaryTree tree)：中序——左子树、根、右子树<br>void PostOrder(BinaryTree tree)：后序——左子树、右子树、根<br>void HierarchyOrder(BinaryTree tree)：层次遍历——从上到下<br>void Print(BinaryTree tree)：打印二叉树<br>void Destroy(BinaryTree tree)：销毁二叉树<br>其他操作</p>
-<p>BTNode * Search(BinaryTree tree,ElementType x) ： 二叉树中查找元素<br>链接:<br><a href="http://chuansong.me/n/729497552547" target="_blank" rel="noopener">http://chuansong.me/n/729497552547</a><br>百度百科</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/08/二叉树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/08/树/">树</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/08/树/" class="archive-article-date">
-  	<time datetime="2017-06-08T08:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>####树的定义</p>
-<p>树（Tree）：n（n ≥ 0）个结点构成的有限集合。</p>
-<p>当n = 0 时，称为空树。<br>对于任一颗非空树（n &gt; 0），它具备以下性质：<br>树中有一个称为”根（Root）”的特殊结点，用r 表示；<br>其余结点（与r 相关联的）可分为m（m &gt; 0）个互不相交的有限集T1，T2，…，Tm，其中每个集合本身又是一颗树，称为原来树的”子树（SubTree）”。<br>树与非树？</p>
-<p>子树是不相交的<br>除了根结点外，每个结点有且仅有一个父节点<br>一颗N个结点的树有N-1条边（我认为可以用构造性的存在性证明或是数学归纳法来证明这一点）</p>
-<p>####树的一些基本术语：</p>
-<p>结点的度（Degree）：结点的子树个数<br>树的度：树的所有结点中最大的度数<br>叶结点（Leaf）：度为0的结点<br>父结点（Parent）：有子树的结点是其子树的根结点的父结点<br>子结点（Child）：若A结点是B结点的父结点，则称B结点是A结点的子结点；子结点也称孩子结点<br>兄弟结点（Sibling）：具有同一父结点的各结点彼此是兄弟结点<br>路径和路径长度（Path）：从结点n1到nk的路径为一个结点序列n1，n2，…，nk，ni是ni+1的父结点，路径所包含的边的个数为路径的长度<br>祖先结点（Ancestor）：沿树根到某一结点路径上的所有结点都是这个结点的祖先结点<br>子孙结点（Descendant）：某一结点的子树中的所有结点都是这个结点子孙<br>结点的层次（Level）：规定根结点在1层，其它任一结点的层数时其父节点的层数加1<br>树的深度（Depth）：树中所有结点中的最大层次是这棵树的深度</p>
-<p>####树的表示</p>
-<p>儿子-兄弟表示法<br>括号表示法</p>
-<p>####树的算法实现</p>
-<p>1<br>2<br>3<br>4<br>5<br>6<br>typedef char ElementType;<br>typedef struct Node{<br>        ElementType data;<br>            struct Node <em> child;<br>                struct Node </em> sibling;<br>} TreeNode;<br>链接:<br><a href="http://chuansong.me/n/729497552547" target="_blank" rel="noopener">http://chuansong.me/n/729497552547</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/08/树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo-配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/05/Hexo-配置/">Hexo-配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/05/Hexo-配置/" class="archive-article-date">
-  	<time datetime="2017-06-05T08:05:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>git安装<br>node环境安装<br>hexo安装<br>npm install hexo-cli -g<br>hexo init #初始化hexo<br>npm install #安装依赖包<br>npm install hexo-deployer-git –save #安装hexo发布使用git<br>配置_config.yml</p>
-<p>Hexo 最常用的几个命令<br>hexo new “博客” 简写 hexo n “博客” #新建文章<br>hexo publish 简写 hexo p #可以不使用用<br>hexo generate 简写 hexo g #生成<br>hexo server 简写 hexo s #启动服务预览<br>hexo deploy 简写 hexo d #部署</p>
-<p>文章内容<br>title: 使用Hexo搭建个人博客<br>date: 2017-06-05 02:20:06<br>categories: Blog<br>tags: [Hexo]</p>
-<p>问题</p>
-<p>不能添加图片<br>[解决]<br>把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true<br>hexo目录下执行npm install hexo-asset-image –save，(安装一个可以上传本地图片的插件)<br>    此时运行hexo n “xxxx” 生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹<br>    最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后在xxxx.md中按照markdown的格式引入图片<br>    (注意:xxxx是这个md文件的名字，也是同名文件夹的名字。引用图片时,使用相对路径)<br>    最后检查一下，hexo g生成页面后，进入public目录查看生成情况，然后使用hexo s 预览<br>    出错重复上述步骤</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/05/Hexo-配置/">展开全文 >></a>
         </p>
       
 
@@ -991,11 +1098,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color3">Android,Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring,Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Tool,Email</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Linux,Git,Tool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Blog,Hexo,Tool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Linux,Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm,Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Java,Pattern</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Pattern</a>
               </li>
             
             <div class="clearfix"></div>

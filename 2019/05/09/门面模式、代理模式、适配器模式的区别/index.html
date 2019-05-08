@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.zhongweimin.me">
-  <title>树 | 浩瀚星海</title>
+  <title>门面模式、代理模式、适配器模式的区别 | 浩瀚星海</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="####树的定义 树（Tree）：n（n ≥ 0）个结点构成的有限集合。 当n = 0 时，称为空树。对于任一颗非空树（n &amp;gt; 0），它具备以下性质：树中有一个称为”根（Root）”的特殊结点，用r 表示；其余结点（与r 相关联的）可分为m（m &amp;gt; 0）个互不相交的有限集T1，T2，…，Tm，其中每个集合本身又是一颗树，称为原来树的”子树（SubTree）”。树与非树？ 子树是不相交的">
-<meta name="keywords" content="Algorithm,Tree">
+  <meta name="description" content="门面模式、代理模式、适配器模式，这三种模式都很接近，他们的区别是： 1、门面模式： 为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，简化了系统的使用； 银行柜台办理业务可以理解为门面模式的一种，客户通过银行柜台办理业务，无需了解银行内部复杂的业务逻辑处理，柜台办理员只是把银行能提供的业务为客户端办理，银行没有提供的服务，柜台办理员也无法办理的。  2、代理模式： 为其他对象提供一">
+<meta name="keywords" content="Pattern">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树">
-<meta property="og:url" content="http://www.zhongweimin.me/2017/06/08/树/index.html">
+<meta property="og:title" content="门面模式、代理模式、适配器模式的区别">
+<meta property="og:url" content="http://www.zhongweimin.me/2019/05/09/门面模式、代理模式、适配器模式的区别/index.html">
 <meta property="og:site_name" content="浩瀚星海">
-<meta property="og:description" content="####树的定义 树（Tree）：n（n ≥ 0）个结点构成的有限集合。 当n = 0 时，称为空树。对于任一颗非空树（n &amp;gt; 0），它具备以下性质：树中有一个称为”根（Root）”的特殊结点，用r 表示；其余结点（与r 相关联的）可分为m（m &amp;gt; 0）个互不相交的有限集T1，T2，…，Tm，其中每个集合本身又是一颗树，称为原来树的”子树（SubTree）”。树与非树？ 子树是不相交的">
+<meta property="og:description" content="门面模式、代理模式、适配器模式，这三种模式都很接近，他们的区别是： 1、门面模式： 为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，简化了系统的使用； 银行柜台办理业务可以理解为门面模式的一种，客户通过银行柜台办理业务，无需了解银行内部复杂的业务逻辑处理，柜台办理员只是把银行能提供的业务为客户端办理，银行没有提供的服务，柜台办理员也无法办理的。  2、代理模式： 为其他对象提供一">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-08T16:51:27.799Z">
+<meta property="og:image" content="http://www.zhongweimin.me/2019/05/09/门面模式、代理模式、适配器模式的区别/Facade-Pattern.png">
+<meta property="og:image" content="http://www.zhongweimin.me/2019/05/09/门面模式、代理模式、适配器模式的区别/Proxy-Pattern.png">
+<meta property="og:image" content="http://www.zhongweimin.me/2019/05/09/门面模式、代理模式、适配器模式的区别/Adapter-Pattern.png">
+<meta property="og:updated_time" content="2019-05-08T17:13:27.761Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="树">
-<meta name="twitter:description" content="####树的定义 树（Tree）：n（n ≥ 0）个结点构成的有限集合。 当n = 0 时，称为空树。对于任一颗非空树（n &amp;gt; 0），它具备以下性质：树中有一个称为”根（Root）”的特殊结点，用r 表示；其余结点（与r 相关联的）可分为m（m &amp;gt; 0）个互不相交的有限集T1，T2，…，Tm，其中每个集合本身又是一颗树，称为原来树的”子树（SubTree）”。树与非树？ 子树是不相交的">
+<meta name="twitter:title" content="门面模式、代理模式、适配器模式的区别">
+<meta name="twitter:description" content="门面模式、代理模式、适配器模式，这三种模式都很接近，他们的区别是： 1、门面模式： 为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，简化了系统的使用； 银行柜台办理业务可以理解为门面模式的一种，客户通过银行柜台办理业务，无需了解银行内部复杂的业务逻辑处理，柜台办理员只是把银行能提供的业务为客户端办理，银行没有提供的服务，柜台办理员也无法办理的。  2、代理模式： 为其他对象提供一">
+<meta name="twitter:image" content="http://www.zhongweimin.me/2019/05/09/门面模式、代理模式、适配器模式的区别/Facade-Pattern.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -143,36 +147,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-树" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-门面模式、代理模式、适配器模式的区别" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      树
+      门面模式、代理模式、适配器模式的区别
     </h1>
   
 
         
-        <a href="/2017/06/08/树/" class="archive-article-date">
-  	<time datetime="2017-06-08T08:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
+        <a href="/2019/05/09/门面模式、代理模式、适配器模式的区别/" class="archive-article-date">
+  	<time datetime="2019-05-08T17:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####树的定义</p>
-<p>树（Tree）：n（n ≥ 0）个结点构成的有限集合。</p>
-<p>当n = 0 时，称为空树。<br>对于任一颗非空树（n &gt; 0），它具备以下性质：<br>树中有一个称为”根（Root）”的特殊结点，用r 表示；<br>其余结点（与r 相关联的）可分为m（m &gt; 0）个互不相交的有限集T1，T2，…，Tm，其中每个集合本身又是一颗树，称为原来树的”子树（SubTree）”。<br>树与非树？</p>
-<p>子树是不相交的<br>除了根结点外，每个结点有且仅有一个父节点<br>一颗N个结点的树有N-1条边（我认为可以用构造性的存在性证明或是数学归纳法来证明这一点）</p>
-<p>####树的一些基本术语：</p>
-<p>结点的度（Degree）：结点的子树个数<br>树的度：树的所有结点中最大的度数<br>叶结点（Leaf）：度为0的结点<br>父结点（Parent）：有子树的结点是其子树的根结点的父结点<br>子结点（Child）：若A结点是B结点的父结点，则称B结点是A结点的子结点；子结点也称孩子结点<br>兄弟结点（Sibling）：具有同一父结点的各结点彼此是兄弟结点<br>路径和路径长度（Path）：从结点n1到nk的路径为一个结点序列n1，n2，…，nk，ni是ni+1的父结点，路径所包含的边的个数为路径的长度<br>祖先结点（Ancestor）：沿树根到某一结点路径上的所有结点都是这个结点的祖先结点<br>子孙结点（Descendant）：某一结点的子树中的所有结点都是这个结点子孙<br>结点的层次（Level）：规定根结点在1层，其它任一结点的层数时其父节点的层数加1<br>树的深度（Depth）：树中所有结点中的最大层次是这棵树的深度</p>
-<p>####树的表示</p>
-<p>儿子-兄弟表示法<br>括号表示法</p>
-<p>####树的算法实现</p>
-<p>1<br>2<br>3<br>4<br>5<br>6<br>typedef char ElementType;<br>typedef struct Node{<br>        ElementType data;<br>            struct Node <em> child;<br>                struct Node </em> sibling;<br>} TreeNode;<br>链接:<br><a href="http://chuansong.me/n/729497552547" target="_blank" rel="noopener">http://chuansong.me/n/729497552547</a></p>
+        <p>门面模式、代理模式、适配器模式，这三种模式都很接近，他们的区别是：</p>
+<p>1、门面模式：</p>
+<p>为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，简化了系统的使用；</p>
+<p>银行柜台办理业务可以理解为门面模式的一种，客户通过银行柜台办理业务，无需了解银行内部复杂的业务逻辑处理，柜台办理员只是把银行能提供的业务为客户端办理，银行没有提供的服务，柜台办理员也无法办理的。</p>
+<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Facade-Pattern.png" alt="门面模式"></p>
+<p>2、代理模式：</p>
+<p>为其他对象提供一种代理以控制对这个对象的访问。客户访问不到被代理对象，可以通过代理对象间接的访问；代理对象可以对上次的访问结果进行缓存，下次有相同的请求时可以直接返回缓存而不用去访问被代理对象；代理对象可以拒绝没有访问权限的用户，使其不能访问被代理对象；因此代理模式比门面模式更高级、信息更丰富；</p>
+<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Proxy-Pattern.png" alt="代理模式"></p>
+<p>3、适配器模式：</p>
+<p>将一个接口转换成客户希望的另外一个接口，使得原本接口不兼容而不能一起工作的那些类可以一起工作。</p>
+<p>因为接口的不同，为了让用户使用到统一的接口，把原先的对象通过适配器让用户统一使用，或者扩充新的功能，大多用在代码维护的后期，或者借用第三方库的情况下。</p>
+<p>适配器模式比代理模式更复杂，他不仅仅能让客户端访问到实体对象，更能把一堆接口不兼容的实体对象进行有序管理和组织起来，使得他们能协同工作；</p>
+<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Adapter-Pattern.png" alt="适配器模式"></p>
+<p>####参考<br><a href="https://www.cnblogs.com/laoxia/p/8026201.html" target="_blank" rel="noopener">https://www.cnblogs.com/laoxia/p/8026201.html</a></p>
 
       
 
@@ -207,7 +215,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm,Tree</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pattern</a>
         		</li>
       		
 		</ul>
@@ -263,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhongweimin.me/2017/06/08/树/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhongweimin.me/2019/05/09/门面模式、代理模式、适配器模式的区别/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,18 +285,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/06/08/二叉树/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          二叉树
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/05/Hexo-配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hexo-配置</div>
+    <a href="/2019/05/09/状态机模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">状态机模式</div>
       <i class="icon-circle-right"></i>
     </a>
   
