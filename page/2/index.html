@@ -56,6 +56,14 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/categories">分类</a></li>
+	        
+				<li><a href="/archives">归档</a></li>
+	        
+				<li><a href="/tags">标签</a></li>
+	        
+				<li><a href="/about">关于</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -106,6 +114,14 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -123,10 +139,18 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
+		        
+					<li style="width: 20%"><a href="/categories">分类</a></li>
+		        
+					<li style="width: 20%"><a href="/archives">归档</a></li>
+		        
+					<li style="width: 20%"><a href="/tags">标签</a></li>
+		        
+					<li style="width: 20%"><a href="/about">关于</a></li>
 		        
 				</ul>
 			</nav>
@@ -677,7 +701,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>git安装<br>node环境安装<br>hexo安装<br>npm install hexo-cli -g<br>hexo init #初始化hexo<br>npm install #安装依赖包<br>npm install hexo-deployer-git –save #安装hexo发布使用git<br>配置_config.yml</p>
-<p>Hexo 最常用的几个命令<br>hexo new “博客” 简写 hexo n “博客” #新建文章<br>hexo publish 简写 hexo p #可以不使用用<br>hexo generate 简写 hexo g #生成<br>hexo server 简写 hexo s #启动服务预览<br>hexo deploy 简写 hexo d #部署</p>
+<p>Hexo 最常用的几个命令<br>hexo new “博客” 简写 hexo n “博客” #新建文章<br>hexo publish 简写 hexo p #可以不使用用<br>hexo generate 简写 hexo g #生成<br>hexo server 简写 hexo s #启动服务预览<br>hexo deploy 简写 hexo d #部署<br>hexo new page “页面” 创建页面</p>
 <p>文章内容<br>title: 使用Hexo搭建个人博客<br>date: 2017-06-05 02:20:06<br>categories: Blog<br>tags: [Hexo]</p>
 <p>问题</p>
 <p>不能添加图片<br>[解决]<br>把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true<br>hexo目录下执行npm install hexo-asset-image –save，(安装一个可以上传本地图片的插件)<br>    此时运行hexo n “xxxx” 生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹<br>    最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后在xxxx.md中按照markdown的格式引入图片<br>    (注意:xxxx是这个md文件的名字，也是同名文件夹的名字。引用图片时,使用相对路径)<br>    最后检查一下，hexo g生成页面后，进入public目录查看生成情况，然后使用hexo s 预览<br>    出错重复上述步骤</p>
