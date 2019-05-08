@@ -16,7 +16,7 @@
 <meta property="og:description" content="平台架构Android 是一种基于 Linux 的开放源代码软件栈，为广泛的设备和机型而创建。下图所示为 Android 平台的主要组件。  ###Linux 内核Android 平台的基础是 Linux 内核。例如，Android Runtime (ART) 依靠 Linux 内核来执行底层功能，例如线程和低层内存管理。 使用 Linux 内核可让 Android 利用主要安全功能，并且允许设备">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.zhongweimin.me/2019/05/08/Android平台/android-stack_2x.png">
-<meta property="og:updated_time" content="2019-05-08T16:13:16.620Z">
+<meta property="og:updated_time" content="2019-05-08T16:23:23.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android平台">
 <meta name="twitter:description" content="平台架构Android 是一种基于 Linux 的开放源代码软件栈，为广泛的设备和机型而创建。下图所示为 Android 平台的主要组件。  ###Linux 内核Android 平台的基础是 Linux 内核。例如，Android Runtime (ART) 依靠 Linux 内核来执行底层功能，例如线程和低层内存管理。 使用 Linux 内核可让 Android 利用主要安全功能，并且允许设备">
@@ -193,7 +193,7 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
 ![应用程序框架层](android-api-framework.png)
 </code></pre><p>###系统应用<br>    Android 随附一套用于电子邮件、短信、日历、互联网浏览和联系人等的核心应用。平台随附的应用与用户可以选择安装的应用一样，没有特殊状态。因此第三方应用可成为用户的默认网络浏览器、短信 Messenger 甚至默认键盘（有一些例外，例如系统的“设置”应用）。</p>
 <pre><code>系统应用可用作用户的应用，以及提供开发者可从其自己的应用访问的主要功能。例如，如果您的应用要发短信，您无需自己构建该功能，可以改为调用已安装的短信应用向您指定的接收者发送消息。
-</code></pre><p>###资料来源<br>    <a href="https://developer.android.google.cn/guide/platform" target="_blank" rel="noopener">developer.android.google.cn</a></p>
+</code></pre><p>###资料来源<br>    <a href="https://developer.android.google.cn/guide/platform" target="_blank" rel="noopener">developer.android.google.cn</a><br>    <a href="https://blog.csdn.net/huaxun66/article/details/78135556" target="_blank" rel="noopener">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
 
       
 
@@ -287,9 +287,18 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
   
 <nav id="article-nav">
   
+    <a href="/2019/05/09/Android系统源码/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android系统源码
+        
+      </div>
+    </a>
   
-    <a href="/2019/05/08/bean-生命周期/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">bean 生命周期</div>
+  
+    <a href="/2019/05/08/Bean-生命周期/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bean 生命周期</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -405,6 +414,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
