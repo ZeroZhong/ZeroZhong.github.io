@@ -143,6 +143,213 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Hexo-创建文章、标签、分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/Hexo-创建文章、标签、分类/">Hexo 创建文章、标签、分类</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/Hexo-创建文章、标签、分类/" class="archive-article-date">
+  	<time datetime="2019-05-08T17:27:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、创建文章<br>    a.在hexo下创建一个新的文章<br>        hexo new “文章名称”<br>        生产后会提示你文件路径，一般在hexo/source/_posts下</p>
+<pre><code>b.文章基本设置
+    title: CentOS7下Tomcat启动慢的原因及解决方案
+    date: 2017-12-02 21:01:24
+    comments: true #是否可评论
+    toc: true #是否显示文章目录
+    categories: &quot;云服务器&quot; #分类
+    tags:   #标签
+        - centOS
+        - tomcat
+</code></pre><p>2、创建标签<br>    a.创建标签页面<br>        hexo new page tags<br>    b.基本设置<br>        title: tags<br>        date: 2017-12-02 21:01:24<br>        type: “tags”<br>3、创建分类<br>    a.创建分类页面<br>        hexo new page categories<br>    b.基本设置<br>        title: categories<br>        date: 2017-12-02 21:01:24<br>        type: “categories”</p>
+<p>###原文<br><a href="https://blog.csdn.net/qq_32337109/article/details/78755662" target="_blank" rel="noopener">https://blog.csdn.net/qq_32337109/article/details/78755662</a> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/Hexo-创建文章、标签、分类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hexo设置关于、标签、分类、归档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/Hexo设置关于、标签、分类、归档/">Hexo设置关于、标签、分类、归档</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/Hexo设置关于、标签、分类、归档/" class="archive-article-date">
+  	<time datetime="2019-05-08T17:19:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、添加 关于页面<br>使用：hexo new page “about” 新建一个 关于我 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配<br>不同主题 _config. yml文件有区别</p>
+<p>menu:<br>home: /      //主页<br>categories: /categories //分类<br>archives: /archives   //归档<br>tags: /tags   //标签<br>about: /about   //关于                  （添加此行即可）<br>或<br>menu:</p>
+<ul>
+<li>page: home<br>directory: .      //主页<br>icon: fa-home</li>
+<li>page: archive<br>directory: archives/    //归档<br>icon: fa-archive</li>
+<li>page: about<br>directory: about/    //关于<br>icon: fa-user</li>
+<li>page: rss<br>directory: atom.xml    //rss订阅<br>icon: fa-rss<br>编辑 about 关于页面 md文件 部署就能看到</li>
+</ul>
+<p>2、添加 标签页面<br>使用： hexo new page tags 新建一个 标签 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
+<p>menu:<br>home: /      //主页<br>categories: /categories //分类<br>archives: /archives   //归档<br>tags: /tags   //标签                  （添加此行即可）<br>about: /about   //关于<br>底下代码是一篇包含 标签 文章的例子：</p>
+<p>title: 标签测试<br>tags:</p>
+<ul>
+<li>Testing                   （这个就是文章的标签了）</li>
+<li>Another Tag               （这个就是文章的标签了）</li>
+</ul>
+<p>3、添加 分类页面<br>使用： hexo new page categories 新建一个 分类 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
+<p>menu:<br>home: /      //主页<br>categories: /categories //分类        （添加此行即可）<br>archives: /archives   //归档<br>tags: /tags   //标签<br>about: /about   //关于<br>底下代码是一篇包含 分类 文章的例子：</p>
+<p>title: 分类测试<br>categories:</p>
+<ul>
+<li>hexo                       （这个就是文章的分类了）</li>
+</ul>
+<p>4、添加 归档页面<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
+<p>menu:<br>home: /      //主页<br>categories: /categories //分类<br>archives: /archives   //归档             （添加此行即可）<br>tags: /tags   //标签<br>about: /about   //关于<br>5、添加 自定义页面<br>使用： hexo new page “guestbook” 新建一个 自定义 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
+<p>menu:<br>home: /      //主页<br>categories: /categories //分类<br>archives: /archives   //归档<br>tags: /tags   //标签<br>about: /about   //关于<br>guestbook: /guestbook    //自定义             （添加此行即可）</p>
+<p>####标签添加方式</p>
+<p>title: title #文章標題<br>date: 2016-06-01 23:47:44 #文章生成時間<br>categories: “Hexo教程” #文章分類目錄 可以省略<br>tags: #文章標籤 可以省略</p>
+<pre><code>- 标签1
+- 标签2
+</code></pre><p>description: #你對本頁的描述 可以省略</p>
+<p>###原文<br><a href="https://blog.csdn.net/u010820857/article/details/82027535" target="_blank" rel="noopener">https://blog.csdn.net/u010820857/article/details/82027535</a><br><a href="https://blog.csdn.net/baozhiqiangjava/article/details/80556550" target="_blank" rel="noopener">https://blog.csdn.net/baozhiqiangjava/article/details/80556550</a> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tool</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Hexo//" class="article-tag-list-link color5">Hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Hexo/Tool//" class="article-tag-list-link color5">Tool</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/Hexo设置关于、标签、分类、归档/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-门面模式、代理模式、适配器模式的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -841,174 +1048,6 @@ C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite
 
 
   
-    <article id="post-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/02/策略模式/">策略模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/02/策略模式/" class="archive-article-date">
-  	<time datetime="2018-10-02T09:37:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、策略模式定义"><a href="#一、策略模式定义" class="headerlink" title="一、策略模式定义"></a>一、策略模式定义</h2><p>Strategy模式也叫策略模式是行为模式之一，它对一系列的算法加以封装，为所有算法定义一个抽象的算法接口，并通过继承该抽象算法接口对所有的算法加以封装和实现，具体的算法选择交由客户端决定（策略）。Strategy模式主要用来平滑地处理算法的切换 。</p>
-<h2 id="二、策略模式的结构"><a href="#二、策略模式的结构" class="headerlink" title="二、策略模式的结构"></a>二、策略模式的结构</h2><ul>
-<li>封装类：也叫上下文，对策略进行二次封装，目的是避免高层模块对策略的直接调用。</li>
-<li>抽象策略：通常情况下为一个接口，当各个实现类中存在着重复的逻辑时，则使用抽象类来封装这部分公共的代码，此时，策略模式看上去更像是模版方法模式。</li>
-<li>具体策略：具体策略角色通常由一组封装了算法的类来担任，这些类之间可以根据需要自由替换。</li>
-</ul>
-<h2 id="三、策略模式的特点"><a href="#三、策略模式的特点" class="headerlink" title="三、策略模式的特点"></a>三、策略模式的特点</h2><ul>
-<li>策略模式提供了可以替换继承关系的办法。</li>
-<li>使用策略模式可以避免使用多重条件转移语句。</li>
-</ul>
-<h2 id="四、策略模式的缺点"><a href="#四、策略模式的缺点" class="headerlink" title="四、策略模式的缺点"></a>四、策略模式的缺点</h2><p>1. 客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道所有的算法或行为的情况。</p>
-<p>2. 策略模式造成很多的策略类。有时候可以通过把依赖于环境的状态保存到客户端里面，而将策略类设计成可共享的，这样策略类实例可以被不同客户端使用。换言之，可以使用享元模式来减少对象的数量。</p>
-<h2 id="五、实现"><a href="#五、实现" class="headerlink" title="五、实现"></a>五、实现</h2><p>抽象策略</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Strategy &#123; //加密</span><br><span class="line">        public void encrypt();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>具体策略<br>md5<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class MD5Strategy implements Strategy&#123; </span><br><span class="line">       public void encrypt() &#123;</span><br><span class="line">                   System.out.println(&quot;执行MD5加密&quot;);</span><br><span class="line">                       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>sha1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class SHA1Strategy implements Strategy&#123; </span><br><span class="line">    public void encrypt() &#123;</span><br><span class="line">                System.out.println(&quot;执行SHA1加密&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="封装类"><a href="#封装类" class="headerlink" title="封装类"></a>封装类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Context &#123; </span><br><span class="line">      private Strategy strategy; </span><br><span class="line">        public Context(Strategy strategy) &#123; </span><br><span class="line">                    this.strategy = strategy;</span><br><span class="line">                        &#125; </span><br><span class="line">          public void encrypt() &#123; </span><br><span class="line">                    this.strategy.encrypt();</span><br><span class="line">                        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class MainClass &#123; </span><br><span class="line">    public static void main(String[] args) &#123; </span><br><span class="line">                // Strategy stra = new SHA1Strategy(); </span><br><span class="line">                // stra.encrypt();</span><br><span class="line">                Context context = new Context(new MD5Strategy());</span><br><span class="line">                        context.encrypt();</span><br><span class="line">                            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>###<em>评价</em></p>
-<p>######简直和工厂模式一模一样</p>
-<p>####实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        Strategy();</span><br><span class="line">        virtual ~Strategy();</span><br><span class="line">        virtual void algrithm() = 0;</span><br><span class="line">&#125;;</span><br><span class="line">Strategy::Strategy()&#123;&#125;</span><br><span class="line">Strategy::~Strategy()&#123;&#125;</span><br><span class="line">class Context</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        Context(Strategy * strategy);</span><br><span class="line">        ~Context();</span><br><span class="line">        void doAction();</span><br><span class="line">    private:</span><br><span class="line">        Strategy * m_Strategy;</span><br><span class="line">&#125;;</span><br><span class="line">Context::Context(Strategy * strategy)&#123;m_Strategy = strategy;&#125;</span><br><span class="line">Context::~Context()&#123;&#125;</span><br><span class="line">void Context::doAction()&#123;m_Strategy-&gt;algrithm(); &#125;</span><br><span class="line">class StrategyA : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        virtual void algrithm();</span><br><span class="line">&#125;;</span><br><span class="line">void StrategyA::algrithm()&#123; cout &lt;&lt; &quot;StrategyA algrithm&quot; &lt;&lt; endl;&#125;</span><br><span class="line">class StrategyB : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        virtual void algrithm();</span><br><span class="line">&#125;;</span><br><span class="line">void StrategyB::algrithm()&#123; cout &lt;&lt; &quot;StrategyB algrithm&quot; &lt;&lt; endl;&#125;</span><br><span class="line">int main( int argc, char ** argv)</span><br><span class="line">&#123;</span><br><span class="line">    Strategy *a = new StrategyA();</span><br><span class="line">    Strategy *b = new StrategyB();</span><br><span class="line">    Context * context = new Context(a);</span><br><span class="line">    context-&gt;doAction();</span><br><span class="line">    delete context;</span><br><span class="line">    delete a;</span><br><span class="line">    delete b;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Java,Pattern</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/02/策略模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Foxmail邮件部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/02/Foxmail邮件部署/">Foxmail邮件部署</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/02/Foxmail邮件部署/" class="archive-article-date">
-  	<time datetime="2018-10-02T09:29:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2018/10/02/Foxmail邮件部署/1.png" alt="1"><br><img src="/2018/10/02/Foxmail邮件部署/2.png" alt="2"><br><img src="/2018/10/02/Foxmail邮件部署/3.png" alt="3"><br><img src="/2018/10/02/Foxmail邮件部署/4.png" alt="4"><br><img src="/2018/10/02/Foxmail邮件部署/5.png" alt="5"><br><img src="/2018/10/02/Foxmail邮件部署/6.png" alt="5"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Tool,Email</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/02/Foxmail邮件部署/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1114,7 +1153,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Blog,Hexo,Tool</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
               </li>
              
               <li class="article-tag-list-item">
