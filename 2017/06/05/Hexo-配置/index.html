@@ -9,14 +9,14 @@
   <title>Hexo-配置 | 浩瀚星海</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="git安装node环境安装hexo安装npm install hexo-cli -ghexo init #初始化hexonpm install #安装依赖包npm install hexo-deployer-git –save #安装hexo发布使用git配置_config.yml Hexo 最常用的几个命令hexo new “博客” 简写 hexo n “博客” #新建文章hexo publis">
-<meta name="keywords" content="Blog,Hexo,Tool">
+<meta name="keywords" content="Hexo,Blog,Tool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo-配置">
 <meta property="og:url" content="http://www.zhongweimin.me/2017/06/05/Hexo-配置/index.html">
 <meta property="og:site_name" content="浩瀚星海">
 <meta property="og:description" content="git安装node环境安装hexo安装npm install hexo-cli -ghexo init #初始化hexonpm install #安装依赖包npm install hexo-deployer-git –save #安装hexo发布使用git配置_config.yml Hexo 最常用的几个命令hexo new “博客” 简写 hexo n “博客” #新建文章hexo publis">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-08T17:37:29.433Z">
+<meta property="og:updated_time" content="2019-05-08T17:45:26.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo-配置">
 <meta name="twitter:description" content="git安装node环境安装hexo安装npm install hexo-cli -ghexo init #初始化hexonpm install #安装依赖包npm install hexo-deployer-git –save #安装hexo发布使用git配置_config.yml Hexo 最常用的几个命令hexo new “博客” 简写 hexo n “博客” #新建文章hexo publis">
@@ -189,9 +189,8 @@
       
         <p>git安装<br>node环境安装<br>hexo安装<br>npm install hexo-cli -g<br>hexo init #初始化hexo<br>npm install #安装依赖包<br>npm install hexo-deployer-git –save #安装hexo发布使用git<br>配置_config.yml</p>
 <p>Hexo 最常用的几个命令<br>hexo new “博客” 简写 hexo n “博客” #新建文章<br>hexo publish 简写 hexo p #可以不使用用<br>hexo generate 简写 hexo g #生成<br>hexo server 简写 hexo s #启动服务预览<br>hexo deploy 简写 hexo d #部署<br>hexo new page “页面” 创建页面</p>
-<p>文章内容<br>title: 使用Hexo搭建个人博客<br>date: 2017-06-05 02:20:06<br>categories: Blog<br>tags: [Hexo]</p>
-<p>问题</p>
-<p>不能添加图片<br>[解决]<br>把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true<br>hexo目录下执行npm install hexo-asset-image –save，(安装一个可以上传本地图片的插件)<br>    此时运行hexo n “xxxx” 生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹<br>    最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后在xxxx.md中按照markdown的格式引入图片<br>    (注意:xxxx是这个md文件的名字，也是同名文件夹的名字。引用图片时,使用相对路径)<br>    最后检查一下，hexo g生成页面后，进入public目录查看生成情况，然后使用hexo s 预览<br>    出错重复上述步骤</p>
+<p>文章内容<br>title: 使用Hexo搭建个人博客<br>date: 2017-06-05 02:20:06<br>categories: Blog<br>tags: [Hexo]<br>comments: true #是否可评论<br>toc: true #是否显示文章目录</p>
+<p>问题<br>不能添加图片<br>[解决]<br>把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true<br>hexo目录下执行npm install hexo-asset-image –save，(安装一个可以上传本地图片的插件)<br>    此时运行hexo n “xxxx” 生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹<br>    最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后在xxxx.md中按照markdown的格式引入图片<br>    (注意:xxxx是这个md文件的名字，也是同名文件夹的名字。引用图片时,使用相对路径)<br>    最后检查一下，hexo g生成页面后，进入public目录查看生成情况，然后使用hexo s 预览<br>    出错重复上述步骤</p>
 
       
 
@@ -226,7 +225,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blog,Hexo,Tool</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blog</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tool</a>
         		</li>
       		
 		</ul>
@@ -425,6 +432,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android,Java</a>
               </li>
              
@@ -445,7 +460,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Blog,Hexo,Tool</a>
+                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
               </li>
              
               <li class="article-tag-list-item">
