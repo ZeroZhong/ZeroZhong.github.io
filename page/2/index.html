@@ -545,41 +545,39 @@
         <blockquote>
 <p>计算机：二叉树是每个节点最多有两个子树的树结构<br>图论：二叉树是一个连通的无环图，并且每一个顶点的度不大于3。有根二叉树还要满足根结点的度不大于2</p>
 </blockquote>
-<p>###1. 五种形态###</p>
-<ul>
+<h3 id="1-五种形态"><a href="#1-五种形态" class="headerlink" title="1. 五种形态"></a>1. 五种形态</h3><ul>
 <li>空二叉树</li>
 <li>只有一个根结点的二叉树</li>
 <li>只有左子树</li>
 <li>只有右子树</li>
 <li>完全二叉树</li>
 </ul>
-<p>###2. 遍历###</p>
-<p>遍历是对树的一种最基本的运算，所谓遍历二叉树，就是按一定的规则和顺序走遍二叉树的所有结点，使每一个结点都被访问一次，而且只被访问一次。</p>
-<p>设L、D、R分别表示遍历左子树、访问根结点和遍历右子树， 则对一棵二叉树的遍历有三种情况：DLR（称为先根次序遍历），LDR（称为中根次序遍历），LRD （称为后根次序遍历）</p>
+<h3 id="2-遍历"><a href="#2-遍历" class="headerlink" title="2. 遍历"></a>2. 遍历</h3><p>遍历是对树的一种最基本的运算，所谓遍历二叉树，就是按一定的规则和顺序走遍二叉树的所有结点，使每一个结点都被访问一次，而且只被访问一次。<br>设L、D、R分别表示遍历左子树、访问根结点和遍历右子树， 则对一棵二叉树的遍历有三种情况：DLR（称为先根次序遍历），LDR（称为中根次序遍历），LRD （称为后根次序遍历）</p>
 <ul>
 <li>先序遍历<br>首先访问根，再先序遍历左（右）子树，最后先序遍历右（左）子树</li>
 <li>中序遍历<br>首先中序遍历左（右）子树，再访问根，最后中序遍历右（左）子树</li>
 <li>后序遍历<br>首先后序遍历左（右）子树，再后序遍历右（左）子树，最后访问根</li>
 <li>层次遍历<br>即按照层次访问。访问根，访问子女，再访问子女的子女</li>
 </ul>
-<p>###3. 性质###</p>
-<p>一个二叉树第i 层的最大结点数为：2i-1，i ≥ 1<br>深度为k 的二叉树有最大结点总数为：2k-1，k ≥ 1<br>对任何非空二叉树T，若n0 表示叶结点的个数，n2 是度为2 的非叶结点个数，那么两者满足关系n0 = n2 + 1</p>
-<p>###4. 程序描述###</p>
-<ul>
+<h3 id="3-性质"><a href="#3-性质" class="headerlink" title="3. 性质"></a>3. 性质</h3><p>一个二叉树第i 层的最大结点数为：2i-1，i ≥ 1<br>深度为k 的二叉树有最大结点总数为：2k-1，k ≥ 1<br>对任何非空二叉树T，若n0 表示叶结点的个数，n2 是度为2 的非叶结点个数，那么两者满足关系n0 = n2 + 1</p>
+<h3 id="4-程序描述"><a href="#4-程序描述" class="headerlink" title="4. 程序描述"></a>4. 程序描述</h3><ul>
 <li><p>数据来源<br>括号表示法，以及类似表示方法</p>
 </li>
-<li><p>类型<br>typedef struct BTNode * BinaryTree;<br>typedef char ElementType;<br>typedef struct Node{   </p>
-<pre><code>ElementType data;   
-    struct Node * left;   
-        struct Node * right;   
-</code></pre><p>} BTNode;</p>
-</li>
-<li><p>函数<br>BinaryTree InitBinaryTree()：创建一个二叉树，通过某个方式构建二叉树<br>boolean IsEmpty(BinaryTree tree)：判别BT 是否为空<br>BTNode <em> InsertNode(BTNode </em> parent, BTNode * new，int position) ：插入新节点（0，左；1，右）<br>void Traversal(BinaryTree tree)：遍历，按某顺序访问每个结点<br>void PreOrder(BinaryTree tree)：先序——根、左子树、右子树<br>void InOrder(BinaryTree tree)：中序——左子树、根、右子树<br>void PostOrder(BinaryTree tree)：后序——左子树、右子树、根<br>void HierarchyOrder(BinaryTree tree)：层次遍历——从上到下<br>void Print(BinaryTree tree)：打印二叉树<br>void Destroy(BinaryTree tree)：销毁二叉树</p>
-</li>
-<li><p>其他操作<br>BTNode * Search(BinaryTree tree,ElementType x) ： 二叉树中查找元素</p>
+<li><p>类型</p>
 </li>
 </ul>
-<p>###链接###<br><a href="http://chuansong.me/n/729497552547" target="_blank" rel="noopener">http://chuansong.me/n/729497552547</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef struct BTNode * BinaryTree;   </span><br><span class="line">typedef char ElementType;</span><br><span class="line">typedef struct Node&#123;   </span><br><span class="line">        ElementType data;   </span><br><span class="line">            struct Node * left;   </span><br><span class="line">                struct Node * right;   </span><br><span class="line">&#125; BTNode;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BinaryTree InitBinaryTree()：创建一个二叉树，通过某个方式构建二叉树</span><br><span class="line">boolean IsEmpty(BinaryTree tree)：判别BT 是否为空</span><br><span class="line">BTNode * InsertNode(BTNode * parent, BTNode * new，int position) ：插入新节点（0，左；1，右）</span><br><span class="line">void Traversal(BinaryTree tree)：遍历，按某顺序访问每个结点</span><br><span class="line">void PreOrder(BinaryTree tree)：先序——根、左子树、右子树</span><br><span class="line">void InOrder(BinaryTree tree)：中序——左子树、根、右子树</span><br><span class="line">void PostOrder(BinaryTree tree)：后序——左子树、右子树、根</span><br><span class="line">void HierarchyOrder(BinaryTree tree)：层次遍历——从上到下</span><br><span class="line">void Print(BinaryTree tree)：打印二叉树</span><br><span class="line">void Destroy(BinaryTree tree)：销毁二叉树</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其他操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BTNode * Search(BinaryTree tree,ElementType x) ： 二叉树中查找元素</span><br></pre></td></tr></table></figure>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><ul>
+<li><a href="http://chuansong.me/n/729497552547" target="_blank" rel="noopener">http://chuansong.me/n/729497552547</a></li>
+</ul>
 
       
 
