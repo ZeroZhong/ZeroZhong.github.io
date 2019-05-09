@@ -56,24 +56,18 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/categories">分类</a></li>
-	        
 				<li><a href="/archives">归档</a></li>
-	        
-				<li><a href="/tags">标签</a></li>
-	        
-				<li><a href="/about">关于</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有</a>
     			
             
     			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于</a>
     			
             
 		</nav>
@@ -116,12 +110,6 @@
 			
 				
 			
-				
-			
-				
-			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -139,18 +127,12 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/categories">分类</a></li>
-		        
-					<li style="width: 20%"><a href="/archives">归档</a></li>
-		        
-					<li style="width: 20%"><a href="/tags">标签</a></li>
-		        
-					<li style="width: 20%"><a href="/about">关于</a></li>
+					<li style="width: 50%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -166,6 +148,294 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Android系统源码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/Android系统源码/">Android系统源码</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/Android系统源码/" class="archive-article-date">
+  	<time datetime="2019-05-08T16:17:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android系统源码<br>对国内的开发者来说最痛苦的是无法去访问android开发网站。为了更好的认识世界，对程序员来说，会翻墙也是的一门技术，带你去领略墙外的世界, 国内开发者访问(androiddevtools) 上面已经有了所有你要的资源，同时可以下载到我们的主角framework。</p>
+<p>如果你只是想查看源码，androidxref也是一个不错的资源。</p>
+<p>整体结构<br>Android7.0的根目录结构说明如下表所示：</p>
+<p>Makefile （全局Makefile文件，用来定义编译规则）<br>abi （应用程序二进制接口）<br>art （ART运行环境）<br>bionic （bionic C库）<br>bootable （启动引导相关代码）<br>build （存放系统编译规则及generic等基础开发包配置）<br>cts （Android兼容性测试套件标准）<br>dalvik （dalvik JAVA虚拟机）<br>developers （开发者目录）<br>development （应用程序开发相关）<br>device （设备相关配置）<br>docs （参考文档目录）<br>external （android使用的一些开源的模组）<br>frameworks （核心框架——java及C++语言）<br>hardware （部分厂家开源的硬解适配层HAL代码）<br>kernel<br>libcore （核心库相关文件）<br>libnativehelper （动态库，实现JNI库的基础）<br>ndk （NDK相关代码，帮助开发人员在应用程序中嵌入C/C++代码）<br>out （编译完成后的代码输出与此目录）<br>packages （应用程序包）<br>pdk （Plug Development Kit 的缩写，本地开发套件）<br>prebuilts （x86和arm架构下预编译的一些资源）<br>sdk （sdk及模拟器）<br>system （底层文件系统库、应用及组件——C语言）<br>tools （工具文件）<br>toolchain（工具链文件）<br>vendor （厂商定制代码）</p>
+<p>应用层部分<br>应用层位于整个Android系统的最上层，开发者开发的应用程序以及系统内置的应用程序都位于应用层。源码根目录中的packages目录对应着系统应用层。</p>
+<p>apps （核心应用程序）<br>experimental （第三方应用程序）<br>inputmethods （输入法目录）<br>providers （内容提供者目录）<br>screensavers （屏幕保护）<br>services （通信服务）<br>wallpapers （墙纸）</p>
+<p>从目录结构可以发现，packages目录存放着系统核心应用程序、第三方的应用程序和输入法等等，这些应用都是运行在系统应用层的，因此packages目录对应着系统的应用层。</p>
+<p>应用框架层部分<br>应用框架层是系统的核心部分，一方面向上提供接口给应用层调用，另一方面向下与C/C++程序库以及硬件抽象层等进行衔接。 应用框架层的主要实现代码在/frameworks/base和/frameworks/av目录下，其中/frameworks/base目录结构如下：</p>
+<p>api （定义API）<br>core （核心库）<br>docs （文档）<br>include （头文件）<br>libs （库）<br>media （多媒体相关库）<br>nfc-extras （NFC相关）<br>opengl 2D/3D （图形API）<br>sax （XML解析器）<br>telephony （电话通讯管理）<br>tests （测试相关）<br>test-runner （测试工具相关）<br>tools （工具）<br>wifi （wifi无线网络）<br>cmds （重要命令：am、app_proce等）<br>data （字体和声音等数据文件）<br>graphics （图形图像相关）<br>keystore （和数据签名证书相关）<br>location （地理位置相关库）<br>native （本地库）<br>obex （蓝牙传输）<br>packages （设置、TTS、VPN程序）<br>services （系统服务）</p>
+<p>###来源<br>   <a href="https://blog.csdn.net/huaxun66/article/details/78135556" target="_blank" rel="noopener">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/Android系统源码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android平台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/08/Android平台/">Android平台</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/08/Android平台/" class="archive-article-date">
+  	<time datetime="2019-05-08T15:57:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平台架构<br>Android 是一种基于 Linux 的开放源代码软件栈，为广泛的设备和机型而创建。下图所示为 Android 平台的主要组件。</p>
+<p><img src="/2019/05/08/Android平台/android-stack_2x.png" alt="图 1. Android 软件栈。"></p>
+<p>###Linux 内核<br>Android 平台的基础是 Linux 内核。例如，Android Runtime (ART) 依靠 Linux 内核来执行底层功能，例如线程和低层内存管理。</p>
+<p>使用 Linux 内核可让 Android 利用主要安全功能，并且允许设备制造商为著名的内核开发硬件驱动程序。</p>
+<p>###硬件抽象层 (HAL)<br>    硬件抽象层 (HAL) 提供标准界面，向更高级别的 Java API 框架显示设备硬件功能。HAL 包含多个库模块，其中每个模块都为特定类型的硬件组件实现一个界面，例如相机或蓝牙模块。当框架 API 要求访问设备硬件时，Android 系统将为该硬件组件加载库模块。</p>
+<p>###Android Runtime<br>    对于运行 Android 5.0（API 级别 21）或更高版本的设备，每个应用都在其自己的进程中运行，并且有其自己的 Android Runtime (ART) 实例。ART 编写为通过执行 DEX 文件在低内存设备上运行多个虚拟机，DEX 文件是一种专为 Android 设计的字节码格式，经过优化，使用的内存很少。编译工具链（例如 Jack）将 Java 源代码编译为 DEX 字节码，使其可在 Android 平台上运行。</p>
+<pre><code>ART 的部分主要功能包括：
+
+* 预先 (AOT) 和即时 (JIT) 编译
+* 优化的垃圾回收 (GC)
+* 更好的调试支持，包括专用采样分析器、详细的诊断异常和崩溃报告，并且能够设置监视点以监控特定字段
+在 Android 版本 5.0（API 级别 21）之前，Dalvik 是 Android Runtime。如果您的应用在 ART 上运行效果很好，那么它应该也可在 Dalvik 上运行，但反过来不一定。
+
+Android 还包含一套核心运行时库，可提供 Java API 框架使用的 Java 编程语言大部分功能，包括一些 Java 8 语言功能。
+</code></pre><p>###原生 C/C++ 库<br>    许多核心 Android 系统组件和服务（例如 ART 和 HAL）构建自原生代码，需要以 C 和 C++ 编写的原生库。Android 平台提供 Java 框架 API 以向应用显示其中部分原生库的功能。例如，您可以通过 Android 框架的 Java OpenGL API 访问 OpenGL ES，以支持在应用中绘制和操作 2D 和 3D 图形。</p>
+<pre><code>如果开发的是需要 C 或 C++ 代码的应用，可以使用 Android NDK 直接从原生代码访问某些原生平台库。
+C/C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite、OpenGLEState、FreeType、WebKit、SGL、SSL和libc。
+![C/C++程序库](android-cxx-library.png)
+</code></pre><p>###Java API 框架<br>    您可通过以 Java 语言编写的 API 使用 Android OS 的整个功能集。这些 API 形成创建 Android 应用所需的构建块，它们可简化核心模块化系统组件和服务的重复使用，包括以下组件和服务：</p>
+<pre><code>* 丰富、可扩展的视图系统，可用以构建应用的 UI，包括列表、网格、文本框、按钮甚至可嵌入的网络浏览器
+* 资源管理器，用于访问非代码资源，例如本地化的字符串、图形和布局文件
+* 通知管理器，可让所有应用在状态栏中显示自定义提醒
+* Activity 管理器，用于管理应用的生命周期，提供常见的导航返回栈
+* 内容提供程序，可让应用访问其他应用（例如“联系人”应用）中的数据或者共享其自己的数据
+开发者可以完全访问 Android 系统应用使用的框架 API。
+应用程序框架层包括活动管理器、位置管理器、包管理器、通知管理器、资源管理器、 电话管理器、窗口管理器、内容提供者、视图系统和XMPP服务十个部分。
+![应用程序框架层](android-api-framework.png)
+</code></pre><p>###系统应用<br>    Android 随附一套用于电子邮件、短信、日历、互联网浏览和联系人等的核心应用。平台随附的应用与用户可以选择安装的应用一样，没有特殊状态。因此第三方应用可成为用户的默认网络浏览器、短信 Messenger 甚至默认键盘（有一些例外，例如系统的“设置”应用）。</p>
+<pre><code>系统应用可用作用户的应用，以及提供开发者可从其自己的应用访问的主要功能。例如，如果您的应用要发短信，您无需自己构建该功能，可以改为调用已安装的短信应用向您指定的接收者发送消息。
+</code></pre><p>###资料来源<br>    <a href="https://developer.android.google.cn/guide/platform" target="_blank" rel="noopener">developer.android.google.cn</a><br>    <a href="https://blog.csdn.net/huaxun66/article/details/78135556" target="_blank" rel="noopener">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/08/Android平台/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Bean-生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/08/Bean-生命周期/">Bean 生命周期</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/08/Bean-生命周期/" class="archive-article-date">
+  	<time datetime="2019-05-08T06:55:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####Spring Bean初始化的流程<br><img src="/2019/05/08/Bean-生命周期/spring-bean-lifecycle.png" alt="Spring Bean初始化的流程"></p>
+<p>####示例</p>
+<ul>
+<li><p>Bean</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class User implements InitializingBean , DisposableBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public User() &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(constructor)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;   </span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(setName/setAttribute)&quot;);</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;   </span><br><span class="line">    @PostConstruct</span><br><span class="line">        public void postConstruct()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(postConstruct)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    //MainConfig中@Bean 的initMethod</span><br><span class="line">    public void initMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(initMethod)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    //InitializingBean接口的方法afterPropertiesSet</span><br><span class="line">    @Override</span><br><span class="line">        public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(afterPropertiesSet)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    @PreDestroy</span><br><span class="line">        public void preDestroy()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(preDestroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    //DisposableBean接口的方法destroy</span><br><span class="line">    @Override</span><br><span class="line">        public void destroy() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(destroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    //MainConfig中@Bean 的destroyMethod</span><br><span class="line">    public void destroyMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(destroyMethod)&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Bean流程監控</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class CustomBeanPostProcessor implements BeanPostProcessor &#123;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()==User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessBeforeInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()==User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessAfterInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Client</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">public class App &#123;</span><br><span class="line"></span><br><span class="line">    @Bean(initMethod = &quot;initMethod&quot;,destroyMethod = &quot;destroyMethod&quot;)</span><br><span class="line">        public User user()&#123;</span><br><span class="line">            return new User();</span><br><span class="line">        &#125;   </span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(App.class, args);</span><br><span class="line">    &#125;~  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">调用Bean的函数(constructor)</span><br><span class="line">调用postProcessBeforeInitialization...</span><br><span class="line">调用Bean的函数(postConstruct)</span><br><span class="line">调用Bean的函数(afterPropertiesSet)</span><br><span class="line">调用Bean的函数(initMethod)</span><br><span class="line">调用postProcessAfterInitialization...</span><br><span class="line">2019-05-09 00:33:00.526  INFO 4549 --- [           main] com.will.App                             : Started App in 3.664 seconds (JVM running for 6.588)</span><br><span class="line">调用Bean的函数(preDestroy)</span><br><span class="line">调用Bean的函数(destroy)</span><br><span class="line">调用Bean的函数(destroyMethod)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>####参考<br><a href="https://www.cnblogs.com/xrq730/p/6363055.html" target="_blank" rel="noopener">https://www.cnblogs.com/xrq730/p/6363055.html</a><br><a href="https://www.cnblogs.com/redcool/p/6397398.html" target="_blank" rel="noopener">https://www.cnblogs.com/redcool/p/6397398.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/08/Bean-生命周期/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -809,180 +1079,9 @@
 
 
   
-    <article id="post-Hexo-配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/05/Hexo-配置/">Hexo-配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/05/Hexo-配置/" class="archive-article-date">
-  	<time datetime="2017-06-05T08:05:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>git安装<br>node环境安装<br>hexo安装<br>npm install hexo-cli -g<br>hexo init #初始化hexo<br>npm install #安装依赖包<br>npm install hexo-deployer-git –save #安装hexo发布使用git<br>配置_config.yml</p>
-<p>Hexo 最常用的几个命令<br>hexo new “博客” 简写 hexo n “博客” #新建文章<br>hexo publish 简写 hexo p #可以不使用用<br>hexo generate 简写 hexo g #生成<br>hexo server 简写 hexo s #启动服务预览<br>hexo deploy 简写 hexo d #部署<br>hexo new page “页面” 创建页面</p>
-<p>文章内容<br>title: 使用Hexo搭建个人博客<br>date: 2017-06-05 02:20:06<br>categories: Blog<br>tags: [Hexo]<br>comments: true #是否可评论<br>toc: true #是否显示文章目录</p>
-<p>问题<br>不能添加图片<br>[解决]<br>把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true<br>hexo目录下执行npm install hexo-asset-image –save，(安装一个可以上传本地图片的插件)<br>    此时运行hexo n “xxxx” 生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹<br>    最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后在xxxx.md中按照markdown的格式引入图片<br>    (注意:xxxx是这个md文件的名字，也是同名文件夹的名字。引用图片时,使用相对路径)<br>    最后检查一下，hexo g生成页面后，进入public目录查看生成情况，然后使用hexo s 预览<br>    出错重复上述步骤</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tool</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/05/Hexo-配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Git远程库操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/31/Git远程库操作/">Git远程库操作</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/31/Git远程库操作/" class="archive-article-date">
-  	<time datetime="2017-05-31T08:07:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>git remote</p>
-<p>git remote -v 管理主机名<br>git remote show &lt;主机名&gt; 查看该主机的详细信息<br>git remote add &lt;主机名&gt; &lt;网址&gt; 添加远程主机<br>git remote rm &lt;主机名&gt; 删除远程主机<br>git remote rename &lt;原主机名&gt; &lt;新主机名&gt; 远程主机的改名<br>git fetch</p>
-<p>git fetch &lt;远程主机名&gt; 取回所有分支（branch）的更新<br>git fetch &lt;远程主机名&gt; &lt;分支名&gt; 取回特定分支的更新<br>git pull</p>
-<p>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt; 取回远程主机某个分支的更新，再与本地的指定分支合并<br>手动建立追踪关系 git branch –set-upstream master origin/test<br>git push</p>
-<p>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;<br>git push origin :remote_branch //删除远程分支（the_branch）<br>git push origin local_branch //本地分支（local_branch）重新建立远程分支</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tool</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/31/Git远程库操作/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1044,11 +1143,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有</a></li>
       
         
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于</a></li>
       
         
     </ul>
@@ -1110,6 +1209,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Srping</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
