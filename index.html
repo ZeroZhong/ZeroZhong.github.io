@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.zhongweimin.me">
   <title>浩瀚星海</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="less is more">
+  <meta name="description" content="程序员">
 <meta property="og:type" content="website">
 <meta property="og:title" content="浩瀚星海">
 <meta property="og:url" content="http://www.zhongweimin.me/index.html">
 <meta property="og:site_name" content="浩瀚星海">
-<meta property="og:description" content="less is more">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="程序员">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="will">
+<meta property="article:tag" content="C,Java,Golang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浩瀚星海">
-<meta name="twitter:description" content="less is more">
+  
+    <link rel="alternative" href="/atom.xml" title="浩瀚星海" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -33,8 +35,8 @@
 
   
 
-</head>
-</html>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -47,7 +49,7 @@
 			<img src="http://upload.jianshu.io/users/upload_avatars/2703326/fa7247398a43.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">ZeroZhong</a></h1>
+		  <h1 class="header-author"><a href="/"></a></h1>
 		</hgroup>
 		
 
@@ -56,7 +58,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/archives">归档</a></li>
+				<li><a href="/archives/">归档</a></li>
 	        
 			</ul>
 		</nav>
@@ -70,18 +72,12 @@
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于</a>
     			
             
+    			
+            
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -101,7 +97,7 @@
 				<img src="http://upload.jianshu.io/users/upload_avatars/2703326/fa7247398a43.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">ZeroZhong</h1>
+			  <h1 class="header-author js-header-author"></h1>
 			</hgroup>
 			
 			
@@ -115,14 +111,6 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-			        
 				</div>
 			</nav>
 
@@ -132,7 +120,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/archives">归档</a></li>
+					<li style="width: 50%"><a href="/archives/">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -149,172 +137,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Springboot读取配置文件及自定义配置文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/Springboot读取配置文件及自定义配置文件/">Springboot读取配置文件及自定义配置文件</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/Springboot读取配置文件及自定义配置文件/" class="archive-article-date">
-  	<time datetime="2019-05-09T06:18:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>优先使用applilcation.properties中的数据，其次application.yml</p>
-<h3 id="配置文件的读取路径和次序"><a href="#配置文件的读取路径和次序" class="headerlink" title="配置文件的读取路径和次序"></a>配置文件的读取路径和次序</h3><h3 id="配置文件的格式"><a href="#配置文件的格式" class="headerlink" title="配置文件的格式"></a>配置文件的格式</h3><h3 id="Value注解"><a href="#Value注解" class="headerlink" title="@Value注解"></a>@Value注解</h3><h3 id="ConfigurationProperties注解"><a href="#ConfigurationProperties注解" class="headerlink" title="@ConfigurationProperties注解"></a>@ConfigurationProperties注解</h3><h3 id="PropertySource配合-Value"><a href="#PropertySource配合-Value" class="headerlink" title="@PropertySource配合@Value"></a>@PropertySource配合@Value</h3><h3 id="ConfigurationProperties配合-PropertySource配合-Value"><a href="#ConfigurationProperties配合-PropertySource配合-Value" class="headerlink" title="@ConfigurationProperties配合@PropertySource配合@Value"></a>@ConfigurationProperties配合@PropertySource配合@Value</h3><h3 id="ConfigurationProperties配合-Value"><a href="#ConfigurationProperties配合-Value" class="headerlink" title="@ConfigurationProperties配合@Value"></a>@ConfigurationProperties配合@Value</h3><h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><pre><code>* https://my.oschina.net/imlim/blog/1859091
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/Springboot读取配置文件及自定义配置文件/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot-切面AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/SpringBoot-切面AOP/">SpringBoot 切面AOP</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/SpringBoot-切面AOP/" class="archive-article-date">
-  	<time datetime="2019-05-09T06:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在方法执行的前后，切入代码；经典的service层切入事务.</p>
-<h3 id="AOP相关注解"><a href="#AOP相关注解" class="headerlink" title="AOP相关注解"></a>AOP相关注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Aspect注解是切面注解类</span><br><span class="line">@Pointcut切点定义</span><br><span class="line">@Before是方法执行前调用</span><br><span class="line">@After是方法执行后调用</span><br><span class="line">@AfterReturning方法执行返回值调用</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Srping</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/SpringBoot-切面AOP/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Springboot配置监听器、过滤器和拦截器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -322,23 +144,26 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/Springboot配置监听器、过滤器和拦截器/">Springboot配置监听器、过滤器和拦截器</a>
+      <a class="article-title" href="/2019/05/11/Springboot%E9%85%8D%E7%BD%AE%E7%9B%91%E5%90%AC%E5%99%A8%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/">Springboot配置监听器、过滤器和拦截器</a>
     </h1>
   
 
         
-        <a href="/2019/05/09/Springboot配置监听器、过滤器和拦截器/" class="archive-article-date">
-  	<time datetime="2019-05-09T06:12:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+        <a href="/2019/05/11/Springboot%E9%85%8D%E7%BD%AE%E7%9B%91%E5%90%AC%E5%99%A8%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2019-05-11T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><pre><code>listener是servlet规范中定义的一种特殊类。用于监听servletContext、HttpSession和servletRequest等域对象的创建和销毁事件。监听域对象的属性发生修改的事件。用于在事件发生前、发生后做一些必要的处理。其主要可用于以下方面：1、统计在线人数和在线用户2、系统启动时加载初始化信息3、统计网站访问量4、记录用户访问路径。
-</code></pre><h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><pre><code>Filter是Servlet技术中最实用的技术，Web开发人员通过Filter技术，对web服务器管理的所有web资源：例如Jsp, Servlet, 静态图片文件或静态 html 文件等进行拦截，从而实现一些特殊的功能。例如实现URL级别的权限访问控制、过滤敏感词汇、压缩响应信息等一些高级功能。它主要用于对用户请求进行预处理，也可以对HttpServletResponse进行后处理。使用Filter的完整流程：Filter对用户请求进行预处理，接着将请求交给Servlet进行处理并生成响应，最后Filter再对服务器响应进行后处理。
-</code></pre><h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><pre><code>Interceptor 在AOP（Aspect-Oriented Programming）中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。比如日志，安全等。一般拦截器方法都是通过动态代理的方式实现。可以通过它来进行权限验证，或者判断用户是否登陆，或者是像12306 判断当前时间是否是购票时间。
-</code></pre><p>　　三大器在springboot中使用时，首先实现相应的接口定义类，然后通过配置类将其加入到spring容器中，从而实现相应的功能。</p>
+        <h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listener是servlet规范中定义的一种特殊类。用于监听servletContext、HttpSession和servletRequest等域对象的创建和销毁事件。监听域对象的属性发生修改的事件。用于在事件发生前、发生后做一些必要的处理。其主要可用于以下方面：1、统计在线人数和在线用户2、系统启动时加载初始化信息3、统计网站访问量4、记录用户访问路径。</span><br></pre></td></tr></table></figure>
+
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Filter是Servlet技术中最实用的技术，Web开发人员通过Filter技术，对web服务器管理的所有web资源：例如Jsp, Servlet, 静态图片文件或静态 html 文件等进行拦截，从而实现一些特殊的功能。例如实现URL级别的权限访问控制、过滤敏感词汇、压缩响应信息等一些高级功能。它主要用于对用户请求进行预处理，也可以对HttpServletResponse进行后处理。使用Filter的完整流程：Filter对用户请求进行预处理，接着将请求交给Servlet进行处理并生成响应，最后Filter再对服务器响应进行后处理。</span><br></pre></td></tr></table></figure>
+
+<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Interceptor 在AOP（Aspect-Oriented Programming）中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。比如日志，安全等。一般拦截器方法都是通过动态代理的方式实现。可以通过它来进行权限验证，或者判断用户是否登陆，或者是像12306 判断当前时间是否是购票时间。</span><br></pre></td></tr></table></figure>
+
+<p>　　三大器在springboot中使用时，首先实现相应的接口定义类，然后通过配置类将其加入到spring容器中，从而实现相应的功能。</p>
 
       
 
@@ -370,7 +195,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/Springboot配置监听器、过滤器和拦截器/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/11/Springboot%E9%85%8D%E7%BD%AE%E7%9B%91%E5%90%AC%E5%99%A8%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/">展开全文 >></a>
         </p>
       
 
@@ -407,13 +232,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/Binder机制/">Binder机制</a>
+      <a class="article-title" href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/">Binder机制</a>
     </h1>
   
 
         
-        <a href="/2019/05/09/Binder机制/" class="archive-article-date">
-  	<time datetime="2019-05-08T18:16:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+        <a href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2019-05-10T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
 </a>
         
       </header>
@@ -436,10 +261,88 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
         		</li>
-      		 
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Springboot读取配置文件及自定义配置文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">Springboot读取配置文件及自定义配置文件</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2019-05-10T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>优先使用applilcation.properties中的数据，其次application.yml</p>
+<h3 id="配置文件的读取路径和次序"><a href="#配置文件的读取路径和次序" class="headerlink" title="配置文件的读取路径和次序"></a>配置文件的读取路径和次序</h3><h3 id="配置文件的格式"><a href="#配置文件的格式" class="headerlink" title="配置文件的格式"></a>配置文件的格式</h3><h3 id="Value注解"><a href="#Value注解" class="headerlink" title="@Value注解"></a>@Value注解</h3><h3 id="ConfigurationProperties注解"><a href="#ConfigurationProperties注解" class="headerlink" title="@ConfigurationProperties注解"></a>@ConfigurationProperties注解</h3><h3 id="PropertySource配合-Value"><a href="#PropertySource配合-Value" class="headerlink" title="@PropertySource配合@Value"></a>@PropertySource配合@Value</h3><h3 id="ConfigurationProperties配合-PropertySource配合-Value"><a href="#ConfigurationProperties配合-PropertySource配合-Value" class="headerlink" title="@ConfigurationProperties配合@PropertySource配合@Value"></a>@ConfigurationProperties配合@PropertySource配合@Value</h3><h3 id="ConfigurationProperties配合-Value"><a href="#ConfigurationProperties配合-Value" class="headerlink" title="@ConfigurationProperties配合@Value"></a>@ConfigurationProperties配合@Value</h3><h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* https:&#x2F;&#x2F;my.oschina.net&#x2F;imlim&#x2F;blog&#x2F;1859091</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -448,7 +351,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/Binder机制/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">展开全文 >></a>
         </p>
       
 
@@ -478,38 +381,36 @@
 
 
   
-    <article id="post-Hexo-创建文章、标签、分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android系统源码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/Hexo-创建文章、标签、分类/">Hexo 创建文章、标签、分类</a>
+      <a class="article-title" href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/">Android系统源码</a>
     </h1>
   
 
         
-        <a href="/2019/05/09/Hexo-创建文章、标签、分类/" class="archive-article-date">
-  	<time datetime="2019-05-08T17:27:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+        <a href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2019-05-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1、创建文章<br>    a.在hexo下创建一个新的文章<br>        hexo new “文章名称”<br>        生产后会提示你文件路径，一般在hexo/source/_posts下</p>
-<pre><code>b.文章基本设置
-    title: CentOS7下Tomcat启动慢的原因及解决方案
-    date: 2017-12-02 21:01:24
-    comments: true #是否可评论
-    toc: true #是否显示文章目录
-    categories: &quot;云服务器&quot; #分类
-    tags:   #标签
-        - centOS
-        - tomcat
-</code></pre><p>2、创建标签<br>    a.创建标签页面<br>        hexo new page tags<br>    b.基本设置<br>        title: tags<br>        date: 2017-12-02 21:01:24<br>        type: “tags”<br>3、创建分类<br>    a.创建分类页面<br>        hexo new page categories<br>    b.基本设置<br>        title: categories<br>        date: 2017-12-02 21:01:24<br>        type: “categories”</p>
-<p>###原文<br><a href="https://blog.csdn.net/qq_32337109/article/details/78755662" target="_blank" rel="noopener">https://blog.csdn.net/qq_32337109/article/details/78755662</a> </p>
+        <p>Android系统源码<br>对国内的开发者来说最痛苦的是无法去访问android开发网站。为了更好的认识世界，对程序员来说，会翻墙也是的一门技术，带你去领略墙外的世界, 国内开发者访问(androiddevtools) 上面已经有了所有你要的资源，同时可以下载到我们的主角framework。</p>
+<p>如果你只是想查看源码，androidxref也是一个不错的资源。</p>
+<p>整体结构<br>Android7.0的根目录结构说明如下表所示：</p>
+<p>Makefile （全局Makefile文件，用来定义编译规则）<br>abi （应用程序二进制接口）<br>art （ART运行环境）<br>bionic （bionic C库）<br>bootable （启动引导相关代码）<br>build （存放系统编译规则及generic等基础开发包配置）<br>cts （Android兼容性测试套件标准）<br>dalvik （dalvik JAVA虚拟机）<br>developers （开发者目录）<br>development （应用程序开发相关）<br>device （设备相关配置）<br>docs （参考文档目录）<br>external （android使用的一些开源的模组）<br>frameworks （核心框架——java及C++语言）<br>hardware （部分厂家开源的硬解适配层HAL代码）<br>kernel<br>libcore （核心库相关文件）<br>libnativehelper （动态库，实现JNI库的基础）<br>ndk （NDK相关代码，帮助开发人员在应用程序中嵌入C/C++代码）<br>out （编译完成后的代码输出与此目录）<br>packages （应用程序包）<br>pdk （Plug Development Kit 的缩写，本地开发套件）<br>prebuilts （x86和arm架构下预编译的一些资源）<br>sdk （sdk及模拟器）<br>system （底层文件系统库、应用及组件——C语言）<br>tools （工具文件）<br>toolchain（工具链文件）<br>vendor （厂商定制代码）</p>
+<p>应用层部分<br>应用层位于整个Android系统的最上层，开发者开发的应用程序以及系统内置的应用程序都位于应用层。源码根目录中的packages目录对应着系统应用层。</p>
+<p>apps （核心应用程序）<br>experimental （第三方应用程序）<br>inputmethods （输入法目录）<br>providers （内容提供者目录）<br>screensavers （屏幕保护）<br>services （通信服务）<br>wallpapers （墙纸）</p>
+<p>从目录结构可以发现，packages目录存放着系统核心应用程序、第三方的应用程序和输入法等等，这些应用都是运行在系统应用层的，因此packages目录对应着系统的应用层。</p>
+<p>应用框架层部分<br>应用框架层是系统的核心部分，一方面向上提供接口给应用层调用，另一方面向下与C/C++程序库以及硬件抽象层等进行衔接。 应用框架层的主要实现代码在/frameworks/base和/frameworks/av目录下，其中/frameworks/base目录结构如下：</p>
+<p>api （定义API）<br>core （核心库）<br>docs （文档）<br>include （头文件）<br>libs （库）<br>media （多媒体相关库）<br>nfc-extras （NFC相关）<br>opengl 2D/3D （图形API）<br>sax （XML解析器）<br>telephony （电话通讯管理）<br>tests （测试相关）<br>test-runner （测试工具相关）<br>tools （工具）<br>wifi （wifi无线网络）<br>cmds （重要命令：am、app_proce等）<br>data （字体和声音等数据文件）<br>graphics （图形图像相关）<br>keystore （和数据签名证书相关）<br>location （地理位置相关库）<br>native （本地库）<br>obex （蓝牙传输）<br>packages （设置、TTS、VPN程序）<br>services （系统服务）</p>
+<p>###来源<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/huaxun66/article/details/78135556">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
 
       
 
@@ -523,7 +424,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
         		</li>
       		
 		</ul>
@@ -533,7 +434,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/Hexo-创建文章、标签、分类/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/">展开全文 >></a>
         </p>
       
 
@@ -563,56 +464,29 @@
 
 
   
-    <article id="post-Hexo设置关于、标签、分类、归档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-SpringBoot 切面AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/Hexo设置关于、标签、分类、归档/">Hexo设置关于、标签、分类、归档</a>
+      <a class="article-title" href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/">SpringBoot 切面AOP</a>
     </h1>
   
 
         
-        <a href="/2019/05/09/Hexo设置关于、标签、分类、归档/" class="archive-article-date">
-  	<time datetime="2019-05-08T17:19:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+        <a href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/" class="archive-article-date">
+  	<time datetime="2019-05-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1、添加 关于页面<br>使用：hexo new page “about” 新建一个 关于我 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配<br>不同主题 _config. yml文件有区别</p>
-<p>menu:<br>home: /      //主页<br>categories: /categories //分类<br>archives: /archives   //归档<br>tags: /tags   //标签<br>about: /about   //关于                  （添加此行即可）<br>或<br>menu:</p>
-<ul>
-<li>page: home<br>directory: .      //主页<br>icon: fa-home</li>
-<li>page: archive<br>directory: archives/    //归档<br>icon: fa-archive</li>
-<li>page: about<br>directory: about/    //关于<br>icon: fa-user</li>
-<li>page: rss<br>directory: atom.xml    //rss订阅<br>icon: fa-rss<br>编辑 about 关于页面 md文件 部署就能看到</li>
-</ul>
-<p>2、添加 标签页面<br>使用： hexo new page tags 新建一个 标签 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<p>menu:<br>home: /      //主页<br>categories: /categories //分类<br>archives: /archives   //归档<br>tags: /tags   //标签                  （添加此行即可）<br>about: /about   //关于<br>底下代码是一篇包含 标签 文章的例子：</p>
-<p>title: 标签测试<br>tags:</p>
-<ul>
-<li>Testing                   （这个就是文章的标签了）</li>
-<li>Another Tag               （这个就是文章的标签了）</li>
-</ul>
-<p>3、添加 分类页面<br>使用： hexo new page categories 新建一个 分类 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<p>menu:<br>home: /      //主页<br>categories: /categories //分类        （添加此行即可）<br>archives: /archives   //归档<br>tags: /tags   //标签<br>about: /about   //关于<br>底下代码是一篇包含 分类 文章的例子：</p>
-<p>title: 分类测试<br>categories:</p>
-<ul>
-<li>hexo                       （这个就是文章的分类了）</li>
-</ul>
-<p>4、添加 归档页面<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<p>menu:<br>home: /      //主页<br>categories: /categories //分类<br>archives: /archives   //归档             （添加此行即可）<br>tags: /tags   //标签<br>about: /about   //关于<br>5、添加 自定义页面<br>使用： hexo new page “guestbook” 新建一个 自定义 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<p>menu:<br>home: /      //主页<br>categories: /categories //分类<br>archives: /archives   //归档<br>tags: /tags   //标签<br>about: /about   //关于<br>guestbook: /guestbook    //自定义             （添加此行即可）</p>
-<p>####标签添加方式</p>
-<p>title: title #文章標題<br>date: 2016-06-01 23:47:44 #文章生成時間<br>categories: “Hexo教程” #文章分類目錄 可以省略<br>tags: #文章標籤 可以省略</p>
-<pre><code>- 标签1
-- 标签2
-</code></pre><p>description: #你對本頁的描述 可以省略</p>
-<p>###原文<br><a href="https://blog.csdn.net/u010820857/article/details/82027535" target="_blank" rel="noopener">https://blog.csdn.net/u010820857/article/details/82027535</a><br><a href="https://blog.csdn.net/baozhiqiangjava/article/details/80556550" target="_blank" rel="noopener">https://blog.csdn.net/baozhiqiangjava/article/details/80556550</a> </p>
+        <p>在方法执行的前后，切入代码；经典的service层切入事务.</p>
+<h3 id="AOP相关注解"><a href="#AOP相关注解" class="headerlink" title="AOP相关注解"></a>AOP相关注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Aspect注解是切面注解类</span><br><span class="line">@Pointcut切点定义</span><br><span class="line">@Before是方法执行前调用</span><br><span class="line">@After是方法执行后调用</span><br><span class="line">@AfterReturning方法执行返回值调用</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -626,36 +500,211 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tool</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Hexo//" class="article-tag-list-link color5">Hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Hexo/Tool//" class="article-tag-list-link color5">Tool</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/Hexo设置关于、标签、分类、归档/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android平台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/">Android平台</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
+  	<time datetime="2019-05-08T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平台架构<br>Android 是一种基于 Linux 的开放源代码软件栈，为广泛的设备和机型而创建。下图所示为 Android 平台的主要组件。</p>
+<p><img src="/.me//Android%E5%B9%B3%E5%8F%B0%5Candroid-stack_2x.png" alt="图 1. Android 软件栈。"></p>
+<p>###Linux 内核<br>Android 平台的基础是 Linux 内核。例如，Android Runtime (ART) 依靠 Linux 内核来执行底层功能，例如线程和低层内存管理。</p>
+<p>使用 Linux 内核可让 Android 利用主要安全功能，并且允许设备制造商为著名的内核开发硬件驱动程序。</p>
+<p>###硬件抽象层 (HAL)<br>硬件抽象层 (HAL) 提供标准界面，向更高级别的 Java API 框架显示设备硬件功能。HAL 包含多个库模块，其中每个模块都为特定类型的硬件组件实现一个界面，例如相机或蓝牙模块。当框架 API 要求访问设备硬件时，Android 系统将为该硬件组件加载库模块。</p>
+<p>###Android Runtime<br>对于运行 Android 5.0（API 级别 21）或更高版本的设备，每个应用都在其自己的进程中运行，并且有其自己的 Android Runtime (ART) 实例。ART 编写为通过执行 DEX 文件在低内存设备上运行多个虚拟机，DEX 文件是一种专为 Android 设计的字节码格式，经过优化，使用的内存很少。编译工具链（例如 Jack）将 Java 源代码编译为 DEX 字节码，使其可在 Android 平台上运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ART 的部分主要功能包括：</span><br><span class="line"></span><br><span class="line">* 预先 (AOT) 和即时 (JIT) 编译</span><br><span class="line">* 优化的垃圾回收 (GC)</span><br><span class="line">* 更好的调试支持，包括专用采样分析器、详细的诊断异常和崩溃报告，并且能够设置监视点以监控特定字段</span><br><span class="line">在 Android 版本 5.0（API 级别 21）之前，Dalvik 是 Android Runtime。如果您的应用在 ART 上运行效果很好，那么它应该也可在 Dalvik 上运行，但反过来不一定。</span><br><span class="line"></span><br><span class="line">Android 还包含一套核心运行时库，可提供 Java API 框架使用的 Java 编程语言大部分功能，包括一些 Java 8 语言功能。</span><br></pre></td></tr></table></figure>
+
+<p>###原生 C/C++ 库<br>许多核心 Android 系统组件和服务（例如 ART 和 HAL）构建自原生代码，需要以 C 和 C++ 编写的原生库。Android 平台提供 Java 框架 API 以向应用显示其中部分原生库的功能。例如，您可以通过 Android 框架的 Java OpenGL API 访问 OpenGL ES，以支持在应用中绘制和操作 2D 和 3D 图形。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果开发的是需要 C 或 C++ 代码的应用，可以使用 Android NDK 直接从原生代码访问某些原生平台库。</span><br><span class="line">C&#x2F;C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite、OpenGLEState、FreeType、WebKit、SGL、SSL和libc。</span><br><span class="line">![C&#x2F;C++程序库](android-cxx-library.png)</span><br></pre></td></tr></table></figure>
+
+<p>###Java API 框架<br>您可通过以 Java 语言编写的 API 使用 Android OS 的整个功能集。这些 API 形成创建 Android 应用所需的构建块，它们可简化核心模块化系统组件和服务的重复使用，包括以下组件和服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* 丰富、可扩展的视图系统，可用以构建应用的 UI，包括列表、网格、文本框、按钮甚至可嵌入的网络浏览器</span><br><span class="line">* 资源管理器，用于访问非代码资源，例如本地化的字符串、图形和布局文件</span><br><span class="line">* 通知管理器，可让所有应用在状态栏中显示自定义提醒</span><br><span class="line">* Activity 管理器，用于管理应用的生命周期，提供常见的导航返回栈</span><br><span class="line">* 内容提供程序，可让应用访问其他应用（例如“联系人”应用）中的数据或者共享其自己的数据</span><br><span class="line">开发者可以完全访问 Android 系统应用使用的框架 API。</span><br><span class="line">应用程序框架层包括活动管理器、位置管理器、包管理器、通知管理器、资源管理器、 电话管理器、窗口管理器、内容提供者、视图系统和XMPP服务十个部分。</span><br><span class="line">![应用程序框架层](android-api-framework.png)</span><br></pre></td></tr></table></figure>
+
+<p>###系统应用<br>Android 随附一套用于电子邮件、短信、日历、互联网浏览和联系人等的核心应用。平台随附的应用与用户可以选择安装的应用一样，没有特殊状态。因此第三方应用可成为用户的默认网络浏览器、短信 Messenger 甚至默认键盘（有一些例外，例如系统的“设置”应用）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统应用可用作用户的应用，以及提供开发者可从其自己的应用访问的主要功能。例如，如果您的应用要发短信，您无需自己构建该功能，可以改为调用已安装的短信应用向您指定的接收者发送消息。</span><br></pre></td></tr></table></figure>
+
+<p>###资料来源<br><a target="_blank" rel="noopener" href="https://developer.android.google.cn/guide/platform">developer.android.google.cn</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/huaxun66/article/details/78135556">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Bean 生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Bean 生命周期</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="archive-article-date">
+  	<time datetime="2019-05-07T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####Spring Bean初始化的流程<br>![Spring Bean初始化的流程](Bean 生命周期/spring-bean-lifecycle.png)</p>
+<p>####示例</p>
+<ul>
+<li><p>Bean</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class User implements InitializingBean , DisposableBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public User() &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(constructor)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;   </span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(setName&#x2F;setAttribute)&quot;);</span><br><span class="line">        this.name &#x3D; name;</span><br><span class="line">    &#125;   </span><br><span class="line">    @PostConstruct</span><br><span class="line">        public void postConstruct()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(postConstruct)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;MainConfig中@Bean 的initMethod</span><br><span class="line">    public void initMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(initMethod)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    &#x2F;&#x2F;InitializingBean接口的方法afterPropertiesSet</span><br><span class="line">    @Override</span><br><span class="line">        public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(afterPropertiesSet)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    @PreDestroy</span><br><span class="line">        public void preDestroy()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(preDestroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;DisposableBean接口的方法destroy</span><br><span class="line">    @Override</span><br><span class="line">        public void destroy() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(destroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;MainConfig中@Bean 的destroyMethod</span><br><span class="line">    public void destroyMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(destroyMethod)&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Bean流程監控</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class CustomBeanPostProcessor implements BeanPostProcessor &#123;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()&#x3D;&#x3D;User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessBeforeInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()&#x3D;&#x3D;User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessAfterInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Client</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">public class App &#123;</span><br><span class="line"></span><br><span class="line">    @Bean(initMethod &#x3D; &quot;initMethod&quot;,destroyMethod &#x3D; &quot;destroyMethod&quot;)</span><br><span class="line">        public User user()&#123;</span><br><span class="line">            return new User();</span><br><span class="line">        &#125;   </span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(App.class, args);</span><br><span class="line">    &#125;~  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">调用Bean的函数(constructor)</span><br><span class="line">调用postProcessBeforeInitialization...</span><br><span class="line">调用Bean的函数(postConstruct)</span><br><span class="line">调用Bean的函数(afterPropertiesSet)</span><br><span class="line">调用Bean的函数(initMethod)</span><br><span class="line">调用postProcessAfterInitialization...</span><br><span class="line">2019-05-09 00:33:00.526  INFO 4549 --- [           main] com.will.App                             : Started App in 3.664 seconds (JVM running for 6.588)</span><br><span class="line">调用Bean的函数(preDestroy)</span><br><span class="line">调用Bean的函数(destroy)</span><br><span class="line">调用Bean的函数(destroyMethod)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>####参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xrq730/p/6363055.html">https://www.cnblogs.com/xrq730/p/6363055.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/redcool/p/6397398.html">https://www.cnblogs.com/redcool/p/6397398.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">展开全文 >></a>
         </p>
       
 
@@ -692,13 +741,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/门面模式、代理模式、适配器模式的区别/">门面模式、代理模式、适配器模式的区别</a>
+      <a class="article-title" href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">门面模式、代理模式、适配器模式的区别</a>
     </h1>
   
 
         
-        <a href="/2019/05/09/门面模式、代理模式、适配器模式的区别/" class="archive-article-date">
-  	<time datetime="2019-05-08T17:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+        <a href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2018-10-11T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
 </a>
         
       </header>
@@ -709,16 +758,16 @@
 <p>1、门面模式：</p>
 <p>为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，简化了系统的使用；</p>
 <p>银行柜台办理业务可以理解为门面模式的一种，客户通过银行柜台办理业务，无需了解银行内部复杂的业务逻辑处理，柜台办理员只是把银行能提供的业务为客户端办理，银行没有提供的服务，柜台办理员也无法办理的。</p>
-<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Facade-Pattern.png" alt="门面模式"></p>
+<p><img src="/.me//%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CFacade-Pattern.png" alt="门面模式"></p>
 <p>2、代理模式：</p>
 <p>为其他对象提供一种代理以控制对这个对象的访问。客户访问不到被代理对象，可以通过代理对象间接的访问；代理对象可以对上次的访问结果进行缓存，下次有相同的请求时可以直接返回缓存而不用去访问被代理对象；代理对象可以拒绝没有访问权限的用户，使其不能访问被代理对象；因此代理模式比门面模式更高级、信息更丰富；</p>
-<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Proxy-Pattern.png" alt="代理模式"></p>
+<p><img src="/.me//%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CProxy-Pattern.png" alt="代理模式"></p>
 <p>3、适配器模式：</p>
 <p>将一个接口转换成客户希望的另外一个接口，使得原本接口不兼容而不能一起工作的那些类可以一起工作。</p>
 <p>因为接口的不同，为了让用户使用到统一的接口，把原先的对象通过适配器让用户统一使用，或者扩充新的功能，大多用在代码维护的后期，或者借用第三方库的情况下。</p>
 <p>适配器模式比代理模式更复杂，他不仅仅能让客户端访问到实体对象，更能把一堆接口不兼容的实体对象进行有序管理和组织起来，使得他们能协同工作；</p>
-<p><img src="/2019/05/09/门面模式、代理模式、适配器模式的区别/Adapter-Pattern.png" alt="适配器模式"></p>
-<p>####参考<br><a href="https://www.cnblogs.com/laoxia/p/8026201.html" target="_blank" rel="noopener">https://www.cnblogs.com/laoxia/p/8026201.html</a></p>
+<p><img src="/.me//%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CAdapter-Pattern.png" alt="适配器模式"></p>
+<p>####参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/laoxia/p/8026201.html">https://www.cnblogs.com/laoxia/p/8026201.html</a></p>
 
       
 
@@ -732,7 +781,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pattern</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -742,86 +791,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/门面模式、代理模式、适配器模式的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-状态机模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/状态机模式/">状态机模式</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/状态机模式/" class="archive-article-date">
-  	<time datetime="2019-05-08T17:00:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>####状态机模式定义<br>　　状态模式，又称状态对象模式（Pattern of Objects for States），状态模式是对象的行为模式。<br>　　状态模式允许一个对象在其内部状态改变的时候改变其行为。这个对象看上去就像是改变了它的类一样。</p>
-<p>####结构和角色<br>状态模式所涉及到的角色有：<br>　　●　　环境(Context)角色，也成上下文：定义客户端所感兴趣的接口，并且保留一个具体状态类的实例。这个具体状态类的实例给出此环境对象的现有状态。<br>　　●　　抽象状态(State)角色：定义一个接口，用以封装环境（Context）对象的一个特定的状态所对应的行为。<br>　　●　　具体状态(ConcreteState)角色：每一个具体状态类都实现了环境（Context）的一个状态所对应的行为。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pattern</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/状态机模式/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 
@@ -858,13 +828,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/适配器模式/">适配器模式</a>
+      <a class="article-title" href="/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">适配器模式</a>
     </h1>
   
 
         
-        <a href="/2019/05/09/适配器模式/" class="archive-article-date">
-  	<time datetime="2019-05-08T16:59:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+        <a href="/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2018-10-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
 </a>
         
       </header>
@@ -888,11 +858,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pattern</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -902,7 +868,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/适配器模式/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
@@ -932,53 +898,48 @@
 
 
   
-    <article id="post-工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/工厂模式/">工厂模式</a>
+      <a class="article-title" href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
     </h1>
   
 
         
-        <a href="/2019/05/09/工厂模式/" class="archive-article-date">
-  	<time datetime="2019-05-08T16:56:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+        <a href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2018-10-04T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>工厂方法模式（Factory Method）</p>
-<p>工厂方法模式分为三种：<br>普通工厂模式，多个工厂方法模式，抽象工厂模式</p>
-<p>###工厂产品设计（发送邮件和发送短信为例）<br>接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Sender &#123;  </span><br><span class="line">        public void Send();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>短信<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class SmsSender implements Sender &#123;  </span><br><span class="line">      </span><br><span class="line">            @Override  </span><br><span class="line">            public void Send() &#123;  </span><br><span class="line">                    System.out.println(&quot;this is sms sender!&quot;);  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>邮件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class MailSender implements Sender &#123;  </span><br><span class="line">        @Override  </span><br><span class="line">            public void Send() &#123;  </span><br><span class="line">                    System.out.println(&quot;this is mailsender!&quot;);  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>#####1、普通工厂模式，就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。</p>
-<p>工厂类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class SendFactory &#123;  </span><br><span class="line">      </span><br><span class="line">            public Sender produce(String type) &#123;  </span><br><span class="line">                    if (&quot;mail&quot;.equals(type)) &#123;  </span><br><span class="line">                            return new MailSender();  </span><br><span class="line">                            &#125; else if (&quot;sms&quot;.equals(type)) &#123;  </span><br><span class="line">                                    return new SmsSender();  </span><br><span class="line">                                    &#125; else &#123;  </span><br><span class="line">                                            System.out.println(&quot;请输入正确的类型!&quot;);  </span><br><span class="line">                                                return null;  </span><br><span class="line">                                            &#125;  </span><br><span class="line">                                        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class FactoryTest &#123;  </span><br><span class="line">      </span><br><span class="line">            public static void main(String[] args) &#123;  </span><br><span class="line">                    SendFactory factory = new SendFactory();  </span><br><span class="line">                        Sender sender = factory.produce(&quot;sms&quot;);  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>#####2、多个工厂方法模式，是对普通工厂方法模式的改进，在普通工厂方法模式中，如果传递的字符串出错，则不能正确创建对象，而多个工厂方法模式是提供多个工厂方法，分别创建对象。</p>
-<p>工厂类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class SendFactory &#123;  </span><br><span class="line">       public Sender produceMail()&#123;  </span><br><span class="line">                return new MailSender();  </span><br><span class="line">                &#125; </span><br><span class="line"></span><br><span class="line">                public Sender produceSms()&#123;  </span><br><span class="line">                        return new SmsSender();  </span><br><span class="line">                        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class FactoryTest &#123;  </span><br><span class="line">      </span><br><span class="line">            public static void main(String[] args) &#123;  </span><br><span class="line">                    SendFactory factory = new SendFactory();  </span><br><span class="line">                        Sender sender = factory.produceMail();  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>扩展：静态工厂方法模式，将上面的多个工厂方法模式里的方法置为静态的，不需要创建实例，直接调用即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class SendFactory &#123;  </span><br><span class="line">          </span><br><span class="line">            public static Sender produceMail()&#123;  </span><br><span class="line">                    return new MailSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">                      </span><br><span class="line">                    public static Sender produceSms()&#123;  </span><br><span class="line">                            return new SmsSender();  </span><br><span class="line">                            &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class FactoryTest &#123;  </span><br><span class="line">      </span><br><span class="line">            public static void main(String[] args) &#123;      </span><br><span class="line">                    Sender sender = SendFactory.produceMail();  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>#####3、抽象工厂模式（Abstract Factory）</p>
-<p>工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则，所以，从设计角度考虑，有一定的问题，如何解决？就用到抽象工厂模式，创建多个工厂类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Provider &#123;  </span><br><span class="line">        public Sender produce();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>工厂类：<br>邮件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class SendMailFactory implements Provider &#123;  </span><br><span class="line">          </span><br><span class="line">            @Override  </span><br><span class="line">            public Sender produce()&#123;  </span><br><span class="line">                    return new MailSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>短信<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class SendSmsFactory implements Provider&#123;  </span><br><span class="line">      </span><br><span class="line">            @Override  </span><br><span class="line">            public Sender produce() &#123;  </span><br><span class="line">                    return new SmsSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">``` </span><br><span class="line">测试类：</span><br></pre></td></tr></table></figure></p>
-<p>public class Test {  </p>
-<pre><code>public static void main(String[] args) {  
-        Provider provider = new SendMailFactory();  
-            Sender sender = provider.produce();  
-            sender.Send();  
-        }  
-</code></pre><p>}<br><code>`</code></p>
-<p>####参考<br><a href="https://blog.csdn.net/llussize/article/details/80276627" target="_blank" rel="noopener">https://blog.csdn.net/llussize/article/details/80276627</a> </p>
+        <h2 id="选用"><a href="#选用" class="headerlink" title="选用"></a>选用</h2><p>-单例对象 占用资源少，不需要延时加载，枚举 好于 饿汉<br>-单例对象 占用资源多，需要延时加载，静态内部类 好于 懒汉式</p>
+<h2 id="适合单线程环境"><a href="#适合单线程环境" class="headerlink" title="适合单线程环境"></a>适合单线程环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;  </span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            instance&#x3D;new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多线程的情况可以用，懒汉式"><a href="#多线程的情况可以用，懒汉式" class="headerlink" title="多线程的情况可以用，懒汉式"></a>多线程的情况可以用，懒汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static synchronized Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            instance&#x3D;new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-CheckLock"><a href="#Double-CheckLock" class="headerlink" title="Double CheckLock"></a>Double CheckLock</h2><p>实现单例，加同步锁时，前后两次判断实例是否存在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            synchronized(Singleton.class)&#123;</span><br><span class="line">                if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">                    instance&#x3D;new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="饿汉式（建议使用）"><a href="#饿汉式（建议使用）" class="headerlink" title="饿汉式（建议使用）"></a>饿汉式（建议使用）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;new Singleton();</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="静态内部内。"><a href="#静态内部内。" class="headerlink" title="静态内部内。"></a>静态内部内。</h2><p>（建议使用）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    private static class SingletonHolder&#123;</span><br><span class="line">        private final static Singleton instance&#x3D;new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return SingletonHolder.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>（线程安全，调用效率高，不能延时加载，可以天然的防止反射和反序列化调用）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;枚举元素本身就是单例</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;添加自己需要的操作</span><br><span class="line">    public void singletonOperation()&#123;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -992,11 +953,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Pattern</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -1006,7 +963,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/工厂模式/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
@@ -1038,7 +995,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1050,7 +1007,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 ZeroZhong
+    		&copy; 2020 will
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1094,6 +1051,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
+      
+    
     
 
     <ul style="width: 70%">
@@ -1105,6 +1064,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         
       
       <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于</a></li>
+      
+        
       
         
     </ul>
@@ -1125,31 +1086,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Email</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1157,7 +1098,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1169,7 +1126,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Srping</a>
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Foxmail</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1177,15 +1150,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1193,7 +1158,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -1236,7 +1201,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">拈朵微笑的花&lt;br&gt;想一番人世变换&lt;br&gt;到头来输赢有何妨&lt;br&gt;日与月互消长&lt;br&gt;富与贵难久长&lt;br&gt;今早的容颜老于昨晚&lt;br&gt;眉间放一字宽&lt;br&gt;看一段人世风光&lt;br&gt;谁不是把悲喜在尝&lt;br&gt;海连天走不完&lt;br&gt;恩怨难计算&lt;br&gt;昨日非今日该忘&lt;br&gt;浪滔滔人渺渺青春鸟飞去了&lt;br&gt;纵然是千古风流浪里摇&lt;br&gt;风潇潇人渺渺快意刀山中草&lt;br&gt;爱恨的百般滋味随风飘&lt;br&gt;</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">拈朵微笑的花&lt;br&gt;想一番人世变换&lt;br&gt;到头来输赢有何妨&lt;br&gt;日与月互消长&lt;br&gt;富与贵难久长&lt;br&gt;今早的容颜老于昨晚&lt;br&gt;眉间放一字宽&lt;br&gt;看一段人世风光&lt;br&gt;谁不是把悲喜在尝&lt;br&gt;海连天走不完&lt;br&gt;恩怨难计算&lt;br&gt;昨日非今日该忘&lt;br&gt;浪滔滔人渺渺青春鸟飞去了&lt;br&gt;纵然是千古风流浪里摇&lt;br&gt;风潇潇人渺渺快意刀山中草&lt;br&gt;爱恨的百般滋味随风飘</div>
   	  	
     	</section>
     

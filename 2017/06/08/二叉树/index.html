@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.zhongweimin.me">
   <title>二叉树 | 浩瀚星海</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="计算机：二叉树是每个节点最多有两个子树的树结构图论：二叉树是一个连通的无环图，并且每一个顶点的度不大于3。有根二叉树还要满足根结点的度不大于2  1. 五种形态 空二叉树 只有一个根结点的二叉树 只有左子树 只有右子树 完全二叉树  2. 遍历遍历是对树的一种最基本的运算，所谓遍历二叉树，就是按一定的规则和顺序走遍二叉树的所有结点，使每一个结点都被访问一次，而且只被访问一次。设L、D、R分别表示">
-<meta name="keywords" content="Algorithm,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉树">
-<meta property="og:url" content="http://www.zhongweimin.me/2017/06/08/二叉树/index.html">
+<meta property="og:url" content="http://www.zhongweimin.me/2017/06/08/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
 <meta property="og:site_name" content="浩瀚星海">
 <meta property="og:description" content="计算机：二叉树是每个节点最多有两个子树的树结构图论：二叉树是一个连通的无环图，并且每一个顶点的度不大于3。有根二叉树还要满足根结点的度不大于2  1. 五种形态 空二叉树 只有一个根结点的二叉树 只有左子树 只有右子树 完全二叉树  2. 遍历遍历是对树的一种最基本的运算，所谓遍历二叉树，就是按一定的规则和顺序走遍二叉树的所有结点，使每一个结点都被访问一次，而且只被访问一次。设L、D、R分别表示">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-08T18:10:51.950Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-06-08T13:01:24.000Z">
+<meta property="article:modified_time" content="2020-10-22T12:47:24.725Z">
+<meta property="article:author" content="will">
+<meta property="article:tag" content="树">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="二叉树">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二叉树">
-<meta name="twitter:description" content="计算机：二叉树是每个节点最多有两个子树的树结构图论：二叉树是一个连通的无环图，并且每一个顶点的度不大于3。有根二叉树还要满足根结点的度不大于2  1. 五种形态 空二叉树 只有一个根结点的二叉树 只有左子树 只有右子树 完全二叉树  2. 遍历遍历是对树的一种最基本的运算，所谓遍历二叉树，就是按一定的规则和顺序走遍二叉树的所有结点，使每一个结点都被访问一次，而且只被访问一次。设L、D、R分别表示">
+  
+    <link rel="alternative" href="/atom.xml" title="浩瀚星海" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -35,8 +39,8 @@
 
   
 
-</head>
-</html>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -49,7 +53,7 @@
 			<img src="http://upload.jianshu.io/users/upload_avatars/2703326/fa7247398a43.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">ZeroZhong</a></h1>
+		  <h1 class="header-author"><a href="/"></a></h1>
 		</hgroup>
 		
 
@@ -58,7 +62,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/archives">归档</a></li>
+				<li><a href="/archives/">归档</a></li>
 	        
 			</ul>
 		</nav>
@@ -72,18 +76,12 @@
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于</a>
     			
             
+    			
+            
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
 			</div>
 		</nav>
 	</header>		
@@ -103,7 +101,7 @@
 				<img src="http://upload.jianshu.io/users/upload_avatars/2703326/fa7247398a43.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">ZeroZhong</h1>
+			  <h1 class="header-author js-header-author"></h1>
 			</hgroup>
 			
 			
@@ -117,14 +115,6 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-			        
 				</div>
 			</nav>
 
@@ -134,7 +124,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/archives">归档</a></li>
+					<li style="width: 50%"><a href="/archives/">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -161,8 +151,8 @@
   
 
         
-        <a href="/2017/06/08/二叉树/" class="archive-article-date">
-  	<time datetime="2017-06-08T08:09:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
+        <a href="/2017/06/08/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2017-06-08T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
 </a>
         
       </header>
@@ -188,23 +178,26 @@
 </ul>
 <h3 id="3-性质"><a href="#3-性质" class="headerlink" title="3. 性质"></a>3. 性质</h3><p>一个二叉树第i 层的最大结点数为：2i-1，i ≥ 1<br>深度为k 的二叉树有最大结点总数为：2k-1，k ≥ 1<br>对任何非空二叉树T，若n0 表示叶结点的个数，n2 是度为2 的非叶结点个数，那么两者满足关系n0 = n2 + 1</p>
 <h3 id="4-程序描述"><a href="#4-程序描述" class="headerlink" title="4. 程序描述"></a>4. 程序描述</h3><ul>
-<li><p>数据来源<br>括号表示法，以及类似表示方法</p>
-</li>
-<li><p>类型</p>
-</li>
+<li>数据来源<br>括号表示法，以及类似表示方法</li>
+<li>类型</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef struct BTNode * BinaryTree;   </span><br><span class="line">typedef char ElementType;</span><br><span class="line">typedef struct Node&#123;   </span><br><span class="line">        ElementType data;   </span><br><span class="line">            struct Node * left;   </span><br><span class="line">                struct Node * right;   </span><br><span class="line">&#125; BTNode;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BTNode</span> * <span class="title">BinaryTree</span>;</span>   </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElementType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span>   </span><br><span class="line">        ElementType data;   </span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">left</span>;</span>   </span><br><span class="line">                <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">right</span>;</span>   </span><br><span class="line">&#125; BTNode;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>函数</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BinaryTree InitBinaryTree()：创建一个二叉树，通过某个方式构建二叉树</span><br><span class="line">boolean IsEmpty(BinaryTree tree)：判别BT 是否为空</span><br><span class="line">BTNode * InsertNode(BTNode * parent, BTNode * new，int position) ：插入新节点（0，左；1，右）</span><br><span class="line">void Traversal(BinaryTree tree)：遍历，按某顺序访问每个结点</span><br><span class="line">void PreOrder(BinaryTree tree)：先序——根、左子树、右子树</span><br><span class="line">void InOrder(BinaryTree tree)：中序——左子树、根、右子树</span><br><span class="line">void PostOrder(BinaryTree tree)：后序——左子树、右子树、根</span><br><span class="line">void HierarchyOrder(BinaryTree tree)：层次遍历——从上到下</span><br><span class="line">void Print(BinaryTree tree)：打印二叉树</span><br><span class="line">void Destroy(BinaryTree tree)：销毁二叉树</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BinaryTree InitBinaryTree()：创建一个二叉树，通过某个方式构建二叉树</span><br><span class="line">boolean IsEmpty(BinaryTree tree)：判别BT 是否为空</span><br><span class="line">BTNode * InsertNode(BTNode * parent, BTNode * new，int position) ：插入新节点（0，左；1，右）</span><br><span class="line">void Traversal(BinaryTree tree)：遍历，按某顺序访问每个结点</span><br><span class="line">void PreOrder(BinaryTree tree)：先序——根、左子树、右子树</span><br><span class="line">void InOrder(BinaryTree tree)：中序——左子树、根、右子树</span><br><span class="line">void PostOrder(BinaryTree tree)：后序——左子树、右子树、根</span><br><span class="line">void HierarchyOrder(BinaryTree tree)：层次遍历——从上到下</span><br><span class="line">void Print(BinaryTree tree)：打印二叉树</span><br><span class="line">void Destroy(BinaryTree tree)：销毁二叉树</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>其他操作</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BTNode * Search(BinaryTree tree,ElementType x) ： 二叉树中查找元素</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BTNode * Search(BinaryTree tree,ElementType x) ： 二叉树中查找元素</span><br></pre></td></tr></table></figure>
+
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><ul>
-<li><a href="http://chuansong.me/n/729497552547" target="_blank" rel="noopener">http://chuansong.me/n/729497552547</a></li>
+<li><a target="_blank" rel="noopener" href="http://chuansong.me/n/729497552547">http://chuansong.me/n/729497552547</a></li>
 </ul>
+<p><a href="javascript:;">
+  </a></p>
 
       
 
@@ -239,11 +232,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
         		</li>
       		
 		</ul>
@@ -299,7 +296,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhongweimin.me/2017/06/08/二叉树/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhongweimin.me/2017/06/08/%E4%BA%8C%E5%8F%89%E6%A0%91/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -313,18 +310,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/07/Linux用户命令/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/06/09/%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Linux用户命令
+          树
         
       </div>
     </a>
   
   
-    <a href="/2017/06/08/树/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">树</div>
+    <a href="/2017/06/08/%E7%8A%B6%E6%80%81%E6%9C%BA%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">状态机模式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -343,19 +340,6 @@
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-五种形态"><span class="toc-number">1.</span> <span class="toc-text">1. 五种形态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-遍历"><span class="toc-number">2.</span> <span class="toc-text">2. 遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-性质"><span class="toc-number">3.</span> <span class="toc-text">3. 性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-程序描述"><span class="toc-number">4.</span> <span class="toc-text">4. 程序描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接"><span class="toc-number">5.</span> <span class="toc-text">链接</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>
@@ -380,7 +364,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 ZeroZhong
+    		&copy; 2020 will
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -424,6 +408,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
       
     
+      
+    
     
 
     <ul style="width: 70%">
@@ -435,6 +421,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         
       
       <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于</a></li>
+      
+        
       
         
     </ul>
@@ -455,31 +443,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Email</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,7 +455,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Blog</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,7 +483,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Srping</a>
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Foxmail</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,15 +507,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Pattern</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
@@ -523,7 +515,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -566,7 +558,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">拈朵微笑的花&lt;br&gt;想一番人世变换&lt;br&gt;到头来输赢有何妨&lt;br&gt;日与月互消长&lt;br&gt;富与贵难久长&lt;br&gt;今早的容颜老于昨晚&lt;br&gt;眉间放一字宽&lt;br&gt;看一段人世风光&lt;br&gt;谁不是把悲喜在尝&lt;br&gt;海连天走不完&lt;br&gt;恩怨难计算&lt;br&gt;昨日非今日该忘&lt;br&gt;浪滔滔人渺渺青春鸟飞去了&lt;br&gt;纵然是千古风流浪里摇&lt;br&gt;风潇潇人渺渺快意刀山中草&lt;br&gt;爱恨的百般滋味随风飘&lt;br&gt;</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">拈朵微笑的花&lt;br&gt;想一番人世变换&lt;br&gt;到头来输赢有何妨&lt;br&gt;日与月互消长&lt;br&gt;富与贵难久长&lt;br&gt;今早的容颜老于昨晚&lt;br&gt;眉间放一字宽&lt;br&gt;看一段人世风光&lt;br&gt;谁不是把悲喜在尝&lt;br&gt;海连天走不完&lt;br&gt;恩怨难计算&lt;br&gt;昨日非今日该忘&lt;br&gt;浪滔滔人渺渺青春鸟飞去了&lt;br&gt;纵然是千古风流浪里摇&lt;br&gt;风潇潇人渺渺快意刀山中草&lt;br&gt;爱恨的百般滋味随风飘</div>
   	  	
     	</section>
     
