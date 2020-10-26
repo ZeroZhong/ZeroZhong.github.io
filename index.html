@@ -137,6 +137,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-线程池原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/">线程池原理</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2019-10-25T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、实现原理"><a href="#1、实现原理" class="headerlink" title="1、实现原理"></a>1、实现原理</h2><p>如果我们自己写一个线程池，那我们该如何实现呢？</p>
+<p>我们的目的是一次性创建一组线程，当需要再次使用的时候，就从创建好的线程中，取出一个线程执行任务。</p>
+<p>我们需要考虑这样几个问题，线程执行完成之后，不能再次执行，就需要让线程通过阻塞和唤醒的方式执行。</p>
+<p>所以，需要数据结构存储线程，当没有任务的时候，阻塞所有线程，有任务时候，唤醒线程执行。</p>
+<h2 id="2、源码阅读"><a href="#2、源码阅读" class="headerlink" title="2、源码阅读"></a>2、源码阅读</h2><p>​    源码版本：open-jdk 1.8</p>
+<h3 id="2-1、ThreadPoolExecutor结构"><a href="#2-1、ThreadPoolExecutor结构" class="headerlink" title="2-1、ThreadPoolExecutor结构"></a>2-1、ThreadPoolExecutor结构</h3><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolExecutor</span> <span class="keyword">extends</span> <span class="title">AbstractExecutorService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> BlockingQueue&lt;Runnable&gt; workQueue;<span class="comment">//阻塞队列</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> HashSet&lt;Worker&gt; workers = <span class="keyword">new</span> HashSet&lt;&gt;();<span class="comment">//存储当前所在线程</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">new</span> ReentrantLock(); </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> ThreadFactory threadFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> RejectedExecutionHandler handler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="2-2、execute"><a href="#2-2、execute" class="headerlink" title="2-2、execute"></a>2-2、execute</h3><p>​    通常execute ，让线程池执行一个任务。其他执行方式，见线程池的使用</p>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">       <span class="comment">//1， 小于核心线程数，创建线程，被记录在hashmap 中，并能够阻塞</span></span><br><span class="line">       <span class="comment">//阻塞原理，通过阻塞队列的“读空写满”</span></span><br><span class="line">      <span class="keyword">int</span> c = ctl.get();</span><br><span class="line">      <span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">          <span class="keyword">if</span> (addWorker(command, <span class="keyword">true</span>))</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">          c = ctl.get();</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//2. 超过核心线程数，向阻塞队列提交任务，这是唤醒 1分支创建的线程</span></span><br><span class="line">      <span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">          <span class="keyword">int</span> recheck = ctl.get();</span><br><span class="line">	<span class="comment">// 判断是否真的被激活执行了</span></span><br><span class="line">	<span class="comment">// 如果线程已经死，删除任务，走拒绝策略</span></span><br><span class="line">          <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">              reject(command);</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)<span class="comment">//如果没有线程，则重新启动线程，这是有可能的，因为可以设置核心线程失活</span></span><br><span class="line">              addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>);</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//3.如果还无法向阻塞队列添加任务，这时候尝试再创建线程，当然这个线程数小于最大线程数，true 或 false 表示是否是核心线程</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="keyword">false</span>))</span><br><span class="line">          reject(command);<span class="comment">//4.如果分支3也失败，那就采用拒绝策略</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="2-3、runWorker"><a href="#2-3、runWorker" class="headerlink" title="2-3、runWorker"></a>2-3、runWorker</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">runWorker</span><span class="params">(Worker w)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">           <span class="keyword">while</span> (task != <span class="keyword">null</span> || (task = getTask()) != <span class="keyword">null</span>) &#123;<span class="comment">// 会阻塞</span></span><br><span class="line">               <span class="comment">//执行真正的任务</span></span><br><span class="line">                       task.run();</span><br><span class="line">               <span class="comment">//...</span></span><br><span class="line">           &#125;</span><br><span class="line">               </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> Runnable <span class="title">getTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">       <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">               Runnable r = timed ?</span><br><span class="line">                   workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :</span><br><span class="line">                   workQueue.take();<span class="comment">// 这两个方法都使用了阻塞队列的&quot;读空写满&quot;</span></span><br><span class="line">               <span class="keyword">if</span> (r != <span class="keyword">null</span>)</span><br><span class="line">                   <span class="keyword">return</span> r;</span><br><span class="line">          <span class="comment">//...</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线程池</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Springboot配置监听器、过滤器和拦截器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -898,101 +993,6 @@
 
 
   
-    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2018-10-04T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="选用"><a href="#选用" class="headerlink" title="选用"></a>选用</h2><p>-单例对象 占用资源少，不需要延时加载，枚举 好于 饿汉<br>-单例对象 占用资源多，需要延时加载，静态内部类 好于 懒汉式</p>
-<h2 id="适合单线程环境"><a href="#适合单线程环境" class="headerlink" title="适合单线程环境"></a>适合单线程环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;  </span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            instance&#x3D;new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="多线程的情况可以用，懒汉式"><a href="#多线程的情况可以用，懒汉式" class="headerlink" title="多线程的情况可以用，懒汉式"></a>多线程的情况可以用，懒汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static synchronized Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            instance&#x3D;new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Double-CheckLock"><a href="#Double-CheckLock" class="headerlink" title="Double CheckLock"></a>Double CheckLock</h2><p>实现单例，加同步锁时，前后两次判断实例是否存在</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            synchronized(Singleton.class)&#123;</span><br><span class="line">                if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">                    instance&#x3D;new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="饿汉式（建议使用）"><a href="#饿汉式（建议使用）" class="headerlink" title="饿汉式（建议使用）"></a>饿汉式（建议使用）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;new Singleton();</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="静态内部内。"><a href="#静态内部内。" class="headerlink" title="静态内部内。"></a>静态内部内。</h2><p>（建议使用）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    private static class SingletonHolder&#123;</span><br><span class="line">        private final static Singleton instance&#x3D;new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return SingletonHolder.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>（线程安全，调用效率高，不能延时加载，可以天然的防止反射和反序列化调用）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;枚举元素本身就是单例</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;添加自己需要的操作</span><br><span class="line">    public void singletonOperation()&#123;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1155,6 +1155,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
               </li>
             
             <div class="clearfix"></div>

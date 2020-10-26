@@ -137,6 +137,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Hexo设置关于、标签、分类、归档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/">Hexo设置关于、标签、分类、归档</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/" class="archive-article-date">
+  	<time datetime="2017-06-07T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、添加-关于页面"><a href="#1、添加-关于页面" class="headerlink" title="1、添加 关于页面"></a>1、添加 关于页面</h3><p>使用：hexo new page “about” 新建一个 关于我 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配<br>不同主题 _config. yml文件有区别</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span> <span class="string">（添加此行即可）</span></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">home</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">.</span> <span class="string">//主页</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-home</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">archive</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">archives/</span> <span class="string">//归档</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-archive</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">about</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">about/</span> <span class="string">//关于</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-user</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">rss</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">atom.xml</span> <span class="string">//rss订阅</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-rss</span></span><br></pre></td></tr></table></figure>
+
+<p>编辑 about 关于页面 md文件 部署就能看到</p>
+<h3 id="2、添加-标签页面"><a href="#2、添加-标签页面" class="headerlink" title="2、添加 标签页面"></a>2、添加 标签页面</h3><p>使用： hexo new page tags 新建一个 标签 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
+
+<p>底下代码是一篇包含 标签 文章的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 标签测试</span><br><span class="line">tags:</span><br><span class="line">	- Testing （这个就是文章的标签了）</span><br><span class="line">	- Another Tag （这个就是文章的标签了）</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、添加-分类页面"><a href="#3、添加-分类页面" class="headerlink" title="3、添加 分类页面"></a>3、添加 分类页面</h3><p>使用： hexo new page categories 新建一个 分类 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
+
+<p>底下代码是一篇包含 分类 文章的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 分类测试</span><br><span class="line">categories:</span><br><span class="line">	- hexo （这个就是文章的分类了）</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、添加-归档页面"><a href="#4、添加-归档页面" class="headerlink" title="4、添加 归档页面"></a>4、添加 归档页面</h3><p>主题的 _config.yml 文件中的 menu 中进行匹配</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5、添加-自定义页面"><a href="#5、添加-自定义页面" class="headerlink" title="5、添加 自定义页面"></a>5、添加 自定义页面</h3><p>使用： hexo new page “guestbook” 新建一个 自定义 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br><span class="line"><span class="attr">guestbook:</span> <span class="string">/guestbook</span> <span class="string">//自定义</span> <span class="string">（添加此行即可）</span></span><br></pre></td></tr></table></figure>
+
+<p>标签添加方式</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: title #文章標題</span><br><span class="line">date: 2016-06-01 23:47:44 #文章生成時間</span><br><span class="line">categories: “Hexo教程” #文章分類目錄 可以省略</span><br><span class="line">tags: #文章標籤 可以省略</span><br><span class="line"><span class="bullet">	-</span> 标签1</span><br><span class="line"><span class="bullet">	-</span> 标签2</span><br><span class="line">description: #你對本頁的描述 可以省略</span><br></pre></td></tr></table></figure>
+
+<h3 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010820857/article/details/82027535">https://blog.csdn.net/u010820857/article/details/82027535</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/baozhiqiangjava/article/details/80556550">https://blog.csdn.net/baozhiqiangjava/article/details/80556550</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Hexo 创建文章、标签、分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -557,6 +659,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
               </li>
             
             <div class="clearfix"></div>

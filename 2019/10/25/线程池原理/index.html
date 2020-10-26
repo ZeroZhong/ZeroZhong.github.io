@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.zhongweimin.me">
-  <title>适配器模式 | 浩瀚星海</title>
+  <title>线程池原理 | 浩瀚星海</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#####应用实例：1、美国电器 110V，中国 220V，就要有一个适配器将 110V 转化为 220V。 2、JAVA JDK 1.1 提供了 Enumeration 接口，而在 1.2 中提供了 Iterator 接口，想要使用 1.2 的 JDK，则要将以前系统的 Enumeration 接口转化为 Iterator 接口，这时就需要适配器模式。 3、在 LINUX 上运行 WINDOWS">
+  <meta name="description" content="1、实现原理如果我们自己写一个线程池，那我们该如何实现呢？ 我们的目的是一次性创建一组线程，当需要再次使用的时候，就从创建好的线程中，取出一个线程执行任务。 我们需要考虑这样几个问题，线程执行完成之后，不能再次执行，就需要让线程通过阻塞和唤醒的方式执行。 所以，需要数据结构存储线程，当没有任务的时候，阻塞所有线程，有任务时候，唤醒线程执行。 2、源码阅读​    源码版本：open-jdk 1.8">
 <meta property="og:type" content="article">
-<meta property="og:title" content="适配器模式">
-<meta property="og:url" content="http://www.zhongweimin.me/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="线程池原理">
+<meta property="og:url" content="http://www.zhongweimin.me/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="浩瀚星海">
-<meta property="og:description" content="#####应用实例：1、美国电器 110V，中国 220V，就要有一个适配器将 110V 转化为 220V。 2、JAVA JDK 1.1 提供了 Enumeration 接口，而在 1.2 中提供了 Iterator 接口，想要使用 1.2 的 JDK，则要将以前系统的 Enumeration 接口转化为 Iterator 接口，这时就需要适配器模式。 3、在 LINUX 上运行 WINDOWS">
+<meta property="og:description" content="1、实现原理如果我们自己写一个线程池，那我们该如何实现呢？ 我们的目的是一次性创建一组线程，当需要再次使用的时候，就从创建好的线程中，取出一个线程执行任务。 我们需要考虑这样几个问题，线程执行完成之后，不能再次执行，就需要让线程通过阻塞和唤醒的方式执行。 所以，需要数据结构存储线程，当没有任务的时候，阻塞所有线程，有任务时候，唤醒线程执行。 2、源码阅读​    源码版本：open-jdk 1.8">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2018-10-09T13:01:24.000Z">
-<meta property="article:modified_time" content="2020-10-22T12:50:08.971Z">
+<meta property="article:published_time" content="2019-10-25T13:01:24.000Z">
+<meta property="article:modified_time" content="2020-10-26T02:21:34.756Z">
 <meta property="article:author" content="will">
-<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="多线程">
+<meta property="article:tag" content="并发">
+<meta property="article:tag" content="线程池">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="浩瀚星海" type="application/atom+xml">
@@ -137,30 +140,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-适配器模式" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-线程池原理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      适配器模式
+      线程池原理
     </h1>
   
 
         
-        <a href="/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2018-10-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
+        <a href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2019-10-25T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#####应用实例：<br>1、美国电器 110V，中国 220V，就要有一个适配器将 110V 转化为 220V。 2、JAVA JDK 1.1 提供了 Enumeration 接口，而在 1.2 中提供了 Iterator 接口，想要使用 1.2 的 JDK，则要将以前系统的 Enumeration 接口转化为 Iterator 接口，这时就需要适配器模式。 3、在 LINUX 上运行 WINDOWS 程序。 4、JAVA 中的 jdbc。</p>
-<p>#####优点：<br>1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。</p>
-<p>#####缺点：<br>1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</p>
-<p>#####使用场景：<br>有动机地修改一个正常运行的系统的接口，这时应该考虑使用适配器模式。</p>
+        <h2 id="1、实现原理"><a href="#1、实现原理" class="headerlink" title="1、实现原理"></a>1、实现原理</h2><p>如果我们自己写一个线程池，那我们该如何实现呢？</p>
+<p>我们的目的是一次性创建一组线程，当需要再次使用的时候，就从创建好的线程中，取出一个线程执行任务。</p>
+<p>我们需要考虑这样几个问题，线程执行完成之后，不能再次执行，就需要让线程通过阻塞和唤醒的方式执行。</p>
+<p>所以，需要数据结构存储线程，当没有任务的时候，阻塞所有线程，有任务时候，唤醒线程执行。</p>
+<h2 id="2、源码阅读"><a href="#2、源码阅读" class="headerlink" title="2、源码阅读"></a>2、源码阅读</h2><p>​    源码版本：open-jdk 1.8</p>
+<h3 id="2-1、ThreadPoolExecutor结构"><a href="#2-1、ThreadPoolExecutor结构" class="headerlink" title="2-1、ThreadPoolExecutor结构"></a>2-1、ThreadPoolExecutor结构</h3><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolExecutor</span> <span class="keyword">extends</span> <span class="title">AbstractExecutorService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> BlockingQueue&lt;Runnable&gt; workQueue;<span class="comment">//阻塞队列</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> HashSet&lt;Worker&gt; workers = <span class="keyword">new</span> HashSet&lt;&gt;();<span class="comment">//存储当前所在线程</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">new</span> ReentrantLock(); </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> ThreadFactory threadFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> RejectedExecutionHandler handler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="2-2、execute"><a href="#2-2、execute" class="headerlink" title="2-2、execute"></a>2-2、execute</h3><p>​    通常execute ，让线程池执行一个任务。其他执行方式，见线程池的使用</p>
+<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">       <span class="comment">//1， 小于核心线程数，创建线程，被记录在hashmap 中，并能够阻塞</span></span><br><span class="line">       <span class="comment">//阻塞原理，通过阻塞队列的“读空写满”</span></span><br><span class="line">      <span class="keyword">int</span> c = ctl.get();</span><br><span class="line">      <span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">          <span class="keyword">if</span> (addWorker(command, <span class="keyword">true</span>))</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">          c = ctl.get();</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//2. 超过核心线程数，向阻塞队列提交任务，这是唤醒 1分支创建的线程</span></span><br><span class="line">      <span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">          <span class="keyword">int</span> recheck = ctl.get();</span><br><span class="line">	<span class="comment">// 判断是否真的被激活执行了</span></span><br><span class="line">	<span class="comment">// 如果线程已经死，删除任务，走拒绝策略</span></span><br><span class="line">          <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">              reject(command);</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)<span class="comment">//如果没有线程，则重新启动线程，这是有可能的，因为可以设置核心线程失活</span></span><br><span class="line">              addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>);</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//3.如果还无法向阻塞队列添加任务，这时候尝试再创建线程，当然这个线程数小于最大线程数，true 或 false 表示是否是核心线程</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="keyword">false</span>))</span><br><span class="line">          reject(command);<span class="comment">//4.如果分支3也失败，那就采用拒绝策略</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="2-3、runWorker"><a href="#2-3、runWorker" class="headerlink" title="2-3、runWorker"></a>2-3、runWorker</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">runWorker</span><span class="params">(Worker w)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">           <span class="keyword">while</span> (task != <span class="keyword">null</span> || (task = getTask()) != <span class="keyword">null</span>) &#123;<span class="comment">// 会阻塞</span></span><br><span class="line">               <span class="comment">//执行真正的任务</span></span><br><span class="line">                       task.run();</span><br><span class="line">               <span class="comment">//...</span></span><br><span class="line">           &#125;</span><br><span class="line">               </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> Runnable <span class="title">getTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">       <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">               Runnable r = timed ?</span><br><span class="line">                   workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :</span><br><span class="line">                   workQueue.take();<span class="comment">// 这两个方法都使用了阻塞队列的&quot;读空写满&quot;</span></span><br><span class="line">               <span class="keyword">if</span> (r != <span class="keyword">null</span>)</span><br><span class="line">                   <span class="keyword">return</span> r;</span><br><span class="line">          <span class="comment">//...</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -195,7 +204,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线程池</a>
         		</li>
       		
 		</ul>
@@ -251,7 +272,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhongweimin.me/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhongweimin.me/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -265,18 +286,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          门面模式、代理模式、适配器模式的区别
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">单例模式</div>
+    <a href="/2019/05/11/Springboot%E9%85%8D%E7%BD%AE%E7%9B%91%E5%90%AC%E5%99%A8%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Springboot配置监听器、过滤器和拦截器</div>
       <i class="icon-circle-right"></i>
     </a>
   
