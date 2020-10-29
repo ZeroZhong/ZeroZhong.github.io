@@ -137,6 +137,414 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux 资源查看和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/">Linux 资源查看和测试</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/" class="archive-article-date">
+  	<time datetime="2020-10-28T13:10:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="系统版本"><a href="#系统版本" class="headerlink" title="系统版本"></a>系统版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux VM 5.4.0-42-generic #46~18.04.1-Ubuntu SMP Fri Jul 10 07:21:24 UTC 2020 x86_64 x86_64 x86_64 GNU&#x2F;Linux</span><br></pre></td></tr></table></figure>
+
+<h2 id="1、proc文件系统"><a href="#1、proc文件系统" class="headerlink" title="1、proc文件系统"></a>1、proc文件系统</h2><h3 id="1-1、查看系统支持最大线程数"><a href="#1-1、查看系统支持最大线程数" class="headerlink" title="1-1、查看系统支持最大线程数"></a>1-1、查看系统支持最大线程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查系统支持的最大线程数，一般会很大，相当于理论值</span></span><br><span class="line">cat /proc/sys/kernel/threads-max</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">30893</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2、查看系统支持最大进程数"><a href="#1-2、查看系统支持最大进程数" class="headerlink" title="1-2、查看系统支持最大进程数"></a>1-2、查看系统支持最大进程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/kernel/pid_max</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">131072</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3、查看系统支持最大文件数"><a href="#1-3、查看系统支持最大文件数" class="headerlink" title="1-3、查看系统支持最大文件数"></a>1-3、查看系统支持最大文件数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">394854</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4、查看cpu信息"><a href="#1-4、查看cpu信息" class="headerlink" title="1-4、查看cpu信息"></a>1-4、查看cpu信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、用户限制"><a href="#3、用户限制" class="headerlink" title="3、用户限制"></a>3、用户限制</h2><h3 id="3-1、ulimit帮助"><a href="#3-1、ulimit帮助" class="headerlink" title="3-1、ulimit帮助"></a>3-1、ulimit帮助</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help ulimit </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">ulimit: ulimit [-SHabcdefiklmnpqrstuvxPT] [限制]</span><br><span class="line">    修改 shell 资源限制。</span><br><span class="line">    </span><br><span class="line">    在允许此类控制的系统上，提供对于 shell 及其创建的进程所可用的</span><br><span class="line">    资源的控制。</span><br><span class="line">    </span><br><span class="line">    选项：</span><br><span class="line">      -S	使用软 (&#96;soft&#39;) 资源限制</span><br><span class="line">      -H	使用硬 (&#96;hard&#39;) 资源限制</span><br><span class="line">      -a	所有当前限制都被报告</span><br><span class="line">      -b	套接字缓存尺寸</span><br><span class="line">      -c	创建的核文件的最大尺寸</span><br><span class="line">      -d	一个进程的数据区的最大尺寸</span><br><span class="line">      -e	最高的调度优先级 (&#96;nice&#39;)</span><br><span class="line">      -f	有 shell 及其子进程可以写的最大文件尺寸</span><br><span class="line">      -i	最多的可以挂起的信号数</span><br><span class="line">      -k	分配给此进程的最大 kqueue 数量</span><br><span class="line">      -l	一个进程可以锁定的最大内存尺寸</span><br><span class="line">      -m	最大的内存进驻尺寸</span><br><span class="line">      -n	最多的打开的文件描述符个数</span><br><span class="line">      -p	管道缓冲区尺寸</span><br><span class="line">      -q	POSIX 信息队列的最大字节数</span><br><span class="line">      -r	实时调度的最大优先级</span><br><span class="line">      -s	最大栈尺寸</span><br><span class="line">      -t	最大的CPU时间，以秒为单位</span><br><span class="line">      -u	最大用户进程数</span><br><span class="line">      -v	虚拟内存尺寸</span><br><span class="line">      -x	最大的文件锁数量</span><br><span class="line">      -P	最大伪终端数量</span><br><span class="line">      -T	最大线程数量</span><br><span class="line">    </span><br><span class="line">    并非所有选项在所有系统上可用。</span><br><span class="line">    </span><br><span class="line">    如果提供了 LIMIT 变量，则它为指定资源的新的值；特别的 LIMIT 值为</span><br><span class="line">    &#96;soft&#39;、&#96;hard&#39;和&#96;unlimited&#39;，分别表示当前的软限制，硬限制和无限制。</span><br><span class="line">    否则打印指定资源的当前限制值，不带选项则假定为 -f</span><br><span class="line">    </span><br><span class="line">    取值都是 1024 字节为单位，除了 -t 以秒为单位，-p 以 512 字节递增，</span><br><span class="line">    -u 为无范围的进程数量。</span><br><span class="line">    </span><br><span class="line">    退出状态：</span><br><span class="line">    返回成功，除非使用了无效的选项或者错误发生。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2、ulimit显示"><a href="#3-2、ulimit显示" class="headerlink" title="3-2、ulimit显示"></a>3-2、ulimit显示</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -a</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 15446</span><br><span class="line">max locked memory       (kbytes, -l) 16384</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line">open files                      (-n) 1024</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line">stack size              (kbytes, -s) 8192</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line">max user processes              (-u) 15446</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、vmstat监控系统资源"><a href="#4、vmstat监控系统资源" class="headerlink" title="4、vmstat监控系统资源"></a>4、vmstat监控系统资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">vmstat [刷新延时 刷新次数]</span></span><br><span class="line">vmstat 1 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、dmesg"><a href="#5、dmesg" class="headerlink" title="5、dmesg"></a>5、dmesg</h2><h3 id="5-1、查看开机时内核检测信息"><a href="#5-1、查看开机时内核检测信息" class="headerlink" title="5-1、查看开机时内核检测信息"></a>5-1、查看开机时内核检测信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmesg | grep CPU</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、free命令查看内存使用状态"><a href="#6、free命令查看内存使用状态" class="headerlink" title="6、free命令查看内存使用状态"></a>6、free命令查看内存使用状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、判断当前系统的位数"><a href="#8、判断当前系统的位数" class="headerlink" title="8、判断当前系统的位数"></a>8、判断当前系统的位数</h2><p>使用file查看文件类型来得到，后面的命令只要是外部命令即可</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file /bin/ls</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、lsof-列出进程打开或调用文件的信息"><a href="#9、lsof-列出进程打开或调用文件的信息" class="headerlink" title="9、lsof 列出进程打开或调用文件的信息"></a>9、lsof 列出进程打开或调用文件的信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">lsof -p 进程号查看对应进程调用的文件</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="10、Netstat-显示各种网络相关信息"><a href="#10、Netstat-显示各种网络相关信息" class="headerlink" title="10、Netstat 显示各种网络相关信息"></a>10、Netstat 显示各种网络相关信息</h2><p>原文链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
+<p>如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。</p>
+<h3 id="10-1、输出信息"><a href="#10-1、输出信息" class="headerlink" title="10-1、输出信息"></a>10-1、输出信息</h3><p>执行<code>netstat</code>后，其输出结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">激活Internet连接 (w&#x2F;o 服务器)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State      </span><br><span class="line">tcp        0      0 localhost:epmd          localhost:47653         ESTABLISHED</span><br><span class="line">tcp        0      0 localhost:47653         localhost:epmd          ESTABLISHED</span><br><span class="line">tcp        0      0 VM:epmd                 localhost:47179         TIME_WAIT  </span><br><span class="line">活跃的UNIX域套接字 (w&#x2F;o 服务器)</span><br><span class="line">Proto RefCnt Flags       Type       State         I-Node   路径</span><br><span class="line">unix  2      [ ]         数据报                41161    &#x2F;run&#x2F;user&#x2F;1000&#x2F;systemd&#x2F;notify</span><br><span class="line">unix  10     [ ]         数据报                29933    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;socket</span><br><span class="line">unix  3      [ ]         流        已连接     37474    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;stdout</span><br><span class="line">unix  3      [ ]         数据报                58367    </span><br><span class="line">unix  3      [ ]         流        已连接     41214    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br><span class="line">unix  3      [ ]         流        已连接     41363    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br></pre></td></tr></table></figure>
+
+<p>netstat的输出结果大致可以分为两个部分：</p>
+<table>
+<thead>
+<tr>
+<th>Active Internet connections（活跃的网络连接）</th>
+<th>Active UNIX domain sockets（活跃的Unix域套接口）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Recv-Q（接收队列）</td>
+<td>Proto （显示连接使用的协议）</td>
+</tr>
+<tr>
+<td>Send-Q（发送队列）</td>
+<td>RefCnt  （连接到本套接口上的进程号）</td>
+</tr>
+<tr>
+<td></td>
+<td>Types （显示套接口的类型）</td>
+</tr>
+<tr>
+<td></td>
+<td>State （显示套接口当前的状态）</td>
+</tr>
+<tr>
+<td></td>
+<td>Path （连接到套接口的其它进程使用的路径名）</td>
+</tr>
+</tbody></table>
+<p><strong>Unix域套接口：</strong>和<strong>网络套接字</strong>一样，但是只能用于<strong>本机通信</strong>，性能可以提高一倍</p>
+<p><strong>“Recv-Q”和”Send-Q”：</strong>这些数字一般都应该是0。如果不是则表示软件包正在队列中堆积。这种情况只能在非常少的情况见到。</p>
+<h3 id="10-2、常见参数"><a href="#10-2、常见参数" class="headerlink" title="10-2、常见参数"></a>10-2、常见参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">常见参数</span><br><span class="line">-a (all)显示所有选项，默认不显示LISTEN相关</span><br><span class="line">-t (tcp)仅显示tcp相关选项</span><br><span class="line">-u (udp)仅显示udp相关选项</span><br><span class="line">-n 拒绝显示别名，能显示数字的全部转化成数字。</span><br><span class="line">-l 仅列出有在 Listen (监听) 的服務状态</span><br><span class="line"></span><br><span class="line">-p 显示建立相关链接的程序名</span><br><span class="line">-r 显示路由信息，路由表</span><br><span class="line">-e 显示扩展信息，例如uid等</span><br><span class="line">-s 按各个协议进行统计</span><br><span class="line">-c 每隔一个固定时间，执行该netstat命令。</span><br><span class="line"></span><br><span class="line">提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-3、使用案例"><a href="#10-3、使用案例" class="headerlink" title="10-3、使用案例"></a>10-3、使用案例</h3><h4 id="10-3-1、-列出所有端口-包括监听和未监听的"><a href="#10-3-1、-列出所有端口-包括监听和未监听的" class="headerlink" title="10-3-1、 列出所有端口 (包括监听和未监听的)"></a>10-3-1、 列出所有端口 (包括监听和未监听的)</h4><p> <strong>列出所有端口 netstat -a</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -a | more</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> udp        0      0 *:bootpc                *:*</span><br><span class="line"> </span><br><span class="line">Active UNIX domain sockets (servers and established)</span><br><span class="line"> Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6135     /tmp/.X11-unix/X0</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     5140     /var/run/acpid.socket</span><br></pre></td></tr></table></figure>
+
+<p> <strong>列出所有 tcp 端口 netstat -at</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -at</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> tcp        0      0 localhost:ipp           *:*                     LISTEN</span><br><span class="line"> tcp        0      0 *:smtp                  *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br></pre></td></tr></table></figure>
+
+<p> <strong>列出所有 udp 端口 netstat -au</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -au</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> udp        0      0 *:bootpc                *:*</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br><span class="line"> udp        0      0 *:mdns                  *:*</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-2-列出所有处于监听状态的-Sockets"><a href="#10-3-2-列出所有处于监听状态的-Sockets" class="headerlink" title="10-3-2. 列出所有处于监听状态的 Sockets"></a>10-3-2. 列出所有处于监听状态的 Sockets</h4><p><strong>只显示监听端口 netstat -l</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -l</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:ipp           *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br></pre></td></tr></table></figure>
+
+<p> <strong>只列出所有监听 tcp 端口 netstat -lt</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lt</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> tcp        0      0 *:smtp                  *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br></pre></td></tr></table></figure>
+
+<p> <strong>只列出所有监听 udp 端口 netstat -lu</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lu</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br><span class="line"> udp        0      0 *:mdns                  *:*</span><br></pre></td></tr></table></figure>
+
+<p> <strong>只列出所有监听 UNIX 端口 netstat -lx</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lx</span></span><br><span class="line"> Active UNIX domain sockets (only servers)</span><br><span class="line"> Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6294     private/maildrop</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6203     public/cleanup</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6302     private/ifmail</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6306     private/bsmtp</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-3-显示每个协议的统计信息"><a href="#10-3-3-显示每个协议的统计信息" class="headerlink" title="10-3-3. 显示每个协议的统计信息"></a>10-3-3. 显示每个协议的统计信息</h4><p> <strong>显示所有端口的统计信息 netstat -s</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -s</span></span><br><span class="line"> Ip:</span><br><span class="line"> 11150 total packets received</span><br><span class="line"> 1 with invalid addresses</span><br><span class="line"> 0 forwarded</span><br><span class="line"> 0 incoming packets discarded</span><br><span class="line"> 11149 incoming packets delivered</span><br><span class="line"> 11635 requests sent out</span><br><span class="line"> Icmp:</span><br><span class="line"> 0 ICMP messages received</span><br><span class="line"> 0 input ICMP message failed.</span><br><span class="line"> Tcp:</span><br><span class="line"> 582 active connections openings</span><br><span class="line"> 2 failed connection attempts</span><br><span class="line"> 25 connection resets received</span><br><span class="line"> Udp:</span><br><span class="line"> 1183 packets received</span><br><span class="line"> 4 packets to unknown port received.</span><br><span class="line"> .....</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> <strong>显示 TCP 或 UDP 端口的统计信息 netstat -st 或 -su</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -st </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netstat -su</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-4、在-netstat-输出中显示-PID-和进程名称-netstat-p"><a href="#10-3-4、在-netstat-输出中显示-PID-和进程名称-netstat-p" class="headerlink" title="10-3-4、在 netstat 输出中显示 PID 和进程名称 netstat -p"></a>10-3-4、在 netstat 输出中显示 PID 和进程名称 netstat -p</h4><p>netstat -p 可以与其它开关一起使用，就可以添加 “PID/进程名称” 到 netstat 输出中，这样 debugging 的时候可以很方便的发现特定端口运行的程序。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -pt</span></span><br><span class="line"> Active Internet connections (w/o servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</span><br><span class="line"> tcp        1      0 ramesh-laptop.loc:47212 192.168.185.75:www        CLOSE_WAIT  2109/firefox</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:52750 lax:www ESTABLISHED 2109/firefox</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-5-在-netstat-输出中不显示主机，端口和用户名-host-port-or-user"><a href="#10-3-5-在-netstat-输出中不显示主机，端口和用户名-host-port-or-user" class="headerlink" title="10-3-5. 在 netstat 输出中不显示主机，端口和用户名 (host, port or user)"></a>10-3-5. 在 netstat 输出中不显示主机，端口和用户名 (host, port or user)</h4><p><strong>当你不想让主机，端口和用户名显示</strong>，使用 <code>netstat -n</code>。将会使用数字代替那些名称。</p>
+<p>同样可以加速输出，因为不用进行比对查询。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -an</span></span><br></pre></td></tr></table></figure>
+
+<p>如果只是不想让这三个名称中的一个被显示，使用以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-ports</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-hosts</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-users</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-3-6-持续输出-netstat-信息"><a href="#10-3-6-持续输出-netstat-信息" class="headerlink" title="10-3-6. 持续输出 netstat 信息"></a>10-3-6. 持续输出 netstat 信息</h4><p>netstat 将每隔一秒输出网络信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -c</span></span><br><span class="line"> Active Internet connections (w/o servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:36130 101-101-181-225.ama:www ESTABLISHED</span><br><span class="line"> tcp        1      1 ramesh-laptop.loc:52564 101.11.169.230:www      CLOSING</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:43758 server-101-101-43-2:www ESTABLISHED</span><br><span class="line"> tcp        1      1 ramesh-laptop.loc:42367 101.101.34.101:www      CLOSING</span><br><span class="line"> ^C</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-7-显示系统不支持的地址族-Address-Families"><a href="#10-3-7-显示系统不支持的地址族-Address-Families" class="headerlink" title="10-3-7. 显示系统不支持的地址族 (Address Families)"></a>10-3-7. 显示系统不支持的地址族 (Address Families)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat --verbose</span><br></pre></td></tr></table></figure>
+
+<p>在输出的末尾，会有如下的信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netstat: no support for `AF IPX&#x27; on this system.</span><br><span class="line">netstat: no support for `AF AX25&#x27; on this system.</span><br><span class="line">netstat: no support for `AF X25&#x27; on this system.</span><br><span class="line">netstat: no support for `AF NETROM&#x27; on this system.</span><br></pre></td></tr></table></figure>
+
+<h4 id><a href="#" class="headerlink" title></a></h4><h4 id="10-3-8-显示核心路由信息-netstat-r"><a href="#10-3-8-显示核心路由信息-netstat-r" class="headerlink" title="10-3-8. 显示核心路由信息 netstat -r"></a>10-3-8. 显示核心路由信息 netstat -r</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -r</span></span><br><span class="line"> Kernel IP routing table</span><br><span class="line"> Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface</span><br><span class="line"> 192.168.1.0     *               255.255.255.0   U         0 0          0 eth2</span><br><span class="line"> link-local      *               255.255.0.0     U         0 0          0 eth2</span><br><span class="line"> default         192.168.1.1     0.0.0.0         UG        0 0          0 eth2</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 使用 netstat -rn 显示数字格式，不查询主机名称。</p>
+<h4 id="-1"><a href="#-1" class="headerlink" title></a></h4><h4 id="10-3-9-找出程序运行的端口"><a href="#10-3-9-找出程序运行的端口" class="headerlink" title="10-3-9. 找出程序运行的端口"></a><strong>10-3-9. 找出程序运行的端口</strong></h4><p><strong>并不是所有的进程都能找到，没有权限的会不显示，使用 root 权限查看所有的信息。</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -ap | grep ssh</span></span><br><span class="line"> tcp        1      0 dev-db:ssh           101.174.100.22:39213        CLOSE_WAIT  -</span><br><span class="line"> tcp        1      0 dev-db:ssh           101.174.100.22:57643        CLOSE_WAIT  -</span><br></pre></td></tr></table></figure>
+
+<p> <strong>找出运行在指定端口的进程</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -an | grep <span class="string">&#x27;:80&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-3-10-显示网络接口列表"><a href="#10-3-10-显示网络接口列表" class="headerlink" title="10-3-10. 显示网络接口列表"></a>10-3-10. 显示网络接口列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -i</span></span><br><span class="line"> Kernel Interface table</span><br><span class="line"> Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg</span><br><span class="line"> eth0       1500 0         0      0      0 0             0      0      0      0 BMU</span><br><span class="line"> eth2       1500 0     26196      0      0 0         26883      6      0      0 BMRU</span><br><span class="line"> lo        16436 0         4      0      0 0             4      0      0      0 LRU</span><br></pre></td></tr></table></figure>
+
+<p><strong>显示详细信息，像是 ifconfig 使用 netstat -ie</strong>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -ie</span></span><br><span class="line"> Kernel Interface table</span><br><span class="line"> eth0      Link encap:Ethernet  HWaddr 00:10:40:11:11:11</span><br><span class="line"> UP BROADCAST MULTICAST  MTU:1500  Metric:1</span><br><span class="line"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line"> TX packets:0 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line"> collisions:0 txqueuelen:1000</span><br><span class="line"> RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)</span><br><span class="line"> Memory:f6ae0000-f6b00000</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-11-IP和TCP分析"><a href="#10-3-11-IP和TCP分析" class="headerlink" title="10-3-11. IP和TCP分析"></a>10-3-11. IP和TCP分析</h4><p> <strong>查看连接某服务端口最多的的IP地址</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> netstat -nat | grep <span class="string">&quot;192.168.1.15:22&quot;</span> |awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>|sort|uniq -c|sort -nr|head -20</span></span><br><span class="line">18 221.136.168.36</span><br><span class="line">3 154.74.45.242</span><br><span class="line">2 78.173.31.236</span><br><span class="line">2 62.183.207.98</span><br><span class="line">2 192.168.1.14</span><br><span class="line">2 182.48.111.215</span><br><span class="line">2 124.193.219.34</span><br><span class="line">2 119.145.41.2</span><br><span class="line">2 114.255.41.30</span><br><span class="line">1 75.102.11.99</span><br></pre></td></tr></table></figure>
+
+<p> <strong>TCP各种状态列表</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> netstat -nat |awk <span class="string">&#x27;&#123;print $6&#125;&#x27;</span></span></span><br><span class="line">established)</span><br><span class="line">Foreign</span><br><span class="line">LISTEN</span><br><span class="line">TIME_WAIT</span><br><span class="line">ESTABLISHED</span><br><span class="line">TIME_WAIT</span><br><span class="line">SYN_SENT</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>先把状态全都取出来,然后使用uniq -c统计，之后再进行排序。</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">netstat -nat |awk <span class="string">&#x27;&#123;print $6&#125;&#x27;</span>|sort|uniq -c</span></span><br><span class="line">143 ESTABLISHED</span><br><span class="line">1 FIN_WAIT1</span><br><span class="line">1 Foreign</span><br><span class="line">1 LAST_ACK</span><br><span class="line">36 LISTEN</span><br><span class="line">6 SYN_SENT</span><br><span class="line">113 TIME_WAIT</span><br><span class="line">1 established)</span><br></pre></td></tr></table></figure>
+
+<p> <strong>最后的命令如下:</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nat |awk &#x27;&#123;print $6&#125;&#x27;|sort|uniq -c|sort -rn</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析access.log获得访问前10位的ip地址</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;&#123;print $1&#125;&#x27; access.log |sort|uniq -c|sort -nr|head -10</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Redis安装以及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/28/Redis%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">Redis安装以及使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/28/Redis%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-10-28T11:08:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、官方地址"><a href="#1、官方地址" class="headerlink" title="1、官方地址"></a>1、官方地址</h2><p><strong>地址：</strong><a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io/</a></p>
+<h2 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h2><h3 id="2-1、编译安装"><a href="#2-1、编译安装" class="headerlink" title="2-1、编译安装"></a>2-1、编译安装</h3><h4 id="2-1-1、下载源码包，并编译"><a href="#2-1-1、下载源码包，并编译" class="headerlink" title="2-1-1、下载源码包，并编译"></a>2-1-1、下载源码包，并编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.redis.io/releases/redis-6.0.9.tar.gz</span><br><span class="line">tar xzf redis-6.0.9.tar.gz</span><br><span class="line">cd redis-6.0.9</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>依赖：<strong>make</strong>，<strong>autoconf</strong>，Ubuntu下使用apt 安装</p>
+<p>依赖库：<strong>hiredis  jemalloc  linenoise  lua</strong>，源码包中已经提供，不需要再去下载安装，用工程中的编译方式即可</p>
+<h4 id="2-1-2、运行以及测试"><a href="#2-1-2、运行以及测试" class="headerlink" title="2-1-2、运行以及测试"></a>2-1-2、运行以及测试</h4><ul>
+<li>运行</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/redis-server</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">src/redis-cli</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> <span class="built_in">set</span> foo bar</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> get foo</span></span><br><span class="line">&quot;bar&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2、软件安装"><a href="#2-2、软件安装" class="headerlink" title="2-2、软件安装"></a>2-2、软件安装</h3><h4 id="2-2-1、Ubuntu下使用apt-安装"><a href="#2-2-1、Ubuntu下使用apt-安装" class="headerlink" title="2-2-1、Ubuntu下使用apt 安装"></a>2-2-1、Ubuntu下使用apt 安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install redis</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2、运行以及测试"><a href="#2-2-2、运行以及测试" class="headerlink" title="2-2-2、运行以及测试"></a>2-2-2、运行以及测试</h4><p><strong>同2-1-1</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/28/Redis%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Maven工程构建案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/28/Maven%E5%B7%A5%E7%A8%8B%E6%9E%84%E5%BB%BA%E6%A1%88%E4%BE%8B/">Maven工程构建案例</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/28/Maven%E5%B7%A5%E7%A8%8B%E6%9E%84%E5%BB%BA%E6%A1%88%E4%BE%8B/" class="archive-article-date">
+  	<time datetime="2020-10-28T09:04:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="工程建立的意义"><a href="#工程建立的意义" class="headerlink" title="工程建立的意义"></a>工程建立的意义</h2><p>便于管理，工程以及工程之间的依赖。常见任务有编译，打包，发布等。</p>
+<h2 id="模块结构"><a href="#模块结构" class="headerlink" title="模块结构"></a>模块结构</h2><ul>
+<li>PA<ul>
+<li>ma</li>
+</ul>
+</li>
+</ul>
+<h2 id="Maven示例"><a href="#Maven示例" class="headerlink" title="Maven示例"></a>Maven示例</h2><h3 id="PA-创建空Maven工程"><a href="#PA-创建空Maven工程" class="headerlink" title="PA:创建空Maven工程"></a>PA:创建空Maven工程</h3><p><strong>修改pom.xml</strong>，<strong>打包方式为pom</strong>,<strong>添加子模块列表</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.will<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>PA<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>ma<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ma-创建具体Maven工程"><a href="#ma-创建具体Maven工程" class="headerlink" title="ma: 创建具体Maven工程"></a>ma: 创建具体Maven工程</h3><p><strong>修改pom.xml</strong>，(可以把<strong>父工程改为PA工程</strong>，<strong>原有的父工程可以放到PA工程中</strong>)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里的父模块可以改为父工程的包名和模块名，将原有的parent该到父工程中，统一管理 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.4.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.will<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ma<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>ma<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>Demo project for Spring Boot<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.vintage<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-vintage-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 跳过test --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- &lt;testFailureIgnore&gt;true&lt;/testFailureIgnore&gt; --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">skip</span>&gt;</span>true<span class="tag">&lt;/<span class="name">skip</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Maven - 工程管理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/28/Maven%E5%B7%A5%E7%A8%8B%E6%9E%84%E5%BB%BA%E6%A1%88%E4%BE%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-打通Spring-Cloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -896,279 +1304,6 @@
 
 
   
-    <article id="post-Android平台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/">Android平台</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
-  	<time datetime="2019-05-08T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>平台架构<br>Android 是一种基于 Linux 的开放源代码软件栈，为广泛的设备和机型而创建。下图所示为 Android 平台的主要组件。</p>
-<p><img src="/.me//Android%E5%B9%B3%E5%8F%B0%5Candroid-stack_2x.png" alt="图 1. Android 软件栈。"></p>
-<p>###Linux 内核<br>Android 平台的基础是 Linux 内核。例如，Android Runtime (ART) 依靠 Linux 内核来执行底层功能，例如线程和低层内存管理。</p>
-<p>使用 Linux 内核可让 Android 利用主要安全功能，并且允许设备制造商为著名的内核开发硬件驱动程序。</p>
-<p>###硬件抽象层 (HAL)<br>硬件抽象层 (HAL) 提供标准界面，向更高级别的 Java API 框架显示设备硬件功能。HAL 包含多个库模块，其中每个模块都为特定类型的硬件组件实现一个界面，例如相机或蓝牙模块。当框架 API 要求访问设备硬件时，Android 系统将为该硬件组件加载库模块。</p>
-<p>###Android Runtime<br>对于运行 Android 5.0（API 级别 21）或更高版本的设备，每个应用都在其自己的进程中运行，并且有其自己的 Android Runtime (ART) 实例。ART 编写为通过执行 DEX 文件在低内存设备上运行多个虚拟机，DEX 文件是一种专为 Android 设计的字节码格式，经过优化，使用的内存很少。编译工具链（例如 Jack）将 Java 源代码编译为 DEX 字节码，使其可在 Android 平台上运行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ART 的部分主要功能包括：</span><br><span class="line"></span><br><span class="line">* 预先 (AOT) 和即时 (JIT) 编译</span><br><span class="line">* 优化的垃圾回收 (GC)</span><br><span class="line">* 更好的调试支持，包括专用采样分析器、详细的诊断异常和崩溃报告，并且能够设置监视点以监控特定字段</span><br><span class="line">在 Android 版本 5.0（API 级别 21）之前，Dalvik 是 Android Runtime。如果您的应用在 ART 上运行效果很好，那么它应该也可在 Dalvik 上运行，但反过来不一定。</span><br><span class="line"></span><br><span class="line">Android 还包含一套核心运行时库，可提供 Java API 框架使用的 Java 编程语言大部分功能，包括一些 Java 8 语言功能。</span><br></pre></td></tr></table></figure>
-
-<p>###原生 C/C++ 库<br>许多核心 Android 系统组件和服务（例如 ART 和 HAL）构建自原生代码，需要以 C 和 C++ 编写的原生库。Android 平台提供 Java 框架 API 以向应用显示其中部分原生库的功能。例如，您可以通过 Android 框架的 Java OpenGL API 访问 OpenGL ES，以支持在应用中绘制和操作 2D 和 3D 图形。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果开发的是需要 C 或 C++ 代码的应用，可以使用 Android NDK 直接从原生代码访问某些原生平台库。</span><br><span class="line">C&#x2F;C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite、OpenGLEState、FreeType、WebKit、SGL、SSL和libc。</span><br><span class="line">![C&#x2F;C++程序库](android-cxx-library.png)</span><br></pre></td></tr></table></figure>
-
-<p>###Java API 框架<br>您可通过以 Java 语言编写的 API 使用 Android OS 的整个功能集。这些 API 形成创建 Android 应用所需的构建块，它们可简化核心模块化系统组件和服务的重复使用，包括以下组件和服务：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* 丰富、可扩展的视图系统，可用以构建应用的 UI，包括列表、网格、文本框、按钮甚至可嵌入的网络浏览器</span><br><span class="line">* 资源管理器，用于访问非代码资源，例如本地化的字符串、图形和布局文件</span><br><span class="line">* 通知管理器，可让所有应用在状态栏中显示自定义提醒</span><br><span class="line">* Activity 管理器，用于管理应用的生命周期，提供常见的导航返回栈</span><br><span class="line">* 内容提供程序，可让应用访问其他应用（例如“联系人”应用）中的数据或者共享其自己的数据</span><br><span class="line">开发者可以完全访问 Android 系统应用使用的框架 API。</span><br><span class="line">应用程序框架层包括活动管理器、位置管理器、包管理器、通知管理器、资源管理器、 电话管理器、窗口管理器、内容提供者、视图系统和XMPP服务十个部分。</span><br><span class="line">![应用程序框架层](android-api-framework.png)</span><br></pre></td></tr></table></figure>
-
-<p>###系统应用<br>Android 随附一套用于电子邮件、短信、日历、互联网浏览和联系人等的核心应用。平台随附的应用与用户可以选择安装的应用一样，没有特殊状态。因此第三方应用可成为用户的默认网络浏览器、短信 Messenger 甚至默认键盘（有一些例外，例如系统的“设置”应用）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统应用可用作用户的应用，以及提供开发者可从其自己的应用访问的主要功能。例如，如果您的应用要发短信，您无需自己构建该功能，可以改为调用已安装的短信应用向您指定的接收者发送消息。</span><br></pre></td></tr></table></figure>
-
-<p>###资料来源<br><a target="_blank" rel="noopener" href="https://developer.android.google.cn/guide/platform">developer.android.google.cn</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/huaxun66/article/details/78135556">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Bean 生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Bean 生命周期</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="archive-article-date">
-  	<time datetime="2019-05-07T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>####Spring Bean初始化的流程<br>![Spring Bean初始化的流程](Bean 生命周期/spring-bean-lifecycle.png)</p>
-<p>####示例</p>
-<ul>
-<li><p>Bean</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class User implements InitializingBean , DisposableBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public User() &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(constructor)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;   </span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(setName&#x2F;setAttribute)&quot;);</span><br><span class="line">        this.name &#x3D; name;</span><br><span class="line">    &#125;   </span><br><span class="line">    @PostConstruct</span><br><span class="line">        public void postConstruct()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(postConstruct)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;MainConfig中@Bean 的initMethod</span><br><span class="line">    public void initMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(initMethod)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    &#x2F;&#x2F;InitializingBean接口的方法afterPropertiesSet</span><br><span class="line">    @Override</span><br><span class="line">        public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(afterPropertiesSet)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    @PreDestroy</span><br><span class="line">        public void preDestroy()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(preDestroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;DisposableBean接口的方法destroy</span><br><span class="line">    @Override</span><br><span class="line">        public void destroy() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(destroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;MainConfig中@Bean 的destroyMethod</span><br><span class="line">    public void destroyMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(destroyMethod)&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Bean流程監控</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class CustomBeanPostProcessor implements BeanPostProcessor &#123;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()&#x3D;&#x3D;User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessBeforeInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()&#x3D;&#x3D;User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessAfterInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Client</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">public class App &#123;</span><br><span class="line"></span><br><span class="line">    @Bean(initMethod &#x3D; &quot;initMethod&quot;,destroyMethod &#x3D; &quot;destroyMethod&quot;)</span><br><span class="line">        public User user()&#123;</span><br><span class="line">            return new User();</span><br><span class="line">        &#125;   </span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(App.class, args);</span><br><span class="line">    &#125;~  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Output</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">调用Bean的函数(constructor)</span><br><span class="line">调用postProcessBeforeInitialization...</span><br><span class="line">调用Bean的函数(postConstruct)</span><br><span class="line">调用Bean的函数(afterPropertiesSet)</span><br><span class="line">调用Bean的函数(initMethod)</span><br><span class="line">调用postProcessAfterInitialization...</span><br><span class="line">2019-05-09 00:33:00.526  INFO 4549 --- [           main] com.will.App                             : Started App in 3.664 seconds (JVM running for 6.588)</span><br><span class="line">调用Bean的函数(preDestroy)</span><br><span class="line">调用Bean的函数(destroy)</span><br><span class="line">调用Bean的函数(destroyMethod)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>####参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xrq730/p/6363055.html">https://www.cnblogs.com/xrq730/p/6363055.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/redcool/p/6397398.html">https://www.cnblogs.com/redcool/p/6397398.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-门面模式、代理模式、适配器模式的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">门面模式、代理模式、适配器模式的区别</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2018-10-11T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>门面模式、代理模式、适配器模式，这三种模式都很接近，他们的区别是：</p>
-<p>1、门面模式：</p>
-<p>为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，简化了系统的使用；</p>
-<p>银行柜台办理业务可以理解为门面模式的一种，客户通过银行柜台办理业务，无需了解银行内部复杂的业务逻辑处理，柜台办理员只是把银行能提供的业务为客户端办理，银行没有提供的服务，柜台办理员也无法办理的。</p>
-<p><img src="/.me//%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CFacade-Pattern.png" alt="门面模式"></p>
-<p>2、代理模式：</p>
-<p>为其他对象提供一种代理以控制对这个对象的访问。客户访问不到被代理对象，可以通过代理对象间接的访问；代理对象可以对上次的访问结果进行缓存，下次有相同的请求时可以直接返回缓存而不用去访问被代理对象；代理对象可以拒绝没有访问权限的用户，使其不能访问被代理对象；因此代理模式比门面模式更高级、信息更丰富；</p>
-<p><img src="/.me//%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CProxy-Pattern.png" alt="代理模式"></p>
-<p>3、适配器模式：</p>
-<p>将一个接口转换成客户希望的另外一个接口，使得原本接口不兼容而不能一起工作的那些类可以一起工作。</p>
-<p>因为接口的不同，为了让用户使用到统一的接口，把原先的对象通过适配器让用户统一使用，或者扩充新的功能，大多用在代码维护的后期，或者借用第三方库的情况下。</p>
-<p>适配器模式比代理模式更复杂，他不仅仅能让客户端访问到实体对象，更能把一堆接口不兼容的实体对象进行有序管理和组织起来，使得他们能协同工作；</p>
-<p><img src="/.me//%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CAdapter-Pattern.png" alt="适配器模式"></p>
-<p>####参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/laoxia/p/8026201.html">https://www.cnblogs.com/laoxia/p/8026201.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1339,6 +1474,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Maven - 工程管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
             
             <div class="clearfix"></div>
