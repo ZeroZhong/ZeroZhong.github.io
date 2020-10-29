@@ -137,6 +137,545 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-唯一标识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/">唯一标识</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/" class="archive-article-date">
+  	<time datetime="2020-10-29T18:56:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、通用唯一识别码（UUID）"><a href="#1、通用唯一识别码（UUID）" class="headerlink" title="1、通用唯一识别码（UUID）"></a>1、通用唯一识别码（UUID）</h2><p>UUID含义是通用唯一识别码 (Universally Unique Identifier)。</p>
+<p>这是一个软件建构的标准，也是被开源软件基金会 (Open Software Foundation, OSF) 的组织在分布式计算环境 (Distributed Computing Environment, DCE) 领域的一部份。</p>
+<p>UUID 的目的，是让分布式系统中的所有元素，都能有唯一的辨识资讯，而不需要透过中央控制端来做辨识资讯的指定。如此一来，每个人都可以建立不与其它人冲突的 UUID。</p>
+<p>GUID（Globally Unique Identifier）是UUID的别名；但在实际应用中，GUID通常是指微软实现的UUID。</p>
+<p><strong>UUID具有以下涵义</strong>：</p>
+<ul>
+<li>经由一定的算法机器生成</li>
+</ul>
+<p>为了保证UUID的唯一性，规范定义了包括网卡MAC地址、时间戳、名字空间（Namespace）、随机或伪随机数、时序等元素，以及从这些元素生成UUID的算法。UUID的复杂特性在保证了其唯一性的同时，意味着只能由计算机生成。</p>
+<ul>
+<li>非人工指定，非人工识别</li>
+</ul>
+<p>UUID是不能人工指定的，除非你冒着UUID重复的风险。UUID的复杂性决定了“一般人“不能直接从一个UUID知道哪个对象和它关联。</p>
+<ul>
+<li>在特定的范围内重复的可能性极小</li>
+</ul>
+<p>UUID的生成规范定义的算法主要目的就是要保证其唯一性。但这个唯一性是有限的，只在特定的范围内才能得到保证，这和UUID的类型有关（参见UUID的版本）。</p>
+<p>Universally Unique IDentifier(UUID)，有着正儿八经的<a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc4122.txt">RFC规范</a>，是一个128bit的数字，也可以表现为32个16进制的字符，中间用”-”分割。</p>
+<ul>
+<li>时间戳＋UUID版本号，分三段占16个字符(60bit+4bit)，</li>
+<li>Clock Sequence号与保留字段，占4个字符(13bit＋3bit)，</li>
+<li>节点标识占12个字符(48bit)</li>
+</ul>
+<p>UUID是16字节128位长的数字，通常以36字节的字符串表示，示例如下：</p>
+<p>3F2504E0-4F89-11D3-9A0C-0305E82C3301</p>
+<h3 id="1-1、Java中api生成"><a href="#1-1、Java中api生成" class="headerlink" title="1-1、Java中api生成"></a>1-1、Java中api生成</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UUID uuid = UUID.randomUUID();</span><br><span class="line"><span class="comment">//65752c66-bd3f-4564-b8d6-92d66796e007</span></span><br><span class="line">UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-1、获取八位UUID标识码"><a href="#1-1-1、获取八位UUID标识码" class="headerlink" title="1-1-1、获取八位UUID标识码"></a>1-1-1、获取八位UUID标识码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String[] chars = <span class="keyword">new</span> String[]&#123;</span><br><span class="line"><span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>, <span class="string">&quot;f&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;h&quot;</span>, <span class="string">&quot;i&quot;</span>, <span class="string">&quot;j&quot;</span>, <span class="string">&quot;k&quot;</span>, <span class="string">&quot;l&quot;</span>, <span class="string">&quot;m&quot;</span>, <span class="string">&quot;n&quot;</span>, <span class="string">&quot;o&quot;</span>, <span class="string">&quot;p&quot;</span>, <span class="string">&quot;q&quot;</span>, <span class="string">&quot;r&quot;</span>, <span class="string">&quot;s&quot;</span>, <span class="string">&quot;t&quot;</span>, <span class="string">&quot;u&quot;</span>, <span class="string">&quot;v&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>,<span class="string">&quot;z&quot;</span>,</span><br><span class="line"><span class="string">&quot;0&quot;</span>, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;3&quot;</span>, <span class="string">&quot;4&quot;</span>, <span class="string">&quot;5&quot;</span>, <span class="string">&quot;6&quot;</span>, <span class="string">&quot;7&quot;</span>, <span class="string">&quot;8&quot;</span>, <span class="string">&quot;9&quot;</span>,</span><br><span class="line"><span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;E&quot;</span>, <span class="string">&quot;F&quot;</span>, <span class="string">&quot;G&quot;</span>, <span class="string">&quot;H&quot;</span>, <span class="string">&quot;I&quot;</span>, <span class="string">&quot;J&quot;</span>, <span class="string">&quot;K&quot;</span>, <span class="string">&quot;L&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;N&quot;</span>, <span class="string">&quot;O&quot;</span>, <span class="string">&quot;P&quot;</span>, <span class="string">&quot;Q&quot;</span>, <span class="string">&quot;R&quot;</span>, <span class="string">&quot;S&quot;</span>, <span class="string">&quot;T&quot;</span>, <span class="string">&quot;U&quot;</span>, <span class="string">&quot;V&quot;</span>,<span class="string">&quot;W&quot;</span>, <span class="string">&quot;X&quot;</span>, <span class="string">&quot;Y&quot;</span>, <span class="string">&quot;Z&quot;</span></span><br><span class="line">&#125;; </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getShortUuid</span><span class="params">()</span></span>&#123; </span><br><span class="line">    StringBuffer stringBuffer = <span class="keyword">new</span> StringBuffer(); </span><br><span class="line">    String uuid = UUID.randomUUID().toString().replace(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;&quot;</span>); </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)&#123; </span><br><span class="line">        String str      = uuid.substring(i * <span class="number">4</span>, i * <span class="number">4</span> + <span class="number">4</span>); </span><br><span class="line">        <span class="keyword">int</span> strInteger  = Integer.parseInt(str, <span class="number">16</span>); </span><br><span class="line">        stringBuffer.append(chars[strInteger % <span class="number">0x3E</span>]); </span><br><span class="line">    &#125; </span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> stringBuffer.toString(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2、UUID-版本"><a href="#1-2、UUID-版本" class="headerlink" title="1-2、UUID 版本"></a>1-2、UUID 版本</h3><h4 id="1-2-1、UUID-Version-1：基于时间的UUID"><a href="#1-2-1、UUID-Version-1：基于时间的UUID" class="headerlink" title="1-2-1、UUID Version 1：基于时间的UUID"></a>1-2-1、UUID Version 1：基于时间的UUID</h4><h4 id="1-2-2、UUID-Version-2：DCE安全的UUID"><a href="#1-2-2、UUID-Version-2：DCE安全的UUID" class="headerlink" title="1-2-2、UUID Version 2：DCE安全的UUID"></a>1-2-2、UUID Version 2：DCE安全的UUID</h4><h4 id="1-2-3、UUID-Version-3：基于名字的UUID（MD5）"><a href="#1-2-3、UUID-Version-3：基于名字的UUID（MD5）" class="headerlink" title="1-2-3、UUID Version 3：基于名字的UUID（MD5）"></a>1-2-3、UUID Version 3：基于名字的UUID（MD5）</h4><h4 id="1-2-4、UUID-Version-4：随机UUID"><a href="#1-2-4、UUID-Version-4：随机UUID" class="headerlink" title="1-2-4、UUID Version 4：随机UUID"></a>1-2-4、UUID Version 4：随机UUID</h4><h4 id="1-2-5、UUID-Version-5：基于名字的UUID（SHA1）"><a href="#1-2-5、UUID-Version-5：基于名字的UUID（SHA1）" class="headerlink" title="1-2-5、UUID Version 5：基于名字的UUID（SHA1）"></a>1-2-5、UUID Version 5：基于名字的UUID（SHA1）</h4><h2 id="2、自增序列"><a href="#2、自增序列" class="headerlink" title="2、自增序列"></a>2、自增序列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> totalCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> customerID;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ++totalCount;</span><br><span class="line">        customerID = totalCount;</span><br><span class="line">        System.out.println(<span class="string">&quot;增加一个&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCustomerID</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    DecimalFormat decimalFormat = <span class="keyword">new</span> DecimalFormat(<span class="string">&quot;00000000&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> decimalFormat.format(customerID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/HUIWANG/p/11133765.html">https://www.cnblogs.com/HUIWANG/p/11133765.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-负载均衡" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/30/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/30/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="archive-article-date">
+  	<time datetime="2020-10-29T18:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是负载均衡"><a href="#什么是负载均衡" class="headerlink" title="什么是负载均衡"></a>什么是负载均衡</h3><p><strong>(百度百科)</strong></p>
+<p>负载均衡，英文名称为Load Balance，其含义就是指将负载（工作任务）进行平衡、分摊到多个操作单元上进行运行，例如FTP服务器、Web服务器、企业核心应用服务器和其它主要任务服务器等，从而协同完成工作任务。</p>
+<p>负载均衡构建在原有网络结构之上，它提供了一种透明且廉价有效的方法扩展服务器和网络设备的带宽、加强网络数据处理能力、增加吞吐量、提高网络的可用性和灵活性。</p>
+<h2 id="1、负载均衡算法"><a href="#1、负载均衡算法" class="headerlink" title="1、负载均衡算法"></a>1、负载均衡算法</h2><p>原文地址：<a target="_blank" rel="noopener" href="https://blog.51cto.com/blief/1747965">https://blog.51cto.com/blief/1747965</a></p>
+<p>现有的负载均衡算法主要分为<strong>静态</strong>和<strong>动态</strong>两类。</p>
+<ul>
+<li><p><strong>静态负载均衡算法：</strong>以固定的概率分配任务，不考虑服务器的状态信息，如<strong>轮转算法</strong>、<strong>加权轮转算法</strong>等；仅根据算法本身实现调度；实现起点公平，不管服务器当前处理多少请求，分配的数量一致</p>
+</li>
+<li><p><strong>动态负载均衡算法：</strong>以服务器的实时负载状态信息来决定任务的分配，如<strong>最小连接法</strong>、<strong>加权最小连接法</strong>等。根据算法及后端RS当前的负载状况实现调度；不管以前分了多少，只看分配的结果是不是公平</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>算法名</th>
+<th>静态/动态</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>轮询</td>
+<td>静态</td>
+<td>试图做到请求转移的绝对均衡</td>
+<td>为了做到请求转移的绝对均衡，必须付出相当大的代价，因为为了保证pos变量修改的互斥性，需要引入重量级的悲观锁synchronized，这将会导致该段轮询代码的并发吞吐量发生明显的下降。</td>
+</tr>
+<tr>
+<td>加权轮询</td>
+<td>静态</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>随机</td>
+<td>静态</td>
+<td>基于概率统计的理论，吞吐量越大，随机算法的效果越接近于轮询算法的效果。</td>
+<td></td>
+</tr>
+<tr>
+<td>加权随机</td>
+<td>静态</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>源地址哈希</td>
+<td>静态</td>
+<td>保证了相同客户端IP地址将会被哈希到同一台后端服务器，直到后端服务器列表变更。根据此特性可以在服务消费者与服务提供者之间建立有状态的session会话。</td>
+<td>除非集群中服务器的非常稳定，基本不会上下线，否则一旦有服务器上线、下线，那么通过源地址哈希算法路由到的服务器是服务器上线、下线前路由到的服务器的概率非常低，如果是session则取不到session，如果是缓存则可能引发”雪崩”</td>
+</tr>
+<tr>
+<td>目标地址哈希</td>
+<td>静态</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>最小连接</td>
+<td>动态</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>加权最小连接</td>
+<td>动态</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>最少期望延迟</td>
+<td>动态</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>永不排队</td>
+<td>动态</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>基于局部性的最少连接</td>
+<td>动态</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>基于局部性的带复制功能的最少连接</td>
+<td>动态</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="1-1、轮询法（Round-Robin）"><a href="#1-1、轮询法（Round-Robin）" class="headerlink" title="1-1、轮询法（Round Robin）"></a>1-1、轮询法（Round Robin）</h3><p>轮询法，就是将用户的请求轮流分配给服务器，就像是挨个数数，轮流分配。这种算法比较简单，他具有绝对均衡的优点，但是也正是因为绝对均衡它必须付出很大的代价，例如它无法保证分配任务的合理性，无法根据服务器承受能力来分配任务。</p>
+<h4 id="1-1-1、轮询法（Round-Robin）"><a href="#1-1-1、轮询法（Round-Robin）" class="headerlink" title="1-1-1、轮询法（Round Robin）"></a>1-1-1、轮询法（Round Robin）</h4><h4 id="1-1-2、加权轮询法（Weight-Round-Robin）"><a href="#1-1-2、加权轮询法（Weight-Round-Robin）" class="headerlink" title="1-1-2、加权轮询法（Weight Round Robin）"></a>1-1-2、加权轮询法（Weight Round Robin）</h4><h3 id="1-2、随机法（Random）"><a href="#1-2、随机法（Random）" class="headerlink" title="1-2、随机法（Random）"></a>1-2、随机法（Random）</h3><p>随机法，是随机选择一台服务器来分配任务。它保证了请求的分散性达到了均衡的目的。同时它是没有状态的不需要维持上次的选择状态和均衡因子[5]。但是随着任务量的增大，它的效果趋向轮询后也会具有轮询算法的部分缺点。</p>
+<h4 id="1-2-1、随机法（Random）"><a href="#1-2-1、随机法（Random）" class="headerlink" title="1-2-1、随机法（Random）"></a>1-2-1、随机法（Random）</h4><h4 id="1-2-2、加权随机法（Weight-Random）"><a href="#1-2-2、加权随机法（Weight-Random）" class="headerlink" title="1-2-2、加权随机法（Weight Random）"></a>1-2-2、加权随机法（Weight Random）</h4><h3 id="1-3、最小连接法（Least-Connections）"><a href="#1-3、最小连接法（Least-Connections）" class="headerlink" title="1-3、最小连接法（Least Connections）"></a>1-3、最小连接法（Least Connections）</h3><p>最小连接法，将任务分配给此时具有最小连接数的节点，因此它是动态负载均衡算法。一个节点收到一个任务后连接数就会加1，当节点故障时就将节点权值设置为0，不再给节点分配任务。</p>
+<h4 id="1-3-1、最小连接法（Least-Connections）"><a href="#1-3-1、最小连接法（Least-Connections）" class="headerlink" title="1-3-1、最小连接法（Least Connections）"></a>1-3-1、最小连接法（Least Connections）</h4><p>简单算法：active*256+inactive (谁的小，挑谁)</p>
+<h4 id="1-3-2、加权最小连接法（Weight-Least-Connections）"><a href="#1-3-2、加权最小连接法（Weight-Least-Connections）" class="headerlink" title="1-3-2、加权最小连接法（Weight  Least Connections）"></a>1-3-2、加权最小连接法（Weight  Least Connections）</h4><p>简单算法：（active*256+inactive）/weight（谁的小，挑谁）</p>
+<h3 id="1-4、源地址哈希法-（source-hashing-）"><a href="#1-4、源地址哈希法-（source-hashing-）" class="headerlink" title="1-4、源地址哈希法 （source hashing ）"></a>1-4、源地址哈希法 （<em>source hashing</em> ）</h3><p>简单的说就是有将同一客户端的请求发给同一个real server,源地址散列调度算法正好与目标地址散列调度算法相反，它根据请求的源IP地址，作为散列键（Hash Key）从静态分配的散列表找出对应的服务器，若该服务器是可用的并且没有超负荷，将请求发送到该服务器，否则返回空。它采用的散列函数与目标地址散列调 度算法的相同。</p>
+<h4 id="1-4-1、源地址哈希法-（source-hashing-）"><a href="#1-4-1、源地址哈希法-（source-hashing-）" class="headerlink" title="1-4-1、源地址哈希法 （source hashing ）"></a>1-4-1、源地址哈希法 （<em>source hashing</em> ）</h4><h4 id="1-4-2、目标地址哈希法-（destination-hashing-）"><a href="#1-4-2、目标地址哈希法-（destination-hashing-）" class="headerlink" title="1-4-2、目标地址哈希法 （destination hashing ）"></a>1-4-2、目标地址哈希法 （<em>destination hashing</em> ）</h4><h2 id="2、软件负载均衡技术"><a href="#2、软件负载均衡技术" class="headerlink" title="2、软件负载均衡技术"></a>2、软件负载均衡技术</h2><h3 id="2-1、基于DNS的负载均衡"><a href="#2-1、基于DNS的负载均衡" class="headerlink" title="2-1、基于DNS的负载均衡"></a>2-1、基于DNS的负载均衡</h3><p>由于在DNS服务器中，可以为多个不同的地址配置相同的名字，最终查询这个名字的客户机将在解析这个名字时得到其中一个地址，所以这种代理方式是通过DNS服务中的随机名字解析域名和IP来实现负载均衡。</p>
+<h3 id="2-2、反向代理负载均衡"><a href="#2-2、反向代理负载均衡" class="headerlink" title="2-2、反向代理负载均衡"></a>2-2、反向代理负载均衡</h3><p><strong>（如Apache+JK2+Tomcat这种组合）</strong></p>
+<p>该种代理方式与普通的代理方式不同，标准代理方式是客户使用代理访问多个外部Web服务器，之所以被称为反向代理模式是因为这种代理方式是多个客户使用它访问内部Web服务器，而非访问外部服务器。</p>
+<h3 id="2-3、基于NAT（Network-Address-Translation）的负载均衡技术"><a href="#2-3、基于NAT（Network-Address-Translation）的负载均衡技术" class="headerlink" title="2-3、基于NAT（Network Address Translation）的负载均衡技术"></a>2-3、基于NAT（Network Address Translation）的负载均衡技术</h3><p><strong>（如Linux Virtual Server，简称LVS）</strong></p>
+<p>该技术通过一个地址转换网关将每个外部连接均匀转换为不同的内部服务器地址，因此外部网络中的计算机就各自与自己转换得到的地址上的服务器进行通信，从而达到负载均衡的目的。其中网络地址转换网关位于外部地址和内部地址之间，不仅可以实现当外部客户机访问转换网关的某一外部地址时可以转发到某一映射的内部的地址上，还可使内部地址的计算机能访问外部网络。</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/blief/1747965">https://blog.51cto.com/blief/1747965</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xrq730/p/5154340.html">https://www.cnblogs.com/xrq730/p/5154340.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">负载均衡</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/30/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java序列化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/">Java序列化</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2020-10-29T18:05:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
+<p><img src="/.me//Java%E5%BA%8F%E5%88%97%E5%8C%96%5C%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RPC原理及常见框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/">RPC原理及常见框架</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/" class="archive-article-date">
+  	<time datetime="2020-10-29T06:09:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
+<p><img src="/.me//RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5C%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
+<h2 id="1、Java-RMI-Java自带-API"><a href="#1、Java-RMI-Java自带-API" class="headerlink" title="1、Java RMI(Java自带 API)"></a>1、Java RMI(Java自带 API)</h2><p> <strong>Java RMI</strong>，即 <strong>远程方法调用</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_object_communication">Remote Method Invocation</a>)，一种用于实现<strong>远程过程调用</strong>(RPC)<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Remote_procedure_call">(Remote procedure call)</a>的Java API， 能直接传输序列化后的Java对象和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_Garbage_Collection">分布式垃圾收集</a>。</p>
+<p>限制比较大: </p>
+<ul>
+<li>服务不能存在多个，那也就没有负载均衡的说法了。<strong>一种改造参考见5</strong></li>
+<li>只能在java代码中使用。</li>
+</ul>
+<h3 id="1-1、调用过程"><a href="#1-1、调用过程" class="headerlink" title="1-1、调用过程"></a>1-1、调用过程</h3><ul>
+<li>rmi模块结构</li>
+</ul>
+<p><img src="/.me//RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5Crmi%E8%B0%83%E7%94%A8%E7%BB%93%E6%9E%84.jpg" alt="rmi调用结构"></p>
+<ul>
+<li><p>rmi调用过程</p>
+<p><img src="/.me//RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5Crmi%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.png" alt="rmi调用过程"></p>
+<p>资料来源:<a target="_blank" rel="noopener" href="https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html">https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html</a></p>
+<ul>
+<li>有两个远程服务接口可供client调用，Factory和Product接口</li>
+<li>FactoryImpl类实现了Factory接口，ProductImpl类实现了Product接口<ul>
+<li>1 FactoryImpl被注册到了rmi-registry中</li>
+</ul>
+<ol start="2">
+<li>2 client端请求一个Factory的引用 </li>
+<li>3 rmi-registry返回client端一个FactoryImpl的引用 </li>
+<li>4 client端调用FactoryImpl的远程方法请求一个ProductImpl的远程引用</li>
+<li>5 FactoryImpl返回给client端一个ProductImpl引用 </li>
+<li>6 client通过ProductImpl引用调用远程方法 </li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2、实现"><a href="#1-2、实现" class="headerlink" title="1-2、实现"></a>1-2、实现</h3><h4 id="1-2-1、工程结构"><a href="#1-2-1、工程结构" class="headerlink" title="1-2-1、工程结构"></a>1-2-1、工程结构</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.will<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>RMIDemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Service<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Client<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Interface<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-2、协议接口"><a href="#1-2-2、协议接口" class="headerlink" title="1-2-2、协议接口"></a>1-2-2、协议接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloRegistry</span> <span class="keyword">extends</span> <span class="title">Remote</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">helloWorld</span><span class="params">(String name)</span> <span class="keyword">throws</span> RemoteException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-3、服务端以及服务实现"><a href="#1-2-3、服务端以及服务实现" class="headerlink" title="1-2-3、服务端以及服务实现"></a>1-2-3、服务端以及服务实现</h3><h4 id="1-2-3-1、impl"><a href="#1-2-3-1、impl" class="headerlink" title="1-2-3-1、impl"></a>1-2-3-1、impl</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现接口的类，该类需要序列化</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloRegistryImpl</span> <span class="keyword">extends</span> <span class="title">UnicastRemoteObject</span> <span class="keyword">implements</span> <span class="title">HelloRegistry</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HelloRegistryImpl</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">helloWorld</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[Registry] 你好! &quot;</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-3-2、service"><a href="#1-2-3-2、service" class="headerlink" title="1-2-3-2、service"></a>1-2-3-2、service</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegistryService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RegistryService</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 本地主机上的远程对象注册表Registry的实例,默认端口1099</span></span><br><span class="line">            Registry registry = LocateRegistry.createRegistry(<span class="number">1099</span>);</span><br><span class="line">            <span class="comment">// 创建一个远程对象</span></span><br><span class="line">            HelloRegistry hello = <span class="keyword">new</span> HelloRegistryImpl();</span><br><span class="line">            <span class="comment">// 1.把远程对象注册到RMI注册服务器上，并命名为HelloRegistry</span></span><br><span class="line">            registry.rebind(<span class="string">&quot;HelloRegistry&quot;</span>, hello);</span><br><span class="line">            <span class="comment">// 2.绑定的URL标准格式为：rmi://host:port/name</span></span><br><span class="line">            <span class="comment">// Naming.rebind(&quot;rmi://127.0.0.1:1099/HelloRegistry&quot;, hello);</span></span><br><span class="line">            System.out.println(<span class="string">&quot;======= 启动RMI服务成功! =======&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-2-4、客户端调用"><a href="#1-2-4、客户端调用" class="headerlink" title="1-2-4、客户端调用"></a>1-2-4、客户端调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegistryClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RegistryClient</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Registry registry = LocateRegistry.getRegistry(<span class="number">1099</span>);</span><br><span class="line">            <span class="comment">//Naming.lookup(&quot;rmi://127.0.0.1:1099/HelloRegistry&quot;);</span></span><br><span class="line">            HelloRegistry hello = (HelloRegistry) registry.lookup(<span class="string">&quot;HelloRegistry&quot;</span>);</span><br><span class="line">            String response = hello.helloWorld(<span class="string">&quot;will&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;=======&gt; &quot;</span> + response + <span class="string">&quot; &lt;=======&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotBoundException | RemoteException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、SpringBoot实现rmi"><a href="#2、SpringBoot实现rmi" class="headerlink" title="2、SpringBoot实现rmi"></a>2、SpringBoot实现rmi</h2><p>StringBoot通过配置，简化RMI框架的代码</p>
+<h3 id="2-1、协议接口"><a href="#2-1、协议接口" class="headerlink" title="2-1、协议接口"></a>2-1、协议接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserFacade,方法getBySex</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2、服务端"><a href="#2-2、服务端" class="headerlink" title="2-2、服务端"></a>2-2、服务端</h3><h4 id="2-2-1、服务实现"><a href="#2-2-1、服务实现" class="headerlink" title="2-2-1、服务实现"></a>2-2-1、服务实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserFacadeImpl</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2、服务注册和启动"><a href="#2-2-2、服务注册和启动" class="headerlink" title="2-2-2、服务注册和启动"></a>2-2-2、服务注册和启动</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiServiceConfig</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserFacadeImpl <span class="title">createUserFacade</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> UserFacadeImpl();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RmiServiceExporter <span class="title">registerService</span><span class="params">(UserFacadeImpl userFacade)</span> </span>&#123;</span><br><span class="line">        RmiServiceExporter rmiServiceExporter = <span class="keyword">new</span> RmiServiceExporter();</span><br><span class="line">        rmiServiceExporter.setServiceName(<span class="string">&quot;UserInfo&quot;</span>);</span><br><span class="line">        rmiServiceExporter.setService(userFacade);</span><br><span class="line">        rmiServiceExporter.setServiceInterface(UserFacade.class);</span><br><span class="line">        rmiServiceExporter.setRegistryPort(<span class="number">1101</span>);</span><br><span class="line">        <span class="keyword">return</span> rmiServiceExporter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3、客户端"><a href="#2-3、客户端" class="headerlink" title="2-3、客户端"></a>2-3、客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiClientConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserFacade <span class="title">userInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RmiProxyFactoryBean rmiProxyFactoryBean = <span class="keyword">new</span> RmiProxyFactoryBean();</span><br><span class="line">        rmiProxyFactoryBean.setServiceUrl(<span class="string">&quot;rmi://localhost:1101/UserInfo&quot;</span>);</span><br><span class="line">        rmiProxyFactoryBean.setServiceInterface(UserFacade.class);</span><br><span class="line">        rmiProxyFactoryBean.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> (UserFacade) rmiProxyFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端测试类"><a href="#客户端测试类" class="headerlink" title="客户端测试类"></a>客户端测试类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserFacade userFacade;</span><br><span class="line">    </span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">userBySexTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        List&lt;User&gt; userList = userFacade.getBySex(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">        userList.forEach(System.out::println);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、Hessian（基于HTTP的远程方法调用）"><a href="#3、Hessian（基于HTTP的远程方法调用）" class="headerlink" title="3、Hessian（基于HTTP的远程方法调用）"></a>3、Hessian（基于HTTP的远程方法调用）</h2><p>基于HTTP协议传输，在性能方面还不够完美，负载均衡和失效转移依赖于应用的负载均衡器，Hessian的使用则与RMI类似，区别在于淡化了Registry的角色，通过显示的地址调用，利用HessianProxyFactory根据配置的地址create一个代理对象，另外还要引入Hessian的Jar包。</p>
+<h2 id="4、Dubbo（淘宝开源的基于TCP的RPC框架）"><a href="#4、Dubbo（淘宝开源的基于TCP的RPC框架）" class="headerlink" title="4、Dubbo（淘宝开源的基于TCP的RPC框架）"></a>4、Dubbo（淘宝开源的基于TCP的RPC框架）</h2><p>基于Netty的高性能RPC框架</p>
+<h2 id="5、Zookeeper实现rmi"><a href="#5、Zookeeper实现rmi" class="headerlink" title="5、Zookeeper实现rmi"></a>5、Zookeeper实现rmi</h2><p>原文地址：<a target="_blank" rel="noopener" href="http://www.importnew.com/20344.html">http://www.importnew.com/20344.html</a></p>
+<p><img src="/.me//RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5C%E5%88%A9%E7%94%A8zookeeper%E5%AE%9E%E7%8E%B0rmi.jpg" alt="利用zookeeper实现rmi"></p>
+<h3 id="5-1、zookeeper安装以及启动"><a href="#5-1、zookeeper安装以及启动" class="headerlink" title="5-1、zookeeper安装以及启动"></a>5-1、zookeeper安装以及启动</h3><p>zoo.cfg 代码如下（自己指定 log 文件目录）：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tickTime</span>=<span class="string">2000</span></span><br><span class="line"><span class="attr">dataDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/data </span></span><br><span class="line"><span class="attr">dataLogDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/log</span></span><br><span class="line"><span class="attr">clientPort</span>=<span class="string">2181</span></span><br></pre></td></tr></table></figure>
+
+<p>在 bin 目录下，启动 Zookeeper：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd zookeeper-3.4.12/bin</span><br><span class="line">./zkServer.sh start</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2、生产者"><a href="#5-2、生产者" class="headerlink" title="5-2、生产者"></a>5-2、生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiProvider</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用于等待 SyncConnected 事件触发后继续执行当前线程</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发布 RMI 服务并注册 RMI 地址到 ZooKeeper 中</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">publish</span><span class="params">(Remote remote, String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        String url = publishService(remote, host, port); <span class="comment">// 发布 RMI 服务并返回 RMI 地址</span></span><br><span class="line">        <span class="keyword">if</span> (url != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ZooKeeper zk = connectServer(); <span class="comment">// 连接 ZooKeeper 服务器并获取 ZooKeeper 对象</span></span><br><span class="line">            <span class="keyword">if</span> (zk != <span class="keyword">null</span>) &#123;</span><br><span class="line">                createNode(zk, url); <span class="comment">// 创建 ZNode 并将 RMI 地址放入 ZNode 上</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">      *发布 RMI 服务</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">publishService</span><span class="params">(Remote remote, String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        String url = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            url = String.format(<span class="string">&quot;rmi://%s:%d/%s&quot;</span>, host, port, remote.getClass().getName());</span><br><span class="line">            LocateRegistry.createRegistry(port);</span><br><span class="line">            Naming.rebind(url, remote);</span><br><span class="line">            log.debug(<span class="string">&quot;publish rmi service (url: &#123;&#125;)&quot;</span>, url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RemoteException | MalformedURLException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接 ZooKeeper 服务器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ZooKeeper <span class="title">connectServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zk = <span class="keyword">new</span> ZooKeeper(Constant.ZK_CONNECTION_STRING, Constant.ZK_SESSION_TIMEOUT, <span class="keyword">new</span> Watcher() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(WatchedEvent event)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (event.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">                        latch.countDown(); <span class="comment">// 唤醒当前正在执行的线程</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            latch.await(); <span class="comment">// 使当前线程处于等待状态</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> zk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createNode</span><span class="params">(ZooKeeper zk, String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">byte</span>[] data = url.getBytes();</span><br><span class="line">            String path = zk.create(Constant.ZK_PROVIDER_PATH, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);    <span class="comment">// 创建一个临时性且有序的 ZNode</span></span><br><span class="line">            log.debug(<span class="string">&quot;create zookeeper node (&#123;&#125; =&gt; &#123;&#125;)&quot;</span>, path, url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (KeeperException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-3、消费者"><a href="#5-3、消费者" class="headerlink" title="5-3、消费者"></a>5-3、消费者</h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiConsumer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用于等待 SyncConnected 事件触发后继续执行当前线程</span></span><br><span class="line">    <span class="keyword">private</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个 volatile 成员变量，用于保存最新的 RMI 地址（考虑到该变量或许会被其它线程所修改，一旦修改后，该变量的值会影响到所有线程）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> List&lt;String&gt; urlList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RmiConsumer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = connectServer(); <span class="comment">// 连接 ZooKeeper 服务器并获取 ZooKeeper 对象</span></span><br><span class="line">        <span class="keyword">if</span> (zk != <span class="keyword">null</span>) &#123;</span><br><span class="line">            watchNode(zk); <span class="comment">// 观察 /registry 节点的所有子节点并更新 urlList 成员变量</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找 RMI 服务</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T extends Remote&gt; <span class="function">T <span class="title">lookup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        T service = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> size = urlList.size();</span><br><span class="line">        <span class="keyword">if</span> (size &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            String url;</span><br><span class="line">            <span class="keyword">if</span> (size == <span class="number">1</span>) &#123;</span><br><span class="line">                url = urlList.get(<span class="number">0</span>); <span class="comment">// 若 urlList 中只有一个元素，则直接获取该元素</span></span><br><span class="line">                log.debug(<span class="string">&quot;using only url: &#123;&#125;&quot;</span>, url);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                url = urlList.get(ThreadLocalRandom.current().nextInt(size)); <span class="comment">// 若 urlList 中存在多个元素，则随机获取一个元素</span></span><br><span class="line">                log.debug(<span class="string">&quot;using random url: &#123;&#125;&quot;</span>, url);</span><br><span class="line">            &#125;</span><br><span class="line">            service = lookupService(url); <span class="comment">// 从 JNDI 中查找 RMI 服务</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> service;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接 ZooKeeper 服务器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ZooKeeper <span class="title">connectServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zk = <span class="keyword">new</span> ZooKeeper(Constant.ZK_CONNECTION_STRING, Constant.ZK_SESSION_TIMEOUT, <span class="keyword">new</span> Watcher() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(WatchedEvent event)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (event.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">                        latch.countDown(); <span class="comment">// 唤醒当前正在执行的线程</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            latch.await(); <span class="comment">// 使当前线程处于等待状态</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> zk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 观察 /registry 节点下所有子节点是否有变化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">watchNode</span><span class="params">(<span class="keyword">final</span> ZooKeeper zk)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            List&lt;String&gt; nodeList = zk.getChildren(Constant.ZK_REGISTRY_PATH, event -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (event.getType() == Watcher.Event.EventType.NodeChildrenChanged) &#123;</span><br><span class="line">                    watchNode(zk); <span class="comment">// 若子节点有变化，则重新调用该方法（为了获取最新子节点中的数据）</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            List&lt;String&gt; dataList = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// 用于存放 /registry 所有子节点中的数据</span></span><br><span class="line">            <span class="keyword">for</span> (String node : nodeList) &#123;</span><br><span class="line">                <span class="keyword">byte</span>[] data = zk.getData(Constant.ZK_REGISTRY_PATH + <span class="string">&quot;/&quot;</span> + node, <span class="keyword">false</span>, <span class="keyword">null</span>); <span class="comment">// 获取 /registry 的子节点中的数据</span></span><br><span class="line">                dataList.add(<span class="keyword">new</span> String(data));</span><br><span class="line">            &#125;</span><br><span class="line">            log.debug(<span class="string">&quot;node data: &#123;&#125;&quot;</span>, dataList);</span><br><span class="line">            urlList = dataList; <span class="comment">// 更新最新的 RMI 地址</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (KeeperException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在 JNDI 中查找 RMI 远程服务对象</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> &lt;T&gt; <span class="function">T <span class="title">lookupService</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        T remote = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            remote = (T) Naming.lookup(url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotBoundException | MalformedURLException | RemoteException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;远程查找出错!&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> remote;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>JNDI :</strong> JNDI是 Java 命名与目录接口（Java Naming and Directory Interface），在J2EE规范中是重要的规范之一。阅读：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wn084/article/details/80729230">https://blog.csdn.net/wn084/article/details/80729230</a></p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wjlwo2ni/p/11101473.html">https://www.cnblogs.com/wjlwo2ni/p/11101473.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html">https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.importnew.com/20344.html">http://www.importnew.com/20344.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux 资源查看和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -505,7 +1044,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Maven - 工程管理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Maven</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工程管理</a>
         		</li>
       		
 		</ul>
@@ -981,332 +1524,9 @@
 
 
   
-    <article id="post-Binder机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/">Binder机制</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2019-05-10T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Binder</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Springboot读取配置文件及自定义配置文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">Springboot读取配置文件及自定义配置文件</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2019-05-10T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>优先使用applilcation.properties中的数据，其次application.yml</p>
-<h3 id="配置文件的读取路径和次序"><a href="#配置文件的读取路径和次序" class="headerlink" title="配置文件的读取路径和次序"></a>配置文件的读取路径和次序</h3><h3 id="配置文件的格式"><a href="#配置文件的格式" class="headerlink" title="配置文件的格式"></a>配置文件的格式</h3><h3 id="Value注解"><a href="#Value注解" class="headerlink" title="@Value注解"></a>@Value注解</h3><h3 id="ConfigurationProperties注解"><a href="#ConfigurationProperties注解" class="headerlink" title="@ConfigurationProperties注解"></a>@ConfigurationProperties注解</h3><h3 id="PropertySource配合-Value"><a href="#PropertySource配合-Value" class="headerlink" title="@PropertySource配合@Value"></a>@PropertySource配合@Value</h3><h3 id="ConfigurationProperties配合-PropertySource配合-Value"><a href="#ConfigurationProperties配合-PropertySource配合-Value" class="headerlink" title="@ConfigurationProperties配合@PropertySource配合@Value"></a>@ConfigurationProperties配合@PropertySource配合@Value</h3><h3 id="ConfigurationProperties配合-Value"><a href="#ConfigurationProperties配合-Value" class="headerlink" title="@ConfigurationProperties配合@Value"></a>@ConfigurationProperties配合@Value</h3><h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* https:&#x2F;&#x2F;my.oschina.net&#x2F;imlim&#x2F;blog&#x2F;1859091</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android系统源码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/">Android系统源码</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/" class="archive-article-date">
-  	<time datetime="2019-05-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Android系统源码<br>对国内的开发者来说最痛苦的是无法去访问android开发网站。为了更好的认识世界，对程序员来说，会翻墙也是的一门技术，带你去领略墙外的世界, 国内开发者访问(androiddevtools) 上面已经有了所有你要的资源，同时可以下载到我们的主角framework。</p>
-<p>如果你只是想查看源码，androidxref也是一个不错的资源。</p>
-<p>整体结构<br>Android7.0的根目录结构说明如下表所示：</p>
-<p>Makefile （全局Makefile文件，用来定义编译规则）<br>abi （应用程序二进制接口）<br>art （ART运行环境）<br>bionic （bionic C库）<br>bootable （启动引导相关代码）<br>build （存放系统编译规则及generic等基础开发包配置）<br>cts （Android兼容性测试套件标准）<br>dalvik （dalvik JAVA虚拟机）<br>developers （开发者目录）<br>development （应用程序开发相关）<br>device （设备相关配置）<br>docs （参考文档目录）<br>external （android使用的一些开源的模组）<br>frameworks （核心框架——java及C++语言）<br>hardware （部分厂家开源的硬解适配层HAL代码）<br>kernel<br>libcore （核心库相关文件）<br>libnativehelper （动态库，实现JNI库的基础）<br>ndk （NDK相关代码，帮助开发人员在应用程序中嵌入C/C++代码）<br>out （编译完成后的代码输出与此目录）<br>packages （应用程序包）<br>pdk （Plug Development Kit 的缩写，本地开发套件）<br>prebuilts （x86和arm架构下预编译的一些资源）<br>sdk （sdk及模拟器）<br>system （底层文件系统库、应用及组件——C语言）<br>tools （工具文件）<br>toolchain（工具链文件）<br>vendor （厂商定制代码）</p>
-<p>应用层部分<br>应用层位于整个Android系统的最上层，开发者开发的应用程序以及系统内置的应用程序都位于应用层。源码根目录中的packages目录对应着系统应用层。</p>
-<p>apps （核心应用程序）<br>experimental （第三方应用程序）<br>inputmethods （输入法目录）<br>providers （内容提供者目录）<br>screensavers （屏幕保护）<br>services （通信服务）<br>wallpapers （墙纸）</p>
-<p>从目录结构可以发现，packages目录存放着系统核心应用程序、第三方的应用程序和输入法等等，这些应用都是运行在系统应用层的，因此packages目录对应着系统的应用层。</p>
-<p>应用框架层部分<br>应用框架层是系统的核心部分，一方面向上提供接口给应用层调用，另一方面向下与C/C++程序库以及硬件抽象层等进行衔接。 应用框架层的主要实现代码在/frameworks/base和/frameworks/av目录下，其中/frameworks/base目录结构如下：</p>
-<p>api （定义API）<br>core （核心库）<br>docs （文档）<br>include （头文件）<br>libs （库）<br>media （多媒体相关库）<br>nfc-extras （NFC相关）<br>opengl 2D/3D （图形API）<br>sax （XML解析器）<br>telephony （电话通讯管理）<br>tests （测试相关）<br>test-runner （测试工具相关）<br>tools （工具）<br>wifi （wifi无线网络）<br>cmds （重要命令：am、app_proce等）<br>data （字体和声音等数据文件）<br>graphics （图形图像相关）<br>keystore （和数据签名证书相关）<br>location （地理位置相关库）<br>native （本地库）<br>obex （蓝牙传输）<br>packages （设置、TTS、VPN程序）<br>services （系统服务）</p>
-<p>###来源<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/huaxun66/article/details/78135556">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot 切面AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/">SpringBoot 切面AOP</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/" class="archive-article-date">
-  	<time datetime="2019-05-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在方法执行的前后，切入代码；经典的service层切入事务.</p>
-<h3 id="AOP相关注解"><a href="#AOP相关注解" class="headerlink" title="AOP相关注解"></a>AOP相关注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Aspect注解是切面注解类</span><br><span class="line">@Pointcut切点定义</span><br><span class="line">@Before是方法执行前调用</span><br><span class="line">@After是方法执行后调用</span><br><span class="line">@AfterReturning方法执行返回值调用</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1477,11 +1697,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Maven - 工程管理</a>
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+                <a href="javascript:void(0)" class="js-tag color4">序列化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工程管理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">负载均衡</a>
               </li>
             
             <div class="clearfix"></div>
