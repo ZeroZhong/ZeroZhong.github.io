@@ -137,6 +137,235 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Jmeter-安装以及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/06/Jmeter-%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">Jmeter 安装以及使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/06/Jmeter-%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-11-06T10:05:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>Jmeter 是一款使用Java开发的，开源免费的，测试工具， 主要用来做功能测试和性能测试（压力测试/负载测试）. 而且用Jmeter 来测试 Restful API, 非常好用。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://jmeter.apache.org/">https://jmeter.apache.org/</a></p>
+<p>入门：<a target="_blank" rel="noopener" href="https://jmeter.apache.org/usermanual/get-started.html">https://jmeter.apache.org/usermanual/get-started.html</a></p>
+<p>手册：<a target="_blank" rel="noopener" href="https://jmeter.apache.org/usermanual/index.html">https://jmeter.apache.org/usermanual/index.html</a></p>
+<p>中文网：<a target="_blank" rel="noopener" href="http://www.jmeter.com.cn/">http://www.jmeter.com.cn/</a></p>
+<p>中文入门：<a target="_blank" rel="noopener" href="http://www.jmeter.com.cn/category/manual">http://www.jmeter.com.cn/category/manual</a></p>
+<p>中文手册：<a target="_blank" rel="noopener" href="http://www.jmeter.com.cn/category/jmeter-book">http://www.jmeter.com.cn/category/jmeter-book</a></p>
+<h2 id="1、Jmter的安装"><a href="#1、Jmter的安装" class="headerlink" title="1、Jmter的安装"></a>1、Jmter的安装</h2><h3 id="1-1、java运行环境"><a href="#1-1、java运行环境" class="headerlink" title="1-1、java运行环境"></a>1-1、java运行环境</h3><p>jdk安装以及环境变量配置</p>
+<h3 id="1-1、安装jmeter及插件"><a href="#1-1、安装jmeter及插件" class="headerlink" title="1-1、安装jmeter及插件"></a>1-1、安装jmeter及插件</h3><h4 id="1-1-1、文件下载"><a href="#1-1-1、文件下载" class="headerlink" title="1-1-1、文件下载"></a>1-1-1、文件下载</h4><ul>
+<li>JMeter：<a target="_blank" rel="noopener" href="http://jmeter.apache.org/download_jmeter.cgi">http://jmeter.apache.org/download_jmeter.cgi</a></li>
+<li>JMeter插件：<a target="_blank" rel="noopener" href="http://jmeter-plugins.org/downloads/all/">http://jmeter-plugins.org/downloads/all/</a></li>
+</ul>
+<h4 id="1-1-2、配置环境变量"><a href="#1-1-2、配置环境变量" class="headerlink" title="1-1-2、配置环境变量"></a>1-1-2、配置环境变量</h4><ul>
+<li><p>JMETER_HOME：新建变量，变量值为jmeter的安装路径。</p>
+</li>
+<li><p>CLASSPATH ： 添加%JMETER_HOME%\lib\ext \ApacheJMeter_core.jar;%JMETER_HOME%\lib\jorphan.jar;%JMETER_HOME%\lib \logkit-1.2.jar;</p>
+</li>
+</ul>
+<h3 id="1-1-3、安装插件"><a href="#1-1-3、安装插件" class="headerlink" title="1-1-3、安装插件"></a>1-1-3、安装插件</h3><p>解压插件到d盘的jmeter文件目录下，解压后，在D:\jmeter\lib\ext中找到JMeterPlugins-Extras.jar,把JMeterPlugins-Extras.jar放到D:\jmeter\apache-jmeter-3.3\lib\ext目录中</p>
+<h3 id="1-1-4、测试"><a href="#1-1-4、测试" class="headerlink" title="1-1-4、测试"></a>1-1-4、测试</h3><h2 id="2、jmeter的使用"><a href="#2、jmeter的使用" class="headerlink" title="2、jmeter的使用"></a>2、jmeter的使用</h2><h3 id="2-1、添加线程测试"><a href="#2-1、添加线程测试" class="headerlink" title="2-1、添加线程测试"></a>2-1、添加线程测试</h3><h3 id="2-2、添加HTTP请求，设置相关参数"><a href="#2-2、添加HTTP请求，设置相关参数" class="headerlink" title="2-2、添加HTTP请求，设置相关参数"></a>2-2、添加HTTP请求，设置相关参数</h3><h3 id="2-3、添加监听器"><a href="#2-3、添加监听器" class="headerlink" title="2-3、添加监听器"></a>2-3、添加监听器</h3><p>“察看结果树”、“断言结果”、“断言持续时间”</p>
+<h3 id="2-4、开始测试"><a href="#2-4、开始测试" class="headerlink" title="2-4、开始测试"></a>2-4、开始测试</h3><h3 id="2-5、查看结果"><a href="#2-5、查看结果" class="headerlink" title="2-5、查看结果"></a>2-5、查看结果</h3><p>在“察看结果树”页面可以看到每个请求的响应结果；</p>
+<p>在“断言结果”页面可以看到每个请求是否超出断言时间。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">测试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">DevOps</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JMeter</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/06/Jmeter-%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-算法和数据结构题目最优解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/04/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%A2%98%E7%9B%AE%E6%9C%80%E4%BC%98%E8%A7%A3/">算法和数据结构题目最优解</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/04/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%A2%98%E7%9B%AE%E6%9C%80%E4%BC%98%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2020-11-04T14:50:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、栈和队列"><a href="#1、栈和队列" class="headerlink" title="1、栈和队列"></a>1、栈和队列</h2><h3 id="1-1、设计一个有getMin功能的栈（★☆☆☆）"><a href="#1-1、设计一个有getMin功能的栈（★☆☆☆）" class="headerlink" title="1-1、设计一个有getMin功能的栈（★☆☆☆）"></a>1-1、设计一个有getMin功能的栈（★☆☆☆）</h3><ul>
+<li><p>【题目】</p>
+<p>实现一个特殊的栈，在实现栈的基本功能的基础上，再实现返回栈中最小元素的操作。</p>
+</li>
+<li><p>【要求】</p>
+<ul>
+<li>pop、push、getMin 的时间复杂度为O（1）</li>
+<li>设计的栈类型可以使用现成的栈结构。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2、双栈实现队列"><a href="#1-2、双栈实现队列" class="headerlink" title="1-2、双栈实现队列"></a>1-2、双栈实现队列</h3><h3 id="1-3、递归函数和栈操作逆序一个栈"><a href="#1-3、递归函数和栈操作逆序一个栈" class="headerlink" title="1-3、递归函数和栈操作逆序一个栈"></a>1-3、递归函数和栈操作逆序一个栈</h3><h3 id="1-4、猫狗队列"><a href="#1-4、猫狗队列" class="headerlink" title="1-4、猫狗队列"></a>1-4、猫狗队列</h3><h3 id="1-5、用一个栈实现另一个栈的排序"><a href="#1-5、用一个栈实现另一个栈的排序" class="headerlink" title="1-5、用一个栈实现另一个栈的排序"></a>1-5、用一个栈实现另一个栈的排序</h3><p>其实是一个遍历栈的问题，每次找一个最小或者最大的。为什么有这个问题是因为栈是默认只有入栈和出栈的操作，所以遍历就需要倒出所有的数，找到，再倒入。重复这个过程</p>
+<h3 id="1-6、汉诺塔问题"><a href="#1-6、汉诺塔问题" class="headerlink" title="1-6、汉诺塔问题"></a>1-6、汉诺塔问题</h3><p>使用递归思想。</p>
+<ul>
+<li>n层左边到中；中到右，右到中，中到左，右到左，等</li>
+</ul>
+<h3 id="1-7、生产窗口最大数"><a href="#1-7、生产窗口最大数" class="headerlink" title="1-7、生产窗口最大数"></a>1-7、生产窗口最大数</h3><ul>
+<li><p>【题目】有一个整型数组arr和一个大小为w的窗口，窗口从最左边滑倒最右边，窗口每次只向右滑动一个位置。</p>
+<p>如果数组长度为n，窗口长度为w，则一共产生n-w+1个窗口的最大值。求出这个最大值的数组。</p>
+<ul>
+<li>输入 ： 整型数组arr，长度为n，窗口大小w。</li>
+<li>输出：n-w+1窗口的数组res，res[i] 表示每个窗口状态下的最大值。</li>
+</ul>
+</li>
+<li><p>使用双端队列来优化寻找窗口最大值的过程</p>
+</li>
+</ul>
+<h3 id="1-8、构造数组的MaxTree"><a href="#1-8、构造数组的MaxTree" class="headerlink" title="1-8、构造数组的MaxTree"></a>1-8、构造数组的MaxTree</h3><p>这个问题看构造规则了，如果</p>
+<ul>
+<li>按最大数的左右来建立树。</li>
+<li>两种做法。<ul>
+<li>找到最大数，作为根，子问题1，左边数组找最大数，子问题2，右边数组找最大数。终止条件，数组长度为0。</li>
+<li>从左边往右一次读值，通过不停的跳整树来，构建树。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-9、求最大子矩阵的大小"><a href="#1-9、求最大子矩阵的大小" class="headerlink" title="1-9、求最大子矩阵的大小"></a>1-9、求最大子矩阵的大小</h3><h3 id="1-10、最大值减去最小值小于或者等于num的子数组数量"><a href="#1-10、最大值减去最小值小于或者等于num的子数组数量" class="headerlink" title="1-10、最大值减去最小值小于或者等于num的子数组数量"></a>1-10、最大值减去最小值小于或者等于num的子数组数量</h3><h2 id="2、链表问题"><a href="#2、链表问题" class="headerlink" title="2、链表问题"></a>2、链表问题</h2><ul>
+<li><p>分类：单链表，双链表，环形单链表，环形双链表</p>
+</li>
+<li><p>一个链表：遍历，增删改查，排序，反转，复制，判断回文结构，判断成环，归类，分组操作，去重</p>
+</li>
+<li><p>两个链表：相加（大数运算），公共部分，相交，合并，连接，按规则组合</p>
+</li>
+</ul>
+<h3 id="2-1、约瑟夫环"><a href="#2-1、约瑟夫环" class="headerlink" title="2-1、约瑟夫环"></a>2-1、约瑟夫环</h3><h2 id="3、二叉树问题"><a href="#3、二叉树问题" class="headerlink" title="3、二叉树问题"></a>3、二叉树问题</h2><ul>
+<li>基本操作：先根，中根，后根，层次遍历，增删改查，复制，打印（打印边界节点，直观打印），序列化和反序列化，最长路径，最大搜索子树，调整</li>
+<li>两棵树：拓扑包含，子树包含</li>
+<li>判断平衡二叉树，完全二叉树，搜索二叉树，找后续节点，找最近公共祖先，两个节点的距离</li>
+</ul>
+<h2 id="4、递归和动态规划"><a href="#4、递归和动态规划" class="headerlink" title="4、递归和动态规划"></a>4、递归和动态规划</h2><h3 id="4-1、斐波那契数列"><a href="#4-1、斐波那契数列" class="headerlink" title="4-1、斐波那契数列"></a>4-1、斐波那契数列</h3><h4 id="4-1-1、台阶走法"><a href="#4-1-1、台阶走法" class="headerlink" title="4-1-1、台阶走法"></a>4-1-1、台阶走法</h4><h4 id="4-1-2、斐波那契数列的小兔子描述"><a href="#4-1-2、斐波那契数列的小兔子描述" class="headerlink" title="4-1-2、斐波那契数列的小兔子描述"></a>4-1-2、斐波那契数列的小兔子描述</h4><h2 id="5、字符串问题"><a href="#5、字符串问题" class="headerlink" title="5、字符串问题"></a>5、字符串问题</h2><h2 id="6、大数据和空间限制"><a href="#6、大数据和空间限制" class="headerlink" title="6、大数据和空间限制"></a>6、大数据和空间限制</h2><h2 id="7、位运算"><a href="#7、位运算" class="headerlink" title="7、位运算"></a>7、位运算</h2><h2 id="8、数组和矩阵问题"><a href="#8、数组和矩阵问题" class="headerlink" title="8、数组和矩阵问题"></a>8、数组和矩阵问题</h2><h2 id="9、其他题目"><a href="#9、其他题目" class="headerlink" title="9、其他题目"></a>9、其他题目</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/04/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%A2%98%E7%9B%AE%E6%9C%80%E4%BC%98%E8%A7%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-唯一标识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -456,7 +685,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
-<p><img src="/.me//Java%E5%BA%8F%E5%88%97%E5%8C%96%5C%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
+<p><img src="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
 
       
 
@@ -535,7 +764,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
-<p><img src="/.me//RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5C%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5C%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
 <h2 id="1、Java-RMI-Java自带-API"><a href="#1、Java-RMI-Java自带-API" class="headerlink" title="1、Java RMI(Java自带 API)"></a>1、Java RMI(Java自带 API)</h2><p> <strong>Java RMI</strong>，即 <strong>远程方法调用</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_object_communication">Remote Method Invocation</a>)，一种用于实现<strong>远程过程调用</strong>(RPC)<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Remote_procedure_call">(Remote procedure call)</a>的Java API， 能直接传输序列化后的Java对象和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_Garbage_Collection">分布式垃圾收集</a>。</p>
 <p>限制比较大: </p>
 <ul>
@@ -545,10 +774,10 @@
 <h3 id="1-1、调用过程"><a href="#1-1、调用过程" class="headerlink" title="1-1、调用过程"></a>1-1、调用过程</h3><ul>
 <li>rmi模块结构</li>
 </ul>
-<p><img src="/.me//RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5Crmi%E8%B0%83%E7%94%A8%E7%BB%93%E6%9E%84.jpg" alt="rmi调用结构"></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5Crmi%E8%B0%83%E7%94%A8%E7%BB%93%E6%9E%84.jpg" alt="rmi调用结构"></p>
 <ul>
 <li><p>rmi调用过程</p>
-<p><img src="/.me//RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5Crmi%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.png" alt="rmi调用过程"></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5Crmi%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.png" alt="rmi调用过程"></p>
 <p>资料来源:<a target="_blank" rel="noopener" href="https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html">https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html</a></p>
 <ul>
 <li>有两个远程服务接口可供client调用，Factory和Product接口</li>
@@ -594,7 +823,7 @@
 <h2 id="3、Hessian（基于HTTP的远程方法调用）"><a href="#3、Hessian（基于HTTP的远程方法调用）" class="headerlink" title="3、Hessian（基于HTTP的远程方法调用）"></a>3、Hessian（基于HTTP的远程方法调用）</h2><p>基于HTTP协议传输，在性能方面还不够完美，负载均衡和失效转移依赖于应用的负载均衡器，Hessian的使用则与RMI类似，区别在于淡化了Registry的角色，通过显示的地址调用，利用HessianProxyFactory根据配置的地址create一个代理对象，另外还要引入Hessian的Jar包。</p>
 <h2 id="4、Dubbo（淘宝开源的基于TCP的RPC框架）"><a href="#4、Dubbo（淘宝开源的基于TCP的RPC框架）" class="headerlink" title="4、Dubbo（淘宝开源的基于TCP的RPC框架）"></a>4、Dubbo（淘宝开源的基于TCP的RPC框架）</h2><p>基于Netty的高性能RPC框架</p>
 <h2 id="5、Zookeeper实现rmi"><a href="#5、Zookeeper实现rmi" class="headerlink" title="5、Zookeeper实现rmi"></a>5、Zookeeper实现rmi</h2><p>原文地址：<a target="_blank" rel="noopener" href="http://www.importnew.com/20344.html">http://www.importnew.com/20344.html</a></p>
-<p><img src="/.me//RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5C%E5%88%A9%E7%94%A8zookeeper%E5%AE%9E%E7%8E%B0rmi.jpg" alt="利用zookeeper实现rmi"></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5C%E5%88%A9%E7%94%A8zookeeper%E5%AE%9E%E7%8E%B0rmi.jpg" alt="利用zookeeper实现rmi"></p>
 <h3 id="5-1、zookeeper安装以及启动"><a href="#5-1、zookeeper安装以及启动" class="headerlink" title="5-1、zookeeper安装以及启动"></a>5-1、zookeeper安装以及启动</h3><p>zoo.cfg 代码如下（自己指定 log 文件目录）：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tickTime</span>=<span class="string">2000</span></span><br><span class="line"><span class="attr">dataDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/data </span></span><br><span class="line"><span class="attr">dataLogDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/log</span></span><br><span class="line"><span class="attr">clientPort</span>=<span class="string">2181</span></span><br></pre></td></tr></table></figure>
 
@@ -1341,189 +1570,6 @@
 
 
   
-    <article id="post-线程池原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/">线程池原理</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2019-10-25T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、实现原理"><a href="#1、实现原理" class="headerlink" title="1、实现原理"></a>1、实现原理</h2><p>如果我们自己写一个线程池，那我们该如何实现呢？</p>
-<p>我们的目的是一次性创建一组线程，当需要再次使用的时候，就从创建好的线程中，取出一个线程执行任务。</p>
-<p>我们需要考虑这样几个问题，线程执行完成之后，不能再次执行，就需要让线程通过阻塞和唤醒的方式执行。</p>
-<p>所以，需要数据结构存储线程，当没有任务的时候，阻塞所有线程，有任务时候，唤醒线程执行。</p>
-<h2 id="2、源码阅读"><a href="#2、源码阅读" class="headerlink" title="2、源码阅读"></a>2、源码阅读</h2><p>​    源码版本：open-jdk 1.8</p>
-<h3 id="2-1、ThreadPoolExecutor结构"><a href="#2-1、ThreadPoolExecutor结构" class="headerlink" title="2-1、ThreadPoolExecutor结构"></a>2-1、ThreadPoolExecutor结构</h3><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolExecutor</span> <span class="keyword">extends</span> <span class="title">AbstractExecutorService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> BlockingQueue&lt;Runnable&gt; workQueue;<span class="comment">//阻塞队列</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> HashSet&lt;Worker&gt; workers = <span class="keyword">new</span> HashSet&lt;&gt;();<span class="comment">//存储当前所在线程</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">new</span> ReentrantLock(); </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> ThreadFactory threadFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> RejectedExecutionHandler handler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
-<h3 id="2-2、execute"><a href="#2-2、execute" class="headerlink" title="2-2、execute"></a>2-2、execute</h3><p>​    通常execute ，让线程池执行一个任务。其他执行方式，见线程池的使用</p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">       <span class="comment">//1， 小于核心线程数，创建线程，被记录在hashmap 中，并能够阻塞</span></span><br><span class="line">       <span class="comment">//阻塞原理，通过阻塞队列的“读空写满”</span></span><br><span class="line">      <span class="keyword">int</span> c = ctl.get();</span><br><span class="line">      <span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">          <span class="keyword">if</span> (addWorker(command, <span class="keyword">true</span>))</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">          c = ctl.get();</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//2. 超过核心线程数，向阻塞队列提交任务，这是唤醒 1分支创建的线程</span></span><br><span class="line">      <span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">          <span class="keyword">int</span> recheck = ctl.get();</span><br><span class="line">	<span class="comment">// 判断是否真的被激活执行了</span></span><br><span class="line">	<span class="comment">// 如果线程已经死，删除任务，走拒绝策略</span></span><br><span class="line">          <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">              reject(command);</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)<span class="comment">//如果没有线程，则重新启动线程，这是有可能的，因为可以设置核心线程失活</span></span><br><span class="line">              addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>);</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//3.如果还无法向阻塞队列添加任务，这时候尝试再创建线程，当然这个线程数小于最大线程数，true 或 false 表示是否是核心线程</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="keyword">false</span>))</span><br><span class="line">          reject(command);<span class="comment">//4.如果分支3也失败，那就采用拒绝策略</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
-<h3 id="2-3、runWorker"><a href="#2-3、runWorker" class="headerlink" title="2-3、runWorker"></a>2-3、runWorker</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">runWorker</span><span class="params">(Worker w)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">           <span class="keyword">while</span> (task != <span class="keyword">null</span> || (task = getTask()) != <span class="keyword">null</span>) &#123;<span class="comment">// 会阻塞</span></span><br><span class="line">               <span class="comment">//执行真正的任务</span></span><br><span class="line">                       task.run();</span><br><span class="line">               <span class="comment">//...</span></span><br><span class="line">           &#125;</span><br><span class="line">               </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> Runnable <span class="title">getTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">       <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">               Runnable r = timed ?</span><br><span class="line">                   workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :</span><br><span class="line">                   workQueue.take();<span class="comment">// 这两个方法都使用了阻塞队列的&quot;读空写满&quot;</span></span><br><span class="line">               <span class="keyword">if</span> (r != <span class="keyword">null</span>)</span><br><span class="line">                   <span class="keyword">return</span> r;</span><br><span class="line">          <span class="comment">//...</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线程池</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Springboot配置监听器、过滤器和拦截器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/11/Springboot%E9%85%8D%E7%BD%AE%E7%9B%91%E5%90%AC%E5%99%A8%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/">Springboot配置监听器、过滤器和拦截器</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/11/Springboot%E9%85%8D%E7%BD%AE%E7%9B%91%E5%90%AC%E5%99%A8%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2019-05-11T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listener是servlet规范中定义的一种特殊类。用于监听servletContext、HttpSession和servletRequest等域对象的创建和销毁事件。监听域对象的属性发生修改的事件。用于在事件发生前、发生后做一些必要的处理。其主要可用于以下方面：1、统计在线人数和在线用户2、系统启动时加载初始化信息3、统计网站访问量4、记录用户访问路径。</span><br></pre></td></tr></table></figure>
-
-<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Filter是Servlet技术中最实用的技术，Web开发人员通过Filter技术，对web服务器管理的所有web资源：例如Jsp, Servlet, 静态图片文件或静态 html 文件等进行拦截，从而实现一些特殊的功能。例如实现URL级别的权限访问控制、过滤敏感词汇、压缩响应信息等一些高级功能。它主要用于对用户请求进行预处理，也可以对HttpServletResponse进行后处理。使用Filter的完整流程：Filter对用户请求进行预处理，接着将请求交给Servlet进行处理并生成响应，最后Filter再对服务器响应进行后处理。</span><br></pre></td></tr></table></figure>
-
-<h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Interceptor 在AOP（Aspect-Oriented Programming）中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。比如日志，安全等。一般拦截器方法都是通过动态代理的方式实现。可以通过它来进行权限验证，或者判断用户是否登陆，或者是像12306 判断当前时间是否是购票时间。</span><br></pre></td></tr></table></figure>
-
-<p>　　三大器在springboot中使用时，首先实现相应的接口定义类，然后通过配置类将其加入到spring容器中，从而实现相应的功能。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/11/Springboot%E9%85%8D%E7%BD%AE%E7%9B%91%E5%90%AC%E5%99%A8%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1726,6 +1772,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">负载均衡</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">DevOps</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JMeter</a>
               </li>
             
             <div class="clearfix"></div>

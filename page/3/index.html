@@ -137,6 +137,240 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2018-10-04T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="选用"><a href="#选用" class="headerlink" title="选用"></a>选用</h2><p>-单例对象 占用资源少，不需要延时加载，枚举 好于 饿汉<br>-单例对象 占用资源多，需要延时加载，静态内部类 好于 懒汉式</p>
+<h2 id="适合单线程环境"><a href="#适合单线程环境" class="headerlink" title="适合单线程环境"></a>适合单线程环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;  </span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            instance&#x3D;new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多线程的情况可以用，懒汉式"><a href="#多线程的情况可以用，懒汉式" class="headerlink" title="多线程的情况可以用，懒汉式"></a>多线程的情况可以用，懒汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static synchronized Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            instance&#x3D;new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-CheckLock"><a href="#Double-CheckLock" class="headerlink" title="Double CheckLock"></a>Double CheckLock</h2><p>实现单例，加同步锁时，前后两次判断实例是否存在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            synchronized(Singleton.class)&#123;</span><br><span class="line">                if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">                    instance&#x3D;new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="饿汉式（建议使用）"><a href="#饿汉式（建议使用）" class="headerlink" title="饿汉式（建议使用）"></a>饿汉式（建议使用）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;new Singleton();</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="静态内部内。"><a href="#静态内部内。" class="headerlink" title="静态内部内。"></a>静态内部内。</h2><p>（建议使用）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    private static class SingletonHolder&#123;</span><br><span class="line">        private final static Singleton instance&#x3D;new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return SingletonHolder.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>（线程安全，调用效率高，不能延时加载，可以天然的防止反射和反序列化调用）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;枚举元素本身就是单例</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;添加自己需要的操作</span><br><span class="line">    public void singletonOperation()&#123;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">工厂模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2018-10-04T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>工厂方法模式（Factory Method）</p>
+<p>工厂方法模式分为三种：<br>普通工厂模式，多个工厂方法模式，抽象工厂模式</p>
+<p>###工厂产品设计（发送邮件和发送短信为例）<br>接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sender</span> </span>&#123;  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>短信</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">                    System.out.println(<span class="string">&quot;this is sms sender!&quot;</span>);  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>邮件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;  </span><br><span class="line">        <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">                    System.out.println(<span class="string">&quot;this is mailsender!&quot;</span>);  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>#####1、普通工厂模式，就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。</p>
+<p>工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendFactory</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">(String type)</span> </span>&#123;  </span><br><span class="line">                    <span class="keyword">if</span> (<span class="string">&quot;mail&quot;</span>.equals(type)) &#123;  </span><br><span class="line">                            <span class="keyword">return</span> <span class="keyword">new</span> MailSender();  </span><br><span class="line">                            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;sms&quot;</span>.equals(type)) &#123;  </span><br><span class="line">                                    <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </span><br><span class="line">                                    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                                            System.out.println(<span class="string">&quot;请输入正确的类型!&quot;</span>);  </span><br><span class="line">                                                <span class="keyword">return</span> <span class="keyword">null</span>;  </span><br><span class="line">                                            &#125;  </span><br><span class="line">                                        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryTest</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">                    SendFactory factory = <span class="keyword">new</span> SendFactory();  </span><br><span class="line">                        Sender sender = factory.produce(<span class="string">&quot;sms&quot;</span>);  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>#####2、多个工厂方法模式，是对普通工厂方法模式的改进，在普通工厂方法模式中，如果传递的字符串出错，则不能正确创建对象，而多个工厂方法模式是提供多个工厂方法，分别创建对象。</p>
+<p>工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SendFactory</span> </span>&#123;  </span><br><span class="line">       <span class="function"><span class="keyword">public</span> Sender <span class="title">produceMail</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> MailSender();  </span><br><span class="line">                &#125; </span><br><span class="line"></span><br><span class="line">                <span class="function"><span class="keyword">public</span> Sender <span class="title">produceSms</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </span><br><span class="line">                        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryTest</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">                    SendFactory factory = <span class="keyword">new</span> SendFactory();  </span><br><span class="line">                        Sender sender = factory.produceMail();  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>扩展：静态工厂方法模式，将上面的多个工厂方法模式里的方法置为静态的，不需要创建实例，直接调用即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendFactory</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sender <span class="title">produceMail</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> MailSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">                      </span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sender <span class="title">produceSms</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                            <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </span><br><span class="line">                            &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryTest</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;      </span><br><span class="line">                    Sender sender = SendFactory.produceMail();  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>#####3、抽象工厂模式（Abstract Factory）</p>
+<p>工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则，所以，从设计角度考虑，有一定的问题，如何解决？就用到抽象工厂模式，创建多个工厂类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Provider</span> </span>&#123;  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>工厂类：<br>邮件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendMailFactory</span> <span class="keyword">implements</span> <span class="title">Provider</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> MailSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>短信</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendSmsFactory</span> <span class="keyword">implements</span> <span class="title">Provider</span></span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        Provider provider = <span class="keyword">new</span> SendMailFactory();  </span><br><span class="line">            Sender sender = provider.produce();  </span><br><span class="line">            sender.Send();  </span><br><span class="line">        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>####参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/llussize/article/details/80276627">https://blog.csdn.net/llussize/article/details/80276627</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -261,7 +495,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/.me//1.png" alt="1"><br><img src="/.me//2.png" alt="2"><br><img src="/.me//3.png" alt="3"><br><img src="/.me//4.png" alt="4"><br><img src="/.me//5.png" alt="5"><br><img src="/.me//6.png" alt="5"></p>
+        <p><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/1.png" alt="1"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/2.png" alt="2"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/3.png" alt="3"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/4.png" alt="4"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/5.png" alt="5"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/6.png" alt="5"></p>
 
       
 
@@ -883,195 +1117,6 @@
 
 
   
-    <article id="post-Hexo设置关于、标签、分类、归档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/">Hexo设置关于、标签、分类、归档</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/" class="archive-article-date">
-  	<time datetime="2017-06-07T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、添加-关于页面"><a href="#1、添加-关于页面" class="headerlink" title="1、添加 关于页面"></a>1、添加 关于页面</h3><p>使用：hexo new page “about” 新建一个 关于我 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配<br>不同主题 _config. yml文件有区别</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span> <span class="string">（添加此行即可）</span></span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">home</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">.</span> <span class="string">//主页</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-home</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">archive</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">archives/</span> <span class="string">//归档</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-archive</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">about</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">about/</span> <span class="string">//关于</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-user</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">rss</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">atom.xml</span> <span class="string">//rss订阅</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-rss</span></span><br></pre></td></tr></table></figure>
-
-<p>编辑 about 关于页面 md文件 部署就能看到</p>
-<h3 id="2、添加-标签页面"><a href="#2、添加-标签页面" class="headerlink" title="2、添加 标签页面"></a>2、添加 标签页面</h3><p>使用： hexo new page tags 新建一个 标签 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
-
-<p>底下代码是一篇包含 标签 文章的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 标签测试</span><br><span class="line">tags:</span><br><span class="line">	- Testing （这个就是文章的标签了）</span><br><span class="line">	- Another Tag （这个就是文章的标签了）</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、添加-分类页面"><a href="#3、添加-分类页面" class="headerlink" title="3、添加 分类页面"></a>3、添加 分类页面</h3><p>使用： hexo new page categories 新建一个 分类 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
-
-<p>底下代码是一篇包含 分类 文章的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 分类测试</span><br><span class="line">categories:</span><br><span class="line">	- hexo （这个就是文章的分类了）</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、添加-归档页面"><a href="#4、添加-归档页面" class="headerlink" title="4、添加 归档页面"></a>4、添加 归档页面</h3><p>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5、添加-自定义页面"><a href="#5、添加-自定义页面" class="headerlink" title="5、添加 自定义页面"></a>5、添加 自定义页面</h3><p>使用： hexo new page “guestbook” 新建一个 自定义 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br><span class="line"><span class="attr">guestbook:</span> <span class="string">/guestbook</span> <span class="string">//自定义</span> <span class="string">（添加此行即可）</span></span><br></pre></td></tr></table></figure>
-
-<p>标签添加方式</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: title #文章標題</span><br><span class="line">date: 2016-06-01 23:47:44 #文章生成時間</span><br><span class="line">categories: “Hexo教程” #文章分類目錄 可以省略</span><br><span class="line">tags: #文章標籤 可以省略</span><br><span class="line"><span class="bullet">	-</span> 标签1</span><br><span class="line"><span class="bullet">	-</span> 标签2</span><br><span class="line">description: #你對本頁的描述 可以省略</span><br></pre></td></tr></table></figure>
-
-<h3 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010820857/article/details/82027535">https://blog.csdn.net/u010820857/article/details/82027535</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/baozhiqiangjava/article/details/80556550">https://blog.csdn.net/baozhiqiangjava/article/details/80556550</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo 创建文章、标签、分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/06/Hexo%20%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB/">Hexo 创建文章、标签、分类</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/06/Hexo%20%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB/" class="archive-article-date">
-  	<time datetime="2017-06-06T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、创建文章"><a href="#1、创建文章" class="headerlink" title="1、创建文章"></a>1、创建文章</h3><h4 id="a-在hexo下创建一个新的文章"><a href="#a-在hexo下创建一个新的文章" class="headerlink" title="a.在hexo下创建一个新的文章"></a>a.在hexo下创建一个新的文章</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;文章名称&quot;</span><br></pre></td></tr></table></figure>
-
-<p>生产后会提示你文件路径，一般在hexo/source/_posts下</p>
-<h4 id="b-文章基本设置"><a href="#b-文章基本设置" class="headerlink" title="b.文章基本设置"></a>b.文章基本设置</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title: CentOS7下Tomcat启动慢的原因及解决方案</span><br><span class="line">date: 2017-12-02 21:01:24</span><br><span class="line">comments: true #是否可评论</span><br><span class="line">toc: true #是否显示文章目录</span><br><span class="line">categories: &quot;云服务器&quot; #分类</span><br><span class="line">tags:   #标签</span><br><span class="line"><span class="bullet">    -</span> centOS</span><br><span class="line"><span class="bullet">    -</span> tomcat</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、创建标签"><a href="#2、创建标签" class="headerlink" title="2、创建标签"></a>2、创建标签</h3><h4 id="a-创建标签页面"><a href="#a-创建标签页面" class="headerlink" title="a.创建标签页面"></a>a.创建标签页面</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<h4 id="b-基本设置"><a href="#b-基本设置" class="headerlink" title="b.基本设置"></a>b.基本设置</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: tags</span><br><span class="line">date: 2017-12-02 21:01:24</span><br><span class="line">type: “tags”</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、创建分类"><a href="#3、创建分类" class="headerlink" title="3、创建分类"></a>3、创建分类</h3><h4 id="a-创建分类页面"><a href="#a-创建分类页面" class="headerlink" title="a.创建分类页面"></a>a.创建分类页面</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-
-<h4 id="b-基本设置-1"><a href="#b-基本设置-1" class="headerlink" title="b.基本设置"></a>b.基本设置</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: categories</span><br><span class="line">date: 2017-12-02 21:01:24</span><br><span class="line">type: &quot;categories&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32337109/article/details/78755662">https://blog.csdn.net/qq_32337109/article/details/78755662</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/06/Hexo%20%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1274,6 +1319,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">负载均衡</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">DevOps</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JMeter</a>
               </li>
             
             <div class="clearfix"></div>
