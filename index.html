@@ -764,7 +764,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
-<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5C%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
 <h2 id="1、Java-RMI-Java自带-API"><a href="#1、Java-RMI-Java自带-API" class="headerlink" title="1、Java RMI(Java自带 API)"></a>1、Java RMI(Java自带 API)</h2><p> <strong>Java RMI</strong>，即 <strong>远程方法调用</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_object_communication">Remote Method Invocation</a>)，一种用于实现<strong>远程过程调用</strong>(RPC)<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Remote_procedure_call">(Remote procedure call)</a>的Java API， 能直接传输序列化后的Java对象和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_Garbage_Collection">分布式垃圾收集</a>。</p>
 <p>限制比较大: </p>
 <ul>
@@ -774,10 +774,10 @@
 <h3 id="1-1、调用过程"><a href="#1-1、调用过程" class="headerlink" title="1-1、调用过程"></a>1-1、调用过程</h3><ul>
 <li>rmi模块结构</li>
 </ul>
-<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5Crmi%E8%B0%83%E7%94%A8%E7%BB%93%E6%9E%84.jpg" alt="rmi调用结构"></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/rmi%E8%B0%83%E7%94%A8%E7%BB%93%E6%9E%84.jpg" alt="rmi调用结构"></p>
 <ul>
 <li><p>rmi调用过程</p>
-<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5Crmi%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.png" alt="rmi调用过程"></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/rmi%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.png" alt="rmi调用过程"></p>
 <p>资料来源:<a target="_blank" rel="noopener" href="https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html">https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html</a></p>
 <ul>
 <li>有两个远程服务接口可供client调用，Factory和Product接口</li>
@@ -823,7 +823,7 @@
 <h2 id="3、Hessian（基于HTTP的远程方法调用）"><a href="#3、Hessian（基于HTTP的远程方法调用）" class="headerlink" title="3、Hessian（基于HTTP的远程方法调用）"></a>3、Hessian（基于HTTP的远程方法调用）</h2><p>基于HTTP协议传输，在性能方面还不够完美，负载均衡和失效转移依赖于应用的负载均衡器，Hessian的使用则与RMI类似，区别在于淡化了Registry的角色，通过显示的地址调用，利用HessianProxyFactory根据配置的地址create一个代理对象，另外还要引入Hessian的Jar包。</p>
 <h2 id="4、Dubbo（淘宝开源的基于TCP的RPC框架）"><a href="#4、Dubbo（淘宝开源的基于TCP的RPC框架）" class="headerlink" title="4、Dubbo（淘宝开源的基于TCP的RPC框架）"></a>4、Dubbo（淘宝开源的基于TCP的RPC框架）</h2><p>基于Netty的高性能RPC框架</p>
 <h2 id="5、Zookeeper实现rmi"><a href="#5、Zookeeper实现rmi" class="headerlink" title="5、Zookeeper实现rmi"></a>5、Zookeeper实现rmi</h2><p>原文地址：<a target="_blank" rel="noopener" href="http://www.importnew.com/20344.html">http://www.importnew.com/20344.html</a></p>
-<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6%5C%E5%88%A9%E7%94%A8zookeeper%E5%AE%9E%E7%8E%B0rmi.jpg" alt="利用zookeeper实现rmi"></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/%E5%88%A9%E7%94%A8zookeeper%E5%AE%9E%E7%8E%B0rmi.jpg" alt="利用zookeeper实现rmi"></p>
 <h3 id="5-1、zookeeper安装以及启动"><a href="#5-1、zookeeper安装以及启动" class="headerlink" title="5-1、zookeeper安装以及启动"></a>5-1、zookeeper安装以及启动</h3><p>zoo.cfg 代码如下（自己指定 log 文件目录）：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tickTime</span>=<span class="string">2000</span></span><br><span class="line"><span class="attr">dataDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/data </span></span><br><span class="line"><span class="attr">dataLogDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/log</span></span><br><span class="line"><span class="attr">clientPort</span>=<span class="string">2181</span></span><br></pre></td></tr></table></figure>
 
