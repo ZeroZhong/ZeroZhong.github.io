@@ -137,6 +137,478 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java序列化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/">Java序列化</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2020-10-29T18:05:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
+<p><img src="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RPC原理及常见框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/">RPC原理及常见框架</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/" class="archive-article-date">
+  	<time datetime="2020-10-29T06:09:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
+<h2 id="1、Java-RMI-Java自带-API"><a href="#1、Java-RMI-Java自带-API" class="headerlink" title="1、Java RMI(Java自带 API)"></a>1、Java RMI(Java自带 API)</h2><p> <strong>Java RMI</strong>，即 <strong>远程方法调用</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_object_communication">Remote Method Invocation</a>)，一种用于实现<strong>远程过程调用</strong>(RPC)<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Remote_procedure_call">(Remote procedure call)</a>的Java API， 能直接传输序列化后的Java对象和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_Garbage_Collection">分布式垃圾收集</a>。</p>
+<p>限制比较大: </p>
+<ul>
+<li>服务不能存在多个，那也就没有负载均衡的说法了。<strong>一种改造参考见5</strong></li>
+<li>只能在java代码中使用。</li>
+</ul>
+<h3 id="1-1、调用过程"><a href="#1-1、调用过程" class="headerlink" title="1-1、调用过程"></a>1-1、调用过程</h3><ul>
+<li>rmi模块结构</li>
+</ul>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/rmi%E8%B0%83%E7%94%A8%E7%BB%93%E6%9E%84.jpg" alt="rmi调用结构"></p>
+<ul>
+<li><p>rmi调用过程</p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/rmi%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.png" alt="rmi调用过程"></p>
+<p>资料来源:<a target="_blank" rel="noopener" href="https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html">https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html</a></p>
+<ul>
+<li>有两个远程服务接口可供client调用，Factory和Product接口</li>
+<li>FactoryImpl类实现了Factory接口，ProductImpl类实现了Product接口<ul>
+<li>1 FactoryImpl被注册到了rmi-registry中</li>
+</ul>
+<ol start="2">
+<li>2 client端请求一个Factory的引用 </li>
+<li>3 rmi-registry返回client端一个FactoryImpl的引用 </li>
+<li>4 client端调用FactoryImpl的远程方法请求一个ProductImpl的远程引用</li>
+<li>5 FactoryImpl返回给client端一个ProductImpl引用 </li>
+<li>6 client通过ProductImpl引用调用远程方法 </li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2、实现"><a href="#1-2、实现" class="headerlink" title="1-2、实现"></a>1-2、实现</h3><h4 id="1-2-1、工程结构"><a href="#1-2-1、工程结构" class="headerlink" title="1-2-1、工程结构"></a>1-2-1、工程结构</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.will<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>RMIDemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Service<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Client<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Interface<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-2、协议接口"><a href="#1-2-2、协议接口" class="headerlink" title="1-2-2、协议接口"></a>1-2-2、协议接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloRegistry</span> <span class="keyword">extends</span> <span class="title">Remote</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">helloWorld</span><span class="params">(String name)</span> <span class="keyword">throws</span> RemoteException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-3、服务端以及服务实现"><a href="#1-2-3、服务端以及服务实现" class="headerlink" title="1-2-3、服务端以及服务实现"></a>1-2-3、服务端以及服务实现</h3><h4 id="1-2-3-1、impl"><a href="#1-2-3-1、impl" class="headerlink" title="1-2-3-1、impl"></a>1-2-3-1、impl</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现接口的类，该类需要序列化</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloRegistryImpl</span> <span class="keyword">extends</span> <span class="title">UnicastRemoteObject</span> <span class="keyword">implements</span> <span class="title">HelloRegistry</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HelloRegistryImpl</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">helloWorld</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[Registry] 你好! &quot;</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-3-2、service"><a href="#1-2-3-2、service" class="headerlink" title="1-2-3-2、service"></a>1-2-3-2、service</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegistryService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RegistryService</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 本地主机上的远程对象注册表Registry的实例,默认端口1099</span></span><br><span class="line">            Registry registry = LocateRegistry.createRegistry(<span class="number">1099</span>);</span><br><span class="line">            <span class="comment">// 创建一个远程对象</span></span><br><span class="line">            HelloRegistry hello = <span class="keyword">new</span> HelloRegistryImpl();</span><br><span class="line">            <span class="comment">// 1.把远程对象注册到RMI注册服务器上，并命名为HelloRegistry</span></span><br><span class="line">            registry.rebind(<span class="string">&quot;HelloRegistry&quot;</span>, hello);</span><br><span class="line">            <span class="comment">// 2.绑定的URL标准格式为：rmi://host:port/name</span></span><br><span class="line">            <span class="comment">// Naming.rebind(&quot;rmi://127.0.0.1:1099/HelloRegistry&quot;, hello);</span></span><br><span class="line">            System.out.println(<span class="string">&quot;======= 启动RMI服务成功! =======&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-2-4、客户端调用"><a href="#1-2-4、客户端调用" class="headerlink" title="1-2-4、客户端调用"></a>1-2-4、客户端调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegistryClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RegistryClient</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Registry registry = LocateRegistry.getRegistry(<span class="number">1099</span>);</span><br><span class="line">            <span class="comment">//Naming.lookup(&quot;rmi://127.0.0.1:1099/HelloRegistry&quot;);</span></span><br><span class="line">            HelloRegistry hello = (HelloRegistry) registry.lookup(<span class="string">&quot;HelloRegistry&quot;</span>);</span><br><span class="line">            String response = hello.helloWorld(<span class="string">&quot;will&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;=======&gt; &quot;</span> + response + <span class="string">&quot; &lt;=======&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotBoundException | RemoteException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、SpringBoot实现rmi"><a href="#2、SpringBoot实现rmi" class="headerlink" title="2、SpringBoot实现rmi"></a>2、SpringBoot实现rmi</h2><p>StringBoot通过配置，简化RMI框架的代码</p>
+<h3 id="2-1、协议接口"><a href="#2-1、协议接口" class="headerlink" title="2-1、协议接口"></a>2-1、协议接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserFacade,方法getBySex</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2、服务端"><a href="#2-2、服务端" class="headerlink" title="2-2、服务端"></a>2-2、服务端</h3><h4 id="2-2-1、服务实现"><a href="#2-2-1、服务实现" class="headerlink" title="2-2-1、服务实现"></a>2-2-1、服务实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserFacadeImpl</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2、服务注册和启动"><a href="#2-2-2、服务注册和启动" class="headerlink" title="2-2-2、服务注册和启动"></a>2-2-2、服务注册和启动</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiServiceConfig</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserFacadeImpl <span class="title">createUserFacade</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> UserFacadeImpl();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RmiServiceExporter <span class="title">registerService</span><span class="params">(UserFacadeImpl userFacade)</span> </span>&#123;</span><br><span class="line">        RmiServiceExporter rmiServiceExporter = <span class="keyword">new</span> RmiServiceExporter();</span><br><span class="line">        rmiServiceExporter.setServiceName(<span class="string">&quot;UserInfo&quot;</span>);</span><br><span class="line">        rmiServiceExporter.setService(userFacade);</span><br><span class="line">        rmiServiceExporter.setServiceInterface(UserFacade.class);</span><br><span class="line">        rmiServiceExporter.setRegistryPort(<span class="number">1101</span>);</span><br><span class="line">        <span class="keyword">return</span> rmiServiceExporter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3、客户端"><a href="#2-3、客户端" class="headerlink" title="2-3、客户端"></a>2-3、客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiClientConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserFacade <span class="title">userInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RmiProxyFactoryBean rmiProxyFactoryBean = <span class="keyword">new</span> RmiProxyFactoryBean();</span><br><span class="line">        rmiProxyFactoryBean.setServiceUrl(<span class="string">&quot;rmi://localhost:1101/UserInfo&quot;</span>);</span><br><span class="line">        rmiProxyFactoryBean.setServiceInterface(UserFacade.class);</span><br><span class="line">        rmiProxyFactoryBean.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> (UserFacade) rmiProxyFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端测试类"><a href="#客户端测试类" class="headerlink" title="客户端测试类"></a>客户端测试类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserFacade userFacade;</span><br><span class="line">    </span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">userBySexTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        List&lt;User&gt; userList = userFacade.getBySex(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">        userList.forEach(System.out::println);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、Hessian（基于HTTP的远程方法调用）"><a href="#3、Hessian（基于HTTP的远程方法调用）" class="headerlink" title="3、Hessian（基于HTTP的远程方法调用）"></a>3、Hessian（基于HTTP的远程方法调用）</h2><p>基于HTTP协议传输，在性能方面还不够完美，负载均衡和失效转移依赖于应用的负载均衡器，Hessian的使用则与RMI类似，区别在于淡化了Registry的角色，通过显示的地址调用，利用HessianProxyFactory根据配置的地址create一个代理对象，另外还要引入Hessian的Jar包。</p>
+<h2 id="4、Dubbo（淘宝开源的基于TCP的RPC框架）"><a href="#4、Dubbo（淘宝开源的基于TCP的RPC框架）" class="headerlink" title="4、Dubbo（淘宝开源的基于TCP的RPC框架）"></a>4、Dubbo（淘宝开源的基于TCP的RPC框架）</h2><p>基于Netty的高性能RPC框架</p>
+<h2 id="5、Zookeeper实现rmi"><a href="#5、Zookeeper实现rmi" class="headerlink" title="5、Zookeeper实现rmi"></a>5、Zookeeper实现rmi</h2><p>原文地址：<a target="_blank" rel="noopener" href="http://www.importnew.com/20344.html">http://www.importnew.com/20344.html</a></p>
+<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/%E5%88%A9%E7%94%A8zookeeper%E5%AE%9E%E7%8E%B0rmi.jpg" alt="利用zookeeper实现rmi"></p>
+<h3 id="5-1、zookeeper安装以及启动"><a href="#5-1、zookeeper安装以及启动" class="headerlink" title="5-1、zookeeper安装以及启动"></a>5-1、zookeeper安装以及启动</h3><p>zoo.cfg 代码如下（自己指定 log 文件目录）：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tickTime</span>=<span class="string">2000</span></span><br><span class="line"><span class="attr">dataDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/data </span></span><br><span class="line"><span class="attr">dataLogDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/log</span></span><br><span class="line"><span class="attr">clientPort</span>=<span class="string">2181</span></span><br></pre></td></tr></table></figure>
+
+<p>在 bin 目录下，启动 Zookeeper：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd zookeeper-3.4.12/bin</span><br><span class="line">./zkServer.sh start</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2、生产者"><a href="#5-2、生产者" class="headerlink" title="5-2、生产者"></a>5-2、生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiProvider</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用于等待 SyncConnected 事件触发后继续执行当前线程</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发布 RMI 服务并注册 RMI 地址到 ZooKeeper 中</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">publish</span><span class="params">(Remote remote, String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        String url = publishService(remote, host, port); <span class="comment">// 发布 RMI 服务并返回 RMI 地址</span></span><br><span class="line">        <span class="keyword">if</span> (url != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ZooKeeper zk = connectServer(); <span class="comment">// 连接 ZooKeeper 服务器并获取 ZooKeeper 对象</span></span><br><span class="line">            <span class="keyword">if</span> (zk != <span class="keyword">null</span>) &#123;</span><br><span class="line">                createNode(zk, url); <span class="comment">// 创建 ZNode 并将 RMI 地址放入 ZNode 上</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">      *发布 RMI 服务</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">publishService</span><span class="params">(Remote remote, String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        String url = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            url = String.format(<span class="string">&quot;rmi://%s:%d/%s&quot;</span>, host, port, remote.getClass().getName());</span><br><span class="line">            LocateRegistry.createRegistry(port);</span><br><span class="line">            Naming.rebind(url, remote);</span><br><span class="line">            log.debug(<span class="string">&quot;publish rmi service (url: &#123;&#125;)&quot;</span>, url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RemoteException | MalformedURLException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接 ZooKeeper 服务器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ZooKeeper <span class="title">connectServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zk = <span class="keyword">new</span> ZooKeeper(Constant.ZK_CONNECTION_STRING, Constant.ZK_SESSION_TIMEOUT, <span class="keyword">new</span> Watcher() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(WatchedEvent event)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (event.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">                        latch.countDown(); <span class="comment">// 唤醒当前正在执行的线程</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            latch.await(); <span class="comment">// 使当前线程处于等待状态</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> zk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createNode</span><span class="params">(ZooKeeper zk, String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">byte</span>[] data = url.getBytes();</span><br><span class="line">            String path = zk.create(Constant.ZK_PROVIDER_PATH, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);    <span class="comment">// 创建一个临时性且有序的 ZNode</span></span><br><span class="line">            log.debug(<span class="string">&quot;create zookeeper node (&#123;&#125; =&gt; &#123;&#125;)&quot;</span>, path, url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (KeeperException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-3、消费者"><a href="#5-3、消费者" class="headerlink" title="5-3、消费者"></a>5-3、消费者</h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiConsumer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用于等待 SyncConnected 事件触发后继续执行当前线程</span></span><br><span class="line">    <span class="keyword">private</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个 volatile 成员变量，用于保存最新的 RMI 地址（考虑到该变量或许会被其它线程所修改，一旦修改后，该变量的值会影响到所有线程）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> List&lt;String&gt; urlList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RmiConsumer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = connectServer(); <span class="comment">// 连接 ZooKeeper 服务器并获取 ZooKeeper 对象</span></span><br><span class="line">        <span class="keyword">if</span> (zk != <span class="keyword">null</span>) &#123;</span><br><span class="line">            watchNode(zk); <span class="comment">// 观察 /registry 节点的所有子节点并更新 urlList 成员变量</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找 RMI 服务</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T extends Remote&gt; <span class="function">T <span class="title">lookup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        T service = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> size = urlList.size();</span><br><span class="line">        <span class="keyword">if</span> (size &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            String url;</span><br><span class="line">            <span class="keyword">if</span> (size == <span class="number">1</span>) &#123;</span><br><span class="line">                url = urlList.get(<span class="number">0</span>); <span class="comment">// 若 urlList 中只有一个元素，则直接获取该元素</span></span><br><span class="line">                log.debug(<span class="string">&quot;using only url: &#123;&#125;&quot;</span>, url);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                url = urlList.get(ThreadLocalRandom.current().nextInt(size)); <span class="comment">// 若 urlList 中存在多个元素，则随机获取一个元素</span></span><br><span class="line">                log.debug(<span class="string">&quot;using random url: &#123;&#125;&quot;</span>, url);</span><br><span class="line">            &#125;</span><br><span class="line">            service = lookupService(url); <span class="comment">// 从 JNDI 中查找 RMI 服务</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> service;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接 ZooKeeper 服务器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ZooKeeper <span class="title">connectServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zk = <span class="keyword">new</span> ZooKeeper(Constant.ZK_CONNECTION_STRING, Constant.ZK_SESSION_TIMEOUT, <span class="keyword">new</span> Watcher() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(WatchedEvent event)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (event.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">                        latch.countDown(); <span class="comment">// 唤醒当前正在执行的线程</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            latch.await(); <span class="comment">// 使当前线程处于等待状态</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> zk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 观察 /registry 节点下所有子节点是否有变化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">watchNode</span><span class="params">(<span class="keyword">final</span> ZooKeeper zk)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            List&lt;String&gt; nodeList = zk.getChildren(Constant.ZK_REGISTRY_PATH, event -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (event.getType() == Watcher.Event.EventType.NodeChildrenChanged) &#123;</span><br><span class="line">                    watchNode(zk); <span class="comment">// 若子节点有变化，则重新调用该方法（为了获取最新子节点中的数据）</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            List&lt;String&gt; dataList = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// 用于存放 /registry 所有子节点中的数据</span></span><br><span class="line">            <span class="keyword">for</span> (String node : nodeList) &#123;</span><br><span class="line">                <span class="keyword">byte</span>[] data = zk.getData(Constant.ZK_REGISTRY_PATH + <span class="string">&quot;/&quot;</span> + node, <span class="keyword">false</span>, <span class="keyword">null</span>); <span class="comment">// 获取 /registry 的子节点中的数据</span></span><br><span class="line">                dataList.add(<span class="keyword">new</span> String(data));</span><br><span class="line">            &#125;</span><br><span class="line">            log.debug(<span class="string">&quot;node data: &#123;&#125;&quot;</span>, dataList);</span><br><span class="line">            urlList = dataList; <span class="comment">// 更新最新的 RMI 地址</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (KeeperException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在 JNDI 中查找 RMI 远程服务对象</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> &lt;T&gt; <span class="function">T <span class="title">lookupService</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        T remote = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            remote = (T) Naming.lookup(url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotBoundException | MalformedURLException | RemoteException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;远程查找出错!&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> remote;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>JNDI :</strong> JNDI是 Java 命名与目录接口（Java Naming and Directory Interface），在J2EE规范中是重要的规范之一。阅读：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wn084/article/details/80729230">https://blog.csdn.net/wn084/article/details/80729230</a></p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wjlwo2ni/p/11101473.html">https://www.cnblogs.com/wjlwo2ni/p/11101473.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html">https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.importnew.com/20344.html">http://www.importnew.com/20344.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux 资源查看和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/">Linux 资源查看和测试</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/" class="archive-article-date">
+  	<time datetime="2020-10-28T13:10:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="系统版本"><a href="#系统版本" class="headerlink" title="系统版本"></a>系统版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux VM 5.4.0-42-generic #46~18.04.1-Ubuntu SMP Fri Jul 10 07:21:24 UTC 2020 x86_64 x86_64 x86_64 GNU&#x2F;Linux</span><br></pre></td></tr></table></figure>
+
+<h2 id="1、proc文件系统"><a href="#1、proc文件系统" class="headerlink" title="1、proc文件系统"></a>1、proc文件系统</h2><h3 id="1-1、查看系统支持最大线程数"><a href="#1-1、查看系统支持最大线程数" class="headerlink" title="1-1、查看系统支持最大线程数"></a>1-1、查看系统支持最大线程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查系统支持的最大线程数，一般会很大，相当于理论值</span></span><br><span class="line">cat /proc/sys/kernel/threads-max</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">30893</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2、查看系统支持最大进程数"><a href="#1-2、查看系统支持最大进程数" class="headerlink" title="1-2、查看系统支持最大进程数"></a>1-2、查看系统支持最大进程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/kernel/pid_max</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">131072</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3、查看系统支持最大文件数"><a href="#1-3、查看系统支持最大文件数" class="headerlink" title="1-3、查看系统支持最大文件数"></a>1-3、查看系统支持最大文件数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">394854</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4、查看cpu信息"><a href="#1-4、查看cpu信息" class="headerlink" title="1-4、查看cpu信息"></a>1-4、查看cpu信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、用户限制"><a href="#3、用户限制" class="headerlink" title="3、用户限制"></a>3、用户限制</h2><h3 id="3-1、ulimit帮助"><a href="#3-1、ulimit帮助" class="headerlink" title="3-1、ulimit帮助"></a>3-1、ulimit帮助</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help ulimit </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">ulimit: ulimit [-SHabcdefiklmnpqrstuvxPT] [限制]</span><br><span class="line">    修改 shell 资源限制。</span><br><span class="line">    </span><br><span class="line">    在允许此类控制的系统上，提供对于 shell 及其创建的进程所可用的</span><br><span class="line">    资源的控制。</span><br><span class="line">    </span><br><span class="line">    选项：</span><br><span class="line">      -S	使用软 (&#96;soft&#39;) 资源限制</span><br><span class="line">      -H	使用硬 (&#96;hard&#39;) 资源限制</span><br><span class="line">      -a	所有当前限制都被报告</span><br><span class="line">      -b	套接字缓存尺寸</span><br><span class="line">      -c	创建的核文件的最大尺寸</span><br><span class="line">      -d	一个进程的数据区的最大尺寸</span><br><span class="line">      -e	最高的调度优先级 (&#96;nice&#39;)</span><br><span class="line">      -f	有 shell 及其子进程可以写的最大文件尺寸</span><br><span class="line">      -i	最多的可以挂起的信号数</span><br><span class="line">      -k	分配给此进程的最大 kqueue 数量</span><br><span class="line">      -l	一个进程可以锁定的最大内存尺寸</span><br><span class="line">      -m	最大的内存进驻尺寸</span><br><span class="line">      -n	最多的打开的文件描述符个数</span><br><span class="line">      -p	管道缓冲区尺寸</span><br><span class="line">      -q	POSIX 信息队列的最大字节数</span><br><span class="line">      -r	实时调度的最大优先级</span><br><span class="line">      -s	最大栈尺寸</span><br><span class="line">      -t	最大的CPU时间，以秒为单位</span><br><span class="line">      -u	最大用户进程数</span><br><span class="line">      -v	虚拟内存尺寸</span><br><span class="line">      -x	最大的文件锁数量</span><br><span class="line">      -P	最大伪终端数量</span><br><span class="line">      -T	最大线程数量</span><br><span class="line">    </span><br><span class="line">    并非所有选项在所有系统上可用。</span><br><span class="line">    </span><br><span class="line">    如果提供了 LIMIT 变量，则它为指定资源的新的值；特别的 LIMIT 值为</span><br><span class="line">    &#96;soft&#39;、&#96;hard&#39;和&#96;unlimited&#39;，分别表示当前的软限制，硬限制和无限制。</span><br><span class="line">    否则打印指定资源的当前限制值，不带选项则假定为 -f</span><br><span class="line">    </span><br><span class="line">    取值都是 1024 字节为单位，除了 -t 以秒为单位，-p 以 512 字节递增，</span><br><span class="line">    -u 为无范围的进程数量。</span><br><span class="line">    </span><br><span class="line">    退出状态：</span><br><span class="line">    返回成功，除非使用了无效的选项或者错误发生。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2、ulimit显示"><a href="#3-2、ulimit显示" class="headerlink" title="3-2、ulimit显示"></a>3-2、ulimit显示</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -a</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 15446</span><br><span class="line">max locked memory       (kbytes, -l) 16384</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line">open files                      (-n) 1024</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line">stack size              (kbytes, -s) 8192</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line">max user processes              (-u) 15446</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、vmstat监控系统资源"><a href="#4、vmstat监控系统资源" class="headerlink" title="4、vmstat监控系统资源"></a>4、vmstat监控系统资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">vmstat [刷新延时 刷新次数]</span></span><br><span class="line">vmstat 1 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、dmesg"><a href="#5、dmesg" class="headerlink" title="5、dmesg"></a>5、dmesg</h2><h3 id="5-1、查看开机时内核检测信息"><a href="#5-1、查看开机时内核检测信息" class="headerlink" title="5-1、查看开机时内核检测信息"></a>5-1、查看开机时内核检测信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmesg | grep CPU</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、free命令查看内存使用状态"><a href="#6、free命令查看内存使用状态" class="headerlink" title="6、free命令查看内存使用状态"></a>6、free命令查看内存使用状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、判断当前系统的位数"><a href="#8、判断当前系统的位数" class="headerlink" title="8、判断当前系统的位数"></a>8、判断当前系统的位数</h2><p>使用file查看文件类型来得到，后面的命令只要是外部命令即可</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file /bin/ls</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、lsof-列出进程打开或调用文件的信息"><a href="#9、lsof-列出进程打开或调用文件的信息" class="headerlink" title="9、lsof 列出进程打开或调用文件的信息"></a>9、lsof 列出进程打开或调用文件的信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">lsof -p 进程号查看对应进程调用的文件</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="10、Netstat-显示各种网络相关信息"><a href="#10、Netstat-显示各种网络相关信息" class="headerlink" title="10、Netstat 显示各种网络相关信息"></a>10、Netstat 显示各种网络相关信息</h2><p>原文链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
+<p>如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。</p>
+<h3 id="10-1、输出信息"><a href="#10-1、输出信息" class="headerlink" title="10-1、输出信息"></a>10-1、输出信息</h3><p>执行<code>netstat</code>后，其输出结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">激活Internet连接 (w&#x2F;o 服务器)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State      </span><br><span class="line">tcp        0      0 localhost:epmd          localhost:47653         ESTABLISHED</span><br><span class="line">tcp        0      0 localhost:47653         localhost:epmd          ESTABLISHED</span><br><span class="line">tcp        0      0 VM:epmd                 localhost:47179         TIME_WAIT  </span><br><span class="line">活跃的UNIX域套接字 (w&#x2F;o 服务器)</span><br><span class="line">Proto RefCnt Flags       Type       State         I-Node   路径</span><br><span class="line">unix  2      [ ]         数据报                41161    &#x2F;run&#x2F;user&#x2F;1000&#x2F;systemd&#x2F;notify</span><br><span class="line">unix  10     [ ]         数据报                29933    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;socket</span><br><span class="line">unix  3      [ ]         流        已连接     37474    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;stdout</span><br><span class="line">unix  3      [ ]         数据报                58367    </span><br><span class="line">unix  3      [ ]         流        已连接     41214    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br><span class="line">unix  3      [ ]         流        已连接     41363    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br></pre></td></tr></table></figure>
+
+<p>netstat的输出结果大致可以分为两个部分：</p>
+<table>
+<thead>
+<tr>
+<th>Active Internet connections（活跃的网络连接）</th>
+<th>Active UNIX domain sockets（活跃的Unix域套接口）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Recv-Q（接收队列）</td>
+<td>Proto （显示连接使用的协议）</td>
+</tr>
+<tr>
+<td>Send-Q（发送队列）</td>
+<td>RefCnt  （连接到本套接口上的进程号）</td>
+</tr>
+<tr>
+<td></td>
+<td>Types （显示套接口的类型）</td>
+</tr>
+<tr>
+<td></td>
+<td>State （显示套接口当前的状态）</td>
+</tr>
+<tr>
+<td></td>
+<td>Path （连接到套接口的其它进程使用的路径名）</td>
+</tr>
+</tbody></table>
+<p><strong>Unix域套接口：</strong>和<strong>网络套接字</strong>一样，但是只能用于<strong>本机通信</strong>，性能可以提高一倍</p>
+<p><strong>“Recv-Q”和”Send-Q”：</strong>这些数字一般都应该是0。如果不是则表示软件包正在队列中堆积。这种情况只能在非常少的情况见到。</p>
+<h3 id="10-2、常见参数"><a href="#10-2、常见参数" class="headerlink" title="10-2、常见参数"></a>10-2、常见参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">常见参数</span><br><span class="line">-a (all)显示所有选项，默认不显示LISTEN相关</span><br><span class="line">-t (tcp)仅显示tcp相关选项</span><br><span class="line">-u (udp)仅显示udp相关选项</span><br><span class="line">-n 拒绝显示别名，能显示数字的全部转化成数字。</span><br><span class="line">-l 仅列出有在 Listen (监听) 的服務状态</span><br><span class="line"></span><br><span class="line">-p 显示建立相关链接的程序名</span><br><span class="line">-r 显示路由信息，路由表</span><br><span class="line">-e 显示扩展信息，例如uid等</span><br><span class="line">-s 按各个协议进行统计</span><br><span class="line">-c 每隔一个固定时间，执行该netstat命令。</span><br><span class="line"></span><br><span class="line">提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-3、使用案例"><a href="#10-3、使用案例" class="headerlink" title="10-3、使用案例"></a>10-3、使用案例</h3><h4 id="10-3-1、-列出所有端口-包括监听和未监听的"><a href="#10-3-1、-列出所有端口-包括监听和未监听的" class="headerlink" title="10-3-1、 列出所有端口 (包括监听和未监听的)"></a>10-3-1、 列出所有端口 (包括监听和未监听的)</h4><p> <strong>列出所有端口 netstat -a</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -a | more</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> udp        0      0 *:bootpc                *:*</span><br><span class="line"> </span><br><span class="line">Active UNIX domain sockets (servers and established)</span><br><span class="line"> Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6135     /tmp/.X11-unix/X0</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     5140     /var/run/acpid.socket</span><br></pre></td></tr></table></figure>
+
+<p> <strong>列出所有 tcp 端口 netstat -at</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -at</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> tcp        0      0 localhost:ipp           *:*                     LISTEN</span><br><span class="line"> tcp        0      0 *:smtp                  *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br></pre></td></tr></table></figure>
+
+<p> <strong>列出所有 udp 端口 netstat -au</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -au</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> udp        0      0 *:bootpc                *:*</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br><span class="line"> udp        0      0 *:mdns                  *:*</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-2-列出所有处于监听状态的-Sockets"><a href="#10-3-2-列出所有处于监听状态的-Sockets" class="headerlink" title="10-3-2. 列出所有处于监听状态的 Sockets"></a>10-3-2. 列出所有处于监听状态的 Sockets</h4><p><strong>只显示监听端口 netstat -l</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -l</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:ipp           *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br></pre></td></tr></table></figure>
+
+<p> <strong>只列出所有监听 tcp 端口 netstat -lt</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lt</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> tcp        0      0 *:smtp                  *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br></pre></td></tr></table></figure>
+
+<p> <strong>只列出所有监听 udp 端口 netstat -lu</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lu</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br><span class="line"> udp        0      0 *:mdns                  *:*</span><br></pre></td></tr></table></figure>
+
+<p> <strong>只列出所有监听 UNIX 端口 netstat -lx</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lx</span></span><br><span class="line"> Active UNIX domain sockets (only servers)</span><br><span class="line"> Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6294     private/maildrop</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6203     public/cleanup</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6302     private/ifmail</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6306     private/bsmtp</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-3-显示每个协议的统计信息"><a href="#10-3-3-显示每个协议的统计信息" class="headerlink" title="10-3-3. 显示每个协议的统计信息"></a>10-3-3. 显示每个协议的统计信息</h4><p> <strong>显示所有端口的统计信息 netstat -s</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -s</span></span><br><span class="line"> Ip:</span><br><span class="line"> 11150 total packets received</span><br><span class="line"> 1 with invalid addresses</span><br><span class="line"> 0 forwarded</span><br><span class="line"> 0 incoming packets discarded</span><br><span class="line"> 11149 incoming packets delivered</span><br><span class="line"> 11635 requests sent out</span><br><span class="line"> Icmp:</span><br><span class="line"> 0 ICMP messages received</span><br><span class="line"> 0 input ICMP message failed.</span><br><span class="line"> Tcp:</span><br><span class="line"> 582 active connections openings</span><br><span class="line"> 2 failed connection attempts</span><br><span class="line"> 25 connection resets received</span><br><span class="line"> Udp:</span><br><span class="line"> 1183 packets received</span><br><span class="line"> 4 packets to unknown port received.</span><br><span class="line"> .....</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> <strong>显示 TCP 或 UDP 端口的统计信息 netstat -st 或 -su</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -st </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netstat -su</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-4、在-netstat-输出中显示-PID-和进程名称-netstat-p"><a href="#10-3-4、在-netstat-输出中显示-PID-和进程名称-netstat-p" class="headerlink" title="10-3-4、在 netstat 输出中显示 PID 和进程名称 netstat -p"></a>10-3-4、在 netstat 输出中显示 PID 和进程名称 netstat -p</h4><p>netstat -p 可以与其它开关一起使用，就可以添加 “PID/进程名称” 到 netstat 输出中，这样 debugging 的时候可以很方便的发现特定端口运行的程序。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -pt</span></span><br><span class="line"> Active Internet connections (w/o servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</span><br><span class="line"> tcp        1      0 ramesh-laptop.loc:47212 192.168.185.75:www        CLOSE_WAIT  2109/firefox</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:52750 lax:www ESTABLISHED 2109/firefox</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-5-在-netstat-输出中不显示主机，端口和用户名-host-port-or-user"><a href="#10-3-5-在-netstat-输出中不显示主机，端口和用户名-host-port-or-user" class="headerlink" title="10-3-5. 在 netstat 输出中不显示主机，端口和用户名 (host, port or user)"></a>10-3-5. 在 netstat 输出中不显示主机，端口和用户名 (host, port or user)</h4><p><strong>当你不想让主机，端口和用户名显示</strong>，使用 <code>netstat -n</code>。将会使用数字代替那些名称。</p>
+<p>同样可以加速输出，因为不用进行比对查询。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -an</span></span><br></pre></td></tr></table></figure>
+
+<p>如果只是不想让这三个名称中的一个被显示，使用以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-ports</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-hosts</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-users</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-3-6-持续输出-netstat-信息"><a href="#10-3-6-持续输出-netstat-信息" class="headerlink" title="10-3-6. 持续输出 netstat 信息"></a>10-3-6. 持续输出 netstat 信息</h4><p>netstat 将每隔一秒输出网络信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -c</span></span><br><span class="line"> Active Internet connections (w/o servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:36130 101-101-181-225.ama:www ESTABLISHED</span><br><span class="line"> tcp        1      1 ramesh-laptop.loc:52564 101.11.169.230:www      CLOSING</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:43758 server-101-101-43-2:www ESTABLISHED</span><br><span class="line"> tcp        1      1 ramesh-laptop.loc:42367 101.101.34.101:www      CLOSING</span><br><span class="line"> ^C</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-7-显示系统不支持的地址族-Address-Families"><a href="#10-3-7-显示系统不支持的地址族-Address-Families" class="headerlink" title="10-3-7. 显示系统不支持的地址族 (Address Families)"></a>10-3-7. 显示系统不支持的地址族 (Address Families)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat --verbose</span><br></pre></td></tr></table></figure>
+
+<p>在输出的末尾，会有如下的信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netstat: no support for `AF IPX&#x27; on this system.</span><br><span class="line">netstat: no support for `AF AX25&#x27; on this system.</span><br><span class="line">netstat: no support for `AF X25&#x27; on this system.</span><br><span class="line">netstat: no support for `AF NETROM&#x27; on this system.</span><br></pre></td></tr></table></figure>
+
+<h4 id><a href="#" class="headerlink" title></a></h4><h4 id="10-3-8-显示核心路由信息-netstat-r"><a href="#10-3-8-显示核心路由信息-netstat-r" class="headerlink" title="10-3-8. 显示核心路由信息 netstat -r"></a>10-3-8. 显示核心路由信息 netstat -r</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -r</span></span><br><span class="line"> Kernel IP routing table</span><br><span class="line"> Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface</span><br><span class="line"> 192.168.1.0     *               255.255.255.0   U         0 0          0 eth2</span><br><span class="line"> link-local      *               255.255.0.0     U         0 0          0 eth2</span><br><span class="line"> default         192.168.1.1     0.0.0.0         UG        0 0          0 eth2</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 使用 netstat -rn 显示数字格式，不查询主机名称。</p>
+<h4 id="-1"><a href="#-1" class="headerlink" title></a></h4><h4 id="10-3-9-找出程序运行的端口"><a href="#10-3-9-找出程序运行的端口" class="headerlink" title="10-3-9. 找出程序运行的端口"></a><strong>10-3-9. 找出程序运行的端口</strong></h4><p><strong>并不是所有的进程都能找到，没有权限的会不显示，使用 root 权限查看所有的信息。</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -ap | grep ssh</span></span><br><span class="line"> tcp        1      0 dev-db:ssh           101.174.100.22:39213        CLOSE_WAIT  -</span><br><span class="line"> tcp        1      0 dev-db:ssh           101.174.100.22:57643        CLOSE_WAIT  -</span><br></pre></td></tr></table></figure>
+
+<p> <strong>找出运行在指定端口的进程</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -an | grep <span class="string">&#x27;:80&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-3-10-显示网络接口列表"><a href="#10-3-10-显示网络接口列表" class="headerlink" title="10-3-10. 显示网络接口列表"></a>10-3-10. 显示网络接口列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -i</span></span><br><span class="line"> Kernel Interface table</span><br><span class="line"> Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg</span><br><span class="line"> eth0       1500 0         0      0      0 0             0      0      0      0 BMU</span><br><span class="line"> eth2       1500 0     26196      0      0 0         26883      6      0      0 BMRU</span><br><span class="line"> lo        16436 0         4      0      0 0             4      0      0      0 LRU</span><br></pre></td></tr></table></figure>
+
+<p><strong>显示详细信息，像是 ifconfig 使用 netstat -ie</strong>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -ie</span></span><br><span class="line"> Kernel Interface table</span><br><span class="line"> eth0      Link encap:Ethernet  HWaddr 00:10:40:11:11:11</span><br><span class="line"> UP BROADCAST MULTICAST  MTU:1500  Metric:1</span><br><span class="line"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line"> TX packets:0 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line"> collisions:0 txqueuelen:1000</span><br><span class="line"> RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)</span><br><span class="line"> Memory:f6ae0000-f6b00000</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-3-11-IP和TCP分析"><a href="#10-3-11-IP和TCP分析" class="headerlink" title="10-3-11. IP和TCP分析"></a>10-3-11. IP和TCP分析</h4><p> <strong>查看连接某服务端口最多的的IP地址</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> netstat -nat | grep <span class="string">&quot;192.168.1.15:22&quot;</span> |awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>|sort|uniq -c|sort -nr|head -20</span></span><br><span class="line">18 221.136.168.36</span><br><span class="line">3 154.74.45.242</span><br><span class="line">2 78.173.31.236</span><br><span class="line">2 62.183.207.98</span><br><span class="line">2 192.168.1.14</span><br><span class="line">2 182.48.111.215</span><br><span class="line">2 124.193.219.34</span><br><span class="line">2 119.145.41.2</span><br><span class="line">2 114.255.41.30</span><br><span class="line">1 75.102.11.99</span><br></pre></td></tr></table></figure>
+
+<p> <strong>TCP各种状态列表</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> netstat -nat |awk <span class="string">&#x27;&#123;print $6&#125;&#x27;</span></span></span><br><span class="line">established)</span><br><span class="line">Foreign</span><br><span class="line">LISTEN</span><br><span class="line">TIME_WAIT</span><br><span class="line">ESTABLISHED</span><br><span class="line">TIME_WAIT</span><br><span class="line">SYN_SENT</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>先把状态全都取出来,然后使用uniq -c统计，之后再进行排序。</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">netstat -nat |awk <span class="string">&#x27;&#123;print $6&#125;&#x27;</span>|sort|uniq -c</span></span><br><span class="line">143 ESTABLISHED</span><br><span class="line">1 FIN_WAIT1</span><br><span class="line">1 Foreign</span><br><span class="line">1 LAST_ACK</span><br><span class="line">36 LISTEN</span><br><span class="line">6 SYN_SENT</span><br><span class="line">113 TIME_WAIT</span><br><span class="line">1 established)</span><br></pre></td></tr></table></figure>
+
+<p> <strong>最后的命令如下:</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nat |awk &#x27;&#123;print $6&#125;&#x27;|sort|uniq -c|sort -rn</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析access.log获得访问前10位的ip地址</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;&#123;print $1&#125;&#x27; access.log |sort|uniq -c|sort -nr|head -10</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Redis安装以及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1000,264 +1472,6 @@
 
 
   
-    <article id="post-Android系统源码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/">Android系统源码</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/" class="archive-article-date">
-  	<time datetime="2019-05-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Android系统源码<br>对国内的开发者来说最痛苦的是无法去访问android开发网站。为了更好的认识世界，对程序员来说，会翻墙也是的一门技术，带你去领略墙外的世界, 国内开发者访问(androiddevtools) 上面已经有了所有你要的资源，同时可以下载到我们的主角framework。</p>
-<p>如果你只是想查看源码，androidxref也是一个不错的资源。</p>
-<p>整体结构<br>Android7.0的根目录结构说明如下表所示：</p>
-<p>Makefile （全局Makefile文件，用来定义编译规则）<br>abi （应用程序二进制接口）<br>art （ART运行环境）<br>bionic （bionic C库）<br>bootable （启动引导相关代码）<br>build （存放系统编译规则及generic等基础开发包配置）<br>cts （Android兼容性测试套件标准）<br>dalvik （dalvik JAVA虚拟机）<br>developers （开发者目录）<br>development （应用程序开发相关）<br>device （设备相关配置）<br>docs （参考文档目录）<br>external （android使用的一些开源的模组）<br>frameworks （核心框架——java及C++语言）<br>hardware （部分厂家开源的硬解适配层HAL代码）<br>kernel<br>libcore （核心库相关文件）<br>libnativehelper （动态库，实现JNI库的基础）<br>ndk （NDK相关代码，帮助开发人员在应用程序中嵌入C/C++代码）<br>out （编译完成后的代码输出与此目录）<br>packages （应用程序包）<br>pdk （Plug Development Kit 的缩写，本地开发套件）<br>prebuilts （x86和arm架构下预编译的一些资源）<br>sdk （sdk及模拟器）<br>system （底层文件系统库、应用及组件——C语言）<br>tools （工具文件）<br>toolchain（工具链文件）<br>vendor （厂商定制代码）</p>
-<p>应用层部分<br>应用层位于整个Android系统的最上层，开发者开发的应用程序以及系统内置的应用程序都位于应用层。源码根目录中的packages目录对应着系统应用层。</p>
-<p>apps （核心应用程序）<br>experimental （第三方应用程序）<br>inputmethods （输入法目录）<br>providers （内容提供者目录）<br>screensavers （屏幕保护）<br>services （通信服务）<br>wallpapers （墙纸）</p>
-<p>从目录结构可以发现，packages目录存放着系统核心应用程序、第三方的应用程序和输入法等等，这些应用都是运行在系统应用层的，因此packages目录对应着系统的应用层。</p>
-<p>应用框架层部分<br>应用框架层是系统的核心部分，一方面向上提供接口给应用层调用，另一方面向下与C/C++程序库以及硬件抽象层等进行衔接。 应用框架层的主要实现代码在/frameworks/base和/frameworks/av目录下，其中/frameworks/base目录结构如下：</p>
-<p>api （定义API）<br>core （核心库）<br>docs （文档）<br>include （头文件）<br>libs （库）<br>media （多媒体相关库）<br>nfc-extras （NFC相关）<br>opengl 2D/3D （图形API）<br>sax （XML解析器）<br>telephony （电话通讯管理）<br>tests （测试相关）<br>test-runner （测试工具相关）<br>tools （工具）<br>wifi （wifi无线网络）<br>cmds （重要命令：am、app_proce等）<br>data （字体和声音等数据文件）<br>graphics （图形图像相关）<br>keystore （和数据签名证书相关）<br>location （地理位置相关库）<br>native （本地库）<br>obex （蓝牙传输）<br>packages （设置、TTS、VPN程序）<br>services （系统服务）</p>
-<p>###来源<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/huaxun66/article/details/78135556">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot 切面AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/">SpringBoot 切面AOP</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/" class="archive-article-date">
-  	<time datetime="2019-05-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在方法执行的前后，切入代码；经典的service层切入事务.</p>
-<h3 id="AOP相关注解"><a href="#AOP相关注解" class="headerlink" title="AOP相关注解"></a>AOP相关注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Aspect注解是切面注解类</span><br><span class="line">@Pointcut切点定义</span><br><span class="line">@Before是方法执行前调用</span><br><span class="line">@After是方法执行后调用</span><br><span class="line">@AfterReturning方法执行返回值调用</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android平台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/">Android平台</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
-  	<time datetime="2019-05-08T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>平台架构<br>Android 是一种基于 Linux 的开放源代码软件栈，为广泛的设备和机型而创建。下图所示为 Android 平台的主要组件。</p>
-<p><img src="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/Android%E5%B9%B3%E5%8F%B0%5Candroid-stack_2x.png" alt="图 1. Android 软件栈。"></p>
-<p>###Linux 内核<br>Android 平台的基础是 Linux 内核。例如，Android Runtime (ART) 依靠 Linux 内核来执行底层功能，例如线程和低层内存管理。</p>
-<p>使用 Linux 内核可让 Android 利用主要安全功能，并且允许设备制造商为著名的内核开发硬件驱动程序。</p>
-<p>###硬件抽象层 (HAL)<br>硬件抽象层 (HAL) 提供标准界面，向更高级别的 Java API 框架显示设备硬件功能。HAL 包含多个库模块，其中每个模块都为特定类型的硬件组件实现一个界面，例如相机或蓝牙模块。当框架 API 要求访问设备硬件时，Android 系统将为该硬件组件加载库模块。</p>
-<p>###Android Runtime<br>对于运行 Android 5.0（API 级别 21）或更高版本的设备，每个应用都在其自己的进程中运行，并且有其自己的 Android Runtime (ART) 实例。ART 编写为通过执行 DEX 文件在低内存设备上运行多个虚拟机，DEX 文件是一种专为 Android 设计的字节码格式，经过优化，使用的内存很少。编译工具链（例如 Jack）将 Java 源代码编译为 DEX 字节码，使其可在 Android 平台上运行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ART 的部分主要功能包括：</span><br><span class="line"></span><br><span class="line">* 预先 (AOT) 和即时 (JIT) 编译</span><br><span class="line">* 优化的垃圾回收 (GC)</span><br><span class="line">* 更好的调试支持，包括专用采样分析器、详细的诊断异常和崩溃报告，并且能够设置监视点以监控特定字段</span><br><span class="line">在 Android 版本 5.0（API 级别 21）之前，Dalvik 是 Android Runtime。如果您的应用在 ART 上运行效果很好，那么它应该也可在 Dalvik 上运行，但反过来不一定。</span><br><span class="line"></span><br><span class="line">Android 还包含一套核心运行时库，可提供 Java API 框架使用的 Java 编程语言大部分功能，包括一些 Java 8 语言功能。</span><br></pre></td></tr></table></figure>
-
-<p>###原生 C/C++ 库<br>许多核心 Android 系统组件和服务（例如 ART 和 HAL）构建自原生代码，需要以 C 和 C++ 编写的原生库。Android 平台提供 Java 框架 API 以向应用显示其中部分原生库的功能。例如，您可以通过 Android 框架的 Java OpenGL API 访问 OpenGL ES，以支持在应用中绘制和操作 2D 和 3D 图形。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果开发的是需要 C 或 C++ 代码的应用，可以使用 Android NDK 直接从原生代码访问某些原生平台库。</span><br><span class="line">C&#x2F;C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite、OpenGLEState、FreeType、WebKit、SGL、SSL和libc。</span><br><span class="line">![C&#x2F;C++程序库](android-cxx-library.png)</span><br></pre></td></tr></table></figure>
-
-<p>###Java API 框架<br>您可通过以 Java 语言编写的 API 使用 Android OS 的整个功能集。这些 API 形成创建 Android 应用所需的构建块，它们可简化核心模块化系统组件和服务的重复使用，包括以下组件和服务：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* 丰富、可扩展的视图系统，可用以构建应用的 UI，包括列表、网格、文本框、按钮甚至可嵌入的网络浏览器</span><br><span class="line">* 资源管理器，用于访问非代码资源，例如本地化的字符串、图形和布局文件</span><br><span class="line">* 通知管理器，可让所有应用在状态栏中显示自定义提醒</span><br><span class="line">* Activity 管理器，用于管理应用的生命周期，提供常见的导航返回栈</span><br><span class="line">* 内容提供程序，可让应用访问其他应用（例如“联系人”应用）中的数据或者共享其自己的数据</span><br><span class="line">开发者可以完全访问 Android 系统应用使用的框架 API。</span><br><span class="line">应用程序框架层包括活动管理器、位置管理器、包管理器、通知管理器、资源管理器、 电话管理器、窗口管理器、内容提供者、视图系统和XMPP服务十个部分。</span><br><span class="line">![应用程序框架层](android-api-framework.png)</span><br></pre></td></tr></table></figure>
-
-<p>###系统应用<br>Android 随附一套用于电子邮件、短信、日历、互联网浏览和联系人等的核心应用。平台随附的应用与用户可以选择安装的应用一样，没有特殊状态。因此第三方应用可成为用户的默认网络浏览器、短信 Messenger 甚至默认键盘（有一些例外，例如系统的“设置”应用）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统应用可用作用户的应用，以及提供开发者可从其自己的应用访问的主要功能。例如，如果您的应用要发短信，您无需自己构建该功能，可以改为调用已安装的短信应用向您指定的接收者发送消息。</span><br></pre></td></tr></table></figure>
-
-<p>###资料来源<br><a target="_blank" rel="noopener" href="https://developer.android.google.cn/guide/platform">developer.android.google.cn</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/huaxun66/article/details/78135556">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1488,6 +1702,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">OAuth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">授权机制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">唯一标识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">高并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据一致性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">方案</a>
               </li>
             
             <div class="clearfix"></div>

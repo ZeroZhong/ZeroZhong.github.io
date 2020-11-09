@@ -8,19 +8,23 @@
   <link rel="dns-prefetch" href="http://www.zhongweimin.me">
   <title>唯一标识 | 浩瀚星海</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、通用唯一识别码（UUID）UUID含义是通用唯一识别码 (Universally Unique Identifier)。 这是一个软件建构的标准，也是被开源软件基金会 (Open Software Foundation, OSF) 的组织在分布式计算环境 (Distributed Computing Environment, DCE) 领域的一部份。 UUID 的目的，是让分布式系统中的所有元">
+  <meta name="description" content="需求 全局唯一 趋势递增 效率高(生成.使用.索引) 控制并发  1、通用唯一识别码（UUID）UUID含义是通用唯一识别码 (Universally Unique Identifier)。 这是一个软件建构的标准，也是被开源软件基金会 (Open Software Foundation, OSF) 的组织在分布式计算环境 (Distributed Computing Environment, D">
 <meta property="og:type" content="article">
 <meta property="og:title" content="唯一标识">
 <meta property="og:url" content="http://www.zhongweimin.me/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/index.html">
 <meta property="og:site_name" content="浩瀚星海">
-<meta property="og:description" content="1、通用唯一识别码（UUID）UUID含义是通用唯一识别码 (Universally Unique Identifier)。 这是一个软件建构的标准，也是被开源软件基金会 (Open Software Foundation, OSF) 的组织在分布式计算环境 (Distributed Computing Environment, DCE) 领域的一部份。 UUID 的目的，是让分布式系统中的所有元">
+<meta property="og:description" content="需求 全局唯一 趋势递增 效率高(生成.使用.索引) 控制并发  1、通用唯一识别码（UUID）UUID含义是通用唯一识别码 (Universally Unique Identifier)。 这是一个软件建构的标准，也是被开源软件基金会 (Open Software Foundation, OSF) 的组织在分布式计算环境 (Distributed Computing Environment, D">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.zhongweimin.me/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/20190324000000971.jpeg">
 <meta property="article:published_time" content="2020-10-29T18:56:44.000Z">
-<meta property="article:modified_time" content="2020-10-29T19:18:16.297Z">
+<meta property="article:modified_time" content="2020-11-09T17:36:45.850Z">
 <meta property="article:author" content="will">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="算法">
+<meta property="article:tag" content="唯一标识">
+<meta property="article:tag" content="高并发">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zhongweimin.me/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/20190324000000971.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="浩瀚星海" type="application/atom+xml">
   
@@ -158,7 +162,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、通用唯一识别码（UUID）"><a href="#1、通用唯一识别码（UUID）" class="headerlink" title="1、通用唯一识别码（UUID）"></a>1、通用唯一识别码（UUID）</h2><p>UUID含义是通用唯一识别码 (Universally Unique Identifier)。</p>
+        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul>
+<li>全局唯一</li>
+<li>趋势递增</li>
+<li>效率高(生成.使用.索引)</li>
+<li>控制并发</li>
+</ul>
+<h2 id="1、通用唯一识别码（UUID）"><a href="#1、通用唯一识别码（UUID）" class="headerlink" title="1、通用唯一识别码（UUID）"></a>1、通用唯一识别码（UUID）</h2><p>UUID含义是通用唯一识别码 (Universally Unique Identifier)。</p>
 <p>这是一个软件建构的标准，也是被开源软件基金会 (Open Software Foundation, OSF) 的组织在分布式计算环境 (Distributed Computing Environment, DCE) 领域的一部份。</p>
 <p>UUID 的目的，是让分布式系统中的所有元素，都能有唯一的辨识资讯，而不需要透过中央控制端来做辨识资讯的指定。如此一来，每个人都可以建立不与其它人冲突的 UUID。</p>
 <p>GUID（Globally Unique Identifier）是UUID的别名；但在实际应用中，GUID通常是指微软实现的UUID。</p>
@@ -189,9 +199,45 @@
 
 <h3 id="1-2、UUID-版本"><a href="#1-2、UUID-版本" class="headerlink" title="1-2、UUID 版本"></a>1-2、UUID 版本</h3><h4 id="1-2-1、UUID-Version-1：基于时间的UUID"><a href="#1-2-1、UUID-Version-1：基于时间的UUID" class="headerlink" title="1-2-1、UUID Version 1：基于时间的UUID"></a>1-2-1、UUID Version 1：基于时间的UUID</h4><h4 id="1-2-2、UUID-Version-2：DCE安全的UUID"><a href="#1-2-2、UUID-Version-2：DCE安全的UUID" class="headerlink" title="1-2-2、UUID Version 2：DCE安全的UUID"></a>1-2-2、UUID Version 2：DCE安全的UUID</h4><h4 id="1-2-3、UUID-Version-3：基于名字的UUID（MD5）"><a href="#1-2-3、UUID-Version-3：基于名字的UUID（MD5）" class="headerlink" title="1-2-3、UUID Version 3：基于名字的UUID（MD5）"></a>1-2-3、UUID Version 3：基于名字的UUID（MD5）</h4><h4 id="1-2-4、UUID-Version-4：随机UUID"><a href="#1-2-4、UUID-Version-4：随机UUID" class="headerlink" title="1-2-4、UUID Version 4：随机UUID"></a>1-2-4、UUID Version 4：随机UUID</h4><h4 id="1-2-5、UUID-Version-5：基于名字的UUID（SHA1）"><a href="#1-2-5、UUID-Version-5：基于名字的UUID（SHA1）" class="headerlink" title="1-2-5、UUID Version 5：基于名字的UUID（SHA1）"></a>1-2-5、UUID Version 5：基于名字的UUID（SHA1）</h4><h2 id="2、自增序列"><a href="#2、自增序列" class="headerlink" title="2、自增序列"></a>2、自增序列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> totalCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> customerID;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ++totalCount;</span><br><span class="line">        customerID = totalCount;</span><br><span class="line">        System.out.println(<span class="string">&quot;增加一个&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCustomerID</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    DecimalFormat decimalFormat = <span class="keyword">new</span> DecimalFormat(<span class="string">&quot;00000000&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> decimalFormat.format(customerID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="3、利用数据库生成唯一id"><a href="#3、利用数据库生成唯一id" class="headerlink" title="3、利用数据库生成唯一id"></a>3、利用数据库生成唯一id</h2><h3 id="3-1、利用mysql"><a href="#3-1、利用mysql" class="headerlink" title="3-1、利用mysql"></a>3-1、利用mysql</h3><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">集群环境下,不同的库,设置不同的初始值,每次自增加 100</span><br><span class="line">Mysql下修改起点和步长的方式</span><br><span class="line">     设置起点</span><br><span class="line">     	Set @@auto<span class="built_in">_</span>increment<span class="built_in">_</span>offset=1   // 设置起点为1</span><br><span class="line">     设置步长</span><br><span class="line">     	Set@@auto<span class="built_in">_</span>increment<span class="built_in">_</span>increment=100  // 设置步长为100</span><br><span class="line">     查看参数</span><br><span class="line">     	show VARIABLES like &#x27;auto<span class="built_in">_</span><span class="comment">%&#x27;  // 查看参数</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="3-2、利用redis"><a href="#3-2、利用redis" class="headerlink" title="3-2、利用redis"></a>3-2、利用redis</h3><p>思路</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">利用增长计数api,业务系统在自增长的基础上,配合其他信息组成一个唯一id</span><br><span class="line">Redis的incr(key) api用于将key的值进行递增,并返回增长数值</span><br><span class="line">如果key不存在,则创建并赋值为0</span><br><span class="line"></span><br><span class="line">利用redis的特性: 单线程原子操作,自增计数api,数据有效机制ex</span><br></pre></td></tr></table></figure>
 
+<h3 id="3-3、雪花算法-twitter-的-snowflake算法"><a href="#3-3、雪花算法-twitter-的-snowflake算法" class="headerlink" title="3-3、雪花算法(twitter 的 snowflake算法)"></a>3-3、雪花算法(twitter 的 snowflake算法)</h3><p>Snowfake算法是twitter’开源的分布式id生成算法,结果就是long长整型的id</p>
+<p><img src="/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/20190324000000971.jpeg" alt="20190324000000971"></p>
+<h3 id="3-4、生成UUID"><a href="#3-4、生成UUID" class="headerlink" title="3-4、生成UUID"></a>3-4、生成UUID</h3><p>Uuid是按照开放软件基金会(osf)制定的标准计算 用到了以太网开地址(MAC),纳米级时间,芯片id码和许多可能的数字</p>
+<h2 id="4、方案对比"><a href="#4、方案对比" class="headerlink" title="4、方案对比"></a>4、方案对比</h2><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Uuid</td>
+<td>实现简单,不占带宽</td>
+<td>无序,占空间,可读性差,索引不友好</td>
+</tr>
+<tr>
+<td>数据库自增</td>
+<td>无代码调整,递增</td>
+<td>db单点故障,扩展性瓶颈</td>
+</tr>
+<tr>
+<td>雪花算法</td>
+<td>性能优,不占带宽,趋势递增</td>
+<td>依赖服务器时间</td>
+</tr>
+<tr>
+<td>基于redis自研</td>
+<td>无单点故障(高可用后),性能优于db,低于uuid和雪花算法,递增,扩展性强</td>
+<td>占用带宽,redis集群维护</td>
+</tr>
+</tbody></table>
 <h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/HUIWANG/p/11133765.html">https://www.cnblogs.com/HUIWANG/p/11133765.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kai3123919064/article/details/88771395">https://blog.csdn.net/kai3123919064/article/details/88771395</a></p>
 
       
 
@@ -231,6 +277,14 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">唯一标识</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">高并发</a>
         		</li>
       		
 		</ul>
@@ -570,6 +624,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">OAuth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">授权机制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">唯一标识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">高并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据一致性</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">方案</a>
               </li>
             
             <div class="clearfix"></div>
