@@ -137,6 +137,586 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-门面模式、代理模式、适配器模式的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">门面模式、代理模式、适配器模式的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2018-10-11T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>门面模式、代理模式、适配器模式，这三种模式都很接近，他们的区别是：</p>
+<p>1、门面模式：</p>
+<p>为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，简化了系统的使用；</p>
+<p>银行柜台办理业务可以理解为门面模式的一种，客户通过银行柜台办理业务，无需了解银行内部复杂的业务逻辑处理，柜台办理员只是把银行能提供的业务为客户端办理，银行没有提供的服务，柜台办理员也无法办理的。</p>
+<p><img src="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CFacade-Pattern.png" alt="门面模式"></p>
+<p>2、代理模式：</p>
+<p>为其他对象提供一种代理以控制对这个对象的访问。客户访问不到被代理对象，可以通过代理对象间接的访问；代理对象可以对上次的访问结果进行缓存，下次有相同的请求时可以直接返回缓存而不用去访问被代理对象；代理对象可以拒绝没有访问权限的用户，使其不能访问被代理对象；因此代理模式比门面模式更高级、信息更丰富；</p>
+<p><img src="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CProxy-Pattern.png" alt="代理模式"></p>
+<p>3、适配器模式：</p>
+<p>将一个接口转换成客户希望的另外一个接口，使得原本接口不兼容而不能一起工作的那些类可以一起工作。</p>
+<p>因为接口的不同，为了让用户使用到统一的接口，把原先的对象通过适配器让用户统一使用，或者扩充新的功能，大多用在代码维护的后期，或者借用第三方库的情况下。</p>
+<p>适配器模式比代理模式更复杂，他不仅仅能让客户端访问到实体对象，更能把一堆接口不兼容的实体对象进行有序管理和组织起来，使得他们能协同工作；</p>
+<p><img src="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%5CAdapter-Pattern.png" alt="适配器模式"></p>
+<p>####参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/laoxia/p/8026201.html">https://www.cnblogs.com/laoxia/p/8026201.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-适配器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">适配器模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2018-10-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#####应用实例：<br>1、美国电器 110V，中国 220V，就要有一个适配器将 110V 转化为 220V。 2、JAVA JDK 1.1 提供了 Enumeration 接口，而在 1.2 中提供了 Iterator 接口，想要使用 1.2 的 JDK，则要将以前系统的 Enumeration 接口转化为 Iterator 接口，这时就需要适配器模式。 3、在 LINUX 上运行 WINDOWS 程序。 4、JAVA 中的 jdbc。</p>
+<p>#####优点：<br>1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。</p>
+<p>#####缺点：<br>1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</p>
+<p>#####使用场景：<br>有动机地修改一个正常运行的系统的接口，这时应该考虑使用适配器模式。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/09/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2018-10-04T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="选用"><a href="#选用" class="headerlink" title="选用"></a>选用</h2><p>-单例对象 占用资源少，不需要延时加载，枚举 好于 饿汉<br>-单例对象 占用资源多，需要延时加载，静态内部类 好于 懒汉式</p>
+<h2 id="适合单线程环境"><a href="#适合单线程环境" class="headerlink" title="适合单线程环境"></a>适合单线程环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;  </span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            instance&#x3D;new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多线程的情况可以用，懒汉式"><a href="#多线程的情况可以用，懒汉式" class="headerlink" title="多线程的情况可以用，懒汉式"></a>多线程的情况可以用，懒汉式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static synchronized Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            instance&#x3D;new Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Double-CheckLock"><a href="#Double-CheckLock" class="headerlink" title="Double CheckLock"></a>Double CheckLock</h2><p>实现单例，加同步锁时，前后两次判断实例是否存在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;null;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">            synchronized(Singleton.class)&#123;</span><br><span class="line">                if(instance&#x3D;&#x3D;null)&#123;</span><br><span class="line">                    instance&#x3D;new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="饿汉式（建议使用）"><a href="#饿汉式（建议使用）" class="headerlink" title="饿汉式（建议使用）"></a>饿汉式（建议使用）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private static Singleton instance&#x3D;new Singleton();</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="静态内部内。"><a href="#静态内部内。" class="headerlink" title="静态内部内。"></a>静态内部内。</h2><p>（建议使用）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private Singleton()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    private static class SingletonHolder&#123;</span><br><span class="line">        private final static Singleton instance&#x3D;new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance()&#123;</span><br><span class="line">        return SingletonHolder.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>（线程安全，调用效率高，不能延时加载，可以天然的防止反射和反序列化调用）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;枚举元素本身就是单例</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;添加自己需要的操作</span><br><span class="line">    public void singletonOperation()&#123;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/04/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">工厂模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2018-10-04T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>工厂方法模式（Factory Method）</p>
+<p>工厂方法模式分为三种：<br>普通工厂模式，多个工厂方法模式，抽象工厂模式</p>
+<p>###工厂产品设计（发送邮件和发送短信为例）<br>接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sender</span> </span>&#123;  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>短信</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SmsSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">                    System.out.println(<span class="string">&quot;this is sms sender!&quot;</span>);  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>邮件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;  </span><br><span class="line">        <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">                    System.out.println(<span class="string">&quot;this is mailsender!&quot;</span>);  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>#####1、普通工厂模式，就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。</p>
+<p>工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendFactory</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">(String type)</span> </span>&#123;  </span><br><span class="line">                    <span class="keyword">if</span> (<span class="string">&quot;mail&quot;</span>.equals(type)) &#123;  </span><br><span class="line">                            <span class="keyword">return</span> <span class="keyword">new</span> MailSender();  </span><br><span class="line">                            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">&quot;sms&quot;</span>.equals(type)) &#123;  </span><br><span class="line">                                    <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </span><br><span class="line">                                    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                                            System.out.println(<span class="string">&quot;请输入正确的类型!&quot;</span>);  </span><br><span class="line">                                                <span class="keyword">return</span> <span class="keyword">null</span>;  </span><br><span class="line">                                            &#125;  </span><br><span class="line">                                        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryTest</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">                    SendFactory factory = <span class="keyword">new</span> SendFactory();  </span><br><span class="line">                        Sender sender = factory.produce(<span class="string">&quot;sms&quot;</span>);  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>#####2、多个工厂方法模式，是对普通工厂方法模式的改进，在普通工厂方法模式中，如果传递的字符串出错，则不能正确创建对象，而多个工厂方法模式是提供多个工厂方法，分别创建对象。</p>
+<p>工厂类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SendFactory</span> </span>&#123;  </span><br><span class="line">       <span class="function"><span class="keyword">public</span> Sender <span class="title">produceMail</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> MailSender();  </span><br><span class="line">                &#125; </span><br><span class="line"></span><br><span class="line">                <span class="function"><span class="keyword">public</span> Sender <span class="title">produceSms</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </span><br><span class="line">                        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryTest</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">                    SendFactory factory = <span class="keyword">new</span> SendFactory();  </span><br><span class="line">                        Sender sender = factory.produceMail();  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>扩展：静态工厂方法模式，将上面的多个工厂方法模式里的方法置为静态的，不需要创建实例，直接调用即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendFactory</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sender <span class="title">produceMail</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> MailSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">                      </span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sender <span class="title">produceSms</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                            <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </span><br><span class="line">                            &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryTest</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;      </span><br><span class="line">                    Sender sender = SendFactory.produceMail();  </span><br><span class="line">                        sender.Send();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>#####3、抽象工厂模式（Abstract Factory）</p>
+<p>工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则，所以，从设计角度考虑，有一定的问题，如何解决？就用到抽象工厂模式，创建多个工厂类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Provider</span> </span>&#123;  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>工厂类：<br>邮件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendMailFactory</span> <span class="keyword">implements</span> <span class="title">Provider</span> </span>&#123;  </span><br><span class="line">          </span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">()</span></span>&#123;  </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> MailSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>短信</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendSmsFactory</span> <span class="keyword">implements</span> <span class="title">Provider</span></span>&#123;  </span><br><span class="line">      </span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line">            <span class="function"><span class="keyword">public</span> Sender <span class="title">produce</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> SmsSender();  </span><br><span class="line">                    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        Provider provider = <span class="keyword">new</span> SendMailFactory();  </span><br><span class="line">            Sender sender = provider.produce();  </span><br><span class="line">            sender.Send();  </span><br><span class="line">        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>####参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/llussize/article/details/80276627">https://blog.csdn.net/llussize/article/details/80276627</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/04/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/03/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/03/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2018-10-03T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、策略模式定义"><a href="#一、策略模式定义" class="headerlink" title="一、策略模式定义"></a>一、策略模式定义</h2><p>Strategy模式也叫策略模式是行为模式之一，它对一系列的算法加以封装，为所有算法定义一个抽象的算法接口，并通过继承该抽象算法接口对所有的算法加以封装和实现，具体的算法选择交由客户端决定（策略）。Strategy模式主要用来平滑地处理算法的切换 。</p>
+<h2 id="二、策略模式的结构"><a href="#二、策略模式的结构" class="headerlink" title="二、策略模式的结构"></a>二、策略模式的结构</h2><ul>
+<li>封装类：也叫上下文，对策略进行二次封装，目的是避免高层模块对策略的直接调用。</li>
+<li>抽象策略：通常情况下为一个接口，当各个实现类中存在着重复的逻辑时，则使用抽象类来封装这部分公共的代码，此时，策略模式看上去更像是模版方法模式。</li>
+<li>具体策略：具体策略角色通常由一组封装了算法的类来担任，这些类之间可以根据需要自由替换。</li>
+</ul>
+<h2 id="三、策略模式的特点"><a href="#三、策略模式的特点" class="headerlink" title="三、策略模式的特点"></a>三、策略模式的特点</h2><ul>
+<li>策略模式提供了可以替换继承关系的办法。</li>
+<li>使用策略模式可以避免使用多重条件转移语句。</li>
+</ul>
+<h2 id="四、策略模式的缺点"><a href="#四、策略模式的缺点" class="headerlink" title="四、策略模式的缺点"></a>四、策略模式的缺点</h2><ol>
+<li><p>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道所有的算法或行为的情况。</p>
+</li>
+<li><p>策略模式造成很多的策略类。有时候可以通过把依赖于环境的状态保存到客户端里面，而将策略类设计成可共享的，这样策略类实例可以被不同客户端使用。换言之，可以使用享元模式来减少对象的数量。</p>
+</li>
+</ol>
+<h2 id="五、实现"><a href="#五、实现" class="headerlink" title="五、实现"></a>五、实现</h2><h3 id="抽象策略"><a href="#抽象策略" class="headerlink" title="抽象策略"></a>抽象策略</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123; <span class="comment">//加密</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="具体策略"><a href="#具体策略" class="headerlink" title="具体策略"></a>具体策略</h3><h4 id="md5"><a href="#md5" class="headerlink" title="md5"></a>md5</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MD5Strategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123; </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                   System.out.println(<span class="string">&quot;执行MD5加密&quot;</span>);</span><br><span class="line">                       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="sha1"><a href="#sha1" class="headerlink" title="sha1"></a>sha1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SHA1Strategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;执行SHA1加密&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="封装类"><a href="#封装类" class="headerlink" title="封装类"></a>封装类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123; </span><br><span class="line">      <span class="keyword">private</span> Strategy strategy; </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">(Strategy strategy)</span> </span>&#123; </span><br><span class="line">                    <span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">                        &#125; </span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span> </span>&#123; </span><br><span class="line">                    <span class="keyword">this</span>.strategy.encrypt();</span><br><span class="line">                        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainClass</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">                <span class="comment">// Strategy stra = new SHA1Strategy(); </span></span><br><span class="line">                <span class="comment">// stra.encrypt();</span></span><br><span class="line">                Context context = <span class="keyword">new</span> Context(<span class="keyword">new</span> MD5Strategy());</span><br><span class="line">                        context.encrypt();</span><br><span class="line">                            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h2><p>简直和工厂模式一模一样</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Strategy</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Strategy();</span><br><span class="line">        virtual ~Strategy();</span><br><span class="line">        <span class="function">virtual <span class="keyword">void</span> <span class="title">algrithm</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line">Strategy::Strategy()&#123;&#125;</span><br><span class="line">Strategy::~Strategy()&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Context</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Context(Strategy * strategy);</span><br><span class="line">        ~Context();</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">doAction</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        Strategy * m_Strategy;</span><br><span class="line">&#125;;</span><br><span class="line">Context::Context(Strategy * strategy)&#123;m_Strategy = strategy;&#125;</span><br><span class="line">Context::~Context()&#123;&#125;</span><br><span class="line"><span class="keyword">void</span> Context::doAction()&#123;m_Strategy-&gt;algrithm(); &#125;</span><br><span class="line">class StrategyA : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function">virtual <span class="keyword">void</span> <span class="title">algrithm</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">void</span> StrategyA::algrithm()&#123; cout &lt;&lt; <span class="string">&quot;StrategyA algrithm&quot;</span> &lt;&lt; endl;&#125;</span><br><span class="line">class StrategyB : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function">virtual <span class="keyword">void</span> <span class="title">algrithm</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">void</span> StrategyB::algrithm()&#123; cout &lt;&lt; <span class="string">&quot;StrategyB algrithm&quot;</span> &lt;&lt; endl;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( <span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Strategy *a = <span class="keyword">new</span> StrategyA();</span><br><span class="line">    Strategy *b = <span class="keyword">new</span> StrategyB();</span><br><span class="line">    Context * context = <span class="keyword">new</span> Context(a);</span><br><span class="line">    context-&gt;doAction();</span><br><span class="line">    delete context;</span><br><span class="line">    delete a;</span><br><span class="line">    delete b;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/03/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Foxmail邮件部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/">Foxmail邮件部署</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/" class="archive-article-date">
+  	<time datetime="2018-10-02T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/1.png" alt="1"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/2.png" alt="2"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/3.png" alt="3"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/4.png" alt="4"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/5.png" alt="5"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/6.png" alt="5"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Foxmail</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -157,9 +737,463 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="1-学习完整"><a href="#1-学习完整" class="headerlink" title="1.学习完整"></a>1.学习完整</h3><p>Python官网：<a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org/</a><br>Python文档：<a target="_blank" rel="noopener" href="https://www.python.org/doc/">https://www.python.org/doc/</a></p>
-<h3 id="2-环境"><a href="#2-环境" class="headerlink" title="2.环境"></a>2.环境</h3><p>window环境<br><a target="_blank" rel="noopener" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a><br>Window平台安装包，包格式为：python-XYZ.msi 文件 ， XYZ 为你要安装的版本号</p>
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><h2 id="1、学习完整"><a href="#1、学习完整" class="headerlink" title="1、学习完整"></a>1、学习完整</h2><p>Python官网：<a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org/</a><br>Python文档：<a target="_blank" rel="noopener" href="https://www.python.org/doc/">https://www.python.org/doc/</a></p>
+<h2 id="2、环境"><a href="#2、环境" class="headerlink" title="2、环境"></a>2、环境</h2><p>window环境<br><a target="_blank" rel="noopener" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a><br>Window平台安装包，包格式为：python-XYZ.msi 文件 ， XYZ 为你要安装的版本号</p>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p>默认情况下，Python 3 源码文件以 <strong>UTF-8</strong> 编码，所有字符串都是 unicode 字符串。 当然你也可以为源码文件指定不同的编码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: cp-1252 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br></pre></td></tr></table></figure>
 
+<p>标识符</p>
+<ul>
+<li>第一个字符必须是字母表中字母或下划线 <strong>_</strong> 。</li>
+<li>标识符的其他的部分由字母、数字和下划线组成。</li>
+<li>标识符对大小写敏感。</li>
+</ul>
+<p>在 Python 3 中，可以用中文作为变量名，非 ASCII 标识符也是允许的了。</p>
+<p>保留字</p>
+<p>保留字即关键字，我们不能把它们用作任何标识符名称。Python 的标准库提供了一个 keyword 模块，可以输出当前版本的所有关键字：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> keyword</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>keyword.kwlist</span><br><span class="line">[<span class="string">&#x27;False&#x27;</span>, <span class="string">&#x27;None&#x27;</span>, <span class="string">&#x27;True&#x27;</span>, <span class="string">&#x27;and&#x27;</span>, <span class="string">&#x27;as&#x27;</span>, <span class="string">&#x27;assert&#x27;</span>, <span class="string">&#x27;break&#x27;</span>, <span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;continue&#x27;</span>, <span class="string">&#x27;def&#x27;</span>, <span class="string">&#x27;del&#x27;</span>, <span class="string">&#x27;elif&#x27;</span>, <span class="string">&#x27;else&#x27;</span>, <span class="string">&#x27;except&#x27;</span>, <span class="string">&#x27;finally&#x27;</span>, <span class="string">&#x27;for&#x27;</span>, <span class="string">&#x27;from&#x27;</span>, <span class="string">&#x27;global&#x27;</span>, <span class="string">&#x27;if&#x27;</span>, <span class="string">&#x27;import&#x27;</span>, <span class="string">&#x27;in&#x27;</span>, <span class="string">&#x27;is&#x27;</span>, <span class="string">&#x27;lambda&#x27;</span>, <span class="string">&#x27;nonlocal&#x27;</span>, <span class="string">&#x27;not&#x27;</span>, <span class="string">&#x27;or&#x27;</span>, <span class="string">&#x27;pass&#x27;</span>, <span class="string">&#x27;raise&#x27;</span>, <span class="string">&#x27;return&#x27;</span>, <span class="string">&#x27;try&#x27;</span>, <span class="string">&#x27;while&#x27;</span>, <span class="string">&#x27;with&#x27;</span>, <span class="string">&#x27;yield&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>注释</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个注释</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;Hello, Python!&quot;</span>) <span class="comment"># 第二个注释</span></span><br><span class="line"> </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">第三注释</span></span><br><span class="line"><span class="string">第四注释</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"> </span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">第五注释</span></span><br><span class="line"><span class="string">第六注释</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>行和缩进</p>
+<p>python最具特色的就是使用缩进来表示代码块，不需要使用大括号 <strong>{}</strong> 。</p>
+<p>缩进的空格数是可变的，但是同一个代码块的语句必须包含相同的缩进空格数。</p>
+<p>多行语句</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#我们可以使用反斜杠(\)来实现多行语句</span></span><br><span class="line">total = item_one + \</span><br><span class="line">        item_two + \</span><br><span class="line">        item_three</span><br><span class="line"></span><br><span class="line"><span class="comment">#在 [], &#123;&#125;, 或 () 中的多行语句，不需要使用反斜杠(\)，例如：</span></span><br><span class="line">total = [<span class="string">&#x27;item_one&#x27;</span>, <span class="string">&#x27;item_two&#x27;</span>, <span class="string">&#x27;item_three&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;item_four&#x27;</span>, <span class="string">&#x27;item_five&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1、函数"><a href="#1、函数" class="headerlink" title="1、函数"></a>1、函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">functionname</span>(<span class="params"> parameters </span>):</span></span><br><span class="line">   <span class="string">&quot;函数_文档字符串&quot;</span></span><br><span class="line">   function_suite</span><br><span class="line">   <span class="keyword">return</span> [expression]</span><br></pre></td></tr></table></figure>
+
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printinfo</span>(<span class="params"> name, age = <span class="number">35</span> </span>):</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="可变参数列表"><a href="#可变参数列表" class="headerlink" title="可变参数列表"></a>可变参数列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">functionname</span>(<span class="params">[formal_args,] *var_args_tuple </span>):</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lambda</span> [arg1 [,arg2,.....argn]]:expression</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、命令行参数"><a href="#2、命令行参数" class="headerlink" title="2、命令行参数"></a>2、命令行参数</h2><ul>
+<li><p>Python 提供了 <strong>getopt</strong> 模块来获取命令行参数</p>
+</li>
+<li><p>Python 中也可以使用 <strong>sys</strong> 的 <strong>sys.argv</strong> 来获取命令行参数：</p>
+<ul>
+<li>sys.argv 是命令行参数列表。</li>
+<li>len(sys.argv) 是命令行参数个数。</li>
+</ul>
+<p><strong>注：</strong>sys.argv[0] 表示脚本名。</p>
+</li>
+</ul>
+<h3 id="sys-argv"><a href="#sys-argv" class="headerlink" title="sys.argv"></a>sys.argv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> <span class="string">&#x27;参数个数为:&#x27;</span>, <span class="built_in">len</span>(sys.argv), <span class="string">&#x27;个参数。&#x27;</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;参数列表:&#x27;</span>, <span class="built_in">str</span>(sys.argv)</span><br></pre></td></tr></table></figure>
+
+<p>执行结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python test.py arg1 arg2 arg3</span></span><br><span class="line">参数个数为: 4 个参数。</span><br><span class="line">参数列表: [&#x27;test.py&#x27;, &#x27;arg1&#x27;, &#x27;arg2&#x27;, &#x27;arg3&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h3 id="getopt-模块"><a href="#getopt-模块" class="headerlink" title="getopt 模块"></a><strong>getopt</strong> 模块</h3><p>getopt模块是专门处理命令行参数的模块，用于获取命令行选项和参数，也就是sys.argv。</p>
+<p>命令行选项使得程序的参数更加灵活。支持短选项模式（-）和长选项模式（–）。</p>
+<p>该模块提供了两个方法及一个异常处理来解析命令行参数。</p>
+<h4 id="getopt-getopt-方法"><a href="#getopt-getopt-方法" class="headerlink" title="getopt.getopt 方法"></a>getopt.getopt 方法</h4><p>getopt.getopt 方法用于解析命令行参数列表，语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getopt.getopt(args, options[, long_options])</span><br></pre></td></tr></table></figure>
+
+<p>方法参数说明：</p>
+<ul>
+<li><strong>args</strong>: 要解析的命令行参数列表。</li>
+<li><strong>options</strong> : 以字符串的格式定义，<strong>options</strong> 后的冒号 <strong>:</strong> 表示如果设置该选项，必须有附加的参数，否则就不附加参数。</li>
+<li><strong>long_options</strong> : 以列表的格式定义，<strong>long_options</strong> 后的等号 <strong>=</strong> 表示该选项必须有附加的参数，不带冒号表示该选项不附加参数。</li>
+<li>该方法返回值由两个元素组成: 第一个是 <strong>(option, value)</strong> 元组的列表。 第二个是参数列表，包含那些没有 <strong>-</strong> 或 <strong>–</strong> 的参数。</li>
+</ul>
+<p>另外一个方法是 getopt.gnu_getopt，这里不多做介绍。</p>
+<h4 id="Exception-getopt-GetoptError"><a href="#Exception-getopt-GetoptError" class="headerlink" title="Exception getopt.GetoptError"></a>Exception getopt.GetoptError</h4><p>在没有找到参数列表，或选项的需要的参数为空时会触发该异常。</p>
+<p>异常的参数是一个字符串，表示错误的原因。属性 <strong>msg</strong> 和 <strong>opt</strong> 为相关选项的错误信息。</p>
+<h2 id="3、类"><a href="#3、类" class="headerlink" title="3、类"></a>3、类</h2><ul>
+<li><strong>类(Class):</strong> 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。</li>
+<li><strong>方法：</strong>类中定义的函数。</li>
+<li><strong>类变量：</strong>类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。</li>
+<li><strong>数据成员：</strong>类变量或者实例变量用于处理类及其实例对象的相关的数据。</li>
+<li><strong>方法重写：</strong>如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写。</li>
+<li><strong>局部变量：</strong>定义在方法中的变量，只作用于当前实例的类。</li>
+<li><strong>实例变量：</strong>在类的声明中，属性是用变量来表示的，这种变量就称为实例变量，实例变量就是一个用 self 修饰的变量。</li>
+<li><strong>继承：</strong>即一个派生类（derived class）继承基类（base class）的字段和方法。继承也允许把一个派生类的对象作为一个基类对象对待。例如，有这样一个设计：一个Dog类型的对象派生自Animal类，这是模拟”是一个（is-a）”关系（例图，Dog是一个Animal）。</li>
+<li><strong>实例化：</strong>创建一个类的实例，类的具体对象。</li>
+<li><strong>对象：</strong>通过类定义的数据结构实例。对象包括两个数据成员（类变量和实例变量）和方法。</li>
+</ul>
+<h3 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>:</span></span><br><span class="line">    &lt;statement<span class="number">-1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建类的原理"><a href="#创建类的原理" class="headerlink" title="创建类的原理"></a>创建类的原理</h3><ul>
+<li>遇到class关键词，执行type的<code>__init__</code>方法，创建Foo类这个对象</li>
+<li>遇实例化对象（obj=Foo（）），执行type里的<code>__call__</code>方法</li>
+</ul>
+<ol>
+<li>在call方法里调用Foo类的<code>__new__</code>方法（负责创建对象）</li>
+<li>执行Foo类的<code>__init__</code>方法（初始化）</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyType</span>(<span class="params"><span class="built_in">type</span></span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">cls,*args,**kwargs</span>):</span></span><br><span class="line">        obj = cls.__new__(cls,*args,**kwargs)</span><br><span class="line">        print(<span class="string">&#x27;在这里面..&#x27;</span>)</span><br><span class="line">        obj.__init__(*args,**kwargs)</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>(<span class="params">metaclass=MyType</span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.name = <span class="string">&#x27;alex&#x27;</span></span><br><span class="line"> </span><br><span class="line">f = Foo()</span><br><span class="line">print(f.name)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="类属性和方法"><a href="#类属性和方法" class="headerlink" title="类属性和方法"></a>类属性和方法</h3><h4 id="类的属性"><a href="#类的属性" class="headerlink" title="类的属性"></a>类的属性</h4><p><strong>attrs</strong>：构造函数中直接初始化，也可以称为类的属性。</p>
+<h4 id="类的私有属性"><a href="#类的私有属性" class="headerlink" title="类的私有属性"></a>类的私有属性</h4><p><strong>__private_attrs</strong>：两个下划线开头，声明该属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 <strong>self.__private_attrs</strong>。</p>
+<h4 id="类的方法"><a href="#类的方法" class="headerlink" title="类的方法"></a>类的方法</h4><p>在类的内部，使用 def 关键字来定义一个方法，与一般函数定义不同，类方法必须包含参数 <strong>self</strong>，且为第一个参数，<strong>self</strong> 代表的是类的实例。</p>
+<p><strong>self</strong> 的名字并不是规定死的，也可以使用 <strong>this</strong>，但是最好还是按照约定是用 <strong>self</strong>。</p>
+<h4 id="类的私有方法"><a href="#类的私有方法" class="headerlink" title="类的私有方法"></a>类的私有方法</h4><p><strong>__private_method</strong>：两个下划线开头，声明该方法为私有方法，只能在类的内部调用 ，不能在类的外部调用。<strong>self.__private_methods</strong>。</p>
+<h4 id="专有方法"><a href="#专有方法" class="headerlink" title="专有方法"></a>专有方法</h4><ul>
+<li><code>__init__ :</code> 构造函数，在生成对象时调用</li>
+<li><code>__del__ :</code> 析构函数，释放对象时使用</li>
+<li><code>__repr__ :</code> 打印，转换</li>
+<li><code>__setitem__ :</code> 按照索引赋值</li>
+<li><code>__getitem__:</code> 按照索引获取值</li>
+<li><code>__len__:</code> 获得长度</li>
+<li><code>__cmp__:</code>比较运算</li>
+<li><code>__call__:</code> 函数调用</li>
+<li><code>__add__:</code> 加运算</li>
+<li><code>__sub__:</code>减运算</li>
+<li><code>__mul__:</code> 乘运算</li>
+<li><code>__truediv__:</code> 除运算</li>
+<li><code>__mod__:</code> 求余运算</li>
+<li><code>__pow__:</code> 乘方</li>
+</ul>
+<h3 id="实例化和调用"><a href="#实例化和调用" class="headerlink" title="实例化和调用"></a>实例化和调用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#类定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>:</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;一个简单的类实例&quot;&quot;&quot;</span></span><br><span class="line">    i = <span class="number">12345</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="comment">#实例化</span></span><br><span class="line">x = MyClass()</span><br><span class="line"><span class="comment"># 访问类的属性和方法</span></span><br><span class="line">print(<span class="string">&quot;MyClass 类的属性 i 为：&quot;</span>, x.i)</span><br><span class="line">print(<span class="string">&quot;MyClass 类的方法 f 输出为：&quot;</span>, x.f())</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>类有一个名为 <strong>init</strong>() 的特殊方法（构造方法），该方法在类实例化时会自动调用，像下面这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">    self.data = []</span><br></pre></td></tr></table></figure>
+
+<h3 id="普通方法"><a href="#普通方法" class="headerlink" title="普通方法"></a>普通方法</h3><p>类的方法与普通的函数只有一个特别的区别——它们必须有一个额外的第一个参数名称, 按照惯例它的名称是 self。这相当于c语言中传结构体的指针。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">prt</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self)</span><br><span class="line">        print(self.__class__)</span><br><span class="line"> </span><br><span class="line">t = Test()</span><br><span class="line">t.prt()</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#单继承</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DerivedClassName</span>(<span class="params">BaseClassName1</span>):</span></span><br><span class="line">    &lt;statement<span class="number">-1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#多继承</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DerivedClassName</span>(<span class="params">Base1, Base2, Base3</span>):</span></span><br><span class="line">    &lt;statement<span class="number">-1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类中静态方法"><a href="#类中静态方法" class="headerlink" title="类中静态方法"></a>类中静态方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">arg1, arg2, ...</span>):</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+
+<p>以上实例声明了静态方法 <strong>f</strong>，从而可以实现实例化使用 **C().f()**，当然也可以不实例化调用该方法 **C.f()**。</p>
+<h3 id="动态对象属性"><a href="#动态对象属性" class="headerlink" title="动态对象属性"></a>动态对象属性</h3><p>现象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#不能动态添加属性</span></span><br><span class="line">data = <span class="built_in">object</span>()</span><br><span class="line">data.name = <span class="string">&#x27;CooMark&#x27;</span> <span class="comment"># AttributeError: &#x27;object&#x27; object has no attribute &#x27;name&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#可以动态添加属性</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Developer</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line">data = Developer()</span><br><span class="line">data.name = <span class="string">&#x27;CooMark&#x27;</span></span><br><span class="line">data.age = <span class="number">30</span> </span><br></pre></td></tr></table></figure>
+
+
+
+<p>python的<code>__slots__</code>设计是为了节省内存，也可以用于构造安全的类、如果一个类使用了<code>__slots__</code>那么它的属性就不再自由了。</p>
+<ul>
+<li>自由属性。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name, age</span>):</span></span><br><span class="line">        self.Name = name</span><br><span class="line">        self.Age = age</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.ID = <span class="number">7</span>  <span class="comment"># 由于没有使用slots所以属性是自由的，可以自由设置，就算设置前没有声明也没事。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>__slots__</code>设置非自由属性</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    __slots__=(<span class="string">&#x27;Name&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.ID=<span class="number">7</span> <span class="comment">#这里会报错</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4、main函数"><a href="#4、main函数" class="headerlink" title="4、main函数"></a>4、main函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、接口"><a href="#5、接口" class="headerlink" title="5、接口"></a>5、接口</h2><p>Python中无接口类型，定义接口只是人为规定。通过继承空方法的类，或者抽象类。</p>
+<h3 id="空方法类"><a href="#空方法类" class="headerlink" title="空方法类"></a>空方法类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Interface</span>:</span></span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f1</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        to do something</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>Python3.4中，声明抽象基类最简单的方式是子类话abc.ABC；</p>
+<p>Python3.0到Python3.3，必须在class语句中使用<code>metaclass=ABCMeta</code>；</p>
+<p>Python2中使用<code>__metaclass__=ABCMeta</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>(<span class="params">metaclass=abc.ABCMeta</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#抽象方法</span></span><br><span class="line"><span class="meta">    @abc.abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f2</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        打印f2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6、模块"><a href="#6、模块" class="headerlink" title="6、模块"></a>6、模块</h2><p>Python 模块(Module)，是一个 Python 文件，以 .py 结尾，包含了 Python 对象定义和Python语句。</p>
+<h3 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> module1[, module2[,... moduleN]]</span><br><span class="line"><span class="keyword">from</span> modname <span class="keyword">import</span> name1[, name2[, ... nameN]]</span><br><span class="line"><span class="keyword">from</span> modname <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+
+<h3 id="模块的使用"><a href="#模块的使用" class="headerlink" title="模块的使用"></a>模块的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模块名.函数名</span><br></pre></td></tr></table></figure>
+
+<h3 id="搜索路径"><a href="#搜索路径" class="headerlink" title="搜索路径"></a>搜索路径</h3><p>当你导入一个模块，Python 解析器对模块位置的搜索顺序是：</p>
+<ul>
+<li>1、当前目录</li>
+<li>2、如果不在当前目录，Python 则搜索在 shell 变量 PYTHONPATH 下的每个目录。</li>
+<li>3、如果都找不到，Python会察看默认路径。UNIX下，默认路径一般为/usr/local/lib/python/。</li>
+</ul>
+<p>模块搜索路径存储在 system 模块的 sys.path 变量中。变量里包含当前目录，PYTHONPATH和由安装过程决定的默认目录。</p>
+<h3 id="命名空间和作用域"><a href="#命名空间和作用域" class="headerlink" title="命名空间和作用域"></a>命名空间和作用域</h3><p>我们在全局命名空间里定义一个变量 Money。</p>
+<p>我们再在函数内给变量 Money 赋值，然后 Python 会假定 Money 是一个局部变量。</p>
+<p>然而，我们并没有在访问前声明一个局部变量 Money，结果就是会出现一个 UnboundLocalError 的错误。</p>
+<p>取消 global 语句前的注释符就能解决这个问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"> </span><br><span class="line">Money = <span class="number">2000</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AddMoney</span>():</span></span><br><span class="line">   <span class="comment"># 想改正代码就取消以下注释:</span></span><br><span class="line">   <span class="comment"># global Money</span></span><br><span class="line">   Money = Money + <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span> Money</span><br><span class="line">AddMoney()</span><br><span class="line"><span class="built_in">print</span> Money</span><br></pre></td></tr></table></figure>
+
+<h4 id="特殊函数"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数</h4><ul>
+<li><p>dir() 函数：dir() 函数一个排好序的字符串列表，内容是一个模块里定义过的名字。</p>
+<p>返回的列表容纳了在一个模块里定义的所有模块，变量和函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入内置math模块</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"> </span><br><span class="line">content = <span class="built_in">dir</span>(math)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>globals() 和 locals() 函数:</p>
+<ul>
+<li>根据调用地方的不同，globals() 和 locals() 函数可被用来返回全局和局部命名空间里的名字。</li>
+<li>如果在函数内部调用 locals()，返回的是所有能在该函数里访问的命名。</li>
+<li>如果在函数内部调用 globals()，返回的是所有在该函数里能访问的全局名字。</li>
+<li>两个函数的返回类型都是字典。所以名字们能用 keys() 函数摘取。</li>
+</ul>
+</li>
+<li><p>reload() 函数:当一个模块被导入到一个脚本，模块顶层部分的代码只会被执行一次。</p>
+<p>因此，如果你想重新执行模块里顶层部分的代码，可以用 reload() 函数。该函数会重新导入之前导入过的模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reload(module_name)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>包是一个分层次的文件目录结构，它定义了一个由模块及子包，和子包下的子包等组成的 Python 的应用环境。</p>
+<p>简单来说，包就是文件夹，但该文件夹下必须存在 <strong>init</strong>.py 文件, 该文件的内容可以为空。<strong><strong>init</strong>.py</strong> 用于标识当前文件夹是一个包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test.py</span><br><span class="line">package_runoob</span><br><span class="line">|-- __init__.py</span><br><span class="line">|-- runoob1.py</span><br><span class="line">|-- runoob2.py</span><br></pre></td></tr></table></figure>
+
+<h4 id="init-py"><a href="#init-py" class="headerlink" title="__init__.py"></a><code>__init__.py</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;作为主程序运行&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;package_runoob 初始化&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入 Phone 包</span></span><br><span class="line"><span class="keyword">from</span> package_runoob.runoob1 <span class="keyword">import</span> runoob1</span><br><span class="line"><span class="keyword">from</span> package_runoob.runoob2 <span class="keyword">import</span> runoob2</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、其他语法"><a href="#7、其他语法" class="headerlink" title="7、其他语法"></a>7、其他语法</h2><h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>Python3 的六个标准数据类型中：</p>
+<ul>
+<li><strong>不可变数据（3 个）：</strong>Number（数字）、String（字符串）、Tuple（元组）；</li>
+<li><strong>可变数据（3 个）：</strong>List（列表）、Dictionary（字典）、Set（集合）。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#字符串是 Python 中最常用的数据类型。我们可以使用引号( &#x27; 或 &quot; )来创建字符串。</span></span><br><span class="line">var1 = <span class="string">&#x27;Hello World!&#x27;</span></span><br><span class="line">var2 = <span class="string">&quot;Runoob&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#元组使用小括号 ( )，列表使用方括号 [ ]。</span></span><br><span class="line"><span class="comment">#字典的每个键值 key=&gt;value 对用冒号 : 分割，每个对之间用逗号(,)分割，整个字典包括在花括号 &#123;&#125; 中 ,格式如下所示：</span></span><br><span class="line">d = &#123;key1 : value1, key2 : value2, key3 : value3 &#125;</span><br><span class="line"><span class="comment">#可以使用大括号 &#123; &#125; 或者 set() 函数创建集合，注意：创建一个空集合必须用 set() 而不是 &#123; &#125;，因为 &#123; &#125; 是用来创建一个空字典。</span></span><br><span class="line">parame = &#123;value01,value02,...&#125;</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="built_in">set</span>(value)</span><br><span class="line"><span class="comment">#类似列表推导式，同样集合支持集合推导式(Set comprehension):</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = &#123;x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">&#x27;abracadabra&#x27;</span> <span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">&#x27;abc&#x27;</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">&#123;<span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<li><p>逻辑运算符</p>
+</li>
+<li><p>成员运算符</p>
+</li>
+<li><p>身份运算符</p>
+</li>
+</ul>
+<h3 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h3><ul>
+<li><p>条件</p>
+</li>
+<li><p>循环</p>
+</li>
+<li><p>异常</p>
+</li>
+</ul>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><p><strong>With语句的基本语法格式:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> target]:</span><br><span class="line">with_body</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明：</strong></p>
+<p>expression：是一个需要执行的表达式；</p>
+<p>target：是一个变量或者元组，存储的是expression表达式执行返回的结果，可选参数。</p>
+<p><strong>with语句的工作原理：</strong></p>
+<p><strong>紧跟with后面的语句会被求值，返回对象的<strong>enter</strong>()方法被调用，这个方法的返回值将被赋值给as关键字后面的变量，当with后面的代码块全部被执行完之后，将调用前面返回对象的<strong>exit</strong>()方法。</strong></p>
+<p> <strong>with语句最关键的地方在于被求值对象必须有<strong>enter</strong>()和<strong>exit</strong>()这两个方法，那我们就可以通过自己实现这两方法来自定义with语句处理异常。</strong></p>
+<p>(评论：有点类似golang 的 defer)</p>
+<h3 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h3><h2 id="8、多线程"><a href="#8、多线程" class="headerlink" title="8、多线程"></a>8、多线程</h2><p>Python中使用线程有两种方式：函数或者用类来包装线程对象。</p>
+<h3 id="函数式"><a href="#函数式" class="headerlink" title="函数式"></a>函数式</h3><p>调用thread模块中的start_new_thread()函数来产生新线程。语法如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread.start_new_thread ( function, args[, kwargs] )</span><br></pre></td></tr></table></figure>
+
+<p>参数说明:</p>
+<ul>
+<li>function - 线程函数。</li>
+<li>args - 传递给线程函数的参数,他必须是个tuple类型。</li>
+<li>kwargs - 可选参数。</li>
+</ul>
+<h3 id="线程模块"><a href="#线程模块" class="headerlink" title="线程模块"></a>线程模块</h3><p>Python通过两个标准库thread和threading提供对线程的支持。thread提供了低级别的、原始的线程以及一个简单的锁。</p>
+<p>threading 模块提供的其他方法：</p>
+<ul>
+<li>threading.currentThread(): 返回当前的线程变量。</li>
+<li>threading.enumerate(): 返回一个包含正在运行的线程的list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程。</li>
+<li>threading.activeCount(): 返回正在运行的线程数量，与len(threading.enumerate())有相同的结果。</li>
+</ul>
+<p>除了使用方法外，线程模块同样提供了Thread类来处理线程，Thread类提供了以下方法:</p>
+<ul>
+<li><p><strong>run():</strong> 用以表示线程活动的方法。</p>
+</li>
+<li><p>start():</p>
+<p>启动线程活动。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>join([time]):</strong> 等待至线程中止。这阻塞调用线程直至线程的join() 方法被调用中止-正常退出或者抛出未处理的异常-或者是可选的超时发生。</p>
+</li>
+<li><p><strong>isAlive():</strong> 返回线程是否活动的。</p>
+</li>
+<li><p><strong>getName():</strong> 返回线程名。</p>
+</li>
+<li><p><strong>setName():</strong> 设置线程名。</p>
+</li>
+</ul>
+<h3 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h3><p>使用Thread对象的Lock和Rlock可以实现简单的线程同步，这两个对象都有acquire方法和release方法，对于那些需要每次只允许一个线程操作的数据，可以将其操作放到acquire和release方法之间。</p>
+<h4 id="线程优先级队列（-Queue）"><a href="#线程优先级队列（-Queue）" class="headerlink" title="线程优先级队列（ Queue）"></a>线程优先级队列（ Queue）</h4><p>Python的Queue模块中提供了同步的、线程安全的队列类，包括FIFO（先入先出)队列Queue，LIFO（后入先出）队列LifoQueue，和优先级队列PriorityQueue。这些队列都实现了锁原语，能够在多线程中直接使用。可以使用队列来实现线程间的同步。</p>
+<ul>
+<li>Queue.qsize() 返回队列的大小</li>
+<li>Queue.empty() 如果队列为空，返回True,反之False</li>
+<li>Queue.full() 如果队列满了，返回True,反之False</li>
+<li>Queue.full 与 maxsize 大小对应</li>
+<li>Queue.get([block[, timeout]])获取队列，timeout等待时间</li>
+<li>Queue.get_nowait() 相当Queue.get(False)</li>
+<li>Queue.put(item) 写入队列，timeout等待时间</li>
+<li>Queue.put_nowait(item) 相当Queue.put(item, False)</li>
+<li>Queue.task_done() 在完成一项工作之后，Queue.task_done()函数向任务已经完成的队列发送一个信号</li>
+<li>Queue.join() 实际上意味着等到队列为空，再执行别的操作</li>
+</ul>
+<h2 id="9、网络编程"><a href="#9、网络编程" class="headerlink" title="9、网络编程"></a>9、网络编程</h2><p>Python 中，我们用 socket（）函数来创建套接字，语法格式如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket.socket([family[, <span class="built_in">type</span>[, proto]]])</span><br></pre></td></tr></table></figure>
+
+<p>参数</p>
+<ul>
+<li>family: 套接字家族可以使 AF_UNIX 或者 AF_INET。</li>
+<li>type: 套接字类型可以根据是面向连接的还是非连接分为 <code>SOCK_STREAM</code> 或 <code>SOCK_DGRAM</code>。</li>
+<li>protocol: 一般不填默认为 0。</li>
+</ul>
+<h3 id="Socket-对象-内建-方法"><a href="#Socket-对象-内建-方法" class="headerlink" title="Socket 对象(内建)方法"></a>Socket 对象(内建)方法</h3><table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">服务器端套接字</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">s.bind()</td>
+<td align="left">绑定地址（host,port）到套接字， 在 AF_INET下，以元组（host,port）的形式表示地址。</td>
+</tr>
+<tr>
+<td align="left">s.listen()</td>
+<td align="left">开始 TCP 监听。backlog 指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为 1，大部分应用程序设为 5 就可以了。</td>
+</tr>
+<tr>
+<td align="left">s.accept()</td>
+<td align="left">被动接受TCP客户端连接,(阻塞式)等待连接的到来</td>
+</tr>
+<tr>
+<td align="left">客户端套接字</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">s.connect()</td>
+<td align="left">主动初始化TCP服务器连接，。一般address的格式为元组（hostname,port），如果连接出错，返回socket.error错误。</td>
+</tr>
+<tr>
+<td align="left">s.connect_ex()</td>
+<td align="left">connect()函数的扩展版本,出错时返回出错码,而不是抛出异常</td>
+</tr>
+<tr>
+<td align="left">公共用途的套接字函数</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">s.recv()</td>
+<td align="left">接收 TCP 数据，数据以字符串形式返回，bufsize 指定要接收的最大数据量。flag 提供有关消息的其他信息，通常可以忽略。</td>
+</tr>
+<tr>
+<td align="left">s.send()</td>
+<td align="left">发送 TCP 数据，将 string 中的数据发送到连接的套接字。返回值是要发送的字节数量，该数量可能小于 string 的字节大小。</td>
+</tr>
+<tr>
+<td align="left">s.sendall()</td>
+<td align="left">完整发送 TCP 数据。将 string 中的数据发送到连接的套接字，但在返回之前会尝试发送所有数据。成功返回 None，失败则抛出异常。</td>
+</tr>
+<tr>
+<td align="left">s.recvfrom()</td>
+<td align="left">接收 UDP 数据，与 recv() 类似，但返回值是（data,address）。其中 data 是包含接收数据的字符串，address 是发送数据的套接字地址。</td>
+</tr>
+<tr>
+<td align="left">s.sendto()</td>
+<td align="left">发送 UDP 数据，将数据发送到套接字，address 是形式为（ipaddr，port）的元组，指定远程地址。返回值是发送的字节数。</td>
+</tr>
+<tr>
+<td align="left">s.close()</td>
+<td align="left">关闭套接字</td>
+</tr>
+<tr>
+<td align="left">s.getpeername()</td>
+<td align="left">返回连接套接字的远程地址。返回值通常是元组（ipaddr,port）。</td>
+</tr>
+<tr>
+<td align="left">s.getsockname()</td>
+<td align="left">返回套接字自己的地址。通常是一个元组(ipaddr,port)</td>
+</tr>
+<tr>
+<td align="left">s.setsockopt(level,optname,value)</td>
+<td align="left">设置给定套接字选项的值。</td>
+</tr>
+<tr>
+<td align="left">s.getsockopt(level,optname[.buflen])</td>
+<td align="left">返回套接字选项的值。</td>
+</tr>
+<tr>
+<td align="left">s.settimeout(timeout)</td>
+<td align="left">设置套接字操作的超时期，timeout是一个浮点数，单位是秒。值为None表示没有超时期。一般，超时期应该在刚创建套接字时设置，因为它们可能用于连接的操作（如connect()）</td>
+</tr>
+<tr>
+<td align="left">s.gettimeout()</td>
+<td align="left">返回当前超时期的值，单位是秒，如果没有设置超时期，则返回None。</td>
+</tr>
+<tr>
+<td align="left">s.fileno()</td>
+<td align="left">返回套接字的文件描述符。</td>
+</tr>
+<tr>
+<td align="left">s.setblocking(flag)</td>
+<td align="left">如果flag为0，则将套接字设为非阻塞模式，否则将套接字设为阻塞模式（默认值）。非阻塞模式下，如果调用recv()没有发现任何数据，或send()调用无法立即发送数据，那么将引起socket.error异常。</td>
+</tr>
+<tr>
+<td align="left">s.makefile()</td>
+<td align="left">创建一个与该套接字相关连的文件</td>
+</tr>
+</tbody></table>
+<h3 id="Python-Internet-模块"><a href="#Python-Internet-模块" class="headerlink" title="Python Internet 模块"></a>Python Internet 模块</h3><p>以下列出了 Python 网络编程的一些重要模块：</p>
+<table>
+<thead>
+<tr>
+<th align="left">协议</th>
+<th align="left">功能用处</th>
+<th align="left">端口号</th>
+<th align="left">Python 模块</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">HTTP</td>
+<td align="left">网页访问</td>
+<td align="left">80</td>
+<td align="left">httplib, urllib, xmlrpclib</td>
+</tr>
+<tr>
+<td align="left">NNTP</td>
+<td align="left">阅读和张贴新闻文章，俗称为”帖子”</td>
+<td align="left">119</td>
+<td align="left">nntplib</td>
+</tr>
+<tr>
+<td align="left">FTP</td>
+<td align="left">文件传输</td>
+<td align="left">20</td>
+<td align="left">ftplib, urllib</td>
+</tr>
+<tr>
+<td align="left">SMTP</td>
+<td align="left">发送邮件</td>
+<td align="left">25</td>
+<td align="left">smtplib</td>
+</tr>
+<tr>
+<td align="left">POP3</td>
+<td align="left">接收邮件</td>
+<td align="left">110</td>
+<td align="left">poplib</td>
+</tr>
+<tr>
+<td align="left">IMAP4</td>
+<td align="left">获取邮件</td>
+<td align="left">143</td>
+<td align="left">imaplib</td>
+</tr>
+<tr>
+<td align="left">Telnet</td>
+<td align="left">命令行</td>
+<td align="left">23</td>
+<td align="left">telnetlib</td>
+</tr>
+<tr>
+<td align="left">Gopher</td>
+<td align="left">信息查找</td>
+<td align="left">70</td>
+<td align="left">gopherlib, urllib</td>
+</tr>
+</tbody></table>
+<p>更多内容可以参阅官网的 <a target="_blank" rel="noopener" href="https://docs.python.org/2/library/socket.html">Python Socket Library and Modules</a>。</p>
+<h2 id="10、数据库"><a href="#10、数据库" class="headerlink" title="10、数据库"></a>10、数据库</h2><h2 id="11、正则表达式"><a href="#11、正则表达式" class="headerlink" title="11、正则表达式"></a>11、正则表达式</h2><h2 id="12、GUI"><a href="#12、GUI" class="headerlink" title="12、GUI"></a>12、GUI</h2><h2 id="13、其他：JSON，XML，SMTP等"><a href="#13、其他：JSON，XML，SMTP等" class="headerlink" title="13、其他：JSON，XML，SMTP等"></a>13、其他：JSON，XML，SMTP等</h2>
       
 
       
@@ -506,566 +1540,9 @@
 
 
   
-    <article id="post-二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/08/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/08/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2017-06-08T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>计算机：二叉树是每个节点最多有两个子树的树结构<br>图论：二叉树是一个连通的无环图，并且每一个顶点的度不大于3。有根二叉树还要满足根结点的度不大于2</p>
-</blockquote>
-<h3 id="1-五种形态"><a href="#1-五种形态" class="headerlink" title="1. 五种形态"></a>1. 五种形态</h3><ul>
-<li>空二叉树</li>
-<li>只有一个根结点的二叉树</li>
-<li>只有左子树</li>
-<li>只有右子树</li>
-<li>完全二叉树</li>
-</ul>
-<h3 id="2-遍历"><a href="#2-遍历" class="headerlink" title="2. 遍历"></a>2. 遍历</h3><p>遍历是对树的一种最基本的运算，所谓遍历二叉树，就是按一定的规则和顺序走遍二叉树的所有结点，使每一个结点都被访问一次，而且只被访问一次。<br>设L、D、R分别表示遍历左子树、访问根结点和遍历右子树， 则对一棵二叉树的遍历有三种情况：DLR（称为先根次序遍历），LDR（称为中根次序遍历），LRD （称为后根次序遍历）</p>
-<ul>
-<li>先序遍历<br>首先访问根，再先序遍历左（右）子树，最后先序遍历右（左）子树</li>
-<li>中序遍历<br>首先中序遍历左（右）子树，再访问根，最后中序遍历右（左）子树</li>
-<li>后序遍历<br>首先后序遍历左（右）子树，再后序遍历右（左）子树，最后访问根</li>
-<li>层次遍历<br>即按照层次访问。访问根，访问子女，再访问子女的子女</li>
-</ul>
-<h3 id="3-性质"><a href="#3-性质" class="headerlink" title="3. 性质"></a>3. 性质</h3><p>一个二叉树第i 层的最大结点数为：2i-1，i ≥ 1<br>深度为k 的二叉树有最大结点总数为：2k-1，k ≥ 1<br>对任何非空二叉树T，若n0 表示叶结点的个数，n2 是度为2 的非叶结点个数，那么两者满足关系n0 = n2 + 1</p>
-<h3 id="4-程序描述"><a href="#4-程序描述" class="headerlink" title="4. 程序描述"></a>4. 程序描述</h3><ul>
-<li>数据来源<br>括号表示法，以及类似表示方法</li>
-<li>类型</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BTNode</span> * <span class="title">BinaryTree</span>;</span>   </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElementType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span>   </span><br><span class="line">        ElementType data;   </span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">left</span>;</span>   </span><br><span class="line">                <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">right</span>;</span>   </span><br><span class="line">&#125; BTNode;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>函数</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BinaryTree InitBinaryTree()：创建一个二叉树，通过某个方式构建二叉树</span><br><span class="line">boolean IsEmpty(BinaryTree tree)：判别BT 是否为空</span><br><span class="line">BTNode * InsertNode(BTNode * parent, BTNode * new，int position) ：插入新节点（0，左；1，右）</span><br><span class="line">void Traversal(BinaryTree tree)：遍历，按某顺序访问每个结点</span><br><span class="line">void PreOrder(BinaryTree tree)：先序——根、左子树、右子树</span><br><span class="line">void InOrder(BinaryTree tree)：中序——左子树、根、右子树</span><br><span class="line">void PostOrder(BinaryTree tree)：后序——左子树、右子树、根</span><br><span class="line">void HierarchyOrder(BinaryTree tree)：层次遍历——从上到下</span><br><span class="line">void Print(BinaryTree tree)：打印二叉树</span><br><span class="line">void Destroy(BinaryTree tree)：销毁二叉树</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>其他操作</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BTNode * Search(BinaryTree tree,ElementType x) ： 二叉树中查找元素</span><br></pre></td></tr></table></figure>
-
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><ul>
-<li><a target="_blank" rel="noopener" href="http://chuansong.me/n/729497552547">http://chuansong.me/n/729497552547</a></li>
-</ul>
-<p><a href="javascript:;">
-  </a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/08/%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-状态机模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/08/%E7%8A%B6%E6%80%81%E6%9C%BA%E6%A8%A1%E5%BC%8F/">状态机模式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/08/%E7%8A%B6%E6%80%81%E6%9C%BA%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2017-06-08T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>####状态机模式定义<br>　　状态模式，又称状态对象模式（Pattern of Objects for States），状态模式是对象的行为模式。<br>　　状态模式允许一个对象在其内部状态改变的时候改变其行为。这个对象看上去就像是改变了它的类一样。</p>
-<p>####结构和角色<br>状态模式所涉及到的角色有：<br>　　●　　环境(Context)角色，也成上下文：定义客户端所感兴趣的接口，并且保留一个具体状态类的实例。这个具体状态类的实例给出此环境对象的现有状态。<br>　　●　　抽象状态(State)角色：定义一个接口，用以封装环境（Context）对象的一个特定的状态所对应的行为。<br>　　●　　具体状态(ConcreteState)角色：每一个具体状态类都实现了环境（Context）的一个状态所对应的行为。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/08/%E7%8A%B6%E6%80%81%E6%9C%BA%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo设置关于、标签、分类、归档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/">Hexo设置关于、标签、分类、归档</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/" class="archive-article-date">
-  	<time datetime="2017-06-07T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、添加-关于页面"><a href="#1、添加-关于页面" class="headerlink" title="1、添加 关于页面"></a>1、添加 关于页面</h3><p>使用：hexo new page “about” 新建一个 关于我 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配<br>不同主题 _config. yml文件有区别</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span> <span class="string">（添加此行即可）</span></span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">home</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">.</span> <span class="string">//主页</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-home</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">archive</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">archives/</span> <span class="string">//归档</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-archive</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">about</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">about/</span> <span class="string">//关于</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-user</span></span><br><span class="line">	<span class="bullet">-</span> <span class="attr">page:</span> <span class="string">rss</span></span><br><span class="line">	  <span class="attr">directory:</span> <span class="string">atom.xml</span> <span class="string">//rss订阅</span></span><br><span class="line">	  <span class="attr">icon:</span> <span class="string">fa-rss</span></span><br></pre></td></tr></table></figure>
-
-<p>编辑 about 关于页面 md文件 部署就能看到</p>
-<h3 id="2、添加-标签页面"><a href="#2、添加-标签页面" class="headerlink" title="2、添加 标签页面"></a>2、添加 标签页面</h3><p>使用： hexo new page tags 新建一个 标签 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
-
-<p>底下代码是一篇包含 标签 文章的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 标签测试</span><br><span class="line">tags:</span><br><span class="line">	- Testing （这个就是文章的标签了）</span><br><span class="line">	- Another Tag （这个就是文章的标签了）</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、添加-分类页面"><a href="#3、添加-分类页面" class="headerlink" title="3、添加 分类页面"></a>3、添加 分类页面</h3><p>使用： hexo new page categories 新建一个 分类 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
-
-<p>底下代码是一篇包含 分类 文章的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 分类测试</span><br><span class="line">categories:</span><br><span class="line">	- hexo （这个就是文章的分类了）</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、添加-归档页面"><a href="#4、添加-归档页面" class="headerlink" title="4、添加 归档页面"></a>4、添加 归档页面</h3><p>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span> <span class="string">（添加此行即可）</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5、添加-自定义页面"><a href="#5、添加-自定义页面" class="headerlink" title="5、添加 自定义页面"></a>5、添加 自定义页面</h3><p>使用： hexo new page “guestbook” 新建一个 自定义 页面。<br>主题的 _config.yml 文件中的 menu 中进行匹配</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">home:</span> <span class="string">/</span> <span class="string">//主页</span></span><br><span class="line"><span class="attr">categories:</span> <span class="string">/categories</span> <span class="string">//分类</span></span><br><span class="line"><span class="attr">archives:</span> <span class="string">/archives</span> <span class="string">//归档</span></span><br><span class="line"><span class="attr">tags:</span> <span class="string">/tags</span> <span class="string">//标签</span></span><br><span class="line"><span class="attr">about:</span> <span class="string">/about</span> <span class="string">//关于</span></span><br><span class="line"><span class="attr">guestbook:</span> <span class="string">/guestbook</span> <span class="string">//自定义</span> <span class="string">（添加此行即可）</span></span><br></pre></td></tr></table></figure>
-
-<p>标签添加方式</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: title #文章標題</span><br><span class="line">date: 2016-06-01 23:47:44 #文章生成時間</span><br><span class="line">categories: “Hexo教程” #文章分類目錄 可以省略</span><br><span class="line">tags: #文章標籤 可以省略</span><br><span class="line"><span class="bullet">	-</span> 标签1</span><br><span class="line"><span class="bullet">	-</span> 标签2</span><br><span class="line">description: #你對本頁的描述 可以省略</span><br></pre></td></tr></table></figure>
-
-<h3 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010820857/article/details/82027535">https://blog.csdn.net/u010820857/article/details/82027535</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/baozhiqiangjava/article/details/80556550">https://blog.csdn.net/baozhiqiangjava/article/details/80556550</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/07/Hexo%E8%AE%BE%E7%BD%AE%E5%85%B3%E4%BA%8E%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E3%80%81%E5%BD%92%E6%A1%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo 创建文章、标签、分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/06/Hexo%20%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB/">Hexo 创建文章、标签、分类</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/06/Hexo%20%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB/" class="archive-article-date">
-  	<time datetime="2017-06-06T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、创建文章"><a href="#1、创建文章" class="headerlink" title="1、创建文章"></a>1、创建文章</h3><h4 id="a-在hexo下创建一个新的文章"><a href="#a-在hexo下创建一个新的文章" class="headerlink" title="a.在hexo下创建一个新的文章"></a>a.在hexo下创建一个新的文章</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;文章名称&quot;</span><br></pre></td></tr></table></figure>
-
-<p>生产后会提示你文件路径，一般在hexo/source/_posts下</p>
-<h4 id="b-文章基本设置"><a href="#b-文章基本设置" class="headerlink" title="b.文章基本设置"></a>b.文章基本设置</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title: CentOS7下Tomcat启动慢的原因及解决方案</span><br><span class="line">date: 2017-12-02 21:01:24</span><br><span class="line">comments: true #是否可评论</span><br><span class="line">toc: true #是否显示文章目录</span><br><span class="line">categories: &quot;云服务器&quot; #分类</span><br><span class="line">tags:   #标签</span><br><span class="line"><span class="bullet">    -</span> centOS</span><br><span class="line"><span class="bullet">    -</span> tomcat</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、创建标签"><a href="#2、创建标签" class="headerlink" title="2、创建标签"></a>2、创建标签</h3><h4 id="a-创建标签页面"><a href="#a-创建标签页面" class="headerlink" title="a.创建标签页面"></a>a.创建标签页面</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<h4 id="b-基本设置"><a href="#b-基本设置" class="headerlink" title="b.基本设置"></a>b.基本设置</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: tags</span><br><span class="line">date: 2017-12-02 21:01:24</span><br><span class="line">type: “tags”</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、创建分类"><a href="#3、创建分类" class="headerlink" title="3、创建分类"></a>3、创建分类</h3><h4 id="a-创建分类页面"><a href="#a-创建分类页面" class="headerlink" title="a.创建分类页面"></a>a.创建分类页面</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-
-<h4 id="b-基本设置-1"><a href="#b-基本设置-1" class="headerlink" title="b.基本设置"></a>b.基本设置</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: categories</span><br><span class="line">date: 2017-12-02 21:01:24</span><br><span class="line">type: &quot;categories&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32337109/article/details/78755662">https://blog.csdn.net/qq_32337109/article/details/78755662</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/06/Hexo%20%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo-配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/05/Hexo-%E9%85%8D%E7%BD%AE/">Hexo-配置</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/05/Hexo-%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2017-06-05T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h3><h3 id="node环境安装"><a href="#node环境安装" class="headerlink" title="node环境安装"></a>node环境安装</h3><h3 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init #初始化hexo</span><br><span class="line">npm install #安装依赖包</span><br><span class="line">npm install hexo-deployer-git –save #安装hexo发布使用git</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置-config-yml"><a href="#配置-config-yml" class="headerlink" title="配置_config.yml"></a>配置_config.yml</h3><h3 id="Hexo-最常用的几个命令"><a href="#Hexo-最常用的几个命令" class="headerlink" title="Hexo 最常用的几个命令"></a>Hexo 最常用的几个命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo new “博客” 简写 hexo n “博客” #新建文章</span><br><span class="line">hexo publish 简写 hexo p #可以不使用用</span><br><span class="line">hexo generate 简写 hexo g #生成</span><br><span class="line">hexo server 简写 hexo s #启动服务预览</span><br><span class="line">hexo deploy 简写 hexo d #部署</span><br><span class="line">hexo new page “页面” 创建页面</span><br></pre></td></tr></table></figure>
-
-<h3 id="文章内容"><a href="#文章内容" class="headerlink" title="文章内容"></a>文章内容</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: 使用Hexo搭建个人博客</span><br><span class="line">date: 2017-06-05 02:20:06</span><br><span class="line">categories: Blog</span><br><span class="line">tags: [Hexo]</span><br><span class="line">comments: true #是否可评论</span><br><span class="line">toc: true #是否显示文章目录</span><br></pre></td></tr></table></figure>
-
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="不能添加图片"><a href="#不能添加图片" class="headerlink" title="不能添加图片"></a>不能添加图片</h4><p><strong>[解决]</strong></p>
-<h5 id="一"><a href="#一" class="headerlink" title="一"></a>一</h5><ul>
-<li><p>把主页配置文件_config.yml 里的<code>post_asset_folder</code>这个选项设置为true</p>
-</li>
-<li><p>hexo目录下执行<code>npm install hexo-asset-image –save</code>，</p>
-<p><em>(安装一个可以上传本地图片的插件)</em></p>
-<p>此时运行hexo n “xxxx” 生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个<strong>同名的文件夹</strong></p>
-</li>
-<li><p>最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后在xxxx.md中按照markdown的格式引入图片</p>
-<p><em>(注意:xxxx是这个md文件的名字，也是同名文件夹的名字。引用图片时,使用相对路径)</em></p>
-</li>
-<li><p>最后检查一下，hexo g生成页面后，进入public目录查看生成情况，然后使用<code>hexo s</code> 预览</p>
-</li>
-</ul>
-<h5 id="二"><a href="#二" class="headerlink" title="二"></a>二</h5><ul>
-<li>把主页配置文件_config.yml 里的<code>url</code>修改正确</li>
-</ul>
-<h5 id="三、更新-hexo-asset-image"><a href="#三、更新-hexo-asset-image" class="headerlink" title="三、更新 hexo-asset-image"></a>三、更新 <code>hexo-asset-image</code></h5><p>新版的hexo不兼容原来的 hexo-asset-image 模块</p>
-<h5 id="四、windows下注意路径"><a href="#四、windows下注意路径" class="headerlink" title="四、windows下注意路径"></a>四、windows下注意路径</h5><p>使用相对路径，左斜杠分隔。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/05/Hexo-%E9%85%8D%E7%BD%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Git远程库操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/31/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E6%93%8D%E4%BD%9C/">Git远程库操作</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/31/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2017-05-31T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">git remote</span><br><span class="line"></span><br><span class="line">git remote -v 管理主机名</span><br><span class="line">git remote show &lt;主机名&gt; 查看该主机的详细信息</span><br><span class="line">git remote add &lt;主机名&gt; &lt;网址&gt; 添加远程主机</span><br><span class="line">git remote rm &lt;主机名&gt; 删除远程主机</span><br><span class="line">git remote rename &lt;原主机名&gt; &lt;新主机名&gt; 远程主机的改名</span><br><span class="line">git fetch</span><br><span class="line"></span><br><span class="line">git fetch &lt;远程主机名&gt; 取回所有分支（branch）的更新</span><br><span class="line">git fetch &lt;远程主机名&gt; &lt;分支名&gt; 取回特定分支的更新</span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line">git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt; 取回远程主机某个分支的更新，再与本地的指定分支合并</span><br><span class="line">手动建立追踪关系 git branch –set-upstream master origin/test</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br><span class="line">git push origin :remote_branch //删除远程分支（the_branch）</span><br><span class="line">git push origin local_branch //本地分支（local_branch）重新建立远程分支</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/31/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1321,6 +1798,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">方案</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">VueJS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
