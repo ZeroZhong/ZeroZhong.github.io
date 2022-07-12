@@ -137,6 +137,189 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-IDEA使用技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/12/IDEA%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">IDEA使用技巧</a>
+    </h1>
+  
+
+        
+        <a href="/2022/07/12/IDEA%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" class="archive-article-date">
+  	<time datetime="2022-07-12T14:51:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="file-Template-和live-Template"><a href="#file-Template-和live-Template" class="headerlink" title="file Template 和live Template"></a>file Template 和live Template</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IDE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/12/IDEA%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-大量字符串的处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/27/%E5%A4%A7%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86/">大量字符串的处理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/27/%E5%A4%A7%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-11-27T05:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><blockquote>
+<p>如何处理百亿个字符串</p>
+</blockquote>
+<h2 id="1、数据来源"><a href="#1、数据来源" class="headerlink" title="1、数据来源"></a>1、数据来源</h2><h3 id="1-1、文件来源"><a href="#1-1、文件来源" class="headerlink" title="1-1、文件来源"></a>1-1、文件来源</h3><p>对应需要一次读入情况</p>
+<h3 id="1-2、数据流"><a href="#1-2、数据流" class="headerlink" title="1-2、数据流"></a>1-2、数据流</h3><p>对应需要分段读入情况</p>
+<h2 id="2、存储"><a href="#2、存储" class="headerlink" title="2、存储"></a>2、存储</h2><p>内存：内存的容量有限</p>
+<p>外存：外存的读写效率低</p>
+<h3 id="2-1、mysql-innodb引擎的方式"><a href="#2-1、mysql-innodb引擎的方式" class="headerlink" title="2-1、mysql innodb引擎的方式"></a>2-1、mysql innodb引擎的方式</h3><p><strong>索引—&gt;缓存—&gt;文件</strong></p>
+<p>核心是B+树</p>
+<h3 id="2-2、跳表（jump-table）"><a href="#2-2、跳表（jump-table）" class="headerlink" title="2-2、跳表（jump table）"></a>2-2、跳表（jump table）</h3><p>和树的思路相反，一个从根出发，一个从结果出发</p>
+<p><strong>跳表—&gt;缓存—&gt;文件</strong></p>
+<p>图片来源：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/43039adeb122">https://www.jianshu.com/p/43039adeb122</a></p>
+<p>原链表</p>
+<p><img src="/2020/11/27/%E5%A4%A7%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86/%E5%8E%9F%E9%93%BE%E8%A1%A8" alt="img"></p>
+<p>跳表</p>
+<p><img src="/2020/11/27/%E5%A4%A7%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86/%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%A1%A8.png" alt="img"></p>
+<h3 id="2-3、压缩存储"><a href="#2-3、压缩存储" class="headerlink" title="2-3、压缩存储"></a>2-3、压缩存储</h3><p>等长编码，变长编码。</p>
+<ul>
+<li>有损编码：HashCode</li>
+<li>无损编码：哈夫曼编码（前缀码）</li>
+</ul>
+<h2 id="3、去重"><a href="#3、去重" class="headerlink" title="3、去重"></a>3、去重</h2><h2 id="4、排序"><a href="#4、排序" class="headerlink" title="4、排序"></a>4、排序</h2><p>解决思路：利用多次归并排序</p>
+<h3 id="4-x、扩展"><a href="#4-x、扩展" class="headerlink" title="4-x、扩展"></a>4-x、扩展</h3><ul>
+<li>如何向已经排序的文件中插入新的数据。</li>
+</ul>
+<h2 id="5、过滤"><a href="#5、过滤" class="headerlink" title="5、过滤"></a>5、过滤</h2><h3 id="5-1、布隆过滤器"><a href="#5-1、布隆过滤器" class="headerlink" title="5-1、布隆过滤器"></a>5-1、布隆过滤器</h3><h2 id="6、比较（匹配）"><a href="#6、比较（匹配）" class="headerlink" title="6、比较（匹配）"></a>6、比较（匹配）</h2><h2 id="7、搜索（查找）"><a href="#7、搜索（查找）" class="headerlink" title="7、搜索（查找）"></a>7、搜索（查找）</h2><h2 id="9、任务拆分"><a href="#9、任务拆分" class="headerlink" title="9、任务拆分"></a>9、任务拆分</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/27/%E5%A4%A7%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-处理pdf" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -208,6 +391,386 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/11/26/%E5%A4%84%E7%90%86pdf/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-位图的思想" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/26/%E4%BD%8D%E5%9B%BE%E7%9A%84%E6%80%9D%E6%83%B3/">位图的思想</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/26/%E4%BD%8D%E5%9B%BE%E7%9A%84%E6%80%9D%E6%83%B3/" class="archive-article-date">
+  	<time datetime="2020-11-26T03:29:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><ol>
+<li>给40亿个不重复的unsigned int的整数，没排过序的，然后再给一个数，如何快速判断这个数是否在那40亿个数当中?</li>
+<li>给定一个千万级别数据量的整数集合，判断哪些是重复元素。</li>
+<li>给定一个千万级别数据量的整形数组，对其进行排序。</li>
+<li>在5亿个整数中找出不重复的整数(注意，内存不足以容纳这5亿个整数)。</li>
+</ol>
+<p>常规手段，排序，查询等，需要消耗大量资源。所以我们用位图的思想来压缩数据，用位图中的每一位表示一个数字，用位置代表数字。</p>
+<p>举例说明，一个unsined int 有4个字节，32位，就可以用来表示32个数字。如果要表示40亿个整数，就需要2^32个位置，需要2^29个字节（<code>512*1024*1024</code>）占512M的内存。如果不压缩，存储<code>4*2^32</code>个字节，占16G。差了32倍。</p>
+<h2 id="1、实现"><a href="#1、实现" class="headerlink" title="1、实现"></a>1、实现</h2><h3 id="1-1、创建一个byte-数组，数组长度2-29。实现位操作。"><a href="#1-1、创建一个byte-数组，数组长度2-29。实现位操作。" class="headerlink" title="1-1、创建一个byte 数组，数组长度2^29。实现位操作。"></a>1-1、创建一个byte 数组，数组长度2^29。实现位操作。</h3><p>​    （java 中还提供了BitSet处理相关问题，最大为一个int，Java中的int是有符号的，但这也够）</p>
+<h3 id="1-2、-布隆过滤器（bloom-filter）"><a href="#1-2、-布隆过滤器（bloom-filter）" class="headerlink" title="1-2、 布隆过滤器（bloom filter）"></a>1-2、 布隆过滤器（bloom filter）</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liyulong1982/p/6013002.html">https://www.cnblogs.com/liyulong1982/p/6013002.html</a></p>
+<p>算法：</p>
+<ol>
+<li>首先需要k个hash函数，每个函数可以把key散列成为1个整数</li>
+<li>初始化时，需要一个长度为n比特的数组，每个比特位初始化为0</li>
+<li>某个key加入集合时，用k个hash函数计算出k个散列值，并把数组中对应的比特位置为1</li>
+<li>判断某个key是否在集合时，用k个hash函数计算出k个散列值，并查询数组中对应的比特位，如果所有的比特位都是1，认为在集合中。</li>
+</ol>
+<p>优点：不需要存储key，节省空间</p>
+<p>缺点：</p>
+<ol>
+<li>算法判断key在集合中时，有一定的概率key其实不在集合中</li>
+<li>无法删除</li>
+</ol>
+<p>典型的应用场景：</p>
+<ul>
+<li><p>某些存储系统的设计中，会存在空查询缺陷：当查询一个不存在的key时，需要访问慢设备，导致效率低下。</p>
+<p>比如一个前端页面的缓存系统，可能这样设计：先查询某个页面在本地是否存在，如果存在就直接返回，如果不存在，就从后端获取。但是当频繁从缓存系统查询一个页面时，缓存系统将会频繁请求后端，把压力导入后端。</p>
+</li>
+<li><p>由此可见，在黑白名单等过滤问题上，有奇效。</p>
+</li>
+</ul>
+<h2 id="2、如果存储对象不是整数呢？"><a href="#2、如果存储对象不是整数呢？" class="headerlink" title="2、如果存储对象不是整数呢？"></a>2、如果存储对象不是整数呢？</h2><h3 id="2-1、采用hashCode压缩"><a href="#2-1、采用hashCode压缩" class="headerlink" title="2-1、采用hashCode压缩"></a>2-1、采用hashCode压缩</h3><p>​    hashcode，通过hash函数获得，大多使用同于原理，所以存储数据时，先要计算hashcode，找到位置，再解决冲突问题。哈希就俩特点，不可逆，摘要。</p>
+<p>   （java 中的hashmap，通过链或者红黑树存储数据）</p>
+<h4 id="2-1-1、Hash的定义"><a href="#2-1-1、Hash的定义" class="headerlink" title="2-1-1、Hash的定义"></a>2-1-1、Hash的定义</h4><p>散列（哈希）函数<br>把任意长度的输入（又叫做预映射pre-image）<strong>通过散列算法变换成固定长度的输出，该输出就是散列值，</strong>是一种压缩映射。<br>或者说一种将任意长度的消息压缩到某一固定长度的消息摘要的函数。</p>
+<h4 id="2-1-2、Hash函数特性"><a href="#2-1-2、Hash函数特性" class="headerlink" title="2-1-2、Hash函数特性"></a>2-1-2、Hash函数特性</h4><p>h(k1)≠h(k2)则k1≠k2，即散列值不相同，则输入值即预映射不同<br>如果k1≠k2，h(k1)=h(k2) 则发生碰撞；<br>如果h(k1)=h(k2)，k1不一定等于k2；</p>
+<h3 id="2-2、采用无损压缩编码，然后用位图存储。"><a href="#2-2、采用无损压缩编码，然后用位图存储。" class="headerlink" title="2-2、采用无损压缩编码，然后用位图存储。"></a>2-2、采用无损压缩编码，然后用位图存储。</h3><p>哈夫曼编码，或者使用索引-缓存</p>
+<h2 id="3、位图思想的分析就先到这里"><a href="#3、位图思想的分析就先到这里" class="headerlink" title="3、位图思想的分析就先到这里"></a>3、位图思想的分析就先到这里</h2><p>其他的关于大量数据的存储，排序，去重，过滤等问题，会新开一个文章，《大量字符串的处理》。</p>
+<p>包括字符串的来源，任务拆分等问题</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">压缩</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/26/%E4%BD%8D%E5%9B%BE%E7%9A%84%E6%80%9D%E6%83%B3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-字符串去重" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%BB%E9%87%8D/">字符串去重</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%BB%E9%87%8D/" class="archive-article-date">
+  	<time datetime="2020-11-26T03:28:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><blockquote>
+<p>有一组字符串，组长为N，去除掉其中的重复的字符串，保留一份。</p>
+</blockquote>
+<h2 id="1、基本处理"><a href="#1、基本处理" class="headerlink" title="1、基本处理"></a>1、基本处理</h2><p>遍历数组，遍历过程中，从该位置向左查询比较，记录两个下标索引，相同则删除自身，不相同则移动到无重复的左边部分，修改其中一个索引，指向无重复部分。</p>
+<h2 id="2、分析字串每个字符串的特性，再选择如何做"><a href="#2、分析字串每个字符串的特性，再选择如何做" class="headerlink" title="2、分析字串每个字符串的特性，再选择如何做"></a>2、分析字串每个字符串的特性，再选择如何做</h2><h3 id="2-1、Trie树"><a href="#2-1、Trie树" class="headerlink" title="2-1、Trie树"></a>2-1、Trie树</h3><p>如果组成字符串的字符，在有限集合内（不是很多，数字，字符，固定的特殊符号），也不是很长。考虑使用Trie树，因为分叉不是很多。整个Trie的结构可控。</p>
+<h3 id="2-2、hash算法"><a href="#2-2、hash算法" class="headerlink" title="2-2、hash算法"></a>2-2、hash算法</h3><p>如果字符串很长，可以考虑使用hash算法进行<strong>压缩存储</strong>，再用平衡树或者多叉树<strong>解决冲突</strong>，或者可以替换hash算法，递归处理存储再解决冲突或者直到没有冲突。</p>
+<p>需要考虑使用创建复杂度低的数据结构，这样效率可能更高。</p>
+<h3 id="2-3、利用数据库"><a href="#2-3、利用数据库" class="headerlink" title="2-3、利用数据库"></a>2-3、利用数据库</h3><p>最简单的就是用数据库，设置为主键，往里面插，重复的就过滤掉了</p>
+<p>具体要用多久的话就看你数据的长度和去重标准了</p>
+<h2 id="3、数据库中排重"><a href="#3、数据库中排重" class="headerlink" title="3、数据库中排重"></a>3、数据库中排重</h2><h3 id="3-1、如果仅仅是去重统计数量"><a href="#3-1、如果仅仅是去重统计数量" class="headerlink" title="3-1、如果仅仅是去重统计数量"></a>3-1、如果仅仅是去重统计数量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(distinct 去重字段) from 表</span><br></pre></td></tr></table></figure>
+
+<p>group by</p>
+<p>having</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%BB%E9%87%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-模式匹配" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/26/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/">模式匹配</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/26/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" class="archive-article-date">
+  	<time datetime="2020-11-26T03:28:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/26/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-搜索和替换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/26/%E6%90%9C%E7%B4%A2%E5%92%8C%E6%9B%BF%E6%8D%A2/">搜索和替换</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/26/%E6%90%9C%E7%B4%A2%E5%92%8C%E6%9B%BF%E6%8D%A2/" class="archive-article-date">
+  	<time datetime="2020-11-26T03:28:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><blockquote>
+<p>这本来是一个简单的问题。但有时我会想，如果目标字符串和模式串够特殊呢？会不会出现回溯的新问题。</p>
+</blockquote>
+<h2 id="1、在9个A中查找3个A，并替换成一个A"><a href="#1、在9个A中查找3个A，并替换成一个A" class="headerlink" title="1、在9个A中查找3个A，并替换成一个A"></a>1、在9个A中查找3个A，并替换成一个A</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">#</span>目标串</span><br><span class="line">AAAAAAAAA</span><br><span class="line"><span class="params">#</span>模式串</span><br><span class="line">AAA</span><br><span class="line"><span class="params">#</span>替换</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+
+<p>一般情况下，会匹配出三组。此时如果再执行替换，结果就是AAA。</p>
+<p>搜索如果回溯了，结果是查询的结果7个。</p>
+<p>接下来，考虑：</p>
+<ul>
+<li><p>在刚刚的替换之后，结果再替换，直到结果中不存在三个A的情况，结果是1个A</p>
+</li>
+<li><p>每次替换之后，回溯自身。（搜索的情况，同样）</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">#</span> 用，为了清楚表示</span><br><span class="line">AAA,AAA,AAA</span><br><span class="line">---</span><br><span class="line">1</span><br><span class="line">A，AAA，AAA</span><br><span class="line">----</span><br><span class="line">2</span><br><span class="line">AA,AAA</span><br><span class="line">----</span><br><span class="line">3</span><br><span class="line">AAA</span><br><span class="line">----</span><br><span class="line">4</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+
+<p>发现和刚才一样，但是真的是这样吗？是不是我们给的模式串和目标串足够特殊，才导致结果一样？或者什么样的模式串和目标串才能体现出这其中的规律来？</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/26/%E6%90%9C%E7%B4%A2%E5%92%8C%E6%9B%BF%E6%8D%A2/">展开全文 >></a>
         </p>
       
 
@@ -505,1038 +1068,9 @@
 
 
   
-    <article id="post-mysql-explain-详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/11/mysql-explain-%E8%AF%A6%E8%A7%A3/">mysql explain 详解</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/11/mysql-explain-%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-11-10T20:01:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p>使用EXPLAIN关键字可以模拟优化器执行SQL查询语句，从而知道MySQL是如何处理你的SQL语句的。分析你的查询语句或是表结构的性能瓶颈。</p>
-<h2 id="2、分析结果"><a href="#2、分析结果" class="headerlink" title="2、分析结果"></a>2、分析结果</h2><ul>
-<li>表的读取顺序</li>
-<li>数据读取操作的操作类型</li>
-<li>哪些索引可以使用</li>
-<li>哪些索引被实际使用</li>
-<li>表之间的引用</li>
-<li>每张表有多少行被优化器查询</li>
-</ul>
-<h2 id="3、语句格式"><a href="#3、语句格式" class="headerlink" title="3、语句格式"></a>3、语句格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- EXPLAIN &lt;SQL语句&gt;</span><br><span class="line">EXPLAIN SELECT * FROM tbl;</span><br></pre></td></tr></table></figure>
-<h2 id="4、输出执行计划，包含的信息"><a href="#4、输出执行计划，包含的信息" class="headerlink" title="4、输出执行计划，包含的信息"></a>4、输出执行计划，包含的信息</h2><p>输出结果有12列，（MySQL-5.7.31）</p>
-<table>
-<thead>
-<tr>
-<th>列名</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>id</td>
-<td>执行计划的编号，包含一组数字，表示查询中执行select子句或操作表的顺序</td>
-</tr>
-<tr>
-<td>select_type</td>
-<td>select查询计划的类型，区分不同的执行计划</td>
-</tr>
-<tr>
-<td>table</td>
-<td>当前执行查询的表</td>
-</tr>
-<tr>
-<td>partitions</td>
-<td></td>
-</tr>
-<tr>
-<td>type</td>
-<td>区分采用的查询方式</td>
-</tr>
-<tr>
-<td>possible_keys</td>
-<td>显示可能应用在这张表中的索引，一个或多个</td>
-</tr>
-<tr>
-<td>key</td>
-<td>实际使用的索引，如果为NULL，则没有使用索引</td>
-</tr>
-<tr>
-<td>key_len</td>
-<td>表示索引中使用的字节数</td>
-</tr>
-<tr>
-<td>ref</td>
-<td>表示查询时，哪些列或常量被用于查找索引列上的值</td>
-</tr>
-<tr>
-<td>rows</td>
-<td>估算出找到所需的记录所需要读取的行数</td>
-</tr>
-<tr>
-<td>filtered</td>
-<td></td>
-</tr>
-<tr>
-<td>Extra</td>
-<td>其他信息，通常可读方式告诉我们查询细节</td>
-</tr>
-</tbody></table>
-<h3 id="4-1、id"><a href="#4-1、id" class="headerlink" title="4-1、id"></a>4-1、id</h3><blockquote>
-<p>select查询的序列号，包含一组数字，表示查询中执行select子句或操作表的顺序</p>
-</blockquote>
-<ol>
-<li><p>id相同，执行顺序由上至下</p>
-</li>
-<li><p>id不同，如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行</p>
-</li>
-<li><p>id相同不同，同时存在;id相同被认为时一组，符合规则1，不同组符合规则2</p>
-</li>
-<li><p>id 为 null ，标识临时表</p>
-</li>
-</ol>
-<h3 id="4-2、select-type"><a href="#4-2、select-type" class="headerlink" title="4-2、select_type"></a>4-2、select_type</h3><p>常见和常用的值有如下几种：</p>
-<table>
-<thead>
-<tr>
-<th>select查询计划的类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>SIMPLE</td>
-<td>简单的select查询，查询中不包含子查询或者UNION</td>
-</tr>
-<tr>
-<td>PRIMARY</td>
-<td>查询中若包含任何复杂的子部分，最外层查询则被标记为PRIMARY</td>
-</tr>
-<tr>
-<td>DEPENDENT SUBQUERY</td>
-<td>在SELECT或WHERE列表中包含了子查询</td>
-</tr>
-<tr>
-<td>DERIVED</td>
-<td>在FROM列表中包含的子查询被标记为DERIVED（衍生），MySQL会递归执行这些子查询，把结果放在临时表中</td>
-</tr>
-<tr>
-<td>UNION</td>
-<td>若第二个SELECT出现在UNION之后，则被标记为UNION：若UNION包含在FROM子句的子查询中，外层SELECT将被标记为：DERIVED</td>
-</tr>
-<tr>
-<td>UNION RESULT</td>
-<td>从UNION表获取结果的SELECT</td>
-</tr>
-</tbody></table>
-<h3 id="4-3、table"><a href="#4-3、table" class="headerlink" title="4-3、table"></a>4-3、table</h3><p>指的就是当前执行的表</p>
-<h3 id="4-4、partitions"><a href="#4-4、partitions" class="headerlink" title="4-4、partitions"></a>4-4、partitions</h3><h3 id="4-5、type"><a href="#4-5、type" class="headerlink" title="4-5、type"></a>4-5、type</h3><p>type包含的类型包括如下所示的几种：</p>
-<table>
-<thead>
-<tr>
-<th>效率（小=高效）</th>
-<th>类型名</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>system</td>
-<td>表只有一行记录（等于系统表），这是const类型的特列，平时不会出现，这个也可以忽略不计</td>
-</tr>
-<tr>
-<td>2</td>
-<td>const</td>
-<td>表示通过索引一次就找到了，const用于比较primary key 或者unique索引。因为只匹配一行数据，所以很快。如将主键置于where列表中，MySQL就能将该查询转换为一个常量。</td>
-</tr>
-<tr>
-<td>3</td>
-<td>eq_ref</td>
-<td>唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描</td>
-</tr>
-<tr>
-<td>4（荐）</td>
-<td>ref</td>
-<td>非唯一性索引扫描，返回匹配某个单独值的所有行，本质上也是一种索引访问，它返回所有匹配某个单独值的行，然而，它可能会找到多个符合条件的行，所以他应该属于查找和扫描的混合体。</td>
-</tr>
-<tr>
-<td>5（荐）</td>
-<td>range</td>
-<td>只检索给定范围的行，使用一个索引来选择行，key列显示使用了哪个索引，一般就是在你的where语句中出现between、&lt; 、&gt;、in等的查询，这种范围扫描索引比全表扫描要好，因为它只需要开始于索引的某一点，而结束于另一点，不用扫描全部索引。</td>
-</tr>
-<tr>
-<td>6</td>
-<td>index</td>
-<td>Full Index Scan，Index与All区别为index类型只遍历索引树。这通常比ALL快，因为索引文件通常比数据文件小。（也就是说虽然all和Index都是读全表，但index是从索引中读取的，而all是从硬盘读取的）</td>
-</tr>
-<tr>
-<td>7</td>
-<td>all</td>
-<td>Full Table Scan 将遍历全表以找到匹配的行</td>
-</tr>
-</tbody></table>
-<h3 id="4-6、possible-keys"><a href="#4-6、possible-keys" class="headerlink" title="4-6、possible_keys"></a>4-6、possible_keys</h3><p>显示可能应用在这张表中的索引，一个或多个。查询涉及到的字段上若存在索引，则该索引将被列出，<strong>但不一定被查询实际使用</strong>。</p>
-<h3 id="4-7、key"><a href="#4-7、key" class="headerlink" title="4-7、key"></a>4-7、key</h3><ul>
-<li><p>实际使用的索引，如果为NULL，则没有使用索引。（可能原因包括没有建立索引或索引失效）</p>
-</li>
-<li><p>查询中若使用了<code>覆盖索引</code>（select 后要查询的字段刚好和创建的索引字段完全相同），则该索引仅出现在key列表中</p>
-</li>
-</ul>
-<h3 id="4-8、key-len"><a href="#4-8、key-len" class="headerlink" title="4-8、key_len"></a>4-8、key_len</h3><p>表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度，在<code>不损失精确性的情况下，长度越短越好</code>。key_len显示的值为索引字段的最大可能长度，并非实际使用长度，即key_len是根据表定义计算而得，不是通过表内检索出的。</p>
-<h3 id="4-9、ref"><a href="#4-9、ref" class="headerlink" title="4-9、ref"></a>4-9、ref</h3><p>显示索引的那一列被使用了，如果可能的话，最好是一个常数。哪些列或常量被用于查找索引列上的值。</p>
-<h3 id="4-10、rows"><a href="#4-10、rows" class="headerlink" title="4-10、rows"></a>4-10、rows</h3><p>根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数，也就是说，用的越少越好</p>
-<h3 id="4-11、filtered"><a href="#4-11、filtered" class="headerlink" title="4-11、filtered"></a>4-11、filtered</h3><h3 id="4-12、Extra"><a href="#4-12、Extra" class="headerlink" title="4-12、Extra"></a>4-12、Extra</h3><p>包含不适合在其他列中显式但十分重要的额外信息。</p>
-<table>
-<thead>
-<tr>
-<th>信息名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Using filesort</td>
-<td>见于order by；MySQL无法利用索引完成的排序操作称为“文件排序”。</td>
-</tr>
-<tr>
-<td>Using temporary</td>
-<td>MySQL在对查询结果排序时使用临时表。常见于排序order by和分组查询group by。</td>
-</tr>
-<tr>
-<td>Using index</td>
-<td>表示相应的select操作中使用了覆盖索引（Covering Index），避免访问了表的数据行，效率不错。如果同时出现using where，表明索引被用来执行索引键值的查找；如果没有同时出现using where，表明索引用来读取数据而非执行查找动作。</td>
-</tr>
-<tr>
-<td>Using where</td>
-<td>使用where子句，并且存在记录</td>
-</tr>
-<tr>
-<td>Using join buffer</td>
-<td>表明使用了连接缓存,比如说在查询的时候，多表join的次数非常多，那么将配置文件中的缓冲区的join buffer调大一些。</td>
-</tr>
-<tr>
-<td>impossible where</td>
-<td>w用where子句，但是条件恒为假 false.   （ a = x and a = y ）( a = x and a &lt;&gt; x)</td>
-</tr>
-<tr>
-<td>select tables optimized away</td>
-<td>在没有GROUPBY子句的情况下，基于索引优化MIN/MAX操作或者对于MyISAM存储引擎优化COUNT(*)操作，不必等到执行阶段再进行计算，查询执行计划生成的阶段即完成优化</td>
-</tr>
-<tr>
-<td>distinct</td>
-<td>优化distinct操作，在找到第一匹配的元组后即停止找同样值的动作</td>
-</tr>
-<tr>
-<td>no matching row in const table</td>
-<td>使用where子句，但是没有找到记录</td>
-</tr>
-</tbody></table>
-<p>执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-- id 为主键，ee_no是唯一索引</span><br><span class="line"></span><br><span class="line">-- order by</span><br><span class="line">-- using filesort</span><br><span class="line">explain select * from employee order by ee_no desc;</span><br><span class="line">-- using index</span><br><span class="line">explain select ee_no from employee order by ee_no desc;</span><br><span class="line">-- NULL</span><br><span class="line">explain select ee_no from employee order by id desc;</span><br><span class="line"></span><br><span class="line">-- Using index</span><br><span class="line">explain select count(*) from employee;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><ul>
-<li>推荐：<a target="_blank" rel="noopener" href="https://blog.csdn.net/why15732625998/article/details/80388236">https://blog.csdn.net/why15732625998/article/details/80388236</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/11/mysql-explain-%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-使用案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/10/mysql-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">mysql 使用案例</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/10/mysql-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2020-11-10T09:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
-<li>记录各查询语句</li>
-<li>分析语句效率</li>
-</ul>
-<h3 id="场景设定"><a href="#场景设定" class="headerlink" title="场景设定"></a>场景设定</h3><p>某个产品表，包含产品编号，产品名称，产品类型，产品价格，生产部门</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table product (</span><br><span class="line">	product_id int,</span><br><span class="line">	product_name varchar(32),</span><br><span class="line">	product_type varchar(16),</span><br><span class="line">	product_price double,</span><br><span class="line">	dept_id int</span><br><span class="line">) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8mb4;</span><br></pre></td></tr></table></figure>
-<p>添加索引</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">unique</span> <span class="keyword">index</span> UK_product_name <span class="keyword">on</span> student (<span class="keyword">name</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h3><p>准备txt文件</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1	A	s	100.1	2</span><br><span class="line">2	B	a	312.0	4</span><br><span class="line">3	C	s	324.3	3</span><br><span class="line">4	D	s	123.6	3</span><br><span class="line">5	E	c	123.0	2</span><br><span class="line">6	F	s	100.1	2</span><br><span class="line">7	G	a	312.0	4</span><br><span class="line">8	H	s	324.3	4</span><br><span class="line">9	D	s	123.6	3</span><br><span class="line">10	I	c	123.0	2</span><br></pre></td></tr></table></figure>
-
-<p>导入数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data local infile &quot;&#x2F;root&#x2F;data.txt&quot; into table product(product_id,product_name,product_type,product_price,dept_id);</span><br></pre></td></tr></table></figure>
-
-<h1 id="1、查询"><a href="#1、查询" class="headerlink" title="1、查询"></a>1、查询</h1><h2 id="1、-查询所有列"><a href="#1、-查询所有列" class="headerlink" title="1、 查询所有列"></a>1、 查询所有列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from product;</span><br><span class="line">-- explain select * from product;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、查询指定列"><a href="#2、查询指定列" class="headerlink" title="2、查询指定列"></a>2、查询指定列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT product_name,product_type,product_price FROM product;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、查询结果添加列"><a href="#3、查询结果添加列" class="headerlink" title="3、查询结果添加列"></a>3、查询结果添加列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT product_name AS &#39;产品名称&#39;,price FROM product;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、查询结果合并列"><a href="#4、查询结果合并列" class="headerlink" title="4、查询结果合并列"></a>4、查询结果合并列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT product_name,(servlet+jsp+html) AS &#39;总成绩&#39; FROM stu;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5、查询时去除重复记录"><a href="#5、查询时去除重复记录" class="headerlink" title="5、查询时去除重复记录"></a>5、查询时去除重复记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT sex FROM stu;</span><br></pre></td></tr></table></figure>
-
-<h2 id="6、"><a href="#6、" class="headerlink" title="6、"></a>6、</h2><h2 id="7、条件查询"><a href="#7、条件查询" class="headerlink" title="7、条件查询"></a>7、条件查询</h2><h2 id="8、查询列大于某值的记录"><a href="#8、查询列大于某值的记录" class="headerlink" title="8、查询列大于某值的记录"></a>8、查询列大于某值的记录</h2><h2 id="9、查询列不等于某值的记录"><a href="#9、查询列不等于某值的记录" class="headerlink" title="9、查询列不等于某值的记录"></a>9、查询列不等于某值的记录</h2><h2 id="10、查询列在某两个值间的记录"><a href="#10、查询列在某两个值间的记录" class="headerlink" title="10、查询列在某两个值间的记录"></a>10、查询列在某两个值间的记录</h2><h2 id="11、查询列为空的记录"><a href="#11、查询列为空的记录" class="headerlink" title="11、查询列为空的记录"></a>11、查询列为空的记录</h2><h2 id="12、查询列为空字符串的记录"><a href="#12、查询列为空字符串的记录" class="headerlink" title="12、查询列为空字符串的记录"></a>12、查询列为空字符串的记录</h2><h2 id="13、查询列不为空的记录"><a href="#13、查询列不为空的记录" class="headerlink" title="13、查询列不为空的记录"></a>13、查询列不为空的记录</h2><h2 id="14、查询列包含关键字的记录"><a href="#14、查询列包含关键字的记录" class="headerlink" title="14、查询列包含关键字的记录"></a>14、查询列包含关键字的记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM product WHERE pro_name LIKE &#39;%索尼%&#39;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="15、查询列列为为两个字的记录"><a href="#15、查询列列为为两个字的记录" class="headerlink" title="15、查询列列为为两个字的记录"></a>15、查询列列为为两个字的记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM stu WHERE sname LIKE &#39;__&#39;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="16、统计某列的累加和"><a href="#16、统计某列的累加和" class="headerlink" title="16、统计某列的累加和"></a>16、统计某列的累加和</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUM(servlet) FROM stu;</span><br></pre></td></tr></table></figure>
-
-<h2 id="17、统计某列的平均值"><a href="#17、统计某列的平均值" class="headerlink" title="17、统计某列的平均值"></a>17、统计某列的平均值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT AVG(servlet) FROM stu;</span><br></pre></td></tr></table></figure>
-
-<h2 id="18、统计某列的最大值"><a href="#18、统计某列的最大值" class="headerlink" title="18、统计某列的最大值"></a>18、统计某列的最大值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT MAX(JSP) FROM stu;</span><br></pre></td></tr></table></figure>
-
-<h2 id="19、统计某列的最小值"><a href="#19、统计某列的最小值" class="headerlink" title="19、统计某列的最小值"></a>19、统计某列的最小值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(jsp) FROM stu;</span><br></pre></td></tr></table></figure>
-
-<h2 id="20、统计记录总数"><a href="#20、统计记录总数" class="headerlink" title="20、统计记录总数"></a>20、统计记录总数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT COUNT(*) FROM stu;</span><br></pre></td></tr></table></figure>
-
-<h2 id="21、查询并分页"><a href="#21、查询并分页" class="headerlink" title="21、查询并分页"></a>21、查询并分页</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM stu LIMIT 0,2;</span><br></pre></td></tr></table></figure>
-
-<h2 id="22、查询并排序"><a href="#22、查询并排序" class="headerlink" title="22、查询并排序"></a>22、查询并排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 升序</span><br><span class="line">SELECT * FROM stu ORDER BY html ASC;</span><br><span class="line">-- 倒序</span><br><span class="line">SELECT * FROM stu ORDER BY html DESC;</span><br></pre></td></tr></table></figure>
-
-<h2 id="23、查询出列和列包含的记录数"><a href="#23、查询出列和列包含的记录数" class="headerlink" title="23、查询出列和列包含的记录数"></a>23、查询出列和列包含的记录数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT sex,COUNT(*) FROM stu GROUP BY sex; </span><br></pre></td></tr></table></figure>
-
-<h2 id="24、查询出列和列包含的记录数大于某值"><a href="#24、查询出列和列包含的记录数大于某值" class="headerlink" title="24、查询出列和列包含的记录数大于某值"></a>24、查询出列和列包含的记录数大于某值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SEX,COUNT(*) FROM STU GROUP BY sex HAVING COUNT(*)&gt;2;</span><br></pre></td></tr></table></figure>
-
-<h1 id="2、添加索引"><a href="#2、添加索引" class="headerlink" title="2、添加索引"></a>2、添加索引</h1><p>作用：<strong>快速定位特定数据，**</strong>提高查询效率，确保数据的唯一性<strong>，</strong>快速定位特定数据**；可以加速表和表之间的连接，实现表与表之间的参照完整性，使用分组和排序语句进行数据检索时，可以显著减少分组和排序的时间全文检索字段进行搜索优化。</p>
-<p>通常来说，表的索引越多，其查询的速度也就越快。但是，表的insert/update速度则会降低。</p>
-<h2 id="1、添加PRIMARY-KEY（主键索引）"><a href="#1、添加PRIMARY-KEY（主键索引）" class="headerlink" title="1、添加PRIMARY KEY（主键索引）"></a>1、添加PRIMARY KEY（主键索引）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD PRIMARY KEY ( &#96;column&#96; ) </span><br></pre></td></tr></table></figure>
-
-<h2 id="2、添加UNIQUE-唯一索引"><a href="#2、添加UNIQUE-唯一索引" class="headerlink" title="2、添加UNIQUE(唯一索引)"></a>2、添加UNIQUE(唯一索引)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD UNIQUE ( &#96;column&#96; ) </span><br></pre></td></tr></table></figure>
-
-<h2 id="3、添加INDEX-普通索引"><a href="#3、添加INDEX-普通索引" class="headerlink" title="3、添加INDEX(普通索引)"></a>3、添加INDEX(普通索引)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD INDEX index_name ( &#96;column&#96; ) </span><br></pre></td></tr></table></figure>
-
-<h2 id="4、添加FULLTEXT-全文索引"><a href="#4、添加FULLTEXT-全文索引" class="headerlink" title="4、添加FULLTEXT(全文索引)"></a>4、添加FULLTEXT(全文索引)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD FULLTEXT ( &#96;column&#96;) </span><br></pre></td></tr></table></figure>
-
-<h2 id="5、添加多列索引"><a href="#5、添加多列索引" class="headerlink" title="5、添加多列索引"></a>5、添加多列索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD INDEX index_name ( &#96;column1&#96;, &#96;column2&#96;, &#96;column3&#96; )</span><br></pre></td></tr></table></figure>
-
-<h2 id="6、建表时增加索引"><a href="#6、建表时增加索引" class="headerlink" title="6、建表时增加索引"></a>6、建表时增加索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-- 普通索引</span><br><span class="line">CREATE TABLE customer(</span><br><span class="line">     id INT NOT NULL AUTO_INCREMENT,</span><br><span class="line">     name VARCHAR(20),</span><br><span class="line">     PRIMARY KEY(id)  UNIQUE KEY &#96;UK_student_name&#96; (&#96;name&#96;) </span><br><span class="line">)ENGINE&#x3D;INNODB DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 多列索引</span><br><span class="line">CREATE TABLE customer(</span><br><span class="line">     id INT NOT NULL AUTO_INCREMENT,</span><br><span class="line">     number int not null,</span><br><span class="line">     name VARCHAR(20),</span><br><span class="line">     PRIMARY KEY(id)  UNIQUE KEY &#96;UK_student_name&#96; (&#96;name&#96;,&#96;number&#96;) </span><br><span class="line">)ENGINE&#x3D;INNODB DEFAULT CHARSET&#x3D;utf8;</span><br></pre></td></tr></table></figure>
-
-<h2 id="7、-创建唯一索引"><a href="#7、-创建唯一索引" class="headerlink" title="7、 创建唯一索引"></a>7、 创建唯一索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 创建唯一索引</span><br><span class="line">create unique index UK_student_name on student (name);</span><br></pre></td></tr></table></figure>
-
-<h1 id="3、添加约束"><a href="#3、添加约束" class="headerlink" title="3、添加约束"></a>3、添加约束</h1><p>作用：是<strong>为了保证数据的完整性</strong>而实现的摘自一套机制，它具体的根据各个不同的数据库的实现而有不同的工具（约束）</p>
-<p>命令：<code>add constraint</code></p>
-<h2 id="1、非空约束（not-null）"><a href="#1、非空约束（not-null）" class="headerlink" title="1、非空约束（not null）"></a>1、非空约束（not null）</h2><h2 id="2、自增约束-（auto-increment）"><a href="#2、自增约束-（auto-increment）" class="headerlink" title="2、自增约束 （auto_increment）"></a>2、自增约束 （auto_increment）</h2><h2 id="3、主键约束pk"><a href="#3、主键约束pk" class="headerlink" title="3、主键约束pk"></a>3、主键约束pk</h2><p>主键约束=not null + unique</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表格名称 add constraint 约束名称 增加的约束类型 （列名）</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint ppp primary key (id);</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、check约束"><a href="#4、check约束" class="headerlink" title="4、check约束"></a>4、check约束</h2><p>保证列中的值符合指定的条件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表名称 add constraint 约束名称 增加的约束类型 （列名）</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint xxx check(age&gt;20);</span><br></pre></td></tr></table></figure>
-
-<h2 id="5、unique约束uk"><a href="#5、unique约束uk" class="headerlink" title="5、unique约束uk"></a>5、unique约束uk</h2><p>unique约束的字段，要求必须是唯一的，但null除外；</p>
-<p>给列的数据追加的不重复的约束类型；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表名 add constraint 约束名称 约束类型（列名）</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint qwe unique(ename);</span><br></pre></td></tr></table></figure>
-
-<h2 id="6、默认约束default"><a href="#6、默认约束default" class="headerlink" title="6、默认约束default"></a>6、默认约束default</h2><p>此列的数据默认为一定的数据。给定默认的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表名称 add constraint 约束名称 约束类型 默认值） for 列名</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint jfsd default 10000 for gongzi;</span><br></pre></td></tr></table></figure>
-
-<h2 id="7、外键约束fk"><a href="#7、外键约束fk" class="headerlink" title="7、外键约束fk"></a>7、外键约束fk</h2><p>保证一个表中的数据匹配另一个表中的值的参照完整性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表名 add constraint 约束名称 约束类型 (列名) references 被引用的表名称 （列名）</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint jfkdsj foreign key (did) references dept (id);</span><br></pre></td></tr></table></figure>
-
-<h2 id><a href="#" class="headerlink" title></a></h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/10/mysql-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-OAuth-2-0-授权机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/10/OAuth-2-0-%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6/">OAuth 2.0 授权机制</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/10/OAuth-2-0-%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2020-11-09T17:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">OAuth</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">授权机制</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/10/OAuth-2-0-%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-分布式系统数据一致性方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/">分布式系统数据一致性方案</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  	<time datetime="2020-11-09T17:38:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/soundcode/p/5590710.html?from=androidqq">https://www.cnblogs.com/soundcode/p/5590710.html?from=androidqq</a></p>
-<h2 id="1、问题产生"><a href="#1、问题产生" class="headerlink" title="1、问题产生"></a>1、问题产生</h2><h2 id="2、原文"><a href="#2、原文" class="headerlink" title="2、原文"></a>2、原文</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/soundcode/p/5590710.html?from=androidqq">https://www.cnblogs.com/soundcode/p/5590710.html?from=androidqq</a></p>
-<p>编者按：本文由「高可用架构后花园」群讨论整理而成。</p>
-<p>有人的地方，就有江湖</p>
-<p>有江湖的地方，就有纷争</p>
-<p><strong>问题的起源</strong></p>
-<p>在电商等业务中，系统一般由多个独立的服务组成，如何解决分布式调用时候数据的一致性？ </p>
-<p>具体业务场景如下，比如一个业务操作，如果同时调用服务 A、B、C，需要满足要么同时成功；要么同时失败。A、B、C 可能是多个不同部门开发、部署在不同服务器上的远程服务。</p>
-<p>在分布式系统来说，如果不想牺牲一致性，CAP 理论告诉我们只能放弃可用性，这显然不能接受。为了便于讨论问题，先简单介绍下数据一致性的基础理论。</p>
-<p><strong>强一致</strong></p>
-<blockquote>
-<p>当更新操作完成之后，任何多个后续进程或者线程的访问都会返回最新的更新过的值。这种是对用户最友好的，就是用户上一次写什么，下一次就保证能读到什么。根据 CAP 理论，这种实现需要牺牲可用性。</p>
-</blockquote>
-<p><strong>弱一致性</strong></p>
-<blockquote>
-<p>系统并不保证续进程或者线程的访问都会返回最新的更新过的值。系统在数据写入成功之后，不承诺立即可以读到最新写入的值，也不会具体的承诺多久之后可以读到。</p>
-</blockquote>
-<p><strong>最终一致性</strong></p>
-<blockquote>
-<p>弱一致性的特定形式。系统保证在没有后续更新的前提下，系统<strong>最终</strong>返回上一次更新操作的值。在没有故障发生的前提下，不一致窗口的时间主要受通信延迟，系统负载和复制副本的个数影响。DNS 是一个典型的最终一致性系统。</p>
-</blockquote>
-<p>在工程实践上，为了保障系统的可用性，互联网系统大多将强一致性需求转换成最终一致性的需求，并通过系统执行幂等性的保证，保证数据的最终一致性。但在电商等场景中，对于数据一致性的解决方法和常见的互联网系统（如 MySQL 主从同步）又有一定区别，群友的讨论分成以下 6 种解决方案。</p>
-<p><strong>1. 规避分布式事务——业务整合</strong></p>
-<p>业务整合方案主要采用将接口整合到本地执行的方法。拿问题场景来说，则可以将服务 A、B、C 整合为一个服务 D 给业务，这个服务 D 再通过转换为本地事务的方式，比如服务 D 包含本地服务和服务 E，而服务 E 是本地服务 A ~ C 的整合。</p>
-<p><strong>优点：</strong>解决（规避）了分布式事务。</p>
-<p><strong>缺点：</strong>显而易见，把本来规划拆分好的业务，又耦合到了一起，业务职责不清晰，不利于维护。</p>
-<p>由于这个方法存在明显缺点，通常不建议使用。</p>
-<p><strong>2. 经典方案 - eBay 模式</strong></p>
-<p>此方案的核心是将需要分布式处理的任务通过消息日志的方式来异步执行。消息日志可以存储到本地文本、数据库或消息队列，再通过业务规则自动或人工发起重试。人工重试更多的是应用于支付场景，通过对账系统对事后问题的处理。</p>
-<p><strong>消息日志方案的核心是保证服务接口的幂等性。</strong></p>
-<p>考虑到网络通讯失败、数据丢包等原因，如果接口不能保证幂等性，数据的唯一性将很难保证。</p>
-<p>eBay 方式的主要思路如下。</p>
-<p><strong>Base：一种 Acid 的替代方案</strong></p>
-<p>此方案是 eBay 的架构师 Dan Pritchett 在 2008 年发表给 ACM 的文章，是一篇解释 BASE 原则，或者说最终一致性的经典文章。文中讨论了 BASE 与 ACID 原则在保证数据一致性的基本差异。</p>
-<p>如果 ACID 为分区的数据库提供一致性的选择，那么如何实现可用性呢？答案是</p>
-<p><strong>BASE (basically available, soft state, eventually consistent)</strong></p>
-<p>BASE 的可用性是通过<strong>支持局部故障</strong>而不是系统全局故障来实现的。下面是一个简单的例子：如果将用户分区在 5 个数据库服务器上，BASE 设计鼓励类似的处理方式，一个用户数据库的故障只影响这台特定主机那 20% 的用户。这里不涉及任何魔法，不过它确实可以带来更高的可感知的系统可用性。</p>
-<p>文章中描述了一个最常见的场景，如果产生了一笔交易，需要在交易表增加记录，同时还要修改用户表的金额。这两个表属于不同的远程服务，所以就涉及到分布式事务一致性的问题。</p>
-<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xaggg0bj30cq09mq3h.jpg" alt="img"></p>
-<p>文中提出了一个经典的解决方法，将主要修改操作以及更新用户表的消息<strong>放在一个本地事务</strong>来完成。同时为了避免重复消费用户表消息带来的问题，达到多次重试的幂等性，<strong>增加一个更新记录表 updates_applied</strong> 来记录已经处理过的消息。</p>
-<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xaq6ex2j30ct082wev.jpg" alt="img"></p>
-<p>系统的执行伪代码如下</p>
-<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xa82oomj30j30iawgc.jpg" alt="img"></p>
-<p>（点击可全屏缩放图片）</p>
-<p>基于以上方法，在第一阶段，通过本地的数据库的事务保障，增加了 transaction 表及消息队列 。</p>
-<p>在第二阶段，分别读出消息队列（但不删除），通过判断更新记录表 updates_applied 来检测相关记录是否被执行，未被执行的记录会修改 user 表，然后增加一条操作记录到 updates_applied，事务执行成功之后再删除队列。</p>
-<p>通过以上方法，达到了分布式系统的最终一致性。进一步了解 eBay 的方案可以参考文末链接。</p>
-<p><strong>3. 去哪儿网分布式事务方案</strong></p>
-<p>随着业务规模不断地扩大，电商网站一般都要面临拆分之路。就是将原来一个单体应用拆分成多个不同职责的子系统。比如以前可能将面向用户、客户和运营的功能都放在一个系统里，现在拆分为订单中心、代理商管理、运营系统、报价中心、库存管理等多个子系统。</p>
-<p><strong>拆分首先要面临的是什么呢？</strong></p>
-<p>最开始的单体应用所有功能都在一起，存储也在一起。比如运营要取消某个订单，那直接去更新订单表状态，然后更新库存表就 ok 了。因为是单体应用，库在一起，这些都可以在一个事务里，由关系数据库来保证一致性。</p>
-<p>但拆分之后就不同了，不同的子系统都有自己的存储。比如订单中心就只管理自己的订单库，而库存管理也有自己的库。那么运营系统取消订单的时候就是通过接口调用等方式来调用订单中心和库存管理的服务了，而不是直接去操作库。这就涉及一个『<strong>分布式事务</strong>』的问题。 </p>
-<p>分布式事务有两种解决方式</p>
-<p><strong>1. 优先使用异步消息。</strong></p>
-<p>上文已经说过，使用异步消息 Consumer 端需要实现幂等。</p>
-<p>幂等有两种方式，<strong>一种方式是业务逻辑保证幂等</strong>。比如接到支付成功的消息订单状态变成支付完成，如果当前状态是支付完成，则再收到一个支付成功的消息则说明消息重复了，直接作为消息成功处理。</p>
-<p><strong>另外一种方式如果业务逻辑无法保证幂等，则要增加一个去重表或者类似的实现</strong>。对于 producer 端在业务数据库的同实例上放一个消息库，发消息和业务操作在同一个本地事务里。发消息的时候消息并不立即发出，而是向消息库插入一条消息记录，然后在事务提交的时候再异步将消息发出，发送消息如果成功则将消息库里的消息删除，如果遇到消息队列服务异常或网络问题，消息没有成功发出那么消息就留在这里了，会有另外一个服务不断地将这些消息扫出重新发送。</p>
-<p><strong>2. 有的业务不适合异步消息的方式，事务的各个参与方都需要同步的得到结果。</strong>这种情况的实现方式其实和上面类似，每个参与方的本地业务库的同实例上面放一个事务记录库。</p>
-<p>比如 A 同步调用 B，C。A 本地事务成功的时候更新本地事务记录状态，B 和 C 同样。如果有一次 A 调用 B 失败了，这个失败可能是 B 真的失败了，也可能是调用超时，实际 B 成功。则由一个中心服务对比三方的事务记录表，做一个最终决定。假设现在三方的事务记录是 A 成功，B 失败，C 成功。那么最终决定有两种方式，根据具体场景：</p>
-<ol>
-<li>重试 B，直到 B 成功，事务记录表里记录了各项调用参数等信息；</li>
-<li>执行 A 和 B 的补偿操作(一种可行的补偿方式是回滚)。</li>
-</ol>
-<p>对 b 场景做一个特殊说明：比如 B 是扣库存服务，在第一次调用的时候因为某种原因失败了，但是重试的时候库存已经变为 0，无法重试成功，这个时候只有回滚 A 和 C 了。</p>
-<p>那么可能有人觉得在业务库的同实例里放消息库或事务记录库，会对业务侵入，业务还要关心这个库，是否一个合理的设计？</p>
-<p>实际上可以依靠运维的手段来简化开发的侵入，我们的方法是让 DBA 在公司所有 MySQL 实例上预初始化这个库，通过框架层（消息的客户端或事务 RPC 框架）透明的在背后操作这个库，业务开发人员只需要关心自己的业务逻辑，不需要直接访问这个库。</p>
-<p>总结起来，其实两种方式的根本原理是类似的，也就是<strong>将分布式事务转换为多个本地事务，然后依靠重试等方式达到最终一致性</strong>。</p>
-<p><strong>4. 蘑菇街交易创建过程中的分布式一致性方案</strong></p>
-<p><strong>交易创建的一般性流程</strong></p>
-<p>我们把交易创建流程抽象出一系列可扩展的功能点，每个功能点都可以有多个实现（具体的实现之间有组合/互斥关系）。把各个功能点按照一定流程串起来，就完成了交易创建的过程。 </p>
-<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xdryziuj30i008d0tu.jpg" alt="img"></p>
-<p><strong>面临的问题</strong></p>
-<p>每个功能点的实现都可能会依赖外部服务。那么如何保证各个服务之间的数据是一致的呢？比如锁定优惠券服务调用超时了，不能确定到底有没有锁券成功，该如何处理？再比如锁券成功了，但是扣减库存失败了，该如何处理？</p>
-<p><strong>方案选型</strong></p>
-<p>服务依赖过多，会带来管理复杂性增加和稳定性风险增大的问题。试想如果我们强依赖 10 个服务，9 个都执行成功了，最后一个执行失败了，那么是不是前面 9 个都要回滚掉？这个成本还是非常高的。</p>
-<p>所以在拆分大的流程为多个小的本地事务的前提下，对于非实时、非强一致性的关联业务写入，在本地事务执行成功后，我们选择发消息通知、关联事务异步化执行的方案。</p>
-<p><strong>消息通知往往不能保证 100% 成功；且消息通知后，接收方业务是否能执行成功还是未知数。前者问题可以通过重试解决；后者可以选用事务消息来保证。</strong></p>
-<p>但是事务消息框架本身会给业务代码带来侵入性和复杂性，所以我们选择<strong>基于 DB 事件变化通知到 MQ 的方式</strong>做系统间解耦，通过订阅方消费 MQ 消息时的 ACK 机制，保证消息一定消费成功，达到最终一致性。由于消息可能会被重发，消息订阅方业务逻辑处理要做好幂等保证。</p>
-<p>所以目前只剩下需要实时同步做、有强一致性要求的业务场景了。在交易创建过程中，锁券和扣减库存是这样的两个典型场景。</p>
-<p>要保证多个系统间数据一致，乍一看，必须要引入分布式事务框架才能解决。但引入非常重的类似二阶段提交分布式事务框架会带来复杂性的急剧上升；在电商领域，绝对的强一致是过于理想化的，我们可以选择准实时的最终一致性。</p>
-<p>我们在交易创建流程中，<strong>首先创建一个不可见订单</strong>，然后在同步调用锁券和扣减库存时，针对调用异常（失败或者超时），发出废单消息到MQ。如果消息发送失败，本地会做时间阶梯式的异步重试；优惠券系统和库存系统收到消息后，会进行判断是否需要做业务回滚，这样就准实时地保证了多个本地事务的最终一致性。</p>
-<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xeajfqkj30680i2wez.jpg" alt="img"></p>
-<p> <strong>5. 支付宝及蚂蚁金融云的分布式服务 \</strong>DTS** 方案**</p>
-<p>业界常用的还有支付宝的一种 xts 方案，由支付宝在 2PC 的基础上改进而来。主要思路如下，大部分信息引用自官方网站。</p>
-<p><strong>分布式事务服务简介</strong></p>
-<p>分布式事务服务 (Distributed Transaction Service, DTS) 是一个分布式事务框架，用来保障在大规模分布式环境下事务的最终一致性。DTS 从架构上分为 xts-client 和 xts-server 两部分，前者是一个嵌入客户端应用的 JAR 包，主要负责事务数据的写入和处理；后者是一个独立的系统，主要负责异常事务的恢复。</p>
-<p><strong>核心特性</strong></p>
-<p>传统关系型数据库的事务模型必须遵守 ACID 原则。在单数据库模式下，ACID 模型能有效保障数据的完整性，但是在大规模分布式环境下，一个业务往往会跨越多个数据库，如何保证这多个数据库之间的数据一致性，需要其他行之有效的策略。在 JavaEE 规范中使用 2PC (2 Phase Commit, 两阶段提交) 来处理跨 DB 环境下的事务问题，但是 2PC 是反可伸缩模式，也就是说，在事务处理过程中，参与者需要一直持有资源直到整个分布式事务结束。这样，当业务规模达到千万级以上时，2PC 的局限性就越来越明显，系统可伸缩性会变得很差。基于此，我们采用 BASE 的思想实现了一套类似 2PC 的分布式事务方案，这就是 DTS。DTS在充分保障分布式环境下高可用性、高可靠性的同时兼顾数据一致性的要求，其最大的特点是保证数据最终一致 (Eventually consistent)。</p>
-<p>简单的说，DTS 框架有如下特性：</p>
-<ul>
-<li>最终一致：事务处理过程中，会有短暂不一致的情况，但通过恢复系统，可以让事务的数据达到最终一致的目标。</li>
-<li>协议简单：DTS 定义了类似 2PC 的标准两阶段接口，业务系统只需要实现对应的接口就可以使用 DTS 的事务功能。</li>
-<li>与 RPC 服务协议无关：在 SOA 架构下，一个或多个 DB 操作往往被包装成一个一个的 Service，Service 与 Service 之间通过 RPC 协议通信。DTS 框架构建在 SOA 架构上，与底层协议无关。</li>
-<li>与底层事务实现无关： DTS 是一个抽象的基于 Service 层的概念，与底层事务实现无关，也就是说在 DTS 的范围内，无论是关系型数据库 MySQL，Oracle，还是 KV 存储 MemCache，或者列存数据库 HBase，只要将对其的操作包装成 DTS 的参与者，就可以接入到 DTS 事务范围内。</li>
-</ul>
-<p>以下是分布式事务框架的流程图 </p>
-<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xfuizhpj30a70b7q3x.jpg" alt="img"></p>
-<p><strong>实现</strong></p>
-<ol>
-<li>一个完整的业务活动由一个主业务服务与若干从业务服务组成。</li>
-<li>主业务服务负责发起并完成整个业务活动。</li>
-<li>从业务服务提供 TCC 型业务操作。</li>
-<li>业务活动管理器控制业务活动的一致性，它登记业务活动中的操作，并在活动提交时确认所有的两阶段事务的 confirm 操作，在业务活动取消时调用所有两阶段事务的 cancel 操作。”</li>
-</ol>
-<p><strong>与 2PC 协议比较</strong></p>
-<ol>
-<li>没有单独的 Prepare 阶段，降低协议成本</li>
-<li>系统故障容忍度高，恢复简单</li>
-</ol>
-<p><strong>6. 农信网数据一致性方案</strong></p>
-<p><strong>1. 电商业务</strong></p>
-<p>公司的支付部门，通过接入其它第三方支付系统来提供支付服务给业务部门，支付服务是一个基于 Dubbo 的 RPC 服务。</p>
-<p>对于业务部门来说，电商部门的订单支付，需要调用</p>
-<ol>
-<li>支付平台的支付接口来处理订单；</li>
-<li>同时需要调用积分中心的接口，按照业务规则，给用户增加积分。</li>
-</ol>
-<p>从业务规则上需要同时保证业务数据的实时性和一致性，也就是支付成功必须加积分。</p>
-<p>我们采用的方式是同步调用，首先处理本地事务业务。考虑到积分业务比较单一且业务影响低于支付，由积分平台提供增加与回撤接口。</p>
-<p>具体的流程是先调用积分平台增加用户积分，再调用支付平台进行支付处理，如果处理失败，catch 方法调用积分平台的回撤方法，将本次处理的积分订单回撤。</p>
-<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xgmb4wrj30hl09rgmn.jpg" alt="img"></p>
-<p>(点击图片可以全屏缩放)</p>
-<p><strong>2. 用户信息变更</strong></p>
-<p>公司的用户信息，统一由用户中心维护，而用户信息的变更需要同步给各业务子系统，业务子系统再根据变更内容，处理各自业务。用户中心作为 MQ 的 producer，添加通知给 MQ。APP Server 订阅该消息，同步本地数据信息，再处理相关业务比如 APP 退出下线等。</p>
-<p>我们采用异步消息通知机制，目前主要使用 ActiveMQ，基于 Virtual Topic 的订阅方式，保证单个业务集群订阅的单次消费。</p>
-<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xhl94fyj30hu08qt9j.jpg" alt="img"></p>
-<p><strong>总结</strong></p>
-<p>分布式服务对衍生的配套系统要求比较多，特别是我们基于消息、日志的最终一致性方案，需要考虑消息的积压、消费情况、监控、报警等。</p>
-<p><strong>参考资料</strong></p>
-<ul>
-<li><strong>Base: An Acid Alternative (eBay 方案)</strong></li>
-</ul>
-<p><em>In partitioned databases, trading some consistency for availability can lead to dramatic improvements in scalability.</em></p>
-<p>英文版 ： <a target="_blank" rel="noopener" href="http://queue.acm.org/detail.cfm?id=1394128">http://queue.acm.org/detail.cfm?id=1394128 </a></p>
-<p>中文版： <a target="_blank" rel="noopener" href="http://article.yeeyan.org/view/167444/125572">http://article.yeeyan.org/view/167444/125572</a></p>
-<ul>
-<li><strong>分布式事务服务 (DTS) <a target="_blank" rel="noopener" href="https://www.cloud.alipay.com/docs/middleware/xts/index.html">https://www.cloud.alipay.com/docs/middleware/xts/index.html</a></strong></li>
-</ul>
-<p><em>感谢\</em>李玉福、*余昭辉、蘑菇街七公提供方案，其他多位群成员对本文内容亦有贡献。*</p>
-<p><em>本文编辑李玉福、Tim Yang，转载请注明来自@高可用架构</em></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据一致性</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">方案</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据库比较和技术选型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/">数据库比较和技术选型</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-11-09T05:57:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="数据库排名"><a href="#数据库排名" class="headerlink" title="数据库排名"></a>数据库排名</h4><ul>
-<li>地址：<a target="_blank" rel="noopener" href="https://db-engines.com/en/ranking">https://db-engines.com/en/ranking</a></li>
-</ul>
-<h4 id="数据库细节"><a href="#数据库细节" class="headerlink" title="数据库细节"></a>数据库细节</h4><table>
-<thead>
-<tr>
-<th>数据库名</th>
-<th>类型</th>
-<th>详细信息</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>mysql</td>
-<td>关系数据库</td>
-<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/MySQL">https://db-engines.com/en/system/MySQL</a></td>
-</tr>
-<tr>
-<td>mongodb</td>
-<td>文档存储</td>
-<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/MongoDB">https://db-engines.com/en/system/MongoDB</a></td>
-</tr>
-<tr>
-<td>redis</td>
-<td>键值存储</td>
-<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/Redis">https://db-engines.com/en/system/Redis</a></td>
-</tr>
-<tr>
-<td>elasticsearch</td>
-<td>搜索引擎</td>
-<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/Elasticsearch">https://db-engines.com/en/system/Elasticsearch</a></td>
-</tr>
-<tr>
-<td>hbase</td>
-<td>宽列存储</td>
-<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/HBase">https://db-engines.com/en/system/HBase</a></td>
-</tr>
-</tbody></table>
-<h3 id="1、应用场景"><a href="#1、应用场景" class="headerlink" title="1、应用场景"></a>1、应用场景</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zsjabjj/article/details/82556292">https://blog.csdn.net/zsjabjj/article/details/82556292</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40dbc78711c8">https://www.jianshu.com/p/40dbc78711c8</a></p>
-<h3 id="1-1、mysql的应用场景"><a href="#1-1、mysql的应用场景" class="headerlink" title="1-1、mysql的应用场景"></a>1-1、mysql的应用场景</h3><p>使用场景</p>
-<p>1, 高度事务性的系统; 2, 重要数据, 关系性数据; 3, 需要sql语句的问题;</p>
-<p>优点</p>
-<p>1, 使用C和C++编写，并使用了多种编译器进行测试，保证源代码的可移植性； 2, 支持AIX、FreeBSD、HP-UX、Linux、Mac OS、NovellNetware、OpenBSD、OS/2 Wrap、Solaris、Windows等多种操作系统； 3, 为多种编程语言提供了API。这些编程语言包括C、C++、Python、Java、Perl、PHP、Eiffel、Ruby和Tcl等； 4, 支持多线程，充分利用CPU资源； 5, 价格便宜：Mysql是开源的，所以不需要支付额外的费用； 6, MySQL使用标准的SQL数据语言形式</p>
-<p>缺点</p>
-<p>1, 比较难学； 2, MySQL也缺乏一些存储程序的功能； 3, 使用缺省的ip端口，但是有时候这些ip也会被一些黑客闯入； 4, 使用myisam配置，如果你不慎损坏数据库，结果可能会导致所有的数据丢失</p>
-<h3 id="1-2、mongodb的应用场景"><a href="#1-2、mongodb的应用场景" class="headerlink" title="1-2、mongodb的应用场景"></a>1-2、mongodb的应用场景</h3><p>如果业务中存在大量复杂的事务逻辑操作，则不要用MongoDB数据库。</p>
-<p>使用场景主要由其核心3大特性决定，灵活文档模型 + 高可用复制集 + 可扩展分片集群</p>
-<p>使用场景</p>
-<p>1 网站数据 2 缓存 3 大尺寸，低价值的数据 4 高伸缩性的场景 5 用于对象及json数据的存储 6 一般数据存储 7 把mongodb当作MySQL的一个view，view是将表数据整合成业务数据的关键</p>
-<p>游戏场景，使用 MongoDB 存储游戏用户信息，用户的装备、积分等直接以内嵌文档的形式存储，方便查询、更新</p>
-<p>物流场景，使用 MongoDB 存储订单信息，订单状态在运送过程中会不断更新，以 MongoDB 内嵌数组的形式来存储，一次查询就能将订单所有的变更读取出来。</p>
-<p>社交场景，使用 MongoDB 存储存储用户信息，以及用户发表的朋友圈信息，通过地理位置索引实现附近的人、地点等功能</p>
-<p>物联网场景，使用 MongoDB 存储所有接入的智能设备信息，以及设备汇报的日志信息，并对这些信息进行多维度的分析</p>
-<p>视频直播，使用 MongoDB 存储用户信息、礼物信息等</p>
-<p>优点</p>
-<p>1 弱一致性，更能保证用户的访问速度 2 文档结构的存储方式，能够更便捷的获取数据 3 内置GridFS，高效存储二进制大对象 4 支持复制集，主备，互为主备，自动分片等特性 5 动态查询 6 全索引支持，扩展到内部对象和内嵌数组</p>
-<p>缺点</p>
-<p>1 不支持事务 2 占用空间过大 3 维护工具不够成熟</p>
-<h4 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h4><p>用在应用服务器的日志记录，查找起来比文本灵活，导出也很方便。也是给应用练手，从外围系统开始使用MongoDB。</p>
-<p>用在一些第三方信息的获取或者抓取，因为MongoDB的schema-less，所有格式灵活，不用为了各种格式不一样的信息专门设计统一的格式，极大得减少开发的工作。</p>
-<h4 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h4><p>mongodb之前有用过，主要用来存储一些监控数据，No schema 对开发人员来说，真的很方便，增加字段不用改表结构，而且学习成本极低。</p>
-<h4 id="案例3"><a href="#案例3" class="headerlink" title="案例3"></a>案例3</h4><p>使用MongoDB做了O2O快递应用，·将送快递骑手、快递商家的信息（包含位置信息）存储在 MongoDB，然后通过 MongoDB 的地理位置查询，这样很方便的实现了查找附近的商家、骑手等功能，使得快递骑手能就近接单，目前在使用MongoDB 上没遇到啥大的问题，官网的文档比较详细，很给力。</p>
-<p>经常跟一些同学讨论 MongoDB 业务场景时，会听到类似『你这个场景 mysql 也能解决，没必要一定用 MongoDB』的声音，的确，并没有某个业务场景必须要使用 MongoDB才能解决，但使用 MongoDB 通常能让你以更低的成本解决问题（包括学习、开发、运维等成本），下面是 MongoDB 的主要特性，大家可以对照自己的业务需求看看，匹配的越多，用 MongoDB 就越合适。</p>
-<h3 id="1-3、redis的应用场景"><a href="#1-3、redis的应用场景" class="headerlink" title="1-3、redis的应用场景"></a>1-3、redis的应用场景</h3><p>原文：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40dbc78711c8">https://www.jianshu.com/p/40dbc78711c8</a></p>
-<p>使用场景</p>
-<p>1, 取最新N个数据的操作 2, 排行榜应用, 取top N 操作 3, 需要精准设定过期时间的应用 4, 计数器应用 5, uniq 操作，获取某段时间所有数据排重值 6, pub/sub 构建实时消息系统 7, 构建队列系统 8, 缓存</p>
-<p>优点</p>
-<p>1 读写性能优异 2 支持数据持久化，支持AOF 和 RDB 两种持久化方式 3 支持主从复制，主机会自动将数据同步到从机，可以进行读写分离 4 数据结构丰富 有string，hash，set，sortedset，list</p>
-<p>缺点</p>
-<p>1 不具备自动容错和恢复功能 2 较难支持在线扩容</p>
-<h4 id="1-3-1、热点数据缓存"><a href="#1-3-1、热点数据缓存" class="headerlink" title="1-3-1、热点数据缓存"></a>1-3-1、热点数据缓存</h4><p>由于redis访问速度块、支持的数据类型比较丰富，所以redis很适合用来存储热点数据，另外结合expire，我们可以设置过期时间然后再进行缓存更新操作，这个功能最为常见，我们几乎所有的项目都有所运用。</p>
-<h4 id="1-3-2、限时业务"><a href="#1-3-2、限时业务" class="headerlink" title="1-3-2、限时业务"></a>1-3-2、限时业务</h4><p>redis中可以使用expire命令设置一个键的生存时间，到时间后redis会删除它。利用这一特性可以运用在限时的优惠活动信息、手机验证码等业务场景。</p>
-<h4 id="1-3-3、计数器问题"><a href="#1-3-3、计数器问题" class="headerlink" title="1-3-3、计数器问题"></a>1-3-3、计数器问题</h4><p>redis由于incrby命令可以实现原子性的递增，所以可以运用于高并发的秒杀活动、分布式序列号的生成、具体业务还体现在比如限制一个手机号发多少条短信、一个接口一分钟限制多少请求、一个接口一天限制调用多少次等等。</p>
-<h4 id="1-3-4、排行榜"><a href="#1-3-4、排行榜" class="headerlink" title="1-3-4、排行榜"></a>1-3-4、排行榜</h4><p>关系型数据库在排行榜方面查询速度普遍偏慢，所以可以借助redis的SortedSet进行热点数据的排序。</p>
-<h4 id="1-3-5、分布式锁"><a href="#1-3-5、分布式锁" class="headerlink" title="1-3-5、分布式锁"></a>1-3-5、分布式锁</h4><p>这个主要利用redis的setnx命令进行，setnx：”set if not exists”就是如果不存在则成功设置缓存同时返回1，否则返回0 ，这个特性在俞你奔远方的后台中有所运用，因为我们服务器是集群的，定时任务可能在两台机器上都会运行，所以在定时任务中首先 通过setnx设置一个lock，如果成功设置则执行，如果没有成功设置，则表明该定时任务已执行。 当然结合具体业务，我们可以给这个lock加一个过期时间，比如说30分钟执行一次的定时任务，那么这个过期时间设置为小于30分钟的一个时间 就可以，这个与定时任务的周期以及定时任务执行消耗时间相关。</p>
-<p>当然我们可以将这个特性运用于其他需要分布式锁的场景中，结合过期时间主要是防止死锁的出现。</p>
-<h4 id="1-3-6、延时操作"><a href="#1-3-6、延时操作" class="headerlink" title="1-3-6、延时操作"></a>1-3-6、延时操作</h4><h4 id="1-3-7、分页、模糊搜索"><a href="#1-3-7、分页、模糊搜索" class="headerlink" title="1-3-7、分页、模糊搜索"></a>1-3-7、分页、模糊搜索</h4><h4 id="1-3-8、点赞、好友等相互关系的存储"><a href="#1-3-8、点赞、好友等相互关系的存储" class="headerlink" title="1-3-8、点赞、好友等相互关系的存储"></a>1-3-8、点赞、好友等相互关系的存储</h4><h4 id="1-3-9、队列"><a href="#1-3-9、队列" class="headerlink" title="1-3-9、队列"></a>1-3-9、队列</h4><h3 id="1-4、elasticsearch的应用场景"><a href="#1-4、elasticsearch的应用场景" class="headerlink" title="1-4、elasticsearch的应用场景"></a>1-4、elasticsearch的应用场景</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cdchencw/p/12449500.html">https://www.cnblogs.com/cdchencw/p/12449500.html</a></p>
-<p>使用场景</p>
-<ul>
-<li>搜索推荐</li>
-</ul>
-<p>类似于百度搜索引擎，信息流推荐，电商产品搜索等场景</p>
-<ul>
-<li>日志分析</li>
-</ul>
-<p>Elasicsearch诞生之初最先再运维圈流行，主要用于海量日志的存储分析</p>
-<ul>
-<li>指标监控</li>
-</ul>
-<p>主要适用于对于实时性要求不高的场景，比如按天监控统计服务性能与可用性等</p>
-<ul>
-<li>数据可视化</li>
-<li>其他近似实时性场景海量数据采集分析系统</li>
-</ul>
-<p>使用场景</p>
-<p>国外</p>
-<p>（1）维基百科，类似百度百科，牙膏，牙膏的维基百科，全文检索，高亮，搜索推荐<br>（2）The Guardian（国外新闻网站），类似搜狐新闻，用户行为日志（点击，浏览，收藏，评论）+社交网络数据（对某某新闻的相关看法），数据分析，给到每篇新闻文章的作者，让他知道他的文章的公众反馈（好，坏，热门，垃圾，鄙视，崇拜）</p>
-<p>（3）Stack Overflow（国外的程序异常讨论论坛），IT问题，程序的报错，提交上去，有人会跟你讨论和回答，全文检索，搜索相关问题和答案，程序报错了，就会将报错信息粘贴到里面去，搜索有没有对应的答案</p>
-<p>（4）GitHub（开源代码管理），搜索上千亿行代码<br>（5）电商网站，检索商品<br>（6）日志数据分析，logstash采集日志，ES进行复杂的数据分析（ELK技术，elasticsearch+logstash+kibana）</p>
-<p>（7）商品价格监控网站，用户设定某商品的价格阈值，当低于该阈值的时候，发送通知消息给用户，比如说订阅牙膏的监控，如果高露洁牙膏的家庭套装低于50块钱，就通知我，我就去买</p>
-<p>（8）BI系统，商业智能，Business Intelligence。比如说有个大型商场集团，BI，分析一下某某区域最近3年的用户消费金额的趋势以及用户群体的组成构成，产出相关的数张报表，*<em>区，最近3年，每年消费金额呈现</em>100%的增长，而且用户群体85%是高级白领，开一个新商场。ES执行数据分析和挖掘，Kibana进行数据可视化*<em>国内</em></p>
-<p>（9）国内：站内搜索（电商，招聘，门户，等等），IT系统搜索（OA，CRM，ERP，等等），数据分析（ES热门<em>的一个使用场景）</em></p>
-<p><strong>一、ElasticSearch使用场景</strong><br><strong>存储</strong><br>ElasticSearch天然支持分布式，具备存储海量数据的能力，其搜索和数据分析的功能都建立在ElasticSearch存储的海量的数据之上；ElasticSearch很方便的作为海量数据的存储工具，特别是在数据量急剧增长的当下，ElasticSearch结合爬虫等数据收集工具可以发挥很大用处</p>
-<p><strong>搜索</strong><br>ElasticSearch使用倒排索引，每个字段都被索引且可用于搜索，更是提供了丰富的搜索api，在海量数据下近实时实现近秒级的响应,基于Lucene的开源搜索引擎，为搜索引擎（全文检索，高亮，搜索推荐等）提供了检索的能力。 具体场景:<br><strong>1.</strong> Stack Overflow（国外的程序异常讨论论坛），IT问题，程序的报错，提交上去，有人会跟你讨论和回答，全文检索，搜索相关问题和答案，程序报错了，就会将报错信息粘贴到里面去，搜索有没有对应的答案；<br><strong>2.</strong> GitHub（开源代码管理），搜索上千亿行代码；<br><strong>3.</strong> 电商网站，检索商品；<br><strong>4.</strong> 日志数据分析，logstash采集日志，ElasticSearch进行复杂的数据分析（ELK技术，elasticsearch+logstash+kibana）；</p>
-<p><strong>数据分析</strong><br>ElasticSearch也提供了大量数据分析的api和丰富的聚合能力，支持在海量数据的基础上进行数据的分析和处理。具体场景：<br>爬虫爬取不同电商平台的某个商品的数据，通过ElasticSearch进行数据分析（各个平台的历史价格、购买力等等）；</p>
-<p>二、ElasticSearch架构</p>
-<p><img src="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/907596-20190724100748331-1344625827.png" alt="907596-20190724100748331-1344625827"></p>
-<h3 id="1-5、hbase的应用场景"><a href="#1-5、hbase的应用场景" class="headerlink" title="1-5、hbase的应用场景"></a>1-5、hbase的应用场景</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hbase-community/p/8629222.html">https://www.cnblogs.com/hbase-community/p/8629222.html</a></p>
-<p>HBase可以说是一个数据库，也可以说是一个存储。拥有双重属性的HBase天生就具备广阔的应用场景。在最近的一些版本中，引入了OffHeap降低gc影响，优化链路延迟，提供Replica等可以满足在线的需求。引入MOB，可以存储10M左右的对象，完全适应了对象存储。另外由于自身的并发能力、存储能力，可以说是具有最为竞争力的引擎</p>
-<ul>
-<li><p>对象存储：我们知道不少的头条类、新闻类的的新闻、网页、图片存储在HBase之中，一些病毒公司的病毒库也是存储在HBase之中</p>
-</li>
-<li><p>时序数据：HBase之上有OpenTSDB模块，可以满足时序类场景的需求</p>
-</li>
-<li><p>推荐画像：特别是用户的画像，是一个比较大的稀疏矩阵，蚂蚁的风控就是构建在HBase之上</p>
-</li>
-<li><p>时空数据：主要是轨迹、气象网格之类，滴滴打车的轨迹数据主要存在HBase之中，另外在技术所有大一点的数据量的车联网企业，数据都是存在HBase之中</p>
-</li>
-<li><p>CubeDB OLAP：Kylin一个cube分析工具，底层的数据就是存储在HBase之中，不少客户自己基于离线计算构建cube存储在hbase之中，满足在线报表查询的需求</p>
-</li>
-<li><p>消息/订单：在电信领域、银行领域，不少的订单查询底层的存储，另外不少通信、消息同步的应用构建在HBase之上</p>
-</li>
-<li><p>Feeds流：典型的应用就是xx朋友圈类似的应用</p>
-</li>
-<li><p>NewSQL：之上有Phoenix的插件，可以满足二级索引、SQL的需求，对接传统数据需要SQL非事务的需求</p>
-<p><img src="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/640.jpg" alt="640"></p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring引入的JavaConfig配置形式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/09/Spring%E5%BC%95%E5%85%A5%E7%9A%84JavaConfig%E9%85%8D%E7%BD%AE%E5%BD%A2%E5%BC%8F/">Spring引入的JavaConfig配置形式</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/09/Spring%E5%BC%95%E5%85%A5%E7%9A%84JavaConfig%E9%85%8D%E7%BD%AE%E5%BD%A2%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-11-08T20:53:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="JavaConfig-简介"><a href="#JavaConfig-简介" class="headerlink" title="JavaConfig 简介"></a>JavaConfig 简介</h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaConfig</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">配置</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/09/Spring%E5%BC%95%E5%85%A5%E7%9A%84JavaConfig%E9%85%8D%E7%BD%AE%E5%BD%A2%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1548,7 +1082,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 will
+    		&copy; 2022 will
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1804,6 +1338,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">IDE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
             
             <div class="clearfix"></div>

@@ -137,6 +137,1035 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql-explain-详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/11/mysql-explain-%E8%AF%A6%E8%A7%A3/">mysql explain 详解</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/11/mysql-explain-%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2020-11-10T20:01:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p>使用EXPLAIN关键字可以模拟优化器执行SQL查询语句，从而知道MySQL是如何处理你的SQL语句的。分析你的查询语句或是表结构的性能瓶颈。</p>
+<h2 id="2、分析结果"><a href="#2、分析结果" class="headerlink" title="2、分析结果"></a>2、分析结果</h2><ul>
+<li>表的读取顺序</li>
+<li>数据读取操作的操作类型</li>
+<li>哪些索引可以使用</li>
+<li>哪些索引被实际使用</li>
+<li>表之间的引用</li>
+<li>每张表有多少行被优化器查询</li>
+</ul>
+<h2 id="3、语句格式"><a href="#3、语句格式" class="headerlink" title="3、语句格式"></a>3、语句格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- EXPLAIN &lt;SQL语句&gt;</span><br><span class="line">EXPLAIN SELECT * FROM tbl;</span><br></pre></td></tr></table></figure>
+<h2 id="4、输出执行计划，包含的信息"><a href="#4、输出执行计划，包含的信息" class="headerlink" title="4、输出执行计划，包含的信息"></a>4、输出执行计划，包含的信息</h2><p>输出结果有12列，（MySQL-5.7.31）</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>执行计划的编号，包含一组数字，表示查询中执行select子句或操作表的顺序</td>
+</tr>
+<tr>
+<td>select_type</td>
+<td>select查询计划的类型，区分不同的执行计划</td>
+</tr>
+<tr>
+<td>table</td>
+<td>当前执行查询的表</td>
+</tr>
+<tr>
+<td>partitions</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>区分采用的查询方式</td>
+</tr>
+<tr>
+<td>possible_keys</td>
+<td>显示可能应用在这张表中的索引，一个或多个</td>
+</tr>
+<tr>
+<td>key</td>
+<td>实际使用的索引，如果为NULL，则没有使用索引</td>
+</tr>
+<tr>
+<td>key_len</td>
+<td>表示索引中使用的字节数</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>表示查询时，哪些列或常量被用于查找索引列上的值</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>估算出找到所需的记录所需要读取的行数</td>
+</tr>
+<tr>
+<td>filtered</td>
+<td></td>
+</tr>
+<tr>
+<td>Extra</td>
+<td>其他信息，通常可读方式告诉我们查询细节</td>
+</tr>
+</tbody></table>
+<h3 id="4-1、id"><a href="#4-1、id" class="headerlink" title="4-1、id"></a>4-1、id</h3><blockquote>
+<p>select查询的序列号，包含一组数字，表示查询中执行select子句或操作表的顺序</p>
+</blockquote>
+<ol>
+<li><p>id相同，执行顺序由上至下</p>
+</li>
+<li><p>id不同，如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行</p>
+</li>
+<li><p>id相同不同，同时存在;id相同被认为时一组，符合规则1，不同组符合规则2</p>
+</li>
+<li><p>id 为 null ，标识临时表</p>
+</li>
+</ol>
+<h3 id="4-2、select-type"><a href="#4-2、select-type" class="headerlink" title="4-2、select_type"></a>4-2、select_type</h3><p>常见和常用的值有如下几种：</p>
+<table>
+<thead>
+<tr>
+<th>select查询计划的类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SIMPLE</td>
+<td>简单的select查询，查询中不包含子查询或者UNION</td>
+</tr>
+<tr>
+<td>PRIMARY</td>
+<td>查询中若包含任何复杂的子部分，最外层查询则被标记为PRIMARY</td>
+</tr>
+<tr>
+<td>DEPENDENT SUBQUERY</td>
+<td>在SELECT或WHERE列表中包含了子查询</td>
+</tr>
+<tr>
+<td>DERIVED</td>
+<td>在FROM列表中包含的子查询被标记为DERIVED（衍生），MySQL会递归执行这些子查询，把结果放在临时表中</td>
+</tr>
+<tr>
+<td>UNION</td>
+<td>若第二个SELECT出现在UNION之后，则被标记为UNION：若UNION包含在FROM子句的子查询中，外层SELECT将被标记为：DERIVED</td>
+</tr>
+<tr>
+<td>UNION RESULT</td>
+<td>从UNION表获取结果的SELECT</td>
+</tr>
+</tbody></table>
+<h3 id="4-3、table"><a href="#4-3、table" class="headerlink" title="4-3、table"></a>4-3、table</h3><p>指的就是当前执行的表</p>
+<h3 id="4-4、partitions"><a href="#4-4、partitions" class="headerlink" title="4-4、partitions"></a>4-4、partitions</h3><h3 id="4-5、type"><a href="#4-5、type" class="headerlink" title="4-5、type"></a>4-5、type</h3><p>type包含的类型包括如下所示的几种：</p>
+<table>
+<thead>
+<tr>
+<th>效率（小=高效）</th>
+<th>类型名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>system</td>
+<td>表只有一行记录（等于系统表），这是const类型的特列，平时不会出现，这个也可以忽略不计</td>
+</tr>
+<tr>
+<td>2</td>
+<td>const</td>
+<td>表示通过索引一次就找到了，const用于比较primary key 或者unique索引。因为只匹配一行数据，所以很快。如将主键置于where列表中，MySQL就能将该查询转换为一个常量。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>eq_ref</td>
+<td>唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描</td>
+</tr>
+<tr>
+<td>4（荐）</td>
+<td>ref</td>
+<td>非唯一性索引扫描，返回匹配某个单独值的所有行，本质上也是一种索引访问，它返回所有匹配某个单独值的行，然而，它可能会找到多个符合条件的行，所以他应该属于查找和扫描的混合体。</td>
+</tr>
+<tr>
+<td>5（荐）</td>
+<td>range</td>
+<td>只检索给定范围的行，使用一个索引来选择行，key列显示使用了哪个索引，一般就是在你的where语句中出现between、&lt; 、&gt;、in等的查询，这种范围扫描索引比全表扫描要好，因为它只需要开始于索引的某一点，而结束于另一点，不用扫描全部索引。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>index</td>
+<td>Full Index Scan，Index与All区别为index类型只遍历索引树。这通常比ALL快，因为索引文件通常比数据文件小。（也就是说虽然all和Index都是读全表，但index是从索引中读取的，而all是从硬盘读取的）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>all</td>
+<td>Full Table Scan 将遍历全表以找到匹配的行</td>
+</tr>
+</tbody></table>
+<h3 id="4-6、possible-keys"><a href="#4-6、possible-keys" class="headerlink" title="4-6、possible_keys"></a>4-6、possible_keys</h3><p>显示可能应用在这张表中的索引，一个或多个。查询涉及到的字段上若存在索引，则该索引将被列出，<strong>但不一定被查询实际使用</strong>。</p>
+<h3 id="4-7、key"><a href="#4-7、key" class="headerlink" title="4-7、key"></a>4-7、key</h3><ul>
+<li><p>实际使用的索引，如果为NULL，则没有使用索引。（可能原因包括没有建立索引或索引失效）</p>
+</li>
+<li><p>查询中若使用了<code>覆盖索引</code>（select 后要查询的字段刚好和创建的索引字段完全相同），则该索引仅出现在key列表中</p>
+</li>
+</ul>
+<h3 id="4-8、key-len"><a href="#4-8、key-len" class="headerlink" title="4-8、key_len"></a>4-8、key_len</h3><p>表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度，在<code>不损失精确性的情况下，长度越短越好</code>。key_len显示的值为索引字段的最大可能长度，并非实际使用长度，即key_len是根据表定义计算而得，不是通过表内检索出的。</p>
+<h3 id="4-9、ref"><a href="#4-9、ref" class="headerlink" title="4-9、ref"></a>4-9、ref</h3><p>显示索引的那一列被使用了，如果可能的话，最好是一个常数。哪些列或常量被用于查找索引列上的值。</p>
+<h3 id="4-10、rows"><a href="#4-10、rows" class="headerlink" title="4-10、rows"></a>4-10、rows</h3><p>根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数，也就是说，用的越少越好</p>
+<h3 id="4-11、filtered"><a href="#4-11、filtered" class="headerlink" title="4-11、filtered"></a>4-11、filtered</h3><h3 id="4-12、Extra"><a href="#4-12、Extra" class="headerlink" title="4-12、Extra"></a>4-12、Extra</h3><p>包含不适合在其他列中显式但十分重要的额外信息。</p>
+<table>
+<thead>
+<tr>
+<th>信息名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Using filesort</td>
+<td>见于order by；MySQL无法利用索引完成的排序操作称为“文件排序”。</td>
+</tr>
+<tr>
+<td>Using temporary</td>
+<td>MySQL在对查询结果排序时使用临时表。常见于排序order by和分组查询group by。</td>
+</tr>
+<tr>
+<td>Using index</td>
+<td>表示相应的select操作中使用了覆盖索引（Covering Index），避免访问了表的数据行，效率不错。如果同时出现using where，表明索引被用来执行索引键值的查找；如果没有同时出现using where，表明索引用来读取数据而非执行查找动作。</td>
+</tr>
+<tr>
+<td>Using where</td>
+<td>使用where子句，并且存在记录</td>
+</tr>
+<tr>
+<td>Using join buffer</td>
+<td>表明使用了连接缓存,比如说在查询的时候，多表join的次数非常多，那么将配置文件中的缓冲区的join buffer调大一些。</td>
+</tr>
+<tr>
+<td>impossible where</td>
+<td>w用where子句，但是条件恒为假 false.   （ a = x and a = y ）( a = x and a &lt;&gt; x)</td>
+</tr>
+<tr>
+<td>select tables optimized away</td>
+<td>在没有GROUPBY子句的情况下，基于索引优化MIN/MAX操作或者对于MyISAM存储引擎优化COUNT(*)操作，不必等到执行阶段再进行计算，查询执行计划生成的阶段即完成优化</td>
+</tr>
+<tr>
+<td>distinct</td>
+<td>优化distinct操作，在找到第一匹配的元组后即停止找同样值的动作</td>
+</tr>
+<tr>
+<td>no matching row in const table</td>
+<td>使用where子句，但是没有找到记录</td>
+</tr>
+</tbody></table>
+<p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-- id 为主键，ee_no是唯一索引</span><br><span class="line"></span><br><span class="line">-- order by</span><br><span class="line">-- using filesort</span><br><span class="line">explain select * from employee order by ee_no desc;</span><br><span class="line">-- using index</span><br><span class="line">explain select ee_no from employee order by ee_no desc;</span><br><span class="line">-- NULL</span><br><span class="line">explain select ee_no from employee order by id desc;</span><br><span class="line"></span><br><span class="line">-- Using index</span><br><span class="line">explain select count(*) from employee;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><ul>
+<li>推荐：<a target="_blank" rel="noopener" href="https://blog.csdn.net/why15732625998/article/details/80388236">https://blog.csdn.net/why15732625998/article/details/80388236</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/11/mysql-explain-%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-使用案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/10/mysql-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">mysql 使用案例</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/10/mysql-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/" class="archive-article-date">
+  	<time datetime="2020-11-10T09:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>记录各查询语句</li>
+<li>分析语句效率</li>
+</ul>
+<h3 id="场景设定"><a href="#场景设定" class="headerlink" title="场景设定"></a>场景设定</h3><p>某个产品表，包含产品编号，产品名称，产品类型，产品价格，生产部门</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table product (</span><br><span class="line">	product_id int,</span><br><span class="line">	product_name varchar(32),</span><br><span class="line">	product_type varchar(16),</span><br><span class="line">	product_price double,</span><br><span class="line">	dept_id int</span><br><span class="line">) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8mb4;</span><br></pre></td></tr></table></figure>
+<p>添加索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">unique</span> <span class="keyword">index</span> UK_product_name <span class="keyword">on</span> student (<span class="keyword">name</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h3><p>准备txt文件</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1	A	s	100.1	2</span><br><span class="line">2	B	a	312.0	4</span><br><span class="line">3	C	s	324.3	3</span><br><span class="line">4	D	s	123.6	3</span><br><span class="line">5	E	c	123.0	2</span><br><span class="line">6	F	s	100.1	2</span><br><span class="line">7	G	a	312.0	4</span><br><span class="line">8	H	s	324.3	4</span><br><span class="line">9	D	s	123.6	3</span><br><span class="line">10	I	c	123.0	2</span><br></pre></td></tr></table></figure>
+
+<p>导入数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data local infile &quot;&#x2F;root&#x2F;data.txt&quot; into table product(product_id,product_name,product_type,product_price,dept_id);</span><br></pre></td></tr></table></figure>
+
+<h1 id="1、查询"><a href="#1、查询" class="headerlink" title="1、查询"></a>1、查询</h1><h2 id="1、-查询所有列"><a href="#1、-查询所有列" class="headerlink" title="1、 查询所有列"></a>1、 查询所有列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from product;</span><br><span class="line">-- explain select * from product;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、查询指定列"><a href="#2、查询指定列" class="headerlink" title="2、查询指定列"></a>2、查询指定列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT product_name,product_type,product_price FROM product;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、查询结果添加列"><a href="#3、查询结果添加列" class="headerlink" title="3、查询结果添加列"></a>3、查询结果添加列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT product_name AS &#39;产品名称&#39;,price FROM product;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、查询结果合并列"><a href="#4、查询结果合并列" class="headerlink" title="4、查询结果合并列"></a>4、查询结果合并列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT product_name,(servlet+jsp+html) AS &#39;总成绩&#39; FROM stu;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、查询时去除重复记录"><a href="#5、查询时去除重复记录" class="headerlink" title="5、查询时去除重复记录"></a>5、查询时去除重复记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT sex FROM stu;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、"><a href="#6、" class="headerlink" title="6、"></a>6、</h2><h2 id="7、条件查询"><a href="#7、条件查询" class="headerlink" title="7、条件查询"></a>7、条件查询</h2><h2 id="8、查询列大于某值的记录"><a href="#8、查询列大于某值的记录" class="headerlink" title="8、查询列大于某值的记录"></a>8、查询列大于某值的记录</h2><h2 id="9、查询列不等于某值的记录"><a href="#9、查询列不等于某值的记录" class="headerlink" title="9、查询列不等于某值的记录"></a>9、查询列不等于某值的记录</h2><h2 id="10、查询列在某两个值间的记录"><a href="#10、查询列在某两个值间的记录" class="headerlink" title="10、查询列在某两个值间的记录"></a>10、查询列在某两个值间的记录</h2><h2 id="11、查询列为空的记录"><a href="#11、查询列为空的记录" class="headerlink" title="11、查询列为空的记录"></a>11、查询列为空的记录</h2><h2 id="12、查询列为空字符串的记录"><a href="#12、查询列为空字符串的记录" class="headerlink" title="12、查询列为空字符串的记录"></a>12、查询列为空字符串的记录</h2><h2 id="13、查询列不为空的记录"><a href="#13、查询列不为空的记录" class="headerlink" title="13、查询列不为空的记录"></a>13、查询列不为空的记录</h2><h2 id="14、查询列包含关键字的记录"><a href="#14、查询列包含关键字的记录" class="headerlink" title="14、查询列包含关键字的记录"></a>14、查询列包含关键字的记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM product WHERE pro_name LIKE &#39;%索尼%&#39;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="15、查询列列为为两个字的记录"><a href="#15、查询列列为为两个字的记录" class="headerlink" title="15、查询列列为为两个字的记录"></a>15、查询列列为为两个字的记录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM stu WHERE sname LIKE &#39;__&#39;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="16、统计某列的累加和"><a href="#16、统计某列的累加和" class="headerlink" title="16、统计某列的累加和"></a>16、统计某列的累加和</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUM(servlet) FROM stu;</span><br></pre></td></tr></table></figure>
+
+<h2 id="17、统计某列的平均值"><a href="#17、统计某列的平均值" class="headerlink" title="17、统计某列的平均值"></a>17、统计某列的平均值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT AVG(servlet) FROM stu;</span><br></pre></td></tr></table></figure>
+
+<h2 id="18、统计某列的最大值"><a href="#18、统计某列的最大值" class="headerlink" title="18、统计某列的最大值"></a>18、统计某列的最大值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT MAX(JSP) FROM stu;</span><br></pre></td></tr></table></figure>
+
+<h2 id="19、统计某列的最小值"><a href="#19、统计某列的最小值" class="headerlink" title="19、统计某列的最小值"></a>19、统计某列的最小值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(jsp) FROM stu;</span><br></pre></td></tr></table></figure>
+
+<h2 id="20、统计记录总数"><a href="#20、统计记录总数" class="headerlink" title="20、统计记录总数"></a>20、统计记录总数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT COUNT(*) FROM stu;</span><br></pre></td></tr></table></figure>
+
+<h2 id="21、查询并分页"><a href="#21、查询并分页" class="headerlink" title="21、查询并分页"></a>21、查询并分页</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM stu LIMIT 0,2;</span><br></pre></td></tr></table></figure>
+
+<h2 id="22、查询并排序"><a href="#22、查询并排序" class="headerlink" title="22、查询并排序"></a>22、查询并排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 升序</span><br><span class="line">SELECT * FROM stu ORDER BY html ASC;</span><br><span class="line">-- 倒序</span><br><span class="line">SELECT * FROM stu ORDER BY html DESC;</span><br></pre></td></tr></table></figure>
+
+<h2 id="23、查询出列和列包含的记录数"><a href="#23、查询出列和列包含的记录数" class="headerlink" title="23、查询出列和列包含的记录数"></a>23、查询出列和列包含的记录数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT sex,COUNT(*) FROM stu GROUP BY sex; </span><br></pre></td></tr></table></figure>
+
+<h2 id="24、查询出列和列包含的记录数大于某值"><a href="#24、查询出列和列包含的记录数大于某值" class="headerlink" title="24、查询出列和列包含的记录数大于某值"></a>24、查询出列和列包含的记录数大于某值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SEX,COUNT(*) FROM STU GROUP BY sex HAVING COUNT(*)&gt;2;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2、添加索引"><a href="#2、添加索引" class="headerlink" title="2、添加索引"></a>2、添加索引</h1><p>作用：<strong>快速定位特定数据，**</strong>提高查询效率，确保数据的唯一性<strong>，</strong>快速定位特定数据**；可以加速表和表之间的连接，实现表与表之间的参照完整性，使用分组和排序语句进行数据检索时，可以显著减少分组和排序的时间全文检索字段进行搜索优化。</p>
+<p>通常来说，表的索引越多，其查询的速度也就越快。但是，表的insert/update速度则会降低。</p>
+<h2 id="1、添加PRIMARY-KEY（主键索引）"><a href="#1、添加PRIMARY-KEY（主键索引）" class="headerlink" title="1、添加PRIMARY KEY（主键索引）"></a>1、添加PRIMARY KEY（主键索引）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD PRIMARY KEY ( &#96;column&#96; ) </span><br></pre></td></tr></table></figure>
+
+<h2 id="2、添加UNIQUE-唯一索引"><a href="#2、添加UNIQUE-唯一索引" class="headerlink" title="2、添加UNIQUE(唯一索引)"></a>2、添加UNIQUE(唯一索引)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD UNIQUE ( &#96;column&#96; ) </span><br></pre></td></tr></table></figure>
+
+<h2 id="3、添加INDEX-普通索引"><a href="#3、添加INDEX-普通索引" class="headerlink" title="3、添加INDEX(普通索引)"></a>3、添加INDEX(普通索引)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD INDEX index_name ( &#96;column&#96; ) </span><br></pre></td></tr></table></figure>
+
+<h2 id="4、添加FULLTEXT-全文索引"><a href="#4、添加FULLTEXT-全文索引" class="headerlink" title="4、添加FULLTEXT(全文索引)"></a>4、添加FULLTEXT(全文索引)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD FULLTEXT ( &#96;column&#96;) </span><br></pre></td></tr></table></figure>
+
+<h2 id="5、添加多列索引"><a href="#5、添加多列索引" class="headerlink" title="5、添加多列索引"></a>5、添加多列索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD INDEX index_name ( &#96;column1&#96;, &#96;column2&#96;, &#96;column3&#96; )</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、建表时增加索引"><a href="#6、建表时增加索引" class="headerlink" title="6、建表时增加索引"></a>6、建表时增加索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-- 普通索引</span><br><span class="line">CREATE TABLE customer(</span><br><span class="line">     id INT NOT NULL AUTO_INCREMENT,</span><br><span class="line">     name VARCHAR(20),</span><br><span class="line">     PRIMARY KEY(id)  UNIQUE KEY &#96;UK_student_name&#96; (&#96;name&#96;) </span><br><span class="line">)ENGINE&#x3D;INNODB DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 多列索引</span><br><span class="line">CREATE TABLE customer(</span><br><span class="line">     id INT NOT NULL AUTO_INCREMENT,</span><br><span class="line">     number int not null,</span><br><span class="line">     name VARCHAR(20),</span><br><span class="line">     PRIMARY KEY(id)  UNIQUE KEY &#96;UK_student_name&#96; (&#96;name&#96;,&#96;number&#96;) </span><br><span class="line">)ENGINE&#x3D;INNODB DEFAULT CHARSET&#x3D;utf8;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、-创建唯一索引"><a href="#7、-创建唯一索引" class="headerlink" title="7、 创建唯一索引"></a>7、 创建唯一索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 创建唯一索引</span><br><span class="line">create unique index UK_student_name on student (name);</span><br></pre></td></tr></table></figure>
+
+<h1 id="3、添加约束"><a href="#3、添加约束" class="headerlink" title="3、添加约束"></a>3、添加约束</h1><p>作用：是<strong>为了保证数据的完整性</strong>而实现的摘自一套机制，它具体的根据各个不同的数据库的实现而有不同的工具（约束）</p>
+<p>命令：<code>add constraint</code></p>
+<h2 id="1、非空约束（not-null）"><a href="#1、非空约束（not-null）" class="headerlink" title="1、非空约束（not null）"></a>1、非空约束（not null）</h2><h2 id="2、自增约束-（auto-increment）"><a href="#2、自增约束-（auto-increment）" class="headerlink" title="2、自增约束 （auto_increment）"></a>2、自增约束 （auto_increment）</h2><h2 id="3、主键约束pk"><a href="#3、主键约束pk" class="headerlink" title="3、主键约束pk"></a>3、主键约束pk</h2><p>主键约束=not null + unique</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表格名称 add constraint 约束名称 增加的约束类型 （列名）</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint ppp primary key (id);</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、check约束"><a href="#4、check约束" class="headerlink" title="4、check约束"></a>4、check约束</h2><p>保证列中的值符合指定的条件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表名称 add constraint 约束名称 增加的约束类型 （列名）</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint xxx check(age&gt;20);</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、unique约束uk"><a href="#5、unique约束uk" class="headerlink" title="5、unique约束uk"></a>5、unique约束uk</h2><p>unique约束的字段，要求必须是唯一的，但null除外；</p>
+<p>给列的数据追加的不重复的约束类型；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表名 add constraint 约束名称 约束类型（列名）</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint qwe unique(ename);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、默认约束default"><a href="#6、默认约束default" class="headerlink" title="6、默认约束default"></a>6、默认约束default</h2><p>此列的数据默认为一定的数据。给定默认的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表名称 add constraint 约束名称 约束类型 默认值） for 列名</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint jfsd default 10000 for gongzi;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、外键约束fk"><a href="#7、外键约束fk" class="headerlink" title="7、外键约束fk"></a>7、外键约束fk</h2><p>保证一个表中的数据匹配另一个表中的值的参照完整性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 格式</span><br><span class="line">-- alter table 表名 add constraint 约束名称 约束类型 (列名) references 被引用的表名称 （列名）</span><br><span class="line">-- 例子</span><br><span class="line">alter table emp add constraint jfkdsj foreign key (did) references dept (id);</span><br></pre></td></tr></table></figure>
+
+<h2 id><a href="#" class="headerlink" title></a></h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/10/mysql-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-OAuth-2-0-授权机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/10/OAuth-2-0-%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6/">OAuth 2.0 授权机制</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/10/OAuth-2-0-%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2020-11-09T17:51:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">OAuth</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">授权机制</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/10/OAuth-2-0-%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-分布式系统数据一致性方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/">分布式系统数据一致性方案</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/" class="archive-article-date">
+  	<time datetime="2020-11-09T17:38:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/soundcode/p/5590710.html?from=androidqq">https://www.cnblogs.com/soundcode/p/5590710.html?from=androidqq</a></p>
+<h2 id="1、问题产生"><a href="#1、问题产生" class="headerlink" title="1、问题产生"></a>1、问题产生</h2><h2 id="2、原文"><a href="#2、原文" class="headerlink" title="2、原文"></a>2、原文</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/soundcode/p/5590710.html?from=androidqq">https://www.cnblogs.com/soundcode/p/5590710.html?from=androidqq</a></p>
+<p>编者按：本文由「高可用架构后花园」群讨论整理而成。</p>
+<p>有人的地方，就有江湖</p>
+<p>有江湖的地方，就有纷争</p>
+<p><strong>问题的起源</strong></p>
+<p>在电商等业务中，系统一般由多个独立的服务组成，如何解决分布式调用时候数据的一致性？ </p>
+<p>具体业务场景如下，比如一个业务操作，如果同时调用服务 A、B、C，需要满足要么同时成功；要么同时失败。A、B、C 可能是多个不同部门开发、部署在不同服务器上的远程服务。</p>
+<p>在分布式系统来说，如果不想牺牲一致性，CAP 理论告诉我们只能放弃可用性，这显然不能接受。为了便于讨论问题，先简单介绍下数据一致性的基础理论。</p>
+<p><strong>强一致</strong></p>
+<blockquote>
+<p>当更新操作完成之后，任何多个后续进程或者线程的访问都会返回最新的更新过的值。这种是对用户最友好的，就是用户上一次写什么，下一次就保证能读到什么。根据 CAP 理论，这种实现需要牺牲可用性。</p>
+</blockquote>
+<p><strong>弱一致性</strong></p>
+<blockquote>
+<p>系统并不保证续进程或者线程的访问都会返回最新的更新过的值。系统在数据写入成功之后，不承诺立即可以读到最新写入的值，也不会具体的承诺多久之后可以读到。</p>
+</blockquote>
+<p><strong>最终一致性</strong></p>
+<blockquote>
+<p>弱一致性的特定形式。系统保证在没有后续更新的前提下，系统<strong>最终</strong>返回上一次更新操作的值。在没有故障发生的前提下，不一致窗口的时间主要受通信延迟，系统负载和复制副本的个数影响。DNS 是一个典型的最终一致性系统。</p>
+</blockquote>
+<p>在工程实践上，为了保障系统的可用性，互联网系统大多将强一致性需求转换成最终一致性的需求，并通过系统执行幂等性的保证，保证数据的最终一致性。但在电商等场景中，对于数据一致性的解决方法和常见的互联网系统（如 MySQL 主从同步）又有一定区别，群友的讨论分成以下 6 种解决方案。</p>
+<p><strong>1. 规避分布式事务——业务整合</strong></p>
+<p>业务整合方案主要采用将接口整合到本地执行的方法。拿问题场景来说，则可以将服务 A、B、C 整合为一个服务 D 给业务，这个服务 D 再通过转换为本地事务的方式，比如服务 D 包含本地服务和服务 E，而服务 E 是本地服务 A ~ C 的整合。</p>
+<p><strong>优点：</strong>解决（规避）了分布式事务。</p>
+<p><strong>缺点：</strong>显而易见，把本来规划拆分好的业务，又耦合到了一起，业务职责不清晰，不利于维护。</p>
+<p>由于这个方法存在明显缺点，通常不建议使用。</p>
+<p><strong>2. 经典方案 - eBay 模式</strong></p>
+<p>此方案的核心是将需要分布式处理的任务通过消息日志的方式来异步执行。消息日志可以存储到本地文本、数据库或消息队列，再通过业务规则自动或人工发起重试。人工重试更多的是应用于支付场景，通过对账系统对事后问题的处理。</p>
+<p><strong>消息日志方案的核心是保证服务接口的幂等性。</strong></p>
+<p>考虑到网络通讯失败、数据丢包等原因，如果接口不能保证幂等性，数据的唯一性将很难保证。</p>
+<p>eBay 方式的主要思路如下。</p>
+<p><strong>Base：一种 Acid 的替代方案</strong></p>
+<p>此方案是 eBay 的架构师 Dan Pritchett 在 2008 年发表给 ACM 的文章，是一篇解释 BASE 原则，或者说最终一致性的经典文章。文中讨论了 BASE 与 ACID 原则在保证数据一致性的基本差异。</p>
+<p>如果 ACID 为分区的数据库提供一致性的选择，那么如何实现可用性呢？答案是</p>
+<p><strong>BASE (basically available, soft state, eventually consistent)</strong></p>
+<p>BASE 的可用性是通过<strong>支持局部故障</strong>而不是系统全局故障来实现的。下面是一个简单的例子：如果将用户分区在 5 个数据库服务器上，BASE 设计鼓励类似的处理方式，一个用户数据库的故障只影响这台特定主机那 20% 的用户。这里不涉及任何魔法，不过它确实可以带来更高的可感知的系统可用性。</p>
+<p>文章中描述了一个最常见的场景，如果产生了一笔交易，需要在交易表增加记录，同时还要修改用户表的金额。这两个表属于不同的远程服务，所以就涉及到分布式事务一致性的问题。</p>
+<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xaggg0bj30cq09mq3h.jpg" alt="img"></p>
+<p>文中提出了一个经典的解决方法，将主要修改操作以及更新用户表的消息<strong>放在一个本地事务</strong>来完成。同时为了避免重复消费用户表消息带来的问题，达到多次重试的幂等性，<strong>增加一个更新记录表 updates_applied</strong> 来记录已经处理过的消息。</p>
+<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xaq6ex2j30ct082wev.jpg" alt="img"></p>
+<p>系统的执行伪代码如下</p>
+<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xa82oomj30j30iawgc.jpg" alt="img"></p>
+<p>（点击可全屏缩放图片）</p>
+<p>基于以上方法，在第一阶段，通过本地的数据库的事务保障，增加了 transaction 表及消息队列 。</p>
+<p>在第二阶段，分别读出消息队列（但不删除），通过判断更新记录表 updates_applied 来检测相关记录是否被执行，未被执行的记录会修改 user 表，然后增加一条操作记录到 updates_applied，事务执行成功之后再删除队列。</p>
+<p>通过以上方法，达到了分布式系统的最终一致性。进一步了解 eBay 的方案可以参考文末链接。</p>
+<p><strong>3. 去哪儿网分布式事务方案</strong></p>
+<p>随着业务规模不断地扩大，电商网站一般都要面临拆分之路。就是将原来一个单体应用拆分成多个不同职责的子系统。比如以前可能将面向用户、客户和运营的功能都放在一个系统里，现在拆分为订单中心、代理商管理、运营系统、报价中心、库存管理等多个子系统。</p>
+<p><strong>拆分首先要面临的是什么呢？</strong></p>
+<p>最开始的单体应用所有功能都在一起，存储也在一起。比如运营要取消某个订单，那直接去更新订单表状态，然后更新库存表就 ok 了。因为是单体应用，库在一起，这些都可以在一个事务里，由关系数据库来保证一致性。</p>
+<p>但拆分之后就不同了，不同的子系统都有自己的存储。比如订单中心就只管理自己的订单库，而库存管理也有自己的库。那么运营系统取消订单的时候就是通过接口调用等方式来调用订单中心和库存管理的服务了，而不是直接去操作库。这就涉及一个『<strong>分布式事务</strong>』的问题。 </p>
+<p>分布式事务有两种解决方式</p>
+<p><strong>1. 优先使用异步消息。</strong></p>
+<p>上文已经说过，使用异步消息 Consumer 端需要实现幂等。</p>
+<p>幂等有两种方式，<strong>一种方式是业务逻辑保证幂等</strong>。比如接到支付成功的消息订单状态变成支付完成，如果当前状态是支付完成，则再收到一个支付成功的消息则说明消息重复了，直接作为消息成功处理。</p>
+<p><strong>另外一种方式如果业务逻辑无法保证幂等，则要增加一个去重表或者类似的实现</strong>。对于 producer 端在业务数据库的同实例上放一个消息库，发消息和业务操作在同一个本地事务里。发消息的时候消息并不立即发出，而是向消息库插入一条消息记录，然后在事务提交的时候再异步将消息发出，发送消息如果成功则将消息库里的消息删除，如果遇到消息队列服务异常或网络问题，消息没有成功发出那么消息就留在这里了，会有另外一个服务不断地将这些消息扫出重新发送。</p>
+<p><strong>2. 有的业务不适合异步消息的方式，事务的各个参与方都需要同步的得到结果。</strong>这种情况的实现方式其实和上面类似，每个参与方的本地业务库的同实例上面放一个事务记录库。</p>
+<p>比如 A 同步调用 B，C。A 本地事务成功的时候更新本地事务记录状态，B 和 C 同样。如果有一次 A 调用 B 失败了，这个失败可能是 B 真的失败了，也可能是调用超时，实际 B 成功。则由一个中心服务对比三方的事务记录表，做一个最终决定。假设现在三方的事务记录是 A 成功，B 失败，C 成功。那么最终决定有两种方式，根据具体场景：</p>
+<ol>
+<li>重试 B，直到 B 成功，事务记录表里记录了各项调用参数等信息；</li>
+<li>执行 A 和 B 的补偿操作(一种可行的补偿方式是回滚)。</li>
+</ol>
+<p>对 b 场景做一个特殊说明：比如 B 是扣库存服务，在第一次调用的时候因为某种原因失败了，但是重试的时候库存已经变为 0，无法重试成功，这个时候只有回滚 A 和 C 了。</p>
+<p>那么可能有人觉得在业务库的同实例里放消息库或事务记录库，会对业务侵入，业务还要关心这个库，是否一个合理的设计？</p>
+<p>实际上可以依靠运维的手段来简化开发的侵入，我们的方法是让 DBA 在公司所有 MySQL 实例上预初始化这个库，通过框架层（消息的客户端或事务 RPC 框架）透明的在背后操作这个库，业务开发人员只需要关心自己的业务逻辑，不需要直接访问这个库。</p>
+<p>总结起来，其实两种方式的根本原理是类似的，也就是<strong>将分布式事务转换为多个本地事务，然后依靠重试等方式达到最终一致性</strong>。</p>
+<p><strong>4. 蘑菇街交易创建过程中的分布式一致性方案</strong></p>
+<p><strong>交易创建的一般性流程</strong></p>
+<p>我们把交易创建流程抽象出一系列可扩展的功能点，每个功能点都可以有多个实现（具体的实现之间有组合/互斥关系）。把各个功能点按照一定流程串起来，就完成了交易创建的过程。 </p>
+<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xdryziuj30i008d0tu.jpg" alt="img"></p>
+<p><strong>面临的问题</strong></p>
+<p>每个功能点的实现都可能会依赖外部服务。那么如何保证各个服务之间的数据是一致的呢？比如锁定优惠券服务调用超时了，不能确定到底有没有锁券成功，该如何处理？再比如锁券成功了，但是扣减库存失败了，该如何处理？</p>
+<p><strong>方案选型</strong></p>
+<p>服务依赖过多，会带来管理复杂性增加和稳定性风险增大的问题。试想如果我们强依赖 10 个服务，9 个都执行成功了，最后一个执行失败了，那么是不是前面 9 个都要回滚掉？这个成本还是非常高的。</p>
+<p>所以在拆分大的流程为多个小的本地事务的前提下，对于非实时、非强一致性的关联业务写入，在本地事务执行成功后，我们选择发消息通知、关联事务异步化执行的方案。</p>
+<p><strong>消息通知往往不能保证 100% 成功；且消息通知后，接收方业务是否能执行成功还是未知数。前者问题可以通过重试解决；后者可以选用事务消息来保证。</strong></p>
+<p>但是事务消息框架本身会给业务代码带来侵入性和复杂性，所以我们选择<strong>基于 DB 事件变化通知到 MQ 的方式</strong>做系统间解耦，通过订阅方消费 MQ 消息时的 ACK 机制，保证消息一定消费成功，达到最终一致性。由于消息可能会被重发，消息订阅方业务逻辑处理要做好幂等保证。</p>
+<p>所以目前只剩下需要实时同步做、有强一致性要求的业务场景了。在交易创建过程中，锁券和扣减库存是这样的两个典型场景。</p>
+<p>要保证多个系统间数据一致，乍一看，必须要引入分布式事务框架才能解决。但引入非常重的类似二阶段提交分布式事务框架会带来复杂性的急剧上升；在电商领域，绝对的强一致是过于理想化的，我们可以选择准实时的最终一致性。</p>
+<p>我们在交易创建流程中，<strong>首先创建一个不可见订单</strong>，然后在同步调用锁券和扣减库存时，针对调用异常（失败或者超时），发出废单消息到MQ。如果消息发送失败，本地会做时间阶梯式的异步重试；优惠券系统和库存系统收到消息后，会进行判断是否需要做业务回滚，这样就准实时地保证了多个本地事务的最终一致性。</p>
+<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xeajfqkj30680i2wez.jpg" alt="img"></p>
+<p> <strong>5. 支付宝及蚂蚁金融云的分布式服务 \</strong>DTS** 方案**</p>
+<p>业界常用的还有支付宝的一种 xts 方案，由支付宝在 2PC 的基础上改进而来。主要思路如下，大部分信息引用自官方网站。</p>
+<p><strong>分布式事务服务简介</strong></p>
+<p>分布式事务服务 (Distributed Transaction Service, DTS) 是一个分布式事务框架，用来保障在大规模分布式环境下事务的最终一致性。DTS 从架构上分为 xts-client 和 xts-server 两部分，前者是一个嵌入客户端应用的 JAR 包，主要负责事务数据的写入和处理；后者是一个独立的系统，主要负责异常事务的恢复。</p>
+<p><strong>核心特性</strong></p>
+<p>传统关系型数据库的事务模型必须遵守 ACID 原则。在单数据库模式下，ACID 模型能有效保障数据的完整性，但是在大规模分布式环境下，一个业务往往会跨越多个数据库，如何保证这多个数据库之间的数据一致性，需要其他行之有效的策略。在 JavaEE 规范中使用 2PC (2 Phase Commit, 两阶段提交) 来处理跨 DB 环境下的事务问题，但是 2PC 是反可伸缩模式，也就是说，在事务处理过程中，参与者需要一直持有资源直到整个分布式事务结束。这样，当业务规模达到千万级以上时，2PC 的局限性就越来越明显，系统可伸缩性会变得很差。基于此，我们采用 BASE 的思想实现了一套类似 2PC 的分布式事务方案，这就是 DTS。DTS在充分保障分布式环境下高可用性、高可靠性的同时兼顾数据一致性的要求，其最大的特点是保证数据最终一致 (Eventually consistent)。</p>
+<p>简单的说，DTS 框架有如下特性：</p>
+<ul>
+<li>最终一致：事务处理过程中，会有短暂不一致的情况，但通过恢复系统，可以让事务的数据达到最终一致的目标。</li>
+<li>协议简单：DTS 定义了类似 2PC 的标准两阶段接口，业务系统只需要实现对应的接口就可以使用 DTS 的事务功能。</li>
+<li>与 RPC 服务协议无关：在 SOA 架构下，一个或多个 DB 操作往往被包装成一个一个的 Service，Service 与 Service 之间通过 RPC 协议通信。DTS 框架构建在 SOA 架构上，与底层协议无关。</li>
+<li>与底层事务实现无关： DTS 是一个抽象的基于 Service 层的概念，与底层事务实现无关，也就是说在 DTS 的范围内，无论是关系型数据库 MySQL，Oracle，还是 KV 存储 MemCache，或者列存数据库 HBase，只要将对其的操作包装成 DTS 的参与者，就可以接入到 DTS 事务范围内。</li>
+</ul>
+<p>以下是分布式事务框架的流程图 </p>
+<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xfuizhpj30a70b7q3x.jpg" alt="img"></p>
+<p><strong>实现</strong></p>
+<ol>
+<li>一个完整的业务活动由一个主业务服务与若干从业务服务组成。</li>
+<li>主业务服务负责发起并完成整个业务活动。</li>
+<li>从业务服务提供 TCC 型业务操作。</li>
+<li>业务活动管理器控制业务活动的一致性，它登记业务活动中的操作，并在活动提交时确认所有的两阶段事务的 confirm 操作，在业务活动取消时调用所有两阶段事务的 cancel 操作。”</li>
+</ol>
+<p><strong>与 2PC 协议比较</strong></p>
+<ol>
+<li>没有单独的 Prepare 阶段，降低协议成本</li>
+<li>系统故障容忍度高，恢复简单</li>
+</ol>
+<p><strong>6. 农信网数据一致性方案</strong></p>
+<p><strong>1. 电商业务</strong></p>
+<p>公司的支付部门，通过接入其它第三方支付系统来提供支付服务给业务部门，支付服务是一个基于 Dubbo 的 RPC 服务。</p>
+<p>对于业务部门来说，电商部门的订单支付，需要调用</p>
+<ol>
+<li>支付平台的支付接口来处理订单；</li>
+<li>同时需要调用积分中心的接口，按照业务规则，给用户增加积分。</li>
+</ol>
+<p>从业务规则上需要同时保证业务数据的实时性和一致性，也就是支付成功必须加积分。</p>
+<p>我们采用的方式是同步调用，首先处理本地事务业务。考虑到积分业务比较单一且业务影响低于支付，由积分平台提供增加与回撤接口。</p>
+<p>具体的流程是先调用积分平台增加用户积分，再调用支付平台进行支付处理，如果处理失败，catch 方法调用积分平台的回撤方法，将本次处理的积分订单回撤。</p>
+<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xgmb4wrj30hl09rgmn.jpg" alt="img"></p>
+<p>(点击图片可以全屏缩放)</p>
+<p><strong>2. 用户信息变更</strong></p>
+<p>公司的用户信息，统一由用户中心维护，而用户信息的变更需要同步给各业务子系统，业务子系统再根据变更内容，处理各自业务。用户中心作为 MQ 的 producer，添加通知给 MQ。APP Server 订阅该消息，同步本地数据信息，再处理相关业务比如 APP 退出下线等。</p>
+<p>我们采用异步消息通知机制，目前主要使用 ActiveMQ，基于 Virtual Topic 的订阅方式，保证单个业务集群订阅的单次消费。</p>
+<p><img src="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/006kbv1Jgw1f31xhl94fyj30hu08qt9j.jpg" alt="img"></p>
+<p><strong>总结</strong></p>
+<p>分布式服务对衍生的配套系统要求比较多，特别是我们基于消息、日志的最终一致性方案，需要考虑消息的积压、消费情况、监控、报警等。</p>
+<p><strong>参考资料</strong></p>
+<ul>
+<li><strong>Base: An Acid Alternative (eBay 方案)</strong></li>
+</ul>
+<p><em>In partitioned databases, trading some consistency for availability can lead to dramatic improvements in scalability.</em></p>
+<p>英文版 ： <a target="_blank" rel="noopener" href="http://queue.acm.org/detail.cfm?id=1394128">http://queue.acm.org/detail.cfm?id=1394128 </a></p>
+<p>中文版： <a target="_blank" rel="noopener" href="http://article.yeeyan.org/view/167444/125572">http://article.yeeyan.org/view/167444/125572</a></p>
+<ul>
+<li><strong>分布式事务服务 (DTS) <a target="_blank" rel="noopener" href="https://www.cloud.alipay.com/docs/middleware/xts/index.html">https://www.cloud.alipay.com/docs/middleware/xts/index.html</a></strong></li>
+</ul>
+<p><em>感谢\</em>李玉福、*余昭辉、蘑菇街七公提供方案，其他多位群成员对本文内容亦有贡献。*</p>
+<p><em>本文编辑李玉福、Tim Yang，转载请注明来自@高可用架构</em></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据一致性</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">方案</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据库比较和技术选型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/">数据库比较和技术选型</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2020-11-09T05:57:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="数据库排名"><a href="#数据库排名" class="headerlink" title="数据库排名"></a>数据库排名</h4><ul>
+<li>地址：<a target="_blank" rel="noopener" href="https://db-engines.com/en/ranking">https://db-engines.com/en/ranking</a></li>
+</ul>
+<h4 id="数据库细节"><a href="#数据库细节" class="headerlink" title="数据库细节"></a>数据库细节</h4><table>
+<thead>
+<tr>
+<th>数据库名</th>
+<th>类型</th>
+<th>详细信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mysql</td>
+<td>关系数据库</td>
+<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/MySQL">https://db-engines.com/en/system/MySQL</a></td>
+</tr>
+<tr>
+<td>mongodb</td>
+<td>文档存储</td>
+<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/MongoDB">https://db-engines.com/en/system/MongoDB</a></td>
+</tr>
+<tr>
+<td>redis</td>
+<td>键值存储</td>
+<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/Redis">https://db-engines.com/en/system/Redis</a></td>
+</tr>
+<tr>
+<td>elasticsearch</td>
+<td>搜索引擎</td>
+<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/Elasticsearch">https://db-engines.com/en/system/Elasticsearch</a></td>
+</tr>
+<tr>
+<td>hbase</td>
+<td>宽列存储</td>
+<td><a target="_blank" rel="noopener" href="https://db-engines.com/en/system/HBase">https://db-engines.com/en/system/HBase</a></td>
+</tr>
+</tbody></table>
+<h3 id="1、应用场景"><a href="#1、应用场景" class="headerlink" title="1、应用场景"></a>1、应用场景</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zsjabjj/article/details/82556292">https://blog.csdn.net/zsjabjj/article/details/82556292</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40dbc78711c8">https://www.jianshu.com/p/40dbc78711c8</a></p>
+<h3 id="1-1、mysql的应用场景"><a href="#1-1、mysql的应用场景" class="headerlink" title="1-1、mysql的应用场景"></a>1-1、mysql的应用场景</h3><p>使用场景</p>
+<p>1, 高度事务性的系统; 2, 重要数据, 关系性数据; 3, 需要sql语句的问题;</p>
+<p>优点</p>
+<p>1, 使用C和C++编写，并使用了多种编译器进行测试，保证源代码的可移植性； 2, 支持AIX、FreeBSD、HP-UX、Linux、Mac OS、NovellNetware、OpenBSD、OS/2 Wrap、Solaris、Windows等多种操作系统； 3, 为多种编程语言提供了API。这些编程语言包括C、C++、Python、Java、Perl、PHP、Eiffel、Ruby和Tcl等； 4, 支持多线程，充分利用CPU资源； 5, 价格便宜：Mysql是开源的，所以不需要支付额外的费用； 6, MySQL使用标准的SQL数据语言形式</p>
+<p>缺点</p>
+<p>1, 比较难学； 2, MySQL也缺乏一些存储程序的功能； 3, 使用缺省的ip端口，但是有时候这些ip也会被一些黑客闯入； 4, 使用myisam配置，如果你不慎损坏数据库，结果可能会导致所有的数据丢失</p>
+<h3 id="1-2、mongodb的应用场景"><a href="#1-2、mongodb的应用场景" class="headerlink" title="1-2、mongodb的应用场景"></a>1-2、mongodb的应用场景</h3><p>如果业务中存在大量复杂的事务逻辑操作，则不要用MongoDB数据库。</p>
+<p>使用场景主要由其核心3大特性决定，灵活文档模型 + 高可用复制集 + 可扩展分片集群</p>
+<p>使用场景</p>
+<p>1 网站数据 2 缓存 3 大尺寸，低价值的数据 4 高伸缩性的场景 5 用于对象及json数据的存储 6 一般数据存储 7 把mongodb当作MySQL的一个view，view是将表数据整合成业务数据的关键</p>
+<p>游戏场景，使用 MongoDB 存储游戏用户信息，用户的装备、积分等直接以内嵌文档的形式存储，方便查询、更新</p>
+<p>物流场景，使用 MongoDB 存储订单信息，订单状态在运送过程中会不断更新，以 MongoDB 内嵌数组的形式来存储，一次查询就能将订单所有的变更读取出来。</p>
+<p>社交场景，使用 MongoDB 存储存储用户信息，以及用户发表的朋友圈信息，通过地理位置索引实现附近的人、地点等功能</p>
+<p>物联网场景，使用 MongoDB 存储所有接入的智能设备信息，以及设备汇报的日志信息，并对这些信息进行多维度的分析</p>
+<p>视频直播，使用 MongoDB 存储用户信息、礼物信息等</p>
+<p>优点</p>
+<p>1 弱一致性，更能保证用户的访问速度 2 文档结构的存储方式，能够更便捷的获取数据 3 内置GridFS，高效存储二进制大对象 4 支持复制集，主备，互为主备，自动分片等特性 5 动态查询 6 全索引支持，扩展到内部对象和内嵌数组</p>
+<p>缺点</p>
+<p>1 不支持事务 2 占用空间过大 3 维护工具不够成熟</p>
+<h4 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h4><p>用在应用服务器的日志记录，查找起来比文本灵活，导出也很方便。也是给应用练手，从外围系统开始使用MongoDB。</p>
+<p>用在一些第三方信息的获取或者抓取，因为MongoDB的schema-less，所有格式灵活，不用为了各种格式不一样的信息专门设计统一的格式，极大得减少开发的工作。</p>
+<h4 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h4><p>mongodb之前有用过，主要用来存储一些监控数据，No schema 对开发人员来说，真的很方便，增加字段不用改表结构，而且学习成本极低。</p>
+<h4 id="案例3"><a href="#案例3" class="headerlink" title="案例3"></a>案例3</h4><p>使用MongoDB做了O2O快递应用，·将送快递骑手、快递商家的信息（包含位置信息）存储在 MongoDB，然后通过 MongoDB 的地理位置查询，这样很方便的实现了查找附近的商家、骑手等功能，使得快递骑手能就近接单，目前在使用MongoDB 上没遇到啥大的问题，官网的文档比较详细，很给力。</p>
+<p>经常跟一些同学讨论 MongoDB 业务场景时，会听到类似『你这个场景 mysql 也能解决，没必要一定用 MongoDB』的声音，的确，并没有某个业务场景必须要使用 MongoDB才能解决，但使用 MongoDB 通常能让你以更低的成本解决问题（包括学习、开发、运维等成本），下面是 MongoDB 的主要特性，大家可以对照自己的业务需求看看，匹配的越多，用 MongoDB 就越合适。</p>
+<h3 id="1-3、redis的应用场景"><a href="#1-3、redis的应用场景" class="headerlink" title="1-3、redis的应用场景"></a>1-3、redis的应用场景</h3><p>原文：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40dbc78711c8">https://www.jianshu.com/p/40dbc78711c8</a></p>
+<p>使用场景</p>
+<p>1, 取最新N个数据的操作 2, 排行榜应用, 取top N 操作 3, 需要精准设定过期时间的应用 4, 计数器应用 5, uniq 操作，获取某段时间所有数据排重值 6, pub/sub 构建实时消息系统 7, 构建队列系统 8, 缓存</p>
+<p>优点</p>
+<p>1 读写性能优异 2 支持数据持久化，支持AOF 和 RDB 两种持久化方式 3 支持主从复制，主机会自动将数据同步到从机，可以进行读写分离 4 数据结构丰富 有string，hash，set，sortedset，list</p>
+<p>缺点</p>
+<p>1 不具备自动容错和恢复功能 2 较难支持在线扩容</p>
+<h4 id="1-3-1、热点数据缓存"><a href="#1-3-1、热点数据缓存" class="headerlink" title="1-3-1、热点数据缓存"></a>1-3-1、热点数据缓存</h4><p>由于redis访问速度块、支持的数据类型比较丰富，所以redis很适合用来存储热点数据，另外结合expire，我们可以设置过期时间然后再进行缓存更新操作，这个功能最为常见，我们几乎所有的项目都有所运用。</p>
+<h4 id="1-3-2、限时业务"><a href="#1-3-2、限时业务" class="headerlink" title="1-3-2、限时业务"></a>1-3-2、限时业务</h4><p>redis中可以使用expire命令设置一个键的生存时间，到时间后redis会删除它。利用这一特性可以运用在限时的优惠活动信息、手机验证码等业务场景。</p>
+<h4 id="1-3-3、计数器问题"><a href="#1-3-3、计数器问题" class="headerlink" title="1-3-3、计数器问题"></a>1-3-3、计数器问题</h4><p>redis由于incrby命令可以实现原子性的递增，所以可以运用于高并发的秒杀活动、分布式序列号的生成、具体业务还体现在比如限制一个手机号发多少条短信、一个接口一分钟限制多少请求、一个接口一天限制调用多少次等等。</p>
+<h4 id="1-3-4、排行榜"><a href="#1-3-4、排行榜" class="headerlink" title="1-3-4、排行榜"></a>1-3-4、排行榜</h4><p>关系型数据库在排行榜方面查询速度普遍偏慢，所以可以借助redis的SortedSet进行热点数据的排序。</p>
+<h4 id="1-3-5、分布式锁"><a href="#1-3-5、分布式锁" class="headerlink" title="1-3-5、分布式锁"></a>1-3-5、分布式锁</h4><p>这个主要利用redis的setnx命令进行，setnx：”set if not exists”就是如果不存在则成功设置缓存同时返回1，否则返回0 ，这个特性在俞你奔远方的后台中有所运用，因为我们服务器是集群的，定时任务可能在两台机器上都会运行，所以在定时任务中首先 通过setnx设置一个lock，如果成功设置则执行，如果没有成功设置，则表明该定时任务已执行。 当然结合具体业务，我们可以给这个lock加一个过期时间，比如说30分钟执行一次的定时任务，那么这个过期时间设置为小于30分钟的一个时间 就可以，这个与定时任务的周期以及定时任务执行消耗时间相关。</p>
+<p>当然我们可以将这个特性运用于其他需要分布式锁的场景中，结合过期时间主要是防止死锁的出现。</p>
+<h4 id="1-3-6、延时操作"><a href="#1-3-6、延时操作" class="headerlink" title="1-3-6、延时操作"></a>1-3-6、延时操作</h4><h4 id="1-3-7、分页、模糊搜索"><a href="#1-3-7、分页、模糊搜索" class="headerlink" title="1-3-7、分页、模糊搜索"></a>1-3-7、分页、模糊搜索</h4><h4 id="1-3-8、点赞、好友等相互关系的存储"><a href="#1-3-8、点赞、好友等相互关系的存储" class="headerlink" title="1-3-8、点赞、好友等相互关系的存储"></a>1-3-8、点赞、好友等相互关系的存储</h4><h4 id="1-3-9、队列"><a href="#1-3-9、队列" class="headerlink" title="1-3-9、队列"></a>1-3-9、队列</h4><h3 id="1-4、elasticsearch的应用场景"><a href="#1-4、elasticsearch的应用场景" class="headerlink" title="1-4、elasticsearch的应用场景"></a>1-4、elasticsearch的应用场景</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cdchencw/p/12449500.html">https://www.cnblogs.com/cdchencw/p/12449500.html</a></p>
+<p>使用场景</p>
+<ul>
+<li>搜索推荐</li>
+</ul>
+<p>类似于百度搜索引擎，信息流推荐，电商产品搜索等场景</p>
+<ul>
+<li>日志分析</li>
+</ul>
+<p>Elasicsearch诞生之初最先再运维圈流行，主要用于海量日志的存储分析</p>
+<ul>
+<li>指标监控</li>
+</ul>
+<p>主要适用于对于实时性要求不高的场景，比如按天监控统计服务性能与可用性等</p>
+<ul>
+<li>数据可视化</li>
+<li>其他近似实时性场景海量数据采集分析系统</li>
+</ul>
+<p>使用场景</p>
+<p>国外</p>
+<p>（1）维基百科，类似百度百科，牙膏，牙膏的维基百科，全文检索，高亮，搜索推荐<br>（2）The Guardian（国外新闻网站），类似搜狐新闻，用户行为日志（点击，浏览，收藏，评论）+社交网络数据（对某某新闻的相关看法），数据分析，给到每篇新闻文章的作者，让他知道他的文章的公众反馈（好，坏，热门，垃圾，鄙视，崇拜）</p>
+<p>（3）Stack Overflow（国外的程序异常讨论论坛），IT问题，程序的报错，提交上去，有人会跟你讨论和回答，全文检索，搜索相关问题和答案，程序报错了，就会将报错信息粘贴到里面去，搜索有没有对应的答案</p>
+<p>（4）GitHub（开源代码管理），搜索上千亿行代码<br>（5）电商网站，检索商品<br>（6）日志数据分析，logstash采集日志，ES进行复杂的数据分析（ELK技术，elasticsearch+logstash+kibana）</p>
+<p>（7）商品价格监控网站，用户设定某商品的价格阈值，当低于该阈值的时候，发送通知消息给用户，比如说订阅牙膏的监控，如果高露洁牙膏的家庭套装低于50块钱，就通知我，我就去买</p>
+<p>（8）BI系统，商业智能，Business Intelligence。比如说有个大型商场集团，BI，分析一下某某区域最近3年的用户消费金额的趋势以及用户群体的组成构成，产出相关的数张报表，*<em>区，最近3年，每年消费金额呈现</em>100%的增长，而且用户群体85%是高级白领，开一个新商场。ES执行数据分析和挖掘，Kibana进行数据可视化*<em>国内</em></p>
+<p>（9）国内：站内搜索（电商，招聘，门户，等等），IT系统搜索（OA，CRM，ERP，等等），数据分析（ES热门<em>的一个使用场景）</em></p>
+<p><strong>一、ElasticSearch使用场景</strong><br><strong>存储</strong><br>ElasticSearch天然支持分布式，具备存储海量数据的能力，其搜索和数据分析的功能都建立在ElasticSearch存储的海量的数据之上；ElasticSearch很方便的作为海量数据的存储工具，特别是在数据量急剧增长的当下，ElasticSearch结合爬虫等数据收集工具可以发挥很大用处</p>
+<p><strong>搜索</strong><br>ElasticSearch使用倒排索引，每个字段都被索引且可用于搜索，更是提供了丰富的搜索api，在海量数据下近实时实现近秒级的响应,基于Lucene的开源搜索引擎，为搜索引擎（全文检索，高亮，搜索推荐等）提供了检索的能力。 具体场景:<br><strong>1.</strong> Stack Overflow（国外的程序异常讨论论坛），IT问题，程序的报错，提交上去，有人会跟你讨论和回答，全文检索，搜索相关问题和答案，程序报错了，就会将报错信息粘贴到里面去，搜索有没有对应的答案；<br><strong>2.</strong> GitHub（开源代码管理），搜索上千亿行代码；<br><strong>3.</strong> 电商网站，检索商品；<br><strong>4.</strong> 日志数据分析，logstash采集日志，ElasticSearch进行复杂的数据分析（ELK技术，elasticsearch+logstash+kibana）；</p>
+<p><strong>数据分析</strong><br>ElasticSearch也提供了大量数据分析的api和丰富的聚合能力，支持在海量数据的基础上进行数据的分析和处理。具体场景：<br>爬虫爬取不同电商平台的某个商品的数据，通过ElasticSearch进行数据分析（各个平台的历史价格、购买力等等）；</p>
+<p>二、ElasticSearch架构</p>
+<p><img src="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/907596-20190724100748331-1344625827.png" alt="907596-20190724100748331-1344625827"></p>
+<h3 id="1-5、hbase的应用场景"><a href="#1-5、hbase的应用场景" class="headerlink" title="1-5、hbase的应用场景"></a>1-5、hbase的应用场景</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hbase-community/p/8629222.html">https://www.cnblogs.com/hbase-community/p/8629222.html</a></p>
+<p>HBase可以说是一个数据库，也可以说是一个存储。拥有双重属性的HBase天生就具备广阔的应用场景。在最近的一些版本中，引入了OffHeap降低gc影响，优化链路延迟，提供Replica等可以满足在线的需求。引入MOB，可以存储10M左右的对象，完全适应了对象存储。另外由于自身的并发能力、存储能力，可以说是具有最为竞争力的引擎</p>
+<ul>
+<li><p>对象存储：我们知道不少的头条类、新闻类的的新闻、网页、图片存储在HBase之中，一些病毒公司的病毒库也是存储在HBase之中</p>
+</li>
+<li><p>时序数据：HBase之上有OpenTSDB模块，可以满足时序类场景的需求</p>
+</li>
+<li><p>推荐画像：特别是用户的画像，是一个比较大的稀疏矩阵，蚂蚁的风控就是构建在HBase之上</p>
+</li>
+<li><p>时空数据：主要是轨迹、气象网格之类，滴滴打车的轨迹数据主要存在HBase之中，另外在技术所有大一点的数据量的车联网企业，数据都是存在HBase之中</p>
+</li>
+<li><p>CubeDB OLAP：Kylin一个cube分析工具，底层的数据就是存储在HBase之中，不少客户自己基于离线计算构建cube存储在hbase之中，满足在线报表查询的需求</p>
+</li>
+<li><p>消息/订单：在电信领域、银行领域，不少的订单查询底层的存储，另外不少通信、消息同步的应用构建在HBase之上</p>
+</li>
+<li><p>Feeds流：典型的应用就是xx朋友圈类似的应用</p>
+</li>
+<li><p>NewSQL：之上有Phoenix的插件，可以满足二级索引、SQL的需求，对接传统数据需要SQL非事务的需求</p>
+<p><img src="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/640.jpg" alt="640"></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/09/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring引入的JavaConfig配置形式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/09/Spring%E5%BC%95%E5%85%A5%E7%9A%84JavaConfig%E9%85%8D%E7%BD%AE%E5%BD%A2%E5%BC%8F/">Spring引入的JavaConfig配置形式</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/09/Spring%E5%BC%95%E5%85%A5%E7%9A%84JavaConfig%E9%85%8D%E7%BD%AE%E5%BD%A2%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-11-08T20:53:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="JavaConfig-简介"><a href="#JavaConfig-简介" class="headerlink" title="JavaConfig 简介"></a>JavaConfig 简介</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaConfig</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">配置</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/09/Spring%E5%BC%95%E5%85%A5%E7%9A%84JavaConfig%E9%85%8D%E7%BD%AE%E5%BD%A2%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-spring-boot-注解使用指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -655,920 +1684,9 @@
 
 
   
-    <article id="post-唯一标识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/">唯一标识</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2020-10-29T18:56:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul>
-<li>全局唯一</li>
-<li>趋势递增</li>
-<li>效率高(生成.使用.索引)</li>
-<li>控制并发</li>
-</ul>
-<h2 id="1、通用唯一识别码（UUID）"><a href="#1、通用唯一识别码（UUID）" class="headerlink" title="1、通用唯一识别码（UUID）"></a>1、通用唯一识别码（UUID）</h2><p>UUID含义是通用唯一识别码 (Universally Unique Identifier)。</p>
-<p>这是一个软件建构的标准，也是被开源软件基金会 (Open Software Foundation, OSF) 的组织在分布式计算环境 (Distributed Computing Environment, DCE) 领域的一部份。</p>
-<p>UUID 的目的，是让分布式系统中的所有元素，都能有唯一的辨识资讯，而不需要透过中央控制端来做辨识资讯的指定。如此一来，每个人都可以建立不与其它人冲突的 UUID。</p>
-<p>GUID（Globally Unique Identifier）是UUID的别名；但在实际应用中，GUID通常是指微软实现的UUID。</p>
-<p><strong>UUID具有以下涵义</strong>：</p>
-<ul>
-<li>经由一定的算法机器生成</li>
-</ul>
-<p>为了保证UUID的唯一性，规范定义了包括网卡MAC地址、时间戳、名字空间（Namespace）、随机或伪随机数、时序等元素，以及从这些元素生成UUID的算法。UUID的复杂特性在保证了其唯一性的同时，意味着只能由计算机生成。</p>
-<ul>
-<li>非人工指定，非人工识别</li>
-</ul>
-<p>UUID是不能人工指定的，除非你冒着UUID重复的风险。UUID的复杂性决定了“一般人“不能直接从一个UUID知道哪个对象和它关联。</p>
-<ul>
-<li>在特定的范围内重复的可能性极小</li>
-</ul>
-<p>UUID的生成规范定义的算法主要目的就是要保证其唯一性。但这个唯一性是有限的，只在特定的范围内才能得到保证，这和UUID的类型有关（参见UUID的版本）。</p>
-<p>Universally Unique IDentifier(UUID)，有着正儿八经的<a target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc4122.txt">RFC规范</a>，是一个128bit的数字，也可以表现为32个16进制的字符，中间用”-”分割。</p>
-<ul>
-<li>时间戳＋UUID版本号，分三段占16个字符(60bit+4bit)，</li>
-<li>Clock Sequence号与保留字段，占4个字符(13bit＋3bit)，</li>
-<li>节点标识占12个字符(48bit)</li>
-</ul>
-<p>UUID是16字节128位长的数字，通常以36字节的字符串表示，示例如下：</p>
-<p>3F2504E0-4F89-11D3-9A0C-0305E82C3301</p>
-<h3 id="1-1、Java中api生成"><a href="#1-1、Java中api生成" class="headerlink" title="1-1、Java中api生成"></a>1-1、Java中api生成</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UUID uuid = UUID.randomUUID();</span><br><span class="line"><span class="comment">//65752c66-bd3f-4564-b8d6-92d66796e007</span></span><br><span class="line">UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-1-1、获取八位UUID标识码"><a href="#1-1-1、获取八位UUID标识码" class="headerlink" title="1-1-1、获取八位UUID标识码"></a>1-1-1、获取八位UUID标识码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String[] chars = <span class="keyword">new</span> String[]&#123;</span><br><span class="line"><span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>, <span class="string">&quot;f&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;h&quot;</span>, <span class="string">&quot;i&quot;</span>, <span class="string">&quot;j&quot;</span>, <span class="string">&quot;k&quot;</span>, <span class="string">&quot;l&quot;</span>, <span class="string">&quot;m&quot;</span>, <span class="string">&quot;n&quot;</span>, <span class="string">&quot;o&quot;</span>, <span class="string">&quot;p&quot;</span>, <span class="string">&quot;q&quot;</span>, <span class="string">&quot;r&quot;</span>, <span class="string">&quot;s&quot;</span>, <span class="string">&quot;t&quot;</span>, <span class="string">&quot;u&quot;</span>, <span class="string">&quot;v&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="string">&quot;x&quot;</span>, <span class="string">&quot;y&quot;</span>,<span class="string">&quot;z&quot;</span>,</span><br><span class="line"><span class="string">&quot;0&quot;</span>, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;3&quot;</span>, <span class="string">&quot;4&quot;</span>, <span class="string">&quot;5&quot;</span>, <span class="string">&quot;6&quot;</span>, <span class="string">&quot;7&quot;</span>, <span class="string">&quot;8&quot;</span>, <span class="string">&quot;9&quot;</span>,</span><br><span class="line"><span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;E&quot;</span>, <span class="string">&quot;F&quot;</span>, <span class="string">&quot;G&quot;</span>, <span class="string">&quot;H&quot;</span>, <span class="string">&quot;I&quot;</span>, <span class="string">&quot;J&quot;</span>, <span class="string">&quot;K&quot;</span>, <span class="string">&quot;L&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;N&quot;</span>, <span class="string">&quot;O&quot;</span>, <span class="string">&quot;P&quot;</span>, <span class="string">&quot;Q&quot;</span>, <span class="string">&quot;R&quot;</span>, <span class="string">&quot;S&quot;</span>, <span class="string">&quot;T&quot;</span>, <span class="string">&quot;U&quot;</span>, <span class="string">&quot;V&quot;</span>,<span class="string">&quot;W&quot;</span>, <span class="string">&quot;X&quot;</span>, <span class="string">&quot;Y&quot;</span>, <span class="string">&quot;Z&quot;</span></span><br><span class="line">&#125;; </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getShortUuid</span><span class="params">()</span></span>&#123; </span><br><span class="line">    StringBuffer stringBuffer = <span class="keyword">new</span> StringBuffer(); </span><br><span class="line">    String uuid = UUID.randomUUID().toString().replace(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;&quot;</span>); </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)&#123; </span><br><span class="line">        String str      = uuid.substring(i * <span class="number">4</span>, i * <span class="number">4</span> + <span class="number">4</span>); </span><br><span class="line">        <span class="keyword">int</span> strInteger  = Integer.parseInt(str, <span class="number">16</span>); </span><br><span class="line">        stringBuffer.append(chars[strInteger % <span class="number">0x3E</span>]); </span><br><span class="line">    &#125; </span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> stringBuffer.toString(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2、UUID-版本"><a href="#1-2、UUID-版本" class="headerlink" title="1-2、UUID 版本"></a>1-2、UUID 版本</h3><h4 id="1-2-1、UUID-Version-1：基于时间的UUID"><a href="#1-2-1、UUID-Version-1：基于时间的UUID" class="headerlink" title="1-2-1、UUID Version 1：基于时间的UUID"></a>1-2-1、UUID Version 1：基于时间的UUID</h4><h4 id="1-2-2、UUID-Version-2：DCE安全的UUID"><a href="#1-2-2、UUID-Version-2：DCE安全的UUID" class="headerlink" title="1-2-2、UUID Version 2：DCE安全的UUID"></a>1-2-2、UUID Version 2：DCE安全的UUID</h4><h4 id="1-2-3、UUID-Version-3：基于名字的UUID（MD5）"><a href="#1-2-3、UUID-Version-3：基于名字的UUID（MD5）" class="headerlink" title="1-2-3、UUID Version 3：基于名字的UUID（MD5）"></a>1-2-3、UUID Version 3：基于名字的UUID（MD5）</h4><h4 id="1-2-4、UUID-Version-4：随机UUID"><a href="#1-2-4、UUID-Version-4：随机UUID" class="headerlink" title="1-2-4、UUID Version 4：随机UUID"></a>1-2-4、UUID Version 4：随机UUID</h4><h4 id="1-2-5、UUID-Version-5：基于名字的UUID（SHA1）"><a href="#1-2-5、UUID-Version-5：基于名字的UUID（SHA1）" class="headerlink" title="1-2-5、UUID Version 5：基于名字的UUID（SHA1）"></a>1-2-5、UUID Version 5：基于名字的UUID（SHA1）</h4><h2 id="2、自增序列"><a href="#2、自增序列" class="headerlink" title="2、自增序列"></a>2、自增序列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> totalCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> customerID;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ++totalCount;</span><br><span class="line">        customerID = totalCount;</span><br><span class="line">        System.out.println(<span class="string">&quot;增加一个&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCustomerID</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    DecimalFormat decimalFormat = <span class="keyword">new</span> DecimalFormat(<span class="string">&quot;00000000&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> decimalFormat.format(customerID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、利用数据库生成唯一id"><a href="#3、利用数据库生成唯一id" class="headerlink" title="3、利用数据库生成唯一id"></a>3、利用数据库生成唯一id</h2><h3 id="3-1、利用mysql"><a href="#3-1、利用mysql" class="headerlink" title="3-1、利用mysql"></a>3-1、利用mysql</h3><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">集群环境下,不同的库,设置不同的初始值,每次自增加 100</span><br><span class="line">Mysql下修改起点和步长的方式</span><br><span class="line">     设置起点</span><br><span class="line">     	Set @@auto<span class="built_in">_</span>increment<span class="built_in">_</span>offset=1   // 设置起点为1</span><br><span class="line">     设置步长</span><br><span class="line">     	Set@@auto<span class="built_in">_</span>increment<span class="built_in">_</span>increment=100  // 设置步长为100</span><br><span class="line">     查看参数</span><br><span class="line">     	show VARIABLES like &#x27;auto<span class="built_in">_</span><span class="comment">%&#x27;  // 查看参数</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2、利用redis"><a href="#3-2、利用redis" class="headerlink" title="3-2、利用redis"></a>3-2、利用redis</h3><p>思路</p>
-<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">利用增长计数api,业务系统在自增长的基础上,配合其他信息组成一个唯一id</span><br><span class="line">Redis的incr(key) api用于将key的值进行递增,并返回增长数值</span><br><span class="line">如果key不存在,则创建并赋值为0</span><br><span class="line"></span><br><span class="line">利用redis的特性: 单线程原子操作,自增计数api,数据有效机制ex</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3、雪花算法-twitter-的-snowflake算法"><a href="#3-3、雪花算法-twitter-的-snowflake算法" class="headerlink" title="3-3、雪花算法(twitter 的 snowflake算法)"></a>3-3、雪花算法(twitter 的 snowflake算法)</h3><p>Snowfake算法是twitter’开源的分布式id生成算法,结果就是long长整型的id</p>
-<p><img src="/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/20190324000000971.jpeg" alt="20190324000000971"></p>
-<h3 id="3-4、生成UUID"><a href="#3-4、生成UUID" class="headerlink" title="3-4、生成UUID"></a>3-4、生成UUID</h3><p>Uuid是按照开放软件基金会(osf)制定的标准计算 用到了以太网开地址(MAC),纳米级时间,芯片id码和许多可能的数字</p>
-<h2 id="4、方案对比"><a href="#4、方案对比" class="headerlink" title="4、方案对比"></a>4、方案对比</h2><table>
-<thead>
-<tr>
-<th>方式</th>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Uuid</td>
-<td>实现简单,不占带宽</td>
-<td>无序,占空间,可读性差,索引不友好</td>
-</tr>
-<tr>
-<td>数据库自增</td>
-<td>无代码调整,递增</td>
-<td>db单点故障,扩展性瓶颈</td>
-</tr>
-<tr>
-<td>雪花算法</td>
-<td>性能优,不占带宽,趋势递增</td>
-<td>依赖服务器时间</td>
-</tr>
-<tr>
-<td>基于redis自研</td>
-<td>无单点故障(高可用后),性能优于db,低于uuid和雪花算法,递增,扩展性强</td>
-<td>占用带宽,redis集群维护</td>
-</tr>
-</tbody></table>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/HUIWANG/p/11133765.html">https://www.cnblogs.com/HUIWANG/p/11133765.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kai3123919064/article/details/88771395">https://blog.csdn.net/kai3123919064/article/details/88771395</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">唯一标识</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">高并发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/30/%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-负载均衡" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/30/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">负载均衡</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/30/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="archive-article-date">
-  	<time datetime="2020-10-29T18:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是负载均衡"><a href="#什么是负载均衡" class="headerlink" title="什么是负载均衡"></a>什么是负载均衡</h3><p><strong>(百度百科)</strong></p>
-<p>负载均衡，英文名称为Load Balance，其含义就是指将负载（工作任务）进行平衡、分摊到多个操作单元上进行运行，例如FTP服务器、Web服务器、企业核心应用服务器和其它主要任务服务器等，从而协同完成工作任务。</p>
-<p>负载均衡构建在原有网络结构之上，它提供了一种透明且廉价有效的方法扩展服务器和网络设备的带宽、加强网络数据处理能力、增加吞吐量、提高网络的可用性和灵活性。</p>
-<h2 id="1、负载均衡算法"><a href="#1、负载均衡算法" class="headerlink" title="1、负载均衡算法"></a>1、负载均衡算法</h2><p>原文地址：<a target="_blank" rel="noopener" href="https://blog.51cto.com/blief/1747965">https://blog.51cto.com/blief/1747965</a></p>
-<p>现有的负载均衡算法主要分为<strong>静态</strong>和<strong>动态</strong>两类。</p>
-<ul>
-<li><p><strong>静态负载均衡算法：</strong>以固定的概率分配任务，不考虑服务器的状态信息，如<strong>轮转算法</strong>、<strong>加权轮转算法</strong>等；仅根据算法本身实现调度；实现起点公平，不管服务器当前处理多少请求，分配的数量一致</p>
-</li>
-<li><p><strong>动态负载均衡算法：</strong>以服务器的实时负载状态信息来决定任务的分配，如<strong>最小连接法</strong>、<strong>加权最小连接法</strong>等。根据算法及后端RS当前的负载状况实现调度；不管以前分了多少，只看分配的结果是不是公平</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>算法名</th>
-<th>静态/动态</th>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>轮询</td>
-<td>静态</td>
-<td>试图做到请求转移的绝对均衡</td>
-<td>为了做到请求转移的绝对均衡，必须付出相当大的代价，因为为了保证pos变量修改的互斥性，需要引入重量级的悲观锁synchronized，这将会导致该段轮询代码的并发吞吐量发生明显的下降。</td>
-</tr>
-<tr>
-<td>加权轮询</td>
-<td>静态</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>随机</td>
-<td>静态</td>
-<td>基于概率统计的理论，吞吐量越大，随机算法的效果越接近于轮询算法的效果。</td>
-<td></td>
-</tr>
-<tr>
-<td>加权随机</td>
-<td>静态</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>源地址哈希</td>
-<td>静态</td>
-<td>保证了相同客户端IP地址将会被哈希到同一台后端服务器，直到后端服务器列表变更。根据此特性可以在服务消费者与服务提供者之间建立有状态的session会话。</td>
-<td>除非集群中服务器的非常稳定，基本不会上下线，否则一旦有服务器上线、下线，那么通过源地址哈希算法路由到的服务器是服务器上线、下线前路由到的服务器的概率非常低，如果是session则取不到session，如果是缓存则可能引发”雪崩”</td>
-</tr>
-<tr>
-<td>目标地址哈希</td>
-<td>静态</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>最小连接</td>
-<td>动态</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>加权最小连接</td>
-<td>动态</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>最少期望延迟</td>
-<td>动态</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>永不排队</td>
-<td>动态</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>基于局部性的最少连接</td>
-<td>动态</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>基于局部性的带复制功能的最少连接</td>
-<td>动态</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="1-1、轮询法（Round-Robin）"><a href="#1-1、轮询法（Round-Robin）" class="headerlink" title="1-1、轮询法（Round Robin）"></a>1-1、轮询法（Round Robin）</h3><p>轮询法，就是将用户的请求轮流分配给服务器，就像是挨个数数，轮流分配。这种算法比较简单，他具有绝对均衡的优点，但是也正是因为绝对均衡它必须付出很大的代价，例如它无法保证分配任务的合理性，无法根据服务器承受能力来分配任务。</p>
-<h4 id="1-1-1、轮询法（Round-Robin）"><a href="#1-1-1、轮询法（Round-Robin）" class="headerlink" title="1-1-1、轮询法（Round Robin）"></a>1-1-1、轮询法（Round Robin）</h4><h4 id="1-1-2、加权轮询法（Weight-Round-Robin）"><a href="#1-1-2、加权轮询法（Weight-Round-Robin）" class="headerlink" title="1-1-2、加权轮询法（Weight Round Robin）"></a>1-1-2、加权轮询法（Weight Round Robin）</h4><h3 id="1-2、随机法（Random）"><a href="#1-2、随机法（Random）" class="headerlink" title="1-2、随机法（Random）"></a>1-2、随机法（Random）</h3><p>随机法，是随机选择一台服务器来分配任务。它保证了请求的分散性达到了均衡的目的。同时它是没有状态的不需要维持上次的选择状态和均衡因子[5]。但是随着任务量的增大，它的效果趋向轮询后也会具有轮询算法的部分缺点。</p>
-<h4 id="1-2-1、随机法（Random）"><a href="#1-2-1、随机法（Random）" class="headerlink" title="1-2-1、随机法（Random）"></a>1-2-1、随机法（Random）</h4><h4 id="1-2-2、加权随机法（Weight-Random）"><a href="#1-2-2、加权随机法（Weight-Random）" class="headerlink" title="1-2-2、加权随机法（Weight Random）"></a>1-2-2、加权随机法（Weight Random）</h4><h3 id="1-3、最小连接法（Least-Connections）"><a href="#1-3、最小连接法（Least-Connections）" class="headerlink" title="1-3、最小连接法（Least Connections）"></a>1-3、最小连接法（Least Connections）</h3><p>最小连接法，将任务分配给此时具有最小连接数的节点，因此它是动态负载均衡算法。一个节点收到一个任务后连接数就会加1，当节点故障时就将节点权值设置为0，不再给节点分配任务。</p>
-<h4 id="1-3-1、最小连接法（Least-Connections）"><a href="#1-3-1、最小连接法（Least-Connections）" class="headerlink" title="1-3-1、最小连接法（Least Connections）"></a>1-3-1、最小连接法（Least Connections）</h4><p>简单算法：active*256+inactive (谁的小，挑谁)</p>
-<h4 id="1-3-2、加权最小连接法（Weight-Least-Connections）"><a href="#1-3-2、加权最小连接法（Weight-Least-Connections）" class="headerlink" title="1-3-2、加权最小连接法（Weight  Least Connections）"></a>1-3-2、加权最小连接法（Weight  Least Connections）</h4><p>简单算法：（active*256+inactive）/weight（谁的小，挑谁）</p>
-<h3 id="1-4、源地址哈希法-（source-hashing-）"><a href="#1-4、源地址哈希法-（source-hashing-）" class="headerlink" title="1-4、源地址哈希法 （source hashing ）"></a>1-4、源地址哈希法 （<em>source hashing</em> ）</h3><p>简单的说就是有将同一客户端的请求发给同一个real server,源地址散列调度算法正好与目标地址散列调度算法相反，它根据请求的源IP地址，作为散列键（Hash Key）从静态分配的散列表找出对应的服务器，若该服务器是可用的并且没有超负荷，将请求发送到该服务器，否则返回空。它采用的散列函数与目标地址散列调 度算法的相同。</p>
-<h4 id="1-4-1、源地址哈希法-（source-hashing-）"><a href="#1-4-1、源地址哈希法-（source-hashing-）" class="headerlink" title="1-4-1、源地址哈希法 （source hashing ）"></a>1-4-1、源地址哈希法 （<em>source hashing</em> ）</h4><h4 id="1-4-2、目标地址哈希法-（destination-hashing-）"><a href="#1-4-2、目标地址哈希法-（destination-hashing-）" class="headerlink" title="1-4-2、目标地址哈希法 （destination hashing ）"></a>1-4-2、目标地址哈希法 （<em>destination hashing</em> ）</h4><h2 id="2、软件负载均衡技术"><a href="#2、软件负载均衡技术" class="headerlink" title="2、软件负载均衡技术"></a>2、软件负载均衡技术</h2><h3 id="2-1、基于DNS的负载均衡"><a href="#2-1、基于DNS的负载均衡" class="headerlink" title="2-1、基于DNS的负载均衡"></a>2-1、基于DNS的负载均衡</h3><p>由于在DNS服务器中，可以为多个不同的地址配置相同的名字，最终查询这个名字的客户机将在解析这个名字时得到其中一个地址，所以这种代理方式是通过DNS服务中的随机名字解析域名和IP来实现负载均衡。</p>
-<h3 id="2-2、反向代理负载均衡"><a href="#2-2、反向代理负载均衡" class="headerlink" title="2-2、反向代理负载均衡"></a>2-2、反向代理负载均衡</h3><p><strong>（如Apache+JK2+Tomcat这种组合）</strong></p>
-<p>该种代理方式与普通的代理方式不同，标准代理方式是客户使用代理访问多个外部Web服务器，之所以被称为反向代理模式是因为这种代理方式是多个客户使用它访问内部Web服务器，而非访问外部服务器。</p>
-<h3 id="2-3、基于NAT（Network-Address-Translation）的负载均衡技术"><a href="#2-3、基于NAT（Network-Address-Translation）的负载均衡技术" class="headerlink" title="2-3、基于NAT（Network Address Translation）的负载均衡技术"></a>2-3、基于NAT（Network Address Translation）的负载均衡技术</h3><p><strong>（如Linux Virtual Server，简称LVS）</strong></p>
-<p>该技术通过一个地址转换网关将每个外部连接均匀转换为不同的内部服务器地址，因此外部网络中的计算机就各自与自己转换得到的地址上的服务器进行通信，从而达到负载均衡的目的。其中网络地址转换网关位于外部地址和内部地址之间，不仅可以实现当外部客户机访问转换网关的某一外部地址时可以转发到某一映射的内部的地址上，还可使内部地址的计算机能访问外部网络。</p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/blief/1747965">https://blog.51cto.com/blief/1747965</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xrq730/p/5154340.html">https://www.cnblogs.com/xrq730/p/5154340.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">负载均衡</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/30/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java序列化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/">Java序列化</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/" class="archive-article-date">
-  	<time datetime="2020-10-29T18:05:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
-<p><img src="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/30/Java%E5%BA%8F%E5%88%97%E5%8C%96/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RPC原理及常见框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/">RPC原理及常见框架</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2020-10-29T06:09:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p> <strong>序列化</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>)是将<strong>数据结构</strong>或对象状态转换为可以存储（例如，在<strong>文件</strong>或存储器<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Data_buffer">缓冲区中</a>）或传输（例如，通过<strong>网络</strong>连接）的格式的过程, <strong>反序列化</strong>(Deserialization)则是从一系列字节中提取数据结构的相反操作.</p>
-<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.jpg" alt="序列化和反序列化"></p>
-<h2 id="1、Java-RMI-Java自带-API"><a href="#1、Java-RMI-Java自带-API" class="headerlink" title="1、Java RMI(Java自带 API)"></a>1、Java RMI(Java自带 API)</h2><p> <strong>Java RMI</strong>，即 <strong>远程方法调用</strong>(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_object_communication">Remote Method Invocation</a>)，一种用于实现<strong>远程过程调用</strong>(RPC)<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Remote_procedure_call">(Remote procedure call)</a>的Java API， 能直接传输序列化后的Java对象和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distributed_Garbage_Collection">分布式垃圾收集</a>。</p>
-<p>限制比较大: </p>
-<ul>
-<li>服务不能存在多个，那也就没有负载均衡的说法了。<strong>一种改造参考见5</strong></li>
-<li>只能在java代码中使用。</li>
-</ul>
-<h3 id="1-1、调用过程"><a href="#1-1、调用过程" class="headerlink" title="1-1、调用过程"></a>1-1、调用过程</h3><ul>
-<li>rmi模块结构</li>
-</ul>
-<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/rmi%E8%B0%83%E7%94%A8%E7%BB%93%E6%9E%84.jpg" alt="rmi调用结构"></p>
-<ul>
-<li><p>rmi调用过程</p>
-<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/rmi%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B.png" alt="rmi调用过程"></p>
-<p>资料来源:<a target="_blank" rel="noopener" href="https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html">https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html</a></p>
-<ul>
-<li>有两个远程服务接口可供client调用，Factory和Product接口</li>
-<li>FactoryImpl类实现了Factory接口，ProductImpl类实现了Product接口<ul>
-<li>1 FactoryImpl被注册到了rmi-registry中</li>
-</ul>
-<ol start="2">
-<li>2 client端请求一个Factory的引用 </li>
-<li>3 rmi-registry返回client端一个FactoryImpl的引用 </li>
-<li>4 client端调用FactoryImpl的远程方法请求一个ProductImpl的远程引用</li>
-<li>5 FactoryImpl返回给client端一个ProductImpl引用 </li>
-<li>6 client通过ProductImpl引用调用远程方法 </li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2、实现"><a href="#1-2、实现" class="headerlink" title="1-2、实现"></a>1-2、实现</h3><h4 id="1-2-1、工程结构"><a href="#1-2-1、工程结构" class="headerlink" title="1-2-1、工程结构"></a>1-2-1、工程结构</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.will<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>RMIDemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Service<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Client<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">module</span>&gt;</span>Interface<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-2、协议接口"><a href="#1-2-2、协议接口" class="headerlink" title="1-2-2、协议接口"></a>1-2-2、协议接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloRegistry</span> <span class="keyword">extends</span> <span class="title">Remote</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">helloWorld</span><span class="params">(String name)</span> <span class="keyword">throws</span> RemoteException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2-3、服务端以及服务实现"><a href="#1-2-3、服务端以及服务实现" class="headerlink" title="1-2-3、服务端以及服务实现"></a>1-2-3、服务端以及服务实现</h3><h4 id="1-2-3-1、impl"><a href="#1-2-3-1、impl" class="headerlink" title="1-2-3-1、impl"></a>1-2-3-1、impl</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现接口的类，该类需要序列化</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloRegistryImpl</span> <span class="keyword">extends</span> <span class="title">UnicastRemoteObject</span> <span class="keyword">implements</span> <span class="title">HelloRegistry</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HelloRegistryImpl</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">helloWorld</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;[Registry] 你好! &quot;</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-3-2、service"><a href="#1-2-3-2、service" class="headerlink" title="1-2-3-2、service"></a>1-2-3-2、service</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegistryService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RegistryService</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 本地主机上的远程对象注册表Registry的实例,默认端口1099</span></span><br><span class="line">            Registry registry = LocateRegistry.createRegistry(<span class="number">1099</span>);</span><br><span class="line">            <span class="comment">// 创建一个远程对象</span></span><br><span class="line">            HelloRegistry hello = <span class="keyword">new</span> HelloRegistryImpl();</span><br><span class="line">            <span class="comment">// 1.把远程对象注册到RMI注册服务器上，并命名为HelloRegistry</span></span><br><span class="line">            registry.rebind(<span class="string">&quot;HelloRegistry&quot;</span>, hello);</span><br><span class="line">            <span class="comment">// 2.绑定的URL标准格式为：rmi://host:port/name</span></span><br><span class="line">            <span class="comment">// Naming.rebind(&quot;rmi://127.0.0.1:1099/HelloRegistry&quot;, hello);</span></span><br><span class="line">            System.out.println(<span class="string">&quot;======= 启动RMI服务成功! =======&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="1-2-4、客户端调用"><a href="#1-2-4、客户端调用" class="headerlink" title="1-2-4、客户端调用"></a>1-2-4、客户端调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RegistryClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RegistryClient</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Registry registry = LocateRegistry.getRegistry(<span class="number">1099</span>);</span><br><span class="line">            <span class="comment">//Naming.lookup(&quot;rmi://127.0.0.1:1099/HelloRegistry&quot;);</span></span><br><span class="line">            HelloRegistry hello = (HelloRegistry) registry.lookup(<span class="string">&quot;HelloRegistry&quot;</span>);</span><br><span class="line">            String response = hello.helloWorld(<span class="string">&quot;will&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;=======&gt; &quot;</span> + response + <span class="string">&quot; &lt;=======&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotBoundException | RemoteException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2、SpringBoot实现rmi"><a href="#2、SpringBoot实现rmi" class="headerlink" title="2、SpringBoot实现rmi"></a>2、SpringBoot实现rmi</h2><p>StringBoot通过配置，简化RMI框架的代码</p>
-<h3 id="2-1、协议接口"><a href="#2-1、协议接口" class="headerlink" title="2-1、协议接口"></a>2-1、协议接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserFacade,方法getBySex</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2、服务端"><a href="#2-2、服务端" class="headerlink" title="2-2、服务端"></a>2-2、服务端</h3><h4 id="2-2-1、服务实现"><a href="#2-2-1、服务实现" class="headerlink" title="2-2-1、服务实现"></a>2-2-1、服务实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserFacadeImpl</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-2、服务注册和启动"><a href="#2-2-2、服务注册和启动" class="headerlink" title="2-2-2、服务注册和启动"></a>2-2-2、服务注册和启动</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiServiceConfig</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserFacadeImpl <span class="title">createUserFacade</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> UserFacadeImpl();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RmiServiceExporter <span class="title">registerService</span><span class="params">(UserFacadeImpl userFacade)</span> </span>&#123;</span><br><span class="line">        RmiServiceExporter rmiServiceExporter = <span class="keyword">new</span> RmiServiceExporter();</span><br><span class="line">        rmiServiceExporter.setServiceName(<span class="string">&quot;UserInfo&quot;</span>);</span><br><span class="line">        rmiServiceExporter.setService(userFacade);</span><br><span class="line">        rmiServiceExporter.setServiceInterface(UserFacade.class);</span><br><span class="line">        rmiServiceExporter.setRegistryPort(<span class="number">1101</span>);</span><br><span class="line">        <span class="keyword">return</span> rmiServiceExporter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-3、客户端"><a href="#2-3、客户端" class="headerlink" title="2-3、客户端"></a>2-3、客户端</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiClientConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserFacade <span class="title">userInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RmiProxyFactoryBean rmiProxyFactoryBean = <span class="keyword">new</span> RmiProxyFactoryBean();</span><br><span class="line">        rmiProxyFactoryBean.setServiceUrl(<span class="string">&quot;rmi://localhost:1101/UserInfo&quot;</span>);</span><br><span class="line">        rmiProxyFactoryBean.setServiceInterface(UserFacade.class);</span><br><span class="line">        rmiProxyFactoryBean.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> (UserFacade) rmiProxyFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="客户端测试类"><a href="#客户端测试类" class="headerlink" title="客户端测试类"></a>客户端测试类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserFacade userFacade;</span><br><span class="line">    </span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">userBySexTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        List&lt;User&gt; userList = userFacade.getBySex(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">        userList.forEach(System.out::println);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、Hessian（基于HTTP的远程方法调用）"><a href="#3、Hessian（基于HTTP的远程方法调用）" class="headerlink" title="3、Hessian（基于HTTP的远程方法调用）"></a>3、Hessian（基于HTTP的远程方法调用）</h2><p>基于HTTP协议传输，在性能方面还不够完美，负载均衡和失效转移依赖于应用的负载均衡器，Hessian的使用则与RMI类似，区别在于淡化了Registry的角色，通过显示的地址调用，利用HessianProxyFactory根据配置的地址create一个代理对象，另外还要引入Hessian的Jar包。</p>
-<h2 id="4、Dubbo（淘宝开源的基于TCP的RPC框架）"><a href="#4、Dubbo（淘宝开源的基于TCP的RPC框架）" class="headerlink" title="4、Dubbo（淘宝开源的基于TCP的RPC框架）"></a>4、Dubbo（淘宝开源的基于TCP的RPC框架）</h2><p>基于Netty的高性能RPC框架</p>
-<h2 id="5、Zookeeper实现rmi"><a href="#5、Zookeeper实现rmi" class="headerlink" title="5、Zookeeper实现rmi"></a>5、Zookeeper实现rmi</h2><p>原文地址：<a target="_blank" rel="noopener" href="http://www.importnew.com/20344.html">http://www.importnew.com/20344.html</a></p>
-<p><img src="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/%E5%88%A9%E7%94%A8zookeeper%E5%AE%9E%E7%8E%B0rmi.jpg" alt="利用zookeeper实现rmi"></p>
-<h3 id="5-1、zookeeper安装以及启动"><a href="#5-1、zookeeper安装以及启动" class="headerlink" title="5-1、zookeeper安装以及启动"></a>5-1、zookeeper安装以及启动</h3><p>zoo.cfg 代码如下（自己指定 log 文件目录）：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tickTime</span>=<span class="string">2000</span></span><br><span class="line"><span class="attr">dataDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/data </span></span><br><span class="line"><span class="attr">dataLogDir</span>=<span class="string">/usr/local/zookeeper-3.4.12/log</span></span><br><span class="line"><span class="attr">clientPort</span>=<span class="string">2181</span></span><br></pre></td></tr></table></figure>
-
-<p>在 bin 目录下，启动 Zookeeper：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd zookeeper-3.4.12/bin</span><br><span class="line">./zkServer.sh start</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-2、生产者"><a href="#5-2、生产者" class="headerlink" title="5-2、生产者"></a>5-2、生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiProvider</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用于等待 SyncConnected 事件触发后继续执行当前线程</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发布 RMI 服务并注册 RMI 地址到 ZooKeeper 中</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">publish</span><span class="params">(Remote remote, String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        String url = publishService(remote, host, port); <span class="comment">// 发布 RMI 服务并返回 RMI 地址</span></span><br><span class="line">        <span class="keyword">if</span> (url != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ZooKeeper zk = connectServer(); <span class="comment">// 连接 ZooKeeper 服务器并获取 ZooKeeper 对象</span></span><br><span class="line">            <span class="keyword">if</span> (zk != <span class="keyword">null</span>) &#123;</span><br><span class="line">                createNode(zk, url); <span class="comment">// 创建 ZNode 并将 RMI 地址放入 ZNode 上</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">      *发布 RMI 服务</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">publishService</span><span class="params">(Remote remote, String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        String url = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            url = String.format(<span class="string">&quot;rmi://%s:%d/%s&quot;</span>, host, port, remote.getClass().getName());</span><br><span class="line">            LocateRegistry.createRegistry(port);</span><br><span class="line">            Naming.rebind(url, remote);</span><br><span class="line">            log.debug(<span class="string">&quot;publish rmi service (url: &#123;&#125;)&quot;</span>, url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (RemoteException | MalformedURLException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接 ZooKeeper 服务器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ZooKeeper <span class="title">connectServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zk = <span class="keyword">new</span> ZooKeeper(Constant.ZK_CONNECTION_STRING, Constant.ZK_SESSION_TIMEOUT, <span class="keyword">new</span> Watcher() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(WatchedEvent event)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (event.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">                        latch.countDown(); <span class="comment">// 唤醒当前正在执行的线程</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            latch.await(); <span class="comment">// 使当前线程处于等待状态</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> zk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建节点</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createNode</span><span class="params">(ZooKeeper zk, String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">byte</span>[] data = url.getBytes();</span><br><span class="line">            String path = zk.create(Constant.ZK_PROVIDER_PATH, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);    <span class="comment">// 创建一个临时性且有序的 ZNode</span></span><br><span class="line">            log.debug(<span class="string">&quot;create zookeeper node (&#123;&#125; =&gt; &#123;&#125;)&quot;</span>, path, url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (KeeperException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-3、消费者"><a href="#5-3、消费者" class="headerlink" title="5-3、消费者"></a>5-3、消费者</h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RmiConsumer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用于等待 SyncConnected 事件触发后继续执行当前线程</span></span><br><span class="line">    <span class="keyword">private</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个 volatile 成员变量，用于保存最新的 RMI 地址（考虑到该变量或许会被其它线程所修改，一旦修改后，该变量的值会影响到所有线程）</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> List&lt;String&gt; urlList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RmiConsumer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = connectServer(); <span class="comment">// 连接 ZooKeeper 服务器并获取 ZooKeeper 对象</span></span><br><span class="line">        <span class="keyword">if</span> (zk != <span class="keyword">null</span>) &#123;</span><br><span class="line">            watchNode(zk); <span class="comment">// 观察 /registry 节点的所有子节点并更新 urlList 成员变量</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找 RMI 服务</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T extends Remote&gt; <span class="function">T <span class="title">lookup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        T service = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> size = urlList.size();</span><br><span class="line">        <span class="keyword">if</span> (size &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            String url;</span><br><span class="line">            <span class="keyword">if</span> (size == <span class="number">1</span>) &#123;</span><br><span class="line">                url = urlList.get(<span class="number">0</span>); <span class="comment">// 若 urlList 中只有一个元素，则直接获取该元素</span></span><br><span class="line">                log.debug(<span class="string">&quot;using only url: &#123;&#125;&quot;</span>, url);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                url = urlList.get(ThreadLocalRandom.current().nextInt(size)); <span class="comment">// 若 urlList 中存在多个元素，则随机获取一个元素</span></span><br><span class="line">                log.debug(<span class="string">&quot;using random url: &#123;&#125;&quot;</span>, url);</span><br><span class="line">            &#125;</span><br><span class="line">            service = lookupService(url); <span class="comment">// 从 JNDI 中查找 RMI 服务</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> service;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接 ZooKeeper 服务器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ZooKeeper <span class="title">connectServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ZooKeeper zk = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            zk = <span class="keyword">new</span> ZooKeeper(Constant.ZK_CONNECTION_STRING, Constant.ZK_SESSION_TIMEOUT, <span class="keyword">new</span> Watcher() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(WatchedEvent event)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (event.getState() == Event.KeeperState.SyncConnected) &#123;</span><br><span class="line">                        latch.countDown(); <span class="comment">// 唤醒当前正在执行的线程</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            latch.await(); <span class="comment">// 使当前线程处于等待状态</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> zk;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 观察 /registry 节点下所有子节点是否有变化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">watchNode</span><span class="params">(<span class="keyword">final</span> ZooKeeper zk)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            List&lt;String&gt; nodeList = zk.getChildren(Constant.ZK_REGISTRY_PATH, event -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (event.getType() == Watcher.Event.EventType.NodeChildrenChanged) &#123;</span><br><span class="line">                    watchNode(zk); <span class="comment">// 若子节点有变化，则重新调用该方法（为了获取最新子节点中的数据）</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            List&lt;String&gt; dataList = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// 用于存放 /registry 所有子节点中的数据</span></span><br><span class="line">            <span class="keyword">for</span> (String node : nodeList) &#123;</span><br><span class="line">                <span class="keyword">byte</span>[] data = zk.getData(Constant.ZK_REGISTRY_PATH + <span class="string">&quot;/&quot;</span> + node, <span class="keyword">false</span>, <span class="keyword">null</span>); <span class="comment">// 获取 /registry 的子节点中的数据</span></span><br><span class="line">                dataList.add(<span class="keyword">new</span> String(data));</span><br><span class="line">            &#125;</span><br><span class="line">            log.debug(<span class="string">&quot;node data: &#123;&#125;&quot;</span>, dataList);</span><br><span class="line">            urlList = dataList; <span class="comment">// 更新最新的 RMI 地址</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (KeeperException | InterruptedException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在 JNDI 中查找 RMI 远程服务对象</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> &lt;T&gt; <span class="function">T <span class="title">lookupService</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        T remote = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            remote = (T) Naming.lookup(url);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotBoundException | MalformedURLException | RemoteException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;远程查找出错!&quot;</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> remote;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>JNDI :</strong> JNDI是 Java 命名与目录接口（Java Naming and Directory Interface），在J2EE规范中是重要的规范之一。阅读：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wn084/article/details/80729230">https://blog.csdn.net/wn084/article/details/80729230</a></p>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wjlwo2ni/p/11101473.html">https://www.cnblogs.com/wjlwo2ni/p/11101473.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html">https://stuff.mit.edu/afs/athena/software/java/java_v1.2.2/distrib/sun4x_56/docs/guide/rmi/Factory.html</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.importnew.com/20344.html">http://www.importnew.com/20344.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RPC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/29/RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux 资源查看和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/">Linux 资源查看和测试</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/" class="archive-article-date">
-  	<time datetime="2020-10-28T13:10:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="系统版本"><a href="#系统版本" class="headerlink" title="系统版本"></a>系统版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux VM 5.4.0-42-generic #46~18.04.1-Ubuntu SMP Fri Jul 10 07:21:24 UTC 2020 x86_64 x86_64 x86_64 GNU&#x2F;Linux</span><br></pre></td></tr></table></figure>
-
-<h2 id="1、proc文件系统"><a href="#1、proc文件系统" class="headerlink" title="1、proc文件系统"></a>1、proc文件系统</h2><h3 id="1-1、查看系统支持最大线程数"><a href="#1-1、查看系统支持最大线程数" class="headerlink" title="1-1、查看系统支持最大线程数"></a>1-1、查看系统支持最大线程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查系统支持的最大线程数，一般会很大，相当于理论值</span></span><br><span class="line">cat /proc/sys/kernel/threads-max</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">30893</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-2、查看系统支持最大进程数"><a href="#1-2、查看系统支持最大进程数" class="headerlink" title="1-2、查看系统支持最大进程数"></a>1-2、查看系统支持最大进程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/kernel/pid_max</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">131072</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-3、查看系统支持最大文件数"><a href="#1-3、查看系统支持最大文件数" class="headerlink" title="1-3、查看系统支持最大文件数"></a>1-3、查看系统支持最大文件数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">394854</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-4、查看cpu信息"><a href="#1-4、查看cpu信息" class="headerlink" title="1-4、查看cpu信息"></a>1-4、查看cpu信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、用户限制"><a href="#3、用户限制" class="headerlink" title="3、用户限制"></a>3、用户限制</h2><h3 id="3-1、ulimit帮助"><a href="#3-1、ulimit帮助" class="headerlink" title="3-1、ulimit帮助"></a>3-1、ulimit帮助</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help ulimit </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">ulimit: ulimit [-SHabcdefiklmnpqrstuvxPT] [限制]</span><br><span class="line">    修改 shell 资源限制。</span><br><span class="line">    </span><br><span class="line">    在允许此类控制的系统上，提供对于 shell 及其创建的进程所可用的</span><br><span class="line">    资源的控制。</span><br><span class="line">    </span><br><span class="line">    选项：</span><br><span class="line">      -S	使用软 (&#96;soft&#39;) 资源限制</span><br><span class="line">      -H	使用硬 (&#96;hard&#39;) 资源限制</span><br><span class="line">      -a	所有当前限制都被报告</span><br><span class="line">      -b	套接字缓存尺寸</span><br><span class="line">      -c	创建的核文件的最大尺寸</span><br><span class="line">      -d	一个进程的数据区的最大尺寸</span><br><span class="line">      -e	最高的调度优先级 (&#96;nice&#39;)</span><br><span class="line">      -f	有 shell 及其子进程可以写的最大文件尺寸</span><br><span class="line">      -i	最多的可以挂起的信号数</span><br><span class="line">      -k	分配给此进程的最大 kqueue 数量</span><br><span class="line">      -l	一个进程可以锁定的最大内存尺寸</span><br><span class="line">      -m	最大的内存进驻尺寸</span><br><span class="line">      -n	最多的打开的文件描述符个数</span><br><span class="line">      -p	管道缓冲区尺寸</span><br><span class="line">      -q	POSIX 信息队列的最大字节数</span><br><span class="line">      -r	实时调度的最大优先级</span><br><span class="line">      -s	最大栈尺寸</span><br><span class="line">      -t	最大的CPU时间，以秒为单位</span><br><span class="line">      -u	最大用户进程数</span><br><span class="line">      -v	虚拟内存尺寸</span><br><span class="line">      -x	最大的文件锁数量</span><br><span class="line">      -P	最大伪终端数量</span><br><span class="line">      -T	最大线程数量</span><br><span class="line">    </span><br><span class="line">    并非所有选项在所有系统上可用。</span><br><span class="line">    </span><br><span class="line">    如果提供了 LIMIT 变量，则它为指定资源的新的值；特别的 LIMIT 值为</span><br><span class="line">    &#96;soft&#39;、&#96;hard&#39;和&#96;unlimited&#39;，分别表示当前的软限制，硬限制和无限制。</span><br><span class="line">    否则打印指定资源的当前限制值，不带选项则假定为 -f</span><br><span class="line">    </span><br><span class="line">    取值都是 1024 字节为单位，除了 -t 以秒为单位，-p 以 512 字节递增，</span><br><span class="line">    -u 为无范围的进程数量。</span><br><span class="line">    </span><br><span class="line">    退出状态：</span><br><span class="line">    返回成功，除非使用了无效的选项或者错误发生。</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-2、ulimit显示"><a href="#3-2、ulimit显示" class="headerlink" title="3-2、ulimit显示"></a>3-2、ulimit显示</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 15446</span><br><span class="line">max locked memory       (kbytes, -l) 16384</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line">open files                      (-n) 1024</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line">stack size              (kbytes, -s) 8192</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line">max user processes              (-u) 15446</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、vmstat监控系统资源"><a href="#4、vmstat监控系统资源" class="headerlink" title="4、vmstat监控系统资源"></a>4、vmstat监控系统资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">vmstat [刷新延时 刷新次数]</span></span><br><span class="line">vmstat 1 3</span><br></pre></td></tr></table></figure>
-
-<h2 id="5、dmesg"><a href="#5、dmesg" class="headerlink" title="5、dmesg"></a>5、dmesg</h2><h3 id="5-1、查看开机时内核检测信息"><a href="#5-1、查看开机时内核检测信息" class="headerlink" title="5-1、查看开机时内核检测信息"></a>5-1、查看开机时内核检测信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmesg | grep CPU</span><br></pre></td></tr></table></figure>
-
-<h2 id="6、free命令查看内存使用状态"><a href="#6、free命令查看内存使用状态" class="headerlink" title="6、free命令查看内存使用状态"></a>6、free命令查看内存使用状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free</span><br></pre></td></tr></table></figure>
-
-<h2 id="8、判断当前系统的位数"><a href="#8、判断当前系统的位数" class="headerlink" title="8、判断当前系统的位数"></a>8、判断当前系统的位数</h2><p>使用file查看文件类型来得到，后面的命令只要是外部命令即可</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file /bin/ls</span><br></pre></td></tr></table></figure>
-
-<h2 id="9、lsof-列出进程打开或调用文件的信息"><a href="#9、lsof-列出进程打开或调用文件的信息" class="headerlink" title="9、lsof 列出进程打开或调用文件的信息"></a>9、lsof 列出进程打开或调用文件的信息</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">lsof -p 进程号查看对应进程调用的文件</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="10、Netstat-显示各种网络相关信息"><a href="#10、Netstat-显示各种网络相关信息" class="headerlink" title="10、Netstat 显示各种网络相关信息"></a>10、Netstat 显示各种网络相关信息</h2><p>原文链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
-<p>如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。</p>
-<h3 id="10-1、输出信息"><a href="#10-1、输出信息" class="headerlink" title="10-1、输出信息"></a>10-1、输出信息</h3><p>执行<code>netstat</code>后，其输出结果为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">激活Internet连接 (w&#x2F;o 服务器)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State      </span><br><span class="line">tcp        0      0 localhost:epmd          localhost:47653         ESTABLISHED</span><br><span class="line">tcp        0      0 localhost:47653         localhost:epmd          ESTABLISHED</span><br><span class="line">tcp        0      0 VM:epmd                 localhost:47179         TIME_WAIT  </span><br><span class="line">活跃的UNIX域套接字 (w&#x2F;o 服务器)</span><br><span class="line">Proto RefCnt Flags       Type       State         I-Node   路径</span><br><span class="line">unix  2      [ ]         数据报                41161    &#x2F;run&#x2F;user&#x2F;1000&#x2F;systemd&#x2F;notify</span><br><span class="line">unix  10     [ ]         数据报                29933    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;socket</span><br><span class="line">unix  3      [ ]         流        已连接     37474    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;stdout</span><br><span class="line">unix  3      [ ]         数据报                58367    </span><br><span class="line">unix  3      [ ]         流        已连接     41214    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br><span class="line">unix  3      [ ]         流        已连接     41363    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br></pre></td></tr></table></figure>
-
-<p>netstat的输出结果大致可以分为两个部分：</p>
-<table>
-<thead>
-<tr>
-<th>Active Internet connections（活跃的网络连接）</th>
-<th>Active UNIX domain sockets（活跃的Unix域套接口）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Recv-Q（接收队列）</td>
-<td>Proto （显示连接使用的协议）</td>
-</tr>
-<tr>
-<td>Send-Q（发送队列）</td>
-<td>RefCnt  （连接到本套接口上的进程号）</td>
-</tr>
-<tr>
-<td></td>
-<td>Types （显示套接口的类型）</td>
-</tr>
-<tr>
-<td></td>
-<td>State （显示套接口当前的状态）</td>
-</tr>
-<tr>
-<td></td>
-<td>Path （连接到套接口的其它进程使用的路径名）</td>
-</tr>
-</tbody></table>
-<p><strong>Unix域套接口：</strong>和<strong>网络套接字</strong>一样，但是只能用于<strong>本机通信</strong>，性能可以提高一倍</p>
-<p><strong>“Recv-Q”和”Send-Q”：</strong>这些数字一般都应该是0。如果不是则表示软件包正在队列中堆积。这种情况只能在非常少的情况见到。</p>
-<h3 id="10-2、常见参数"><a href="#10-2、常见参数" class="headerlink" title="10-2、常见参数"></a>10-2、常见参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">常见参数</span><br><span class="line">-a (all)显示所有选项，默认不显示LISTEN相关</span><br><span class="line">-t (tcp)仅显示tcp相关选项</span><br><span class="line">-u (udp)仅显示udp相关选项</span><br><span class="line">-n 拒绝显示别名，能显示数字的全部转化成数字。</span><br><span class="line">-l 仅列出有在 Listen (监听) 的服務状态</span><br><span class="line"></span><br><span class="line">-p 显示建立相关链接的程序名</span><br><span class="line">-r 显示路由信息，路由表</span><br><span class="line">-e 显示扩展信息，例如uid等</span><br><span class="line">-s 按各个协议进行统计</span><br><span class="line">-c 每隔一个固定时间，执行该netstat命令。</span><br><span class="line"></span><br><span class="line">提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到</span><br></pre></td></tr></table></figure>
-
-<h3 id="10-3、使用案例"><a href="#10-3、使用案例" class="headerlink" title="10-3、使用案例"></a>10-3、使用案例</h3><h4 id="10-3-1、-列出所有端口-包括监听和未监听的"><a href="#10-3-1、-列出所有端口-包括监听和未监听的" class="headerlink" title="10-3-1、 列出所有端口 (包括监听和未监听的)"></a>10-3-1、 列出所有端口 (包括监听和未监听的)</h4><p> <strong>列出所有端口 netstat -a</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -a | more</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> udp        0      0 *:bootpc                *:*</span><br><span class="line"> </span><br><span class="line">Active UNIX domain sockets (servers and established)</span><br><span class="line"> Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6135     /tmp/.X11-unix/X0</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     5140     /var/run/acpid.socket</span><br></pre></td></tr></table></figure>
-
-<p> <strong>列出所有 tcp 端口 netstat -at</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -at</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> tcp        0      0 localhost:ipp           *:*                     LISTEN</span><br><span class="line"> tcp        0      0 *:smtp                  *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br></pre></td></tr></table></figure>
-
-<p> <strong>列出所有 udp 端口 netstat -au</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -au</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> udp        0      0 *:bootpc                *:*</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br><span class="line"> udp        0      0 *:mdns                  *:*</span><br></pre></td></tr></table></figure>
-
-<h4 id="10-3-2-列出所有处于监听状态的-Sockets"><a href="#10-3-2-列出所有处于监听状态的-Sockets" class="headerlink" title="10-3-2. 列出所有处于监听状态的 Sockets"></a>10-3-2. 列出所有处于监听状态的 Sockets</h4><p><strong>只显示监听端口 netstat -l</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -l</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:ipp           *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br></pre></td></tr></table></figure>
-
-<p> <strong>只列出所有监听 tcp 端口 netstat -lt</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lt</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> tcp        0      0 *:smtp                  *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br></pre></td></tr></table></figure>
-
-<p> <strong>只列出所有监听 udp 端口 netstat -lu</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lu</span></span><br><span class="line"> Active Internet connections (only servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> udp        0      0 *:49119                 *:*</span><br><span class="line"> udp        0      0 *:mdns                  *:*</span><br></pre></td></tr></table></figure>
-
-<p> <strong>只列出所有监听 UNIX 端口 netstat -lx</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -lx</span></span><br><span class="line"> Active UNIX domain sockets (only servers)</span><br><span class="line"> Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6294     private/maildrop</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6203     public/cleanup</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6302     private/ifmail</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6306     private/bsmtp</span><br></pre></td></tr></table></figure>
-
-<h4 id="10-3-3-显示每个协议的统计信息"><a href="#10-3-3-显示每个协议的统计信息" class="headerlink" title="10-3-3. 显示每个协议的统计信息"></a>10-3-3. 显示每个协议的统计信息</h4><p> <strong>显示所有端口的统计信息 netstat -s</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -s</span></span><br><span class="line"> Ip:</span><br><span class="line"> 11150 total packets received</span><br><span class="line"> 1 with invalid addresses</span><br><span class="line"> 0 forwarded</span><br><span class="line"> 0 incoming packets discarded</span><br><span class="line"> 11149 incoming packets delivered</span><br><span class="line"> 11635 requests sent out</span><br><span class="line"> Icmp:</span><br><span class="line"> 0 ICMP messages received</span><br><span class="line"> 0 input ICMP message failed.</span><br><span class="line"> Tcp:</span><br><span class="line"> 582 active connections openings</span><br><span class="line"> 2 failed connection attempts</span><br><span class="line"> 25 connection resets received</span><br><span class="line"> Udp:</span><br><span class="line"> 1183 packets received</span><br><span class="line"> 4 packets to unknown port received.</span><br><span class="line"> .....</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> <strong>显示 TCP 或 UDP 端口的统计信息 netstat -st 或 -su</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -st </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netstat -su</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="10-3-4、在-netstat-输出中显示-PID-和进程名称-netstat-p"><a href="#10-3-4、在-netstat-输出中显示-PID-和进程名称-netstat-p" class="headerlink" title="10-3-4、在 netstat 输出中显示 PID 和进程名称 netstat -p"></a>10-3-4、在 netstat 输出中显示 PID 和进程名称 netstat -p</h4><p>netstat -p 可以与其它开关一起使用，就可以添加 “PID/进程名称” 到 netstat 输出中，这样 debugging 的时候可以很方便的发现特定端口运行的程序。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -pt</span></span><br><span class="line"> Active Internet connections (w/o servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</span><br><span class="line"> tcp        1      0 ramesh-laptop.loc:47212 192.168.185.75:www        CLOSE_WAIT  2109/firefox</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:52750 lax:www ESTABLISHED 2109/firefox</span><br></pre></td></tr></table></figure>
-
-<h4 id="10-3-5-在-netstat-输出中不显示主机，端口和用户名-host-port-or-user"><a href="#10-3-5-在-netstat-输出中不显示主机，端口和用户名-host-port-or-user" class="headerlink" title="10-3-5. 在 netstat 输出中不显示主机，端口和用户名 (host, port or user)"></a>10-3-5. 在 netstat 输出中不显示主机，端口和用户名 (host, port or user)</h4><p><strong>当你不想让主机，端口和用户名显示</strong>，使用 <code>netstat -n</code>。将会使用数字代替那些名称。</p>
-<p>同样可以加速输出，因为不用进行比对查询。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -an</span></span><br></pre></td></tr></table></figure>
-
-<p>如果只是不想让这三个名称中的一个被显示，使用以下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-ports</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-hosts</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-users</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="10-3-6-持续输出-netstat-信息"><a href="#10-3-6-持续输出-netstat-信息" class="headerlink" title="10-3-6. 持续输出 netstat 信息"></a>10-3-6. 持续输出 netstat 信息</h4><p>netstat 将每隔一秒输出网络信息。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -c</span></span><br><span class="line"> Active Internet connections (w/o servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:36130 101-101-181-225.ama:www ESTABLISHED</span><br><span class="line"> tcp        1      1 ramesh-laptop.loc:52564 101.11.169.230:www      CLOSING</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:43758 server-101-101-43-2:www ESTABLISHED</span><br><span class="line"> tcp        1      1 ramesh-laptop.loc:42367 101.101.34.101:www      CLOSING</span><br><span class="line"> ^C</span><br></pre></td></tr></table></figure>
-
-<h4 id="10-3-7-显示系统不支持的地址族-Address-Families"><a href="#10-3-7-显示系统不支持的地址族-Address-Families" class="headerlink" title="10-3-7. 显示系统不支持的地址族 (Address Families)"></a>10-3-7. 显示系统不支持的地址族 (Address Families)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat --verbose</span><br></pre></td></tr></table></figure>
-
-<p>在输出的末尾，会有如下的信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netstat: no support for `AF IPX&#x27; on this system.</span><br><span class="line">netstat: no support for `AF AX25&#x27; on this system.</span><br><span class="line">netstat: no support for `AF X25&#x27; on this system.</span><br><span class="line">netstat: no support for `AF NETROM&#x27; on this system.</span><br></pre></td></tr></table></figure>
-
-<h4 id><a href="#" class="headerlink" title></a></h4><h4 id="10-3-8-显示核心路由信息-netstat-r"><a href="#10-3-8-显示核心路由信息-netstat-r" class="headerlink" title="10-3-8. 显示核心路由信息 netstat -r"></a>10-3-8. 显示核心路由信息 netstat -r</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -r</span></span><br><span class="line"> Kernel IP routing table</span><br><span class="line"> Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface</span><br><span class="line"> 192.168.1.0     *               255.255.255.0   U         0 0          0 eth2</span><br><span class="line"> link-local      *               255.255.0.0     U         0 0          0 eth2</span><br><span class="line"> default         192.168.1.1     0.0.0.0         UG        0 0          0 eth2</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：</strong> 使用 netstat -rn 显示数字格式，不查询主机名称。</p>
-<h4 id="-1"><a href="#-1" class="headerlink" title></a></h4><h4 id="10-3-9-找出程序运行的端口"><a href="#10-3-9-找出程序运行的端口" class="headerlink" title="10-3-9. 找出程序运行的端口"></a><strong>10-3-9. 找出程序运行的端口</strong></h4><p><strong>并不是所有的进程都能找到，没有权限的会不显示，使用 root 权限查看所有的信息。</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -ap | grep ssh</span></span><br><span class="line"> tcp        1      0 dev-db:ssh           101.174.100.22:39213        CLOSE_WAIT  -</span><br><span class="line"> tcp        1      0 dev-db:ssh           101.174.100.22:57643        CLOSE_WAIT  -</span><br></pre></td></tr></table></figure>
-
-<p> <strong>找出运行在指定端口的进程</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -an | grep <span class="string">&#x27;:80&#x27;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="10-3-10-显示网络接口列表"><a href="#10-3-10-显示网络接口列表" class="headerlink" title="10-3-10. 显示网络接口列表"></a>10-3-10. 显示网络接口列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -i</span></span><br><span class="line"> Kernel Interface table</span><br><span class="line"> Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg</span><br><span class="line"> eth0       1500 0         0      0      0 0             0      0      0      0 BMU</span><br><span class="line"> eth2       1500 0     26196      0      0 0         26883      6      0      0 BMRU</span><br><span class="line"> lo        16436 0         4      0      0 0             4      0      0      0 LRU</span><br></pre></td></tr></table></figure>
-
-<p><strong>显示详细信息，像是 ifconfig 使用 netstat -ie</strong>:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -ie</span></span><br><span class="line"> Kernel Interface table</span><br><span class="line"> eth0      Link encap:Ethernet  HWaddr 00:10:40:11:11:11</span><br><span class="line"> UP BROADCAST MULTICAST  MTU:1500  Metric:1</span><br><span class="line"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span><br><span class="line"> TX packets:0 errors:0 dropped:0 overruns:0 carrier:0</span><br><span class="line"> collisions:0 txqueuelen:1000</span><br><span class="line"> RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)</span><br><span class="line"> Memory:f6ae0000-f6b00000</span><br></pre></td></tr></table></figure>
-
-<h4 id="10-3-11-IP和TCP分析"><a href="#10-3-11-IP和TCP分析" class="headerlink" title="10-3-11. IP和TCP分析"></a>10-3-11. IP和TCP分析</h4><p> <strong>查看连接某服务端口最多的的IP地址</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> netstat -nat | grep <span class="string">&quot;192.168.1.15:22&quot;</span> |awk <span class="string">&#x27;&#123;print $5&#125;&#x27;</span>|awk -F: <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>|sort|uniq -c|sort -nr|head -20</span></span><br><span class="line">18 221.136.168.36</span><br><span class="line">3 154.74.45.242</span><br><span class="line">2 78.173.31.236</span><br><span class="line">2 62.183.207.98</span><br><span class="line">2 192.168.1.14</span><br><span class="line">2 182.48.111.215</span><br><span class="line">2 124.193.219.34</span><br><span class="line">2 119.145.41.2</span><br><span class="line">2 114.255.41.30</span><br><span class="line">1 75.102.11.99</span><br></pre></td></tr></table></figure>
-
-<p> <strong>TCP各种状态列表</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> netstat -nat |awk <span class="string">&#x27;&#123;print $6&#125;&#x27;</span></span></span><br><span class="line">established)</span><br><span class="line">Foreign</span><br><span class="line">LISTEN</span><br><span class="line">TIME_WAIT</span><br><span class="line">ESTABLISHED</span><br><span class="line">TIME_WAIT</span><br><span class="line">SYN_SENT</span><br></pre></td></tr></table></figure>
-
-<p>  <strong>先把状态全都取出来,然后使用uniq -c统计，之后再进行排序。</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">netstat -nat |awk <span class="string">&#x27;&#123;print $6&#125;&#x27;</span>|sort|uniq -c</span></span><br><span class="line">143 ESTABLISHED</span><br><span class="line">1 FIN_WAIT1</span><br><span class="line">1 Foreign</span><br><span class="line">1 LAST_ACK</span><br><span class="line">36 LISTEN</span><br><span class="line">6 SYN_SENT</span><br><span class="line">113 TIME_WAIT</span><br><span class="line">1 established)</span><br></pre></td></tr></table></figure>
-
-<p> <strong>最后的命令如下:</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nat |awk &#x27;&#123;print $6&#125;&#x27;|sort|uniq -c|sort -rn</span><br></pre></td></tr></table></figure>
-
-<p><strong>分析access.log获得访问前10位的ip地址</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;&#123;print $1&#125;&#x27; access.log |sort|uniq -c|sort -nr|head -10</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/28/Linux%20%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Redis安装以及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/28/Redis%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">Redis安装以及使用</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/28/Redis%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-10-28T11:08:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、官方地址"><a href="#1、官方地址" class="headerlink" title="1、官方地址"></a>1、官方地址</h2><p><strong>地址：</strong><a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io/</a></p>
-<h2 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h2><h3 id="2-1、编译安装"><a href="#2-1、编译安装" class="headerlink" title="2-1、编译安装"></a>2-1、编译安装</h3><h4 id="2-1-1、下载源码包，并编译"><a href="#2-1-1、下载源码包，并编译" class="headerlink" title="2-1-1、下载源码包，并编译"></a>2-1-1、下载源码包，并编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.redis.io/releases/redis-6.0.9.tar.gz</span><br><span class="line">tar xzf redis-6.0.9.tar.gz</span><br><span class="line">cd redis-6.0.9</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-
-<p>依赖：<strong>make</strong>，<strong>autoconf</strong>，Ubuntu下使用apt 安装</p>
-<p>依赖库：<strong>hiredis  jemalloc  linenoise  lua</strong>，源码包中已经提供，不需要再去下载安装，用工程中的编译方式即可</p>
-<h4 id="2-1-2、运行以及测试"><a href="#2-1-2、运行以及测试" class="headerlink" title="2-1-2、运行以及测试"></a>2-1-2、运行以及测试</h4><ul>
-<li>运行</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/redis-server</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>测试</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">src/redis-cli</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> <span class="built_in">set</span> foo bar</span></span><br><span class="line">OK</span><br><span class="line"><span class="meta">redis&gt;</span><span class="bash"> get foo</span></span><br><span class="line">&quot;bar&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-2、软件安装"><a href="#2-2、软件安装" class="headerlink" title="2-2、软件安装"></a>2-2、软件安装</h3><h4 id="2-2-1、Ubuntu下使用apt-安装"><a href="#2-2-1、Ubuntu下使用apt-安装" class="headerlink" title="2-2-1、Ubuntu下使用apt 安装"></a>2-2-1、Ubuntu下使用apt 安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install redis</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-2、运行以及测试"><a href="#2-2-2、运行以及测试" class="headerlink" title="2-2-2、运行以及测试"></a>2-2-2、运行以及测试</h4><p><strong>同2-1-1</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/28/Redis%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1580,7 +1698,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 will
+    		&copy; 2022 will
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1836,6 +1954,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">IDE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
             
             <div class="clearfix"></div>

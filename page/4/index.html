@@ -137,6 +137,605 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Binder机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/">Binder机制</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2019-05-10T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Binder</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/10/Binder%E6%9C%BA%E5%88%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Springboot读取配置文件及自定义配置文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">Springboot读取配置文件及自定义配置文件</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2019-05-10T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>spring-boot-2.3.4.RELEASE</p>
+<ul>
+<li>Springboot使用一个<strong>全局的配置文件</strong>,<strong>默认命名</strong>为<code>applilcation.properties</code> 或者<code>application.yaml</code>或<code>application.yml</code></li>
+<li>Springboot <strong>自动按照配置文件配置</strong>程序运行时的参数。</li>
+</ul>
+<h2 id="1、工程内配置文件的读取路径和读取规则"><a href="#1、工程内配置文件的读取路径和读取规则" class="headerlink" title="1、工程内配置文件的读取路径和读取规则"></a>1、工程内配置文件的读取路径和读取规则</h2><h3 id="1-1、存放路径"><a href="#1-1、存放路径" class="headerlink" title="1-1、存放路径"></a>1-1、存放路径</h3><p>如果在不同的目录中存在多个配置文件，它的读取顺序是：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、config/application.properties（项目根目录中config目录下）</span><br><span class="line">2、config/application.yml</span><br><span class="line">3、application.properties（项目根目录下）</span><br><span class="line">4、application.yml</span><br><span class="line">5、resources/config/application.properties（项目resources目录中config目录下）</span><br><span class="line">6、resources/config/application.yml</span><br><span class="line">7、resources/application.properties（项目的resources目录下）</span><br><span class="line">8、resources/application.yml</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2、读取规则"><a href="#1-2、读取规则" class="headerlink" title="1-2、读取规则"></a>1-2、读取规则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、如果同一个目录下，有application.yml也有application.properties，默认先读取application.properties。</span><br><span class="line">2、如果同一个配置属性，在多个配置文件都配置了，默认使用第1个读取到的，后面读取的不覆盖前面读取到的。</span><br><span class="line">3、创建SpringBoot项目时，一般的配置文件放置在“项目的resources目录下</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3、按Profile不同环境读取不同配置"><a href="#1-3、按Profile不同环境读取不同配置" class="headerlink" title="1-3、按Profile不同环境读取不同配置"></a>1-3、按Profile不同环境读取不同配置</h3><p>不同环境的配置设置一个配置文件，例如：</p>
+ <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dev环境下的配置配置在application-dev.properties中；</span><br><span class="line">prod环境下的配置配置在application-prod.properties中。</span><br></pre></td></tr></table></figure>
+
+<p>在application.properties中指定使用哪一个文件</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.profiles.active</span> = <span class="string">dev</span></span><br></pre></td></tr></table></figure>
+
+<p>当然，你也可以在运行的时候手动指定：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar myproject.jar --spring.profiles.active = prod</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4、读取方式"><a href="#1-4、读取方式" class="headerlink" title="1-4、读取方式"></a>1-4、读取方式</h3><h4 id="1-4-1、-Value注解方式读取"><a href="#1-4-1、-Value注解方式读取" class="headerlink" title="1-4-1、@Value注解方式读取"></a>1-4-1、@Value注解方式读取</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Value(&quot;$&#123;student.name&#125;&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="meta">@Value(&quot;$&#123;student.age&#125;&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-2、-ConfigurationProperties注解方式读取"><a href="#1-4-2、-ConfigurationProperties注解方式读取" class="headerlink" title="1-4-2、@ConfigurationProperties注解方式读取"></a>1-4-2、@ConfigurationProperties注解方式读取</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;person&quot;)</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String lastName;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Boolean boss;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String,Object&gt; maps;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Object&gt; lists;</span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-3、-PropertySource配合-Value"><a href="#1-4-3、-PropertySource配合-Value" class="headerlink" title="1-4-3、@PropertySource配合@Value"></a>1-4-3、@PropertySource配合@Value</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@PropertySource(value = &#123;&quot;classpath:config/teacher.properties&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;age&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-4、-ConfigurationProperties配合-Value"><a href="#1-4-4、-ConfigurationProperties配合-Value" class="headerlink" title="1-4-4、@ConfigurationProperties配合@Value"></a>1-4-4、@ConfigurationProperties配合@Value</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;man&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Man</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;a&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;b&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-5、-ConfigurationProperties配合-PropertySource配合-Value"><a href="#1-4-5、-ConfigurationProperties配合-PropertySource配合-Value" class="headerlink" title="1-4-5、@ConfigurationProperties配合@PropertySource配合@Value"></a>1-4-5、@ConfigurationProperties配合@PropertySource配合@Value</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;woman&quot;)</span></span><br><span class="line"><span class="meta">@PropertySource(value = &#123; &quot;classpath:config/woman.properties&quot; &#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Woman</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;age&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-4-6、Environment"><a href="#1-4-6、Environment" class="headerlink" title="1-4-6、Environment"></a>1-4-6、Environment</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> Environment env;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">env.getProperty(<span class="string">&quot;student.name&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、工程外自配置文件的读取路径和读取规则"><a href="#2、工程外自配置文件的读取路径和读取规则" class="headerlink" title="2、工程外自配置文件的读取路径和读取规则"></a>2、工程外自配置文件的读取路径和读取规则</h2><h3 id="2-1、通过命令行指定"><a href="#2-1、通过命令行指定" class="headerlink" title="2-1、通过命令行指定"></a>2-1、通过命令行指定</h3><p>SpringApplication会默认将命令行选项参数转换为配置信息<br>例如，启动时命令参数指定：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar myproject.jar --server.port = 9000</span><br></pre></td></tr></table></figure>
+
+<p>从命令行指定配置项的优先级最高，不过你可以通过setAddCommandLineProperties来禁用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SpringApplication.setAddCommandLineProperties(false).</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2、外置配置文件"><a href="#2-2、外置配置文件" class="headerlink" title="2-2、外置配置文件"></a>2-2、外置配置文件</h3><p>Spring程序会按优先级从下面这些路径来加载application.properties配置文件</p>
+ <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、当前目录下的config目录</span><br><span class="line">2、当前目录</span><br><span class="line">3、classpath 里的config目录</span><br><span class="line">4、classpath 根目录</span><br></pre></td></tr></table></figure>
+
+<p>因此，要外置配置文件就很简单了，在jar所在目录新建config文件夹，然后放入配置文件，或者直接放在配置文件在jar目录</p>
+<h3 id="2-3、自定义配置文件"><a href="#2-3、自定义配置文件" class="headerlink" title="2-3、自定义配置文件"></a>2-3、自定义配置文件</h3><p>如果你不想使用application.properties作为配置文件，怎么办？完全没问题。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar myproject.jar --spring.config.location=classpath:/default.properties,classpath:/override.properties</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar -Dspring.config.location=D:\config\config.properties springbootrestdemo-0.0.1-SNAPSHOT.jar </span><br></pre></td></tr></table></figure>
+
+<p>当然，还能在代码里指定</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@PropertySource(value=&#123;&quot;file:config.properties&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringbootrestdemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringbootrestdemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、自定义配置文件的供外部使用"><a href="#3、自定义配置文件的供外部使用" class="headerlink" title="3、自定义配置文件的供外部使用"></a>3、自定义配置文件的供外部使用</h2><p>原文：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liweiweicode/p/11824521.html">springboot2.0入门（七）– 自定义配置文件+xml配置文件引入</a></p>
+<h3 id="3-1、加载自定义配置文件"><a href="#3-1、加载自定义配置文件" class="headerlink" title="3-1、加载自定义配置文件"></a>3-1、加载自定义配置文件</h3><h4 id="3-1-1、新建一个family-yam文件"><a href="#3-1-1、新建一个family-yam文件" class="headerlink" title="3-1-1、新建一个family.yam文件"></a>3-1-1、新建一个family.yam文件</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">family:</span></span><br><span class="line">  <span class="attr">family-name:</span></span><br><span class="line">  <span class="attr">dad:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">levi</span></span><br><span class="line">    <span class="attr">age:</span> <span class="number">30</span>  <span class="comment">#$&#123;random.int&#125;  随机数的值是不能传递的</span></span><br><span class="line">  <span class="attr">mom:</span></span><br><span class="line">    <span class="attr">alias:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">yilisha</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">alise</span></span><br><span class="line">    <span class="attr">age:</span> <span class="string">$&#123;family.dad.age&#125;</span>   <span class="comment">#妈妈的年龄和爸爸相同，没有则默认为24岁</span></span><br><span class="line">  <span class="attr">child:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">happyboy</span></span><br><span class="line">    <span class="attr">age:</span> <span class="number">5</span></span><br><span class="line">    <span class="attr">friends:</span></span><br><span class="line">      <span class="bullet">-</span> &#123;<span class="attr">hobby:</span> <span class="string">baseball</span>,<span class="attr">sex:</span> <span class="string">male</span>&#125;</span><br><span class="line">      <span class="bullet">-</span> &#123;<span class="attr">hobby:</span> <span class="string">football</span>,<span class="attr">sex:</span> <span class="string">famale</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-1-2、自定义一个配置类"><a href="#3-1-2、自定义一个配置类" class="headerlink" title="3-1-2、自定义一个配置类"></a>3-1-2、自定义一个配置类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MixPropertySourceFactory</span> <span class="keyword">extends</span> <span class="title">DefaultPropertySourceFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> PropertySource&lt;?&gt; createPropertySource(String name, EncodedResource resource) <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        String sourceName = name != <span class="keyword">null</span> ? name : resource.getResource().getFilename();</span><br><span class="line">        <span class="keyword">if</span> (!resource.getResource().exists()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> PropertiesPropertySource(sourceName, <span class="keyword">new</span> Properties());</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sourceName.endsWith(<span class="string">&quot;.yml&quot;</span>) || sourceName.endsWith(<span class="string">&quot;.yaml&quot;</span>)) &#123;</span><br><span class="line">            Properties propertiesFromYaml = loadYml(resource);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> PropertiesPropertySource(sourceName, propertiesFromYaml);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.createPropertySource(name, resource);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Properties <span class="title">loadYml</span><span class="params">(EncodedResource resource)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        YamlPropertiesFactoryBean factory = <span class="keyword">new</span> YamlPropertiesFactoryBean();</span><br><span class="line">        factory.setResources(resource.getResource());</span><br><span class="line">        factory.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> factory.getObject();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该配置了除了可以引入springboot默认的application.properties文件，还能引入自定义的yml文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PropertySource(value = &#123;&quot;classpath:family.yml&quot;&#125;, factory = MixPropertySourceFactory.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Family</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>在family类上加入上述注解，如果是读取properties配置文件，只需要加<code>@PropertySource(value = &#123;&quot;classpath:family.properties&quot;&#125;)</code>即可。</p>
+<p>不需要定义MixPropertySourceFactory。</p>
+<p> application配置文件的优先级是比普通的yml配置文件优先级是要高的，相同属性的配置，只有字application中没有配置才能生效。</p>
+<h3 id="3-2、老的文件配置引入-xml文件"><a href="#3-2、老的文件配置引入-xml文件" class="headerlink" title="3-2、老的文件配置引入(xml文件)"></a>3-2、老的文件配置引入(xml文件)</h3><h4 id="3-2-1、自定义一个xml配置文件"><a href="#3-2-1、自定义一个xml配置文件" class="headerlink" title="3-2-1、自定义一个xml配置文件"></a>3-2-1、自定义一个xml配置文件</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;testBeanService&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.liyu.helloworld.service.TestBeanService&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-2、在springboot启动时配置装载xml文件"><a href="#3-2-2、在springboot启动时配置装载xml文件" class="headerlink" title="3-2-2、在springboot启动时配置装载xml文件"></a>3-2-2、在springboot启动时配置装载xml文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@ImportResource(locations = &#123;&quot;classpath:beans.xml&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Boot01HelloworldApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Boot01HelloworldApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-3、测试是否正常注入"><a href="#3-2-3、测试是否正常注入" class="headerlink" title="3-2-3、测试是否正常注入"></a>3-2-3、测试是否正常注入</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Autowired</span></span><br><span class="line">        <span class="keyword">private</span> ConfigurableApplicationContext ioc;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Test</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHelloService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">//测试Spring上下文环境中是否有testBeanService这样一个bean，有的话表示xml配置文件生效</span></span><br><span class="line">            <span class="keyword">boolean</span> testBeanService= ioc.containsBean(<span class="string">&quot;testBeanService&quot;</span>);</span><br><span class="line">            System.out.println(testBeanService);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、配置文件的格式"><a href="#4、配置文件的格式" class="headerlink" title="4、配置文件的格式"></a>4、配置文件的格式</h2><h3 id="4-1、properties"><a href="#4-1、properties" class="headerlink" title="4-1、properties"></a>4-1、properties</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># properties文件格式</span></span><br><span class="line"><span class="meta">woman.name</span>=<span class="string">女人</span></span><br><span class="line"><span class="meta">woman.age</span>=<span class="string">20</span></span><br><span class="line"><span class="meta">friend.sex</span>=<span class="string">女</span></span><br><span class="line"><span class="meta">friend.age</span>=<span class="string">111</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2、yaml"><a href="#4-2、yaml" class="headerlink" title="4-2、yaml"></a>4-2、yaml</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">woman:</span></span><br><span class="line">	<span class="attr">name:</span> <span class="string">女人</span></span><br><span class="line">	<span class="attr">age:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">friend:</span></span><br><span class="line">	<span class="attr">sex:</span> <span class="string">女</span></span><br><span class="line">	<span class="attr">age:</span> <span class="number">111</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3、xml"><a href="#4-3、xml" class="headerlink" title="4-3、xml"></a>4-3、xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">part</span> <span class="attr">id</span>=<span class="string">&quot;01&quot;</span> <span class="attr">name</span>=<span class="string">&quot;选项一&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>我是李逍遥<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>今年22岁<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">sex</span>&gt;</span>男<span class="tag">&lt;/<span class="name">sex</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">part</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4、ini"><a href="#4-4、ini" class="headerlink" title="4-4、ini"></a>4-4、ini</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; last modified 1 April 2001 by John Doe</span></span><br><span class="line"><span class="section">[owner]</span> </span><br><span class="line"><span class="attr">name</span>=John Doe </span><br><span class="line"><span class="attr">organization</span>=Acme Products  </span><br><span class="line"><span class="section">[database]</span> </span><br><span class="line"><span class="attr">server</span>=<span class="number">192.0</span>.<span class="number">2.42</span> </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e6fe4b8a4893">spring boot 读取properties的次序</a></li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html">Externalized Configuration</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liweiweicode/p/11824521.html">springboot2.0入门（七）– 自定义配置文件+xml配置文件引入</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/kingmax54212008/article/details/93474585">使用JavaConfig形式配置Spring框架，了解一下</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">配置文件</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/10/Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android系统源码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/">Android系统源码</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2019-05-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android系统源码<br>对国内的开发者来说最痛苦的是无法去访问android开发网站。为了更好的认识世界，对程序员来说，会翻墙也是的一门技术，带你去领略墙外的世界, 国内开发者访问(androiddevtools) 上面已经有了所有你要的资源，同时可以下载到我们的主角framework。</p>
+<p>如果你只是想查看源码，androidxref也是一个不错的资源。</p>
+<p>整体结构<br>Android7.0的根目录结构说明如下表所示：</p>
+<p>Makefile （全局Makefile文件，用来定义编译规则）<br>abi （应用程序二进制接口）<br>art （ART运行环境）<br>bionic （bionic C库）<br>bootable （启动引导相关代码）<br>build （存放系统编译规则及generic等基础开发包配置）<br>cts （Android兼容性测试套件标准）<br>dalvik （dalvik JAVA虚拟机）<br>developers （开发者目录）<br>development （应用程序开发相关）<br>device （设备相关配置）<br>docs （参考文档目录）<br>external （android使用的一些开源的模组）<br>frameworks （核心框架——java及C++语言）<br>hardware （部分厂家开源的硬解适配层HAL代码）<br>kernel<br>libcore （核心库相关文件）<br>libnativehelper （动态库，实现JNI库的基础）<br>ndk （NDK相关代码，帮助开发人员在应用程序中嵌入C/C++代码）<br>out （编译完成后的代码输出与此目录）<br>packages （应用程序包）<br>pdk （Plug Development Kit 的缩写，本地开发套件）<br>prebuilts （x86和arm架构下预编译的一些资源）<br>sdk （sdk及模拟器）<br>system （底层文件系统库、应用及组件——C语言）<br>tools （工具文件）<br>toolchain（工具链文件）<br>vendor （厂商定制代码）</p>
+<p>应用层部分<br>应用层位于整个Android系统的最上层，开发者开发的应用程序以及系统内置的应用程序都位于应用层。源码根目录中的packages目录对应着系统应用层。</p>
+<p>apps （核心应用程序）<br>experimental （第三方应用程序）<br>inputmethods （输入法目录）<br>providers （内容提供者目录）<br>screensavers （屏幕保护）<br>services （通信服务）<br>wallpapers （墙纸）</p>
+<p>从目录结构可以发现，packages目录存放着系统核心应用程序、第三方的应用程序和输入法等等，这些应用都是运行在系统应用层的，因此packages目录对应着系统的应用层。</p>
+<p>应用框架层部分<br>应用框架层是系统的核心部分，一方面向上提供接口给应用层调用，另一方面向下与C/C++程序库以及硬件抽象层等进行衔接。 应用框架层的主要实现代码在/frameworks/base和/frameworks/av目录下，其中/frameworks/base目录结构如下：</p>
+<p>api （定义API）<br>core （核心库）<br>docs （文档）<br>include （头文件）<br>libs （库）<br>media （多媒体相关库）<br>nfc-extras （NFC相关）<br>opengl 2D/3D （图形API）<br>sax （XML解析器）<br>telephony （电话通讯管理）<br>tests （测试相关）<br>test-runner （测试工具相关）<br>tools （工具）<br>wifi （wifi无线网络）<br>cmds （重要命令：am、app_proce等）<br>data （字体和声音等数据文件）<br>graphics （图形图像相关）<br>keystore （和数据签名证书相关）<br>location （地理位置相关库）<br>native （本地库）<br>obex （蓝牙传输）<br>packages （设置、TTS、VPN程序）<br>services （系统服务）</p>
+<p>###来源<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/huaxun66/article/details/78135556">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot 切面AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/">SpringBoot 切面AOP</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/" class="archive-article-date">
+  	<time datetime="2019-05-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在方法执行的前后，切入代码；经典的service层切入事务.</p>
+<h3 id="AOP相关注解"><a href="#AOP相关注解" class="headerlink" title="AOP相关注解"></a>AOP相关注解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Aspect注解是切面注解类</span><br><span class="line">@Pointcut切点定义</span><br><span class="line">@Before是方法执行前调用</span><br><span class="line">@After是方法执行后调用</span><br><span class="line">@AfterReturning方法执行返回值调用</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/09/SpringBoot%20%E5%88%87%E9%9D%A2AOP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android平台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/">Android平台</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/" class="archive-article-date">
+  	<time datetime="2019-05-08T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平台架构<br>Android 是一种基于 Linux 的开放源代码软件栈，为广泛的设备和机型而创建。下图所示为 Android 平台的主要组件。</p>
+<p><img src="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/Android%E5%B9%B3%E5%8F%B0%5Candroid-stack_2x.png" alt="图 1. Android 软件栈。"></p>
+<p>###Linux 内核<br>Android 平台的基础是 Linux 内核。例如，Android Runtime (ART) 依靠 Linux 内核来执行底层功能，例如线程和低层内存管理。</p>
+<p>使用 Linux 内核可让 Android 利用主要安全功能，并且允许设备制造商为著名的内核开发硬件驱动程序。</p>
+<p>###硬件抽象层 (HAL)<br>硬件抽象层 (HAL) 提供标准界面，向更高级别的 Java API 框架显示设备硬件功能。HAL 包含多个库模块，其中每个模块都为特定类型的硬件组件实现一个界面，例如相机或蓝牙模块。当框架 API 要求访问设备硬件时，Android 系统将为该硬件组件加载库模块。</p>
+<p>###Android Runtime<br>对于运行 Android 5.0（API 级别 21）或更高版本的设备，每个应用都在其自己的进程中运行，并且有其自己的 Android Runtime (ART) 实例。ART 编写为通过执行 DEX 文件在低内存设备上运行多个虚拟机，DEX 文件是一种专为 Android 设计的字节码格式，经过优化，使用的内存很少。编译工具链（例如 Jack）将 Java 源代码编译为 DEX 字节码，使其可在 Android 平台上运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ART 的部分主要功能包括：</span><br><span class="line"></span><br><span class="line">* 预先 (AOT) 和即时 (JIT) 编译</span><br><span class="line">* 优化的垃圾回收 (GC)</span><br><span class="line">* 更好的调试支持，包括专用采样分析器、详细的诊断异常和崩溃报告，并且能够设置监视点以监控特定字段</span><br><span class="line">在 Android 版本 5.0（API 级别 21）之前，Dalvik 是 Android Runtime。如果您的应用在 ART 上运行效果很好，那么它应该也可在 Dalvik 上运行，但反过来不一定。</span><br><span class="line"></span><br><span class="line">Android 还包含一套核心运行时库，可提供 Java API 框架使用的 Java 编程语言大部分功能，包括一些 Java 8 语言功能。</span><br></pre></td></tr></table></figure>
+
+<p>###原生 C/C++ 库<br>许多核心 Android 系统组件和服务（例如 ART 和 HAL）构建自原生代码，需要以 C 和 C++ 编写的原生库。Android 平台提供 Java 框架 API 以向应用显示其中部分原生库的功能。例如，您可以通过 Android 框架的 Java OpenGL API 访问 OpenGL ES，以支持在应用中绘制和操作 2D 和 3D 图形。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果开发的是需要 C 或 C++ 代码的应用，可以使用 Android NDK 直接从原生代码访问某些原生平台库。</span><br><span class="line">C&#x2F;C++程序库包括九个子系统，分别是图层管理、媒体库、SQLite、OpenGLEState、FreeType、WebKit、SGL、SSL和libc。</span><br><span class="line">![C&#x2F;C++程序库](android-cxx-library.png)</span><br></pre></td></tr></table></figure>
+
+<p>###Java API 框架<br>您可通过以 Java 语言编写的 API 使用 Android OS 的整个功能集。这些 API 形成创建 Android 应用所需的构建块，它们可简化核心模块化系统组件和服务的重复使用，包括以下组件和服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* 丰富、可扩展的视图系统，可用以构建应用的 UI，包括列表、网格、文本框、按钮甚至可嵌入的网络浏览器</span><br><span class="line">* 资源管理器，用于访问非代码资源，例如本地化的字符串、图形和布局文件</span><br><span class="line">* 通知管理器，可让所有应用在状态栏中显示自定义提醒</span><br><span class="line">* Activity 管理器，用于管理应用的生命周期，提供常见的导航返回栈</span><br><span class="line">* 内容提供程序，可让应用访问其他应用（例如“联系人”应用）中的数据或者共享其自己的数据</span><br><span class="line">开发者可以完全访问 Android 系统应用使用的框架 API。</span><br><span class="line">应用程序框架层包括活动管理器、位置管理器、包管理器、通知管理器、资源管理器、 电话管理器、窗口管理器、内容提供者、视图系统和XMPP服务十个部分。</span><br><span class="line">![应用程序框架层](android-api-framework.png)</span><br></pre></td></tr></table></figure>
+
+<p>###系统应用<br>Android 随附一套用于电子邮件、短信、日历、互联网浏览和联系人等的核心应用。平台随附的应用与用户可以选择安装的应用一样，没有特殊状态。因此第三方应用可成为用户的默认网络浏览器、短信 Messenger 甚至默认键盘（有一些例外，例如系统的“设置”应用）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统应用可用作用户的应用，以及提供开发者可从其自己的应用访问的主要功能。例如，如果您的应用要发短信，您无需自己构建该功能，可以改为调用已安装的短信应用向您指定的接收者发送消息。</span><br></pre></td></tr></table></figure>
+
+<p>###资料来源<br><a target="_blank" rel="noopener" href="https://developer.android.google.cn/guide/platform">developer.android.google.cn</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/huaxun66/article/details/78135556">https://blog.csdn.net/huaxun66/article/details/78135556</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Bean 生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Bean 生命周期</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="archive-article-date">
+  	<time datetime="2019-05-07T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####Spring Bean初始化的流程<br>![Spring Bean初始化的流程](Bean 生命周期/spring-bean-lifecycle.png)</p>
+<p>####示例</p>
+<ul>
+<li><p>Bean</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class User implements InitializingBean , DisposableBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public User() &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(constructor)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;   </span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(setName&#x2F;setAttribute)&quot;);</span><br><span class="line">        this.name &#x3D; name;</span><br><span class="line">    &#125;   </span><br><span class="line">    @PostConstruct</span><br><span class="line">        public void postConstruct()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(postConstruct)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;MainConfig中@Bean 的initMethod</span><br><span class="line">    public void initMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(initMethod)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    &#x2F;&#x2F;InitializingBean接口的方法afterPropertiesSet</span><br><span class="line">    @Override</span><br><span class="line">        public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(afterPropertiesSet)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    @PreDestroy</span><br><span class="line">        public void preDestroy()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(preDestroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;DisposableBean接口的方法destroy</span><br><span class="line">    @Override</span><br><span class="line">        public void destroy() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(destroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;MainConfig中@Bean 的destroyMethod</span><br><span class="line">    public void destroyMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(destroyMethod)&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Bean流程監控</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class CustomBeanPostProcessor implements BeanPostProcessor &#123;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()&#x3D;&#x3D;User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessBeforeInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()&#x3D;&#x3D;User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessAfterInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Client</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">public class App &#123;</span><br><span class="line"></span><br><span class="line">    @Bean(initMethod &#x3D; &quot;initMethod&quot;,destroyMethod &#x3D; &quot;destroyMethod&quot;)</span><br><span class="line">        public User user()&#123;</span><br><span class="line">            return new User();</span><br><span class="line">        &#125;   </span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(App.class, args);</span><br><span class="line">    &#125;~  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">调用Bean的函数(constructor)</span><br><span class="line">调用postProcessBeforeInitialization...</span><br><span class="line">调用Bean的函数(postConstruct)</span><br><span class="line">调用Bean的函数(afterPropertiesSet)</span><br><span class="line">调用Bean的函数(initMethod)</span><br><span class="line">调用postProcessAfterInitialization...</span><br><span class="line">2019-05-09 00:33:00.526  INFO 4549 --- [           main] com.will.App                             : Started App in 3.664 seconds (JVM running for 6.588)</span><br><span class="line">调用Bean的函数(preDestroy)</span><br><span class="line">调用Bean的函数(destroy)</span><br><span class="line">调用Bean的函数(destroyMethod)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>####参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xrq730/p/6363055.html">https://www.cnblogs.com/xrq730/p/6363055.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/redcool/p/6397398.html">https://www.cnblogs.com/redcool/p/6397398.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-门面模式、代理模式、适配器模式的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -535,1014 +1134,9 @@
 
 
   
-    <article id="post-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/03/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/03/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2018-10-03T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、策略模式定义"><a href="#一、策略模式定义" class="headerlink" title="一、策略模式定义"></a>一、策略模式定义</h2><p>Strategy模式也叫策略模式是行为模式之一，它对一系列的算法加以封装，为所有算法定义一个抽象的算法接口，并通过继承该抽象算法接口对所有的算法加以封装和实现，具体的算法选择交由客户端决定（策略）。Strategy模式主要用来平滑地处理算法的切换 。</p>
-<h2 id="二、策略模式的结构"><a href="#二、策略模式的结构" class="headerlink" title="二、策略模式的结构"></a>二、策略模式的结构</h2><ul>
-<li>封装类：也叫上下文，对策略进行二次封装，目的是避免高层模块对策略的直接调用。</li>
-<li>抽象策略：通常情况下为一个接口，当各个实现类中存在着重复的逻辑时，则使用抽象类来封装这部分公共的代码，此时，策略模式看上去更像是模版方法模式。</li>
-<li>具体策略：具体策略角色通常由一组封装了算法的类来担任，这些类之间可以根据需要自由替换。</li>
-</ul>
-<h2 id="三、策略模式的特点"><a href="#三、策略模式的特点" class="headerlink" title="三、策略模式的特点"></a>三、策略模式的特点</h2><ul>
-<li>策略模式提供了可以替换继承关系的办法。</li>
-<li>使用策略模式可以避免使用多重条件转移语句。</li>
-</ul>
-<h2 id="四、策略模式的缺点"><a href="#四、策略模式的缺点" class="headerlink" title="四、策略模式的缺点"></a>四、策略模式的缺点</h2><ol>
-<li><p>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道所有的算法或行为的情况。</p>
-</li>
-<li><p>策略模式造成很多的策略类。有时候可以通过把依赖于环境的状态保存到客户端里面，而将策略类设计成可共享的，这样策略类实例可以被不同客户端使用。换言之，可以使用享元模式来减少对象的数量。</p>
-</li>
-</ol>
-<h2 id="五、实现"><a href="#五、实现" class="headerlink" title="五、实现"></a>五、实现</h2><h3 id="抽象策略"><a href="#抽象策略" class="headerlink" title="抽象策略"></a>抽象策略</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123; <span class="comment">//加密</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="具体策略"><a href="#具体策略" class="headerlink" title="具体策略"></a>具体策略</h3><h4 id="md5"><a href="#md5" class="headerlink" title="md5"></a>md5</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MD5Strategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123; </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                   System.out.println(<span class="string">&quot;执行MD5加密&quot;</span>);</span><br><span class="line">                       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="sha1"><a href="#sha1" class="headerlink" title="sha1"></a>sha1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SHA1Strategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;执行SHA1加密&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="封装类"><a href="#封装类" class="headerlink" title="封装类"></a>封装类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123; </span><br><span class="line">      <span class="keyword">private</span> Strategy strategy; </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">(Strategy strategy)</span> </span>&#123; </span><br><span class="line">                    <span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">                        &#125; </span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">encrypt</span><span class="params">()</span> </span>&#123; </span><br><span class="line">                    <span class="keyword">this</span>.strategy.encrypt();</span><br><span class="line">                        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainClass</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">                <span class="comment">// Strategy stra = new SHA1Strategy(); </span></span><br><span class="line">                <span class="comment">// stra.encrypt();</span></span><br><span class="line">                Context context = <span class="keyword">new</span> Context(<span class="keyword">new</span> MD5Strategy());</span><br><span class="line">                        context.encrypt();</span><br><span class="line">                            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h2><p>简直和工厂模式一模一样</p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Strategy</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Strategy();</span><br><span class="line">        virtual ~Strategy();</span><br><span class="line">        <span class="function">virtual <span class="keyword">void</span> <span class="title">algrithm</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line">Strategy::Strategy()&#123;&#125;</span><br><span class="line">Strategy::~Strategy()&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Context</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Context(Strategy * strategy);</span><br><span class="line">        ~Context();</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">doAction</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        Strategy * m_Strategy;</span><br><span class="line">&#125;;</span><br><span class="line">Context::Context(Strategy * strategy)&#123;m_Strategy = strategy;&#125;</span><br><span class="line">Context::~Context()&#123;&#125;</span><br><span class="line"><span class="keyword">void</span> Context::doAction()&#123;m_Strategy-&gt;algrithm(); &#125;</span><br><span class="line">class StrategyA : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function">virtual <span class="keyword">void</span> <span class="title">algrithm</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">void</span> StrategyA::algrithm()&#123; cout &lt;&lt; <span class="string">&quot;StrategyA algrithm&quot;</span> &lt;&lt; endl;&#125;</span><br><span class="line">class StrategyB : public Strategy</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function">virtual <span class="keyword">void</span> <span class="title">algrithm</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">void</span> StrategyB::algrithm()&#123; cout &lt;&lt; <span class="string">&quot;StrategyB algrithm&quot;</span> &lt;&lt; endl;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( <span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Strategy *a = <span class="keyword">new</span> StrategyA();</span><br><span class="line">    Strategy *b = <span class="keyword">new</span> StrategyB();</span><br><span class="line">    Context * context = <span class="keyword">new</span> Context(a);</span><br><span class="line">    context-&gt;doAction();</span><br><span class="line">    delete context;</span><br><span class="line">    delete a;</span><br><span class="line">    delete b;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/03/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Foxmail邮件部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/">Foxmail邮件部署</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/" class="archive-article-date">
-  	<time datetime="2018-10-02T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/1.png" alt="1"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/2.png" alt="2"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/3.png" alt="3"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/4.png" alt="4"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/5.png" alt="5"><br><img src="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/6.png" alt="5"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Foxmail</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">部署</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/02/Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/08/Python%E5%85%A5%E9%97%A8/">Python入门</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/08/Python%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2018-02-08T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><h2 id="1、学习完整"><a href="#1、学习完整" class="headerlink" title="1、学习完整"></a>1、学习完整</h2><p>Python官网：<a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org/</a><br>Python文档：<a target="_blank" rel="noopener" href="https://www.python.org/doc/">https://www.python.org/doc/</a></p>
-<h2 id="2、环境"><a href="#2、环境" class="headerlink" title="2、环境"></a>2、环境</h2><p>window环境<br><a target="_blank" rel="noopener" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a><br>Window平台安装包，包格式为：python-XYZ.msi 文件 ， XYZ 为你要安装的版本号</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p>默认情况下，Python 3 源码文件以 <strong>UTF-8</strong> 编码，所有字符串都是 unicode 字符串。 当然你也可以为源码文件指定不同的编码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: cp-1252 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br></pre></td></tr></table></figure>
-
-<p>标识符</p>
-<ul>
-<li>第一个字符必须是字母表中字母或下划线 <strong>_</strong> 。</li>
-<li>标识符的其他的部分由字母、数字和下划线组成。</li>
-<li>标识符对大小写敏感。</li>
-</ul>
-<p>在 Python 3 中，可以用中文作为变量名，非 ASCII 标识符也是允许的了。</p>
-<p>保留字</p>
-<p>保留字即关键字，我们不能把它们用作任何标识符名称。Python 的标准库提供了一个 keyword 模块，可以输出当前版本的所有关键字：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> keyword</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>keyword.kwlist</span><br><span class="line">[<span class="string">&#x27;False&#x27;</span>, <span class="string">&#x27;None&#x27;</span>, <span class="string">&#x27;True&#x27;</span>, <span class="string">&#x27;and&#x27;</span>, <span class="string">&#x27;as&#x27;</span>, <span class="string">&#x27;assert&#x27;</span>, <span class="string">&#x27;break&#x27;</span>, <span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;continue&#x27;</span>, <span class="string">&#x27;def&#x27;</span>, <span class="string">&#x27;del&#x27;</span>, <span class="string">&#x27;elif&#x27;</span>, <span class="string">&#x27;else&#x27;</span>, <span class="string">&#x27;except&#x27;</span>, <span class="string">&#x27;finally&#x27;</span>, <span class="string">&#x27;for&#x27;</span>, <span class="string">&#x27;from&#x27;</span>, <span class="string">&#x27;global&#x27;</span>, <span class="string">&#x27;if&#x27;</span>, <span class="string">&#x27;import&#x27;</span>, <span class="string">&#x27;in&#x27;</span>, <span class="string">&#x27;is&#x27;</span>, <span class="string">&#x27;lambda&#x27;</span>, <span class="string">&#x27;nonlocal&#x27;</span>, <span class="string">&#x27;not&#x27;</span>, <span class="string">&#x27;or&#x27;</span>, <span class="string">&#x27;pass&#x27;</span>, <span class="string">&#x27;raise&#x27;</span>, <span class="string">&#x27;return&#x27;</span>, <span class="string">&#x27;try&#x27;</span>, <span class="string">&#x27;while&#x27;</span>, <span class="string">&#x27;with&#x27;</span>, <span class="string">&#x27;yield&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-<p>注释</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个注释</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;Hello, Python!&quot;</span>) <span class="comment"># 第二个注释</span></span><br><span class="line"> </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">第三注释</span></span><br><span class="line"><span class="string">第四注释</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"> </span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">第五注释</span></span><br><span class="line"><span class="string">第六注释</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>行和缩进</p>
-<p>python最具特色的就是使用缩进来表示代码块，不需要使用大括号 <strong>{}</strong> 。</p>
-<p>缩进的空格数是可变的，但是同一个代码块的语句必须包含相同的缩进空格数。</p>
-<p>多行语句</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#我们可以使用反斜杠(\)来实现多行语句</span></span><br><span class="line">total = item_one + \</span><br><span class="line">        item_two + \</span><br><span class="line">        item_three</span><br><span class="line"></span><br><span class="line"><span class="comment">#在 [], &#123;&#125;, 或 () 中的多行语句，不需要使用反斜杠(\)，例如：</span></span><br><span class="line">total = [<span class="string">&#x27;item_one&#x27;</span>, <span class="string">&#x27;item_two&#x27;</span>, <span class="string">&#x27;item_three&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;item_four&#x27;</span>, <span class="string">&#x27;item_five&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="1、函数"><a href="#1、函数" class="headerlink" title="1、函数"></a>1、函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">functionname</span>(<span class="params"> parameters </span>):</span></span><br><span class="line">   <span class="string">&quot;函数_文档字符串&quot;</span></span><br><span class="line">   function_suite</span><br><span class="line">   <span class="keyword">return</span> [expression]</span><br></pre></td></tr></table></figure>
-
-<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printinfo</span>(<span class="params"> name, age = <span class="number">35</span> </span>):</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="可变参数列表"><a href="#可变参数列表" class="headerlink" title="可变参数列表"></a>可变参数列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">functionname</span>(<span class="params">[formal_args,] *var_args_tuple </span>):</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lambda</span> [arg1 [,arg2,.....argn]]:expression</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、命令行参数"><a href="#2、命令行参数" class="headerlink" title="2、命令行参数"></a>2、命令行参数</h2><ul>
-<li><p>Python 提供了 <strong>getopt</strong> 模块来获取命令行参数</p>
-</li>
-<li><p>Python 中也可以使用 <strong>sys</strong> 的 <strong>sys.argv</strong> 来获取命令行参数：</p>
-<ul>
-<li>sys.argv 是命令行参数列表。</li>
-<li>len(sys.argv) 是命令行参数个数。</li>
-</ul>
-<p><strong>注：</strong>sys.argv[0] 表示脚本名。</p>
-</li>
-</ul>
-<h3 id="sys-argv"><a href="#sys-argv" class="headerlink" title="sys.argv"></a>sys.argv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> <span class="string">&#x27;参数个数为:&#x27;</span>, <span class="built_in">len</span>(sys.argv), <span class="string">&#x27;个参数。&#x27;</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;参数列表:&#x27;</span>, <span class="built_in">str</span>(sys.argv)</span><br></pre></td></tr></table></figure>
-
-<p>执行结果</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python test.py arg1 arg2 arg3</span></span><br><span class="line">参数个数为: 4 个参数。</span><br><span class="line">参数列表: [&#x27;test.py&#x27;, &#x27;arg1&#x27;, &#x27;arg2&#x27;, &#x27;arg3&#x27;]</span><br></pre></td></tr></table></figure>
-
-<h3 id="getopt-模块"><a href="#getopt-模块" class="headerlink" title="getopt 模块"></a><strong>getopt</strong> 模块</h3><p>getopt模块是专门处理命令行参数的模块，用于获取命令行选项和参数，也就是sys.argv。</p>
-<p>命令行选项使得程序的参数更加灵活。支持短选项模式（-）和长选项模式（–）。</p>
-<p>该模块提供了两个方法及一个异常处理来解析命令行参数。</p>
-<h4 id="getopt-getopt-方法"><a href="#getopt-getopt-方法" class="headerlink" title="getopt.getopt 方法"></a>getopt.getopt 方法</h4><p>getopt.getopt 方法用于解析命令行参数列表，语法格式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getopt.getopt(args, options[, long_options])</span><br></pre></td></tr></table></figure>
-
-<p>方法参数说明：</p>
-<ul>
-<li><strong>args</strong>: 要解析的命令行参数列表。</li>
-<li><strong>options</strong> : 以字符串的格式定义，<strong>options</strong> 后的冒号 <strong>:</strong> 表示如果设置该选项，必须有附加的参数，否则就不附加参数。</li>
-<li><strong>long_options</strong> : 以列表的格式定义，<strong>long_options</strong> 后的等号 <strong>=</strong> 表示该选项必须有附加的参数，不带冒号表示该选项不附加参数。</li>
-<li>该方法返回值由两个元素组成: 第一个是 <strong>(option, value)</strong> 元组的列表。 第二个是参数列表，包含那些没有 <strong>-</strong> 或 <strong>–</strong> 的参数。</li>
-</ul>
-<p>另外一个方法是 getopt.gnu_getopt，这里不多做介绍。</p>
-<h4 id="Exception-getopt-GetoptError"><a href="#Exception-getopt-GetoptError" class="headerlink" title="Exception getopt.GetoptError"></a>Exception getopt.GetoptError</h4><p>在没有找到参数列表，或选项的需要的参数为空时会触发该异常。</p>
-<p>异常的参数是一个字符串，表示错误的原因。属性 <strong>msg</strong> 和 <strong>opt</strong> 为相关选项的错误信息。</p>
-<h2 id="3、类"><a href="#3、类" class="headerlink" title="3、类"></a>3、类</h2><ul>
-<li><strong>类(Class):</strong> 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。</li>
-<li><strong>方法：</strong>类中定义的函数。</li>
-<li><strong>类变量：</strong>类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。</li>
-<li><strong>数据成员：</strong>类变量或者实例变量用于处理类及其实例对象的相关的数据。</li>
-<li><strong>方法重写：</strong>如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写。</li>
-<li><strong>局部变量：</strong>定义在方法中的变量，只作用于当前实例的类。</li>
-<li><strong>实例变量：</strong>在类的声明中，属性是用变量来表示的，这种变量就称为实例变量，实例变量就是一个用 self 修饰的变量。</li>
-<li><strong>继承：</strong>即一个派生类（derived class）继承基类（base class）的字段和方法。继承也允许把一个派生类的对象作为一个基类对象对待。例如，有这样一个设计：一个Dog类型的对象派生自Animal类，这是模拟”是一个（is-a）”关系（例图，Dog是一个Animal）。</li>
-<li><strong>实例化：</strong>创建一个类的实例，类的具体对象。</li>
-<li><strong>对象：</strong>通过类定义的数据结构实例。对象包括两个数据成员（类变量和实例变量）和方法。</li>
-</ul>
-<h3 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassName</span>:</span></span><br><span class="line">    &lt;statement<span class="number">-1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建类的原理"><a href="#创建类的原理" class="headerlink" title="创建类的原理"></a>创建类的原理</h3><ul>
-<li>遇到class关键词，执行type的<code>__init__</code>方法，创建Foo类这个对象</li>
-<li>遇实例化对象（obj=Foo（）），执行type里的<code>__call__</code>方法</li>
-</ul>
-<ol>
-<li>在call方法里调用Foo类的<code>__new__</code>方法（负责创建对象）</li>
-<li>执行Foo类的<code>__init__</code>方法（初始化）</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyType</span>(<span class="params"><span class="built_in">type</span></span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">cls,*args,**kwargs</span>):</span></span><br><span class="line">        obj = cls.__new__(cls,*args,**kwargs)</span><br><span class="line">        print(<span class="string">&#x27;在这里面..&#x27;</span>)</span><br><span class="line">        obj.__init__(*args,**kwargs)</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>(<span class="params">metaclass=MyType</span>):</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.name = <span class="string">&#x27;alex&#x27;</span></span><br><span class="line"> </span><br><span class="line">f = Foo()</span><br><span class="line">print(f.name)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="类属性和方法"><a href="#类属性和方法" class="headerlink" title="类属性和方法"></a>类属性和方法</h3><h4 id="类的属性"><a href="#类的属性" class="headerlink" title="类的属性"></a>类的属性</h4><p><strong>attrs</strong>：构造函数中直接初始化，也可以称为类的属性。</p>
-<h4 id="类的私有属性"><a href="#类的私有属性" class="headerlink" title="类的私有属性"></a>类的私有属性</h4><p><strong>__private_attrs</strong>：两个下划线开头，声明该属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 <strong>self.__private_attrs</strong>。</p>
-<h4 id="类的方法"><a href="#类的方法" class="headerlink" title="类的方法"></a>类的方法</h4><p>在类的内部，使用 def 关键字来定义一个方法，与一般函数定义不同，类方法必须包含参数 <strong>self</strong>，且为第一个参数，<strong>self</strong> 代表的是类的实例。</p>
-<p><strong>self</strong> 的名字并不是规定死的，也可以使用 <strong>this</strong>，但是最好还是按照约定是用 <strong>self</strong>。</p>
-<h4 id="类的私有方法"><a href="#类的私有方法" class="headerlink" title="类的私有方法"></a>类的私有方法</h4><p><strong>__private_method</strong>：两个下划线开头，声明该方法为私有方法，只能在类的内部调用 ，不能在类的外部调用。<strong>self.__private_methods</strong>。</p>
-<h4 id="专有方法"><a href="#专有方法" class="headerlink" title="专有方法"></a>专有方法</h4><ul>
-<li><code>__init__ :</code> 构造函数，在生成对象时调用</li>
-<li><code>__del__ :</code> 析构函数，释放对象时使用</li>
-<li><code>__repr__ :</code> 打印，转换</li>
-<li><code>__setitem__ :</code> 按照索引赋值</li>
-<li><code>__getitem__:</code> 按照索引获取值</li>
-<li><code>__len__:</code> 获得长度</li>
-<li><code>__cmp__:</code>比较运算</li>
-<li><code>__call__:</code> 函数调用</li>
-<li><code>__add__:</code> 加运算</li>
-<li><code>__sub__:</code>减运算</li>
-<li><code>__mul__:</code> 乘运算</li>
-<li><code>__truediv__:</code> 除运算</li>
-<li><code>__mod__:</code> 求余运算</li>
-<li><code>__pow__:</code> 乘方</li>
-</ul>
-<h3 id="实例化和调用"><a href="#实例化和调用" class="headerlink" title="实例化和调用"></a>实例化和调用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#类定义</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>:</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;一个简单的类实例&quot;&quot;&quot;</span></span><br><span class="line">    i = <span class="number">12345</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="comment">#实例化</span></span><br><span class="line">x = MyClass()</span><br><span class="line"><span class="comment"># 访问类的属性和方法</span></span><br><span class="line">print(<span class="string">&quot;MyClass 类的属性 i 为：&quot;</span>, x.i)</span><br><span class="line">print(<span class="string">&quot;MyClass 类的方法 f 输出为：&quot;</span>, x.f())</span><br></pre></td></tr></table></figure>
-
-<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>类有一个名为 <strong>init</strong>() 的特殊方法（构造方法），该方法在类实例化时会自动调用，像下面这样：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">    self.data = []</span><br></pre></td></tr></table></figure>
-
-<h3 id="普通方法"><a href="#普通方法" class="headerlink" title="普通方法"></a>普通方法</h3><p>类的方法与普通的函数只有一个特别的区别——它们必须有一个额外的第一个参数名称, 按照惯例它的名称是 self。这相当于c语言中传结构体的指针。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">prt</span>(<span class="params">self</span>):</span></span><br><span class="line">        print(self)</span><br><span class="line">        print(self.__class__)</span><br><span class="line"> </span><br><span class="line">t = Test()</span><br><span class="line">t.prt()</span><br></pre></td></tr></table></figure>
-
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#单继承</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DerivedClassName</span>(<span class="params">BaseClassName1</span>):</span></span><br><span class="line">    &lt;statement<span class="number">-1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#多继承</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DerivedClassName</span>(<span class="params">Base1, Base2, Base3</span>):</span></span><br><span class="line">    &lt;statement<span class="number">-1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="类中静态方法"><a href="#类中静态方法" class="headerlink" title="类中静态方法"></a>类中静态方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">arg1, arg2, ...</span>):</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
-
-<p>以上实例声明了静态方法 <strong>f</strong>，从而可以实现实例化使用 **C().f()**，当然也可以不实例化调用该方法 **C.f()**。</p>
-<h3 id="动态对象属性"><a href="#动态对象属性" class="headerlink" title="动态对象属性"></a>动态对象属性</h3><p>现象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#不能动态添加属性</span></span><br><span class="line">data = <span class="built_in">object</span>()</span><br><span class="line">data.name = <span class="string">&#x27;CooMark&#x27;</span> <span class="comment"># AttributeError: &#x27;object&#x27; object has no attribute &#x27;name&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#可以动态添加属性</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Developer</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"> </span><br><span class="line">data = Developer()</span><br><span class="line">data.name = <span class="string">&#x27;CooMark&#x27;</span></span><br><span class="line">data.age = <span class="number">30</span> </span><br></pre></td></tr></table></figure>
-
-
-
-<p>python的<code>__slots__</code>设计是为了节省内存，也可以用于构造安全的类、如果一个类使用了<code>__slots__</code>那么它的属性就不再自由了。</p>
-<ul>
-<li>自由属性。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name, age</span>):</span></span><br><span class="line">        self.Name = name</span><br><span class="line">        self.Age = age</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.ID = <span class="number">7</span>  <span class="comment"># 由于没有使用slots所以属性是自由的，可以自由设置，就算设置前没有声明也没事。</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>__slots__</code>设置非自由属性</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">person</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    __slots__=(<span class="string">&#x27;Name&#x27;</span>,<span class="string">&#x27;Age&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.ID=<span class="number">7</span> <span class="comment">#这里会报错</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4、main函数"><a href="#4、main函数" class="headerlink" title="4、main函数"></a>4、main函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-<h2 id="5、接口"><a href="#5、接口" class="headerlink" title="5、接口"></a>5、接口</h2><p>Python中无接口类型，定义接口只是人为规定。通过继承空方法的类，或者抽象类。</p>
-<h3 id="空方法类"><a href="#空方法类" class="headerlink" title="空方法类"></a>空方法类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Interface</span>:</span></span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f1</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        to do something</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>Python3.4中，声明抽象基类最简单的方式是子类话abc.ABC；</p>
-<p>Python3.0到Python3.3，必须在class语句中使用<code>metaclass=ABCMeta</code>；</p>
-<p>Python2中使用<code>__metaclass__=ABCMeta</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>(<span class="params">metaclass=abc.ABCMeta</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#抽象方法</span></span><br><span class="line"><span class="meta">    @abc.abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f2</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        打印f2</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="6、模块"><a href="#6、模块" class="headerlink" title="6、模块"></a>6、模块</h2><p>Python 模块(Module)，是一个 Python 文件，以 .py 结尾，包含了 Python 对象定义和Python语句。</p>
-<h3 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> module1[, module2[,... moduleN]]</span><br><span class="line"><span class="keyword">from</span> modname <span class="keyword">import</span> name1[, name2[, ... nameN]]</span><br><span class="line"><span class="keyword">from</span> modname <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
-
-<h3 id="模块的使用"><a href="#模块的使用" class="headerlink" title="模块的使用"></a>模块的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模块名.函数名</span><br></pre></td></tr></table></figure>
-
-<h3 id="搜索路径"><a href="#搜索路径" class="headerlink" title="搜索路径"></a>搜索路径</h3><p>当你导入一个模块，Python 解析器对模块位置的搜索顺序是：</p>
-<ul>
-<li>1、当前目录</li>
-<li>2、如果不在当前目录，Python 则搜索在 shell 变量 PYTHONPATH 下的每个目录。</li>
-<li>3、如果都找不到，Python会察看默认路径。UNIX下，默认路径一般为/usr/local/lib/python/。</li>
-</ul>
-<p>模块搜索路径存储在 system 模块的 sys.path 变量中。变量里包含当前目录，PYTHONPATH和由安装过程决定的默认目录。</p>
-<h3 id="命名空间和作用域"><a href="#命名空间和作用域" class="headerlink" title="命名空间和作用域"></a>命名空间和作用域</h3><p>我们在全局命名空间里定义一个变量 Money。</p>
-<p>我们再在函数内给变量 Money 赋值，然后 Python 会假定 Money 是一个局部变量。</p>
-<p>然而，我们并没有在访问前声明一个局部变量 Money，结果就是会出现一个 UnboundLocalError 的错误。</p>
-<p>取消 global 语句前的注释符就能解决这个问题。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"> </span><br><span class="line">Money = <span class="number">2000</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">AddMoney</span>():</span></span><br><span class="line">   <span class="comment"># 想改正代码就取消以下注释:</span></span><br><span class="line">   <span class="comment"># global Money</span></span><br><span class="line">   Money = Money + <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span> Money</span><br><span class="line">AddMoney()</span><br><span class="line"><span class="built_in">print</span> Money</span><br></pre></td></tr></table></figure>
-
-<h4 id="特殊函数"><a href="#特殊函数" class="headerlink" title="特殊函数"></a>特殊函数</h4><ul>
-<li><p>dir() 函数：dir() 函数一个排好序的字符串列表，内容是一个模块里定义过的名字。</p>
-<p>返回的列表容纳了在一个模块里定义的所有模块，变量和函数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入内置math模块</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"> </span><br><span class="line">content = <span class="built_in">dir</span>(math)</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>globals() 和 locals() 函数:</p>
-<ul>
-<li>根据调用地方的不同，globals() 和 locals() 函数可被用来返回全局和局部命名空间里的名字。</li>
-<li>如果在函数内部调用 locals()，返回的是所有能在该函数里访问的命名。</li>
-<li>如果在函数内部调用 globals()，返回的是所有在该函数里能访问的全局名字。</li>
-<li>两个函数的返回类型都是字典。所以名字们能用 keys() 函数摘取。</li>
-</ul>
-</li>
-<li><p>reload() 函数:当一个模块被导入到一个脚本，模块顶层部分的代码只会被执行一次。</p>
-<p>因此，如果你想重新执行模块里顶层部分的代码，可以用 reload() 函数。该函数会重新导入之前导入过的模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reload(module_name)</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>包是一个分层次的文件目录结构，它定义了一个由模块及子包，和子包下的子包等组成的 Python 的应用环境。</p>
-<p>简单来说，包就是文件夹，但该文件夹下必须存在 <strong>init</strong>.py 文件, 该文件的内容可以为空。<strong><strong>init</strong>.py</strong> 用于标识当前文件夹是一个包。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test.py</span><br><span class="line">package_runoob</span><br><span class="line">|-- __init__.py</span><br><span class="line">|-- runoob1.py</span><br><span class="line">|-- runoob2.py</span><br></pre></td></tr></table></figure>
-
-<h4 id="init-py"><a href="#init-py" class="headerlink" title="__init__.py"></a><code>__init__.py</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;作为主程序运行&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;package_runoob 初始化&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入 Phone 包</span></span><br><span class="line"><span class="keyword">from</span> package_runoob.runoob1 <span class="keyword">import</span> runoob1</span><br><span class="line"><span class="keyword">from</span> package_runoob.runoob2 <span class="keyword">import</span> runoob2</span><br></pre></td></tr></table></figure>
-
-<h2 id="7、其他语法"><a href="#7、其他语法" class="headerlink" title="7、其他语法"></a>7、其他语法</h2><h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>Python3 的六个标准数据类型中：</p>
-<ul>
-<li><strong>不可变数据（3 个）：</strong>Number（数字）、String（字符串）、Tuple（元组）；</li>
-<li><strong>可变数据（3 个）：</strong>List（列表）、Dictionary（字典）、Set（集合）。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#字符串是 Python 中最常用的数据类型。我们可以使用引号( &#x27; 或 &quot; )来创建字符串。</span></span><br><span class="line">var1 = <span class="string">&#x27;Hello World!&#x27;</span></span><br><span class="line">var2 = <span class="string">&quot;Runoob&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#元组使用小括号 ( )，列表使用方括号 [ ]。</span></span><br><span class="line"><span class="comment">#字典的每个键值 key=&gt;value 对用冒号 : 分割，每个对之间用逗号(,)分割，整个字典包括在花括号 &#123;&#125; 中 ,格式如下所示：</span></span><br><span class="line">d = &#123;key1 : value1, key2 : value2, key3 : value3 &#125;</span><br><span class="line"><span class="comment">#可以使用大括号 &#123; &#125; 或者 set() 函数创建集合，注意：创建一个空集合必须用 set() 而不是 &#123; &#125;，因为 &#123; &#125; 是用来创建一个空字典。</span></span><br><span class="line">parame = &#123;value01,value02,...&#125;</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line"><span class="built_in">set</span>(value)</span><br><span class="line"><span class="comment">#类似列表推导式，同样集合支持集合推导式(Set comprehension):</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = &#123;x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="string">&#x27;abracadabra&#x27;</span> <span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">&#x27;abc&#x27;</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">&#123;<span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
-<li><p>逻辑运算符</p>
-</li>
-<li><p>成员运算符</p>
-</li>
-<li><p>身份运算符</p>
-</li>
-</ul>
-<h3 id="控制语句"><a href="#控制语句" class="headerlink" title="控制语句"></a>控制语句</h3><ul>
-<li><p>条件</p>
-</li>
-<li><p>循环</p>
-</li>
-<li><p>异常</p>
-</li>
-</ul>
-<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><p><strong>With语句的基本语法格式:</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> target]:</span><br><span class="line">with_body</span><br></pre></td></tr></table></figure>
-
-<p><strong>参数说明：</strong></p>
-<p>expression：是一个需要执行的表达式；</p>
-<p>target：是一个变量或者元组，存储的是expression表达式执行返回的结果，可选参数。</p>
-<p><strong>with语句的工作原理：</strong></p>
-<p><strong>紧跟with后面的语句会被求值，返回对象的<strong>enter</strong>()方法被调用，这个方法的返回值将被赋值给as关键字后面的变量，当with后面的代码块全部被执行完之后，将调用前面返回对象的<strong>exit</strong>()方法。</strong></p>
-<p> <strong>with语句最关键的地方在于被求值对象必须有<strong>enter</strong>()和<strong>exit</strong>()这两个方法，那我们就可以通过自己实现这两方法来自定义with语句处理异常。</strong></p>
-<p>(评论：有点类似golang 的 defer)</p>
-<h3 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h3><h2 id="8、多线程"><a href="#8、多线程" class="headerlink" title="8、多线程"></a>8、多线程</h2><p>Python中使用线程有两种方式：函数或者用类来包装线程对象。</p>
-<h3 id="函数式"><a href="#函数式" class="headerlink" title="函数式"></a>函数式</h3><p>调用thread模块中的start_new_thread()函数来产生新线程。语法如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread.start_new_thread ( function, args[, kwargs] )</span><br></pre></td></tr></table></figure>
-
-<p>参数说明:</p>
-<ul>
-<li>function - 线程函数。</li>
-<li>args - 传递给线程函数的参数,他必须是个tuple类型。</li>
-<li>kwargs - 可选参数。</li>
-</ul>
-<h3 id="线程模块"><a href="#线程模块" class="headerlink" title="线程模块"></a>线程模块</h3><p>Python通过两个标准库thread和threading提供对线程的支持。thread提供了低级别的、原始的线程以及一个简单的锁。</p>
-<p>threading 模块提供的其他方法：</p>
-<ul>
-<li>threading.currentThread(): 返回当前的线程变量。</li>
-<li>threading.enumerate(): 返回一个包含正在运行的线程的list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程。</li>
-<li>threading.activeCount(): 返回正在运行的线程数量，与len(threading.enumerate())有相同的结果。</li>
-</ul>
-<p>除了使用方法外，线程模块同样提供了Thread类来处理线程，Thread类提供了以下方法:</p>
-<ul>
-<li><p><strong>run():</strong> 用以表示线程活动的方法。</p>
-</li>
-<li><p>start():</p>
-<p>启动线程活动。</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>join([time]):</strong> 等待至线程中止。这阻塞调用线程直至线程的join() 方法被调用中止-正常退出或者抛出未处理的异常-或者是可选的超时发生。</p>
-</li>
-<li><p><strong>isAlive():</strong> 返回线程是否活动的。</p>
-</li>
-<li><p><strong>getName():</strong> 返回线程名。</p>
-</li>
-<li><p><strong>setName():</strong> 设置线程名。</p>
-</li>
-</ul>
-<h3 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h3><p>使用Thread对象的Lock和Rlock可以实现简单的线程同步，这两个对象都有acquire方法和release方法，对于那些需要每次只允许一个线程操作的数据，可以将其操作放到acquire和release方法之间。</p>
-<h4 id="线程优先级队列（-Queue）"><a href="#线程优先级队列（-Queue）" class="headerlink" title="线程优先级队列（ Queue）"></a>线程优先级队列（ Queue）</h4><p>Python的Queue模块中提供了同步的、线程安全的队列类，包括FIFO（先入先出)队列Queue，LIFO（后入先出）队列LifoQueue，和优先级队列PriorityQueue。这些队列都实现了锁原语，能够在多线程中直接使用。可以使用队列来实现线程间的同步。</p>
-<ul>
-<li>Queue.qsize() 返回队列的大小</li>
-<li>Queue.empty() 如果队列为空，返回True,反之False</li>
-<li>Queue.full() 如果队列满了，返回True,反之False</li>
-<li>Queue.full 与 maxsize 大小对应</li>
-<li>Queue.get([block[, timeout]])获取队列，timeout等待时间</li>
-<li>Queue.get_nowait() 相当Queue.get(False)</li>
-<li>Queue.put(item) 写入队列，timeout等待时间</li>
-<li>Queue.put_nowait(item) 相当Queue.put(item, False)</li>
-<li>Queue.task_done() 在完成一项工作之后，Queue.task_done()函数向任务已经完成的队列发送一个信号</li>
-<li>Queue.join() 实际上意味着等到队列为空，再执行别的操作</li>
-</ul>
-<h2 id="9、网络编程"><a href="#9、网络编程" class="headerlink" title="9、网络编程"></a>9、网络编程</h2><p>Python 中，我们用 socket（）函数来创建套接字，语法格式如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket.socket([family[, <span class="built_in">type</span>[, proto]]])</span><br></pre></td></tr></table></figure>
-
-<p>参数</p>
-<ul>
-<li>family: 套接字家族可以使 AF_UNIX 或者 AF_INET。</li>
-<li>type: 套接字类型可以根据是面向连接的还是非连接分为 <code>SOCK_STREAM</code> 或 <code>SOCK_DGRAM</code>。</li>
-<li>protocol: 一般不填默认为 0。</li>
-</ul>
-<h3 id="Socket-对象-内建-方法"><a href="#Socket-对象-内建-方法" class="headerlink" title="Socket 对象(内建)方法"></a>Socket 对象(内建)方法</h3><table>
-<thead>
-<tr>
-<th align="left">函数</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">服务器端套接字</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">s.bind()</td>
-<td align="left">绑定地址（host,port）到套接字， 在 AF_INET下，以元组（host,port）的形式表示地址。</td>
-</tr>
-<tr>
-<td align="left">s.listen()</td>
-<td align="left">开始 TCP 监听。backlog 指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为 1，大部分应用程序设为 5 就可以了。</td>
-</tr>
-<tr>
-<td align="left">s.accept()</td>
-<td align="left">被动接受TCP客户端连接,(阻塞式)等待连接的到来</td>
-</tr>
-<tr>
-<td align="left">客户端套接字</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">s.connect()</td>
-<td align="left">主动初始化TCP服务器连接，。一般address的格式为元组（hostname,port），如果连接出错，返回socket.error错误。</td>
-</tr>
-<tr>
-<td align="left">s.connect_ex()</td>
-<td align="left">connect()函数的扩展版本,出错时返回出错码,而不是抛出异常</td>
-</tr>
-<tr>
-<td align="left">公共用途的套接字函数</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">s.recv()</td>
-<td align="left">接收 TCP 数据，数据以字符串形式返回，bufsize 指定要接收的最大数据量。flag 提供有关消息的其他信息，通常可以忽略。</td>
-</tr>
-<tr>
-<td align="left">s.send()</td>
-<td align="left">发送 TCP 数据，将 string 中的数据发送到连接的套接字。返回值是要发送的字节数量，该数量可能小于 string 的字节大小。</td>
-</tr>
-<tr>
-<td align="left">s.sendall()</td>
-<td align="left">完整发送 TCP 数据。将 string 中的数据发送到连接的套接字，但在返回之前会尝试发送所有数据。成功返回 None，失败则抛出异常。</td>
-</tr>
-<tr>
-<td align="left">s.recvfrom()</td>
-<td align="left">接收 UDP 数据，与 recv() 类似，但返回值是（data,address）。其中 data 是包含接收数据的字符串，address 是发送数据的套接字地址。</td>
-</tr>
-<tr>
-<td align="left">s.sendto()</td>
-<td align="left">发送 UDP 数据，将数据发送到套接字，address 是形式为（ipaddr，port）的元组，指定远程地址。返回值是发送的字节数。</td>
-</tr>
-<tr>
-<td align="left">s.close()</td>
-<td align="left">关闭套接字</td>
-</tr>
-<tr>
-<td align="left">s.getpeername()</td>
-<td align="left">返回连接套接字的远程地址。返回值通常是元组（ipaddr,port）。</td>
-</tr>
-<tr>
-<td align="left">s.getsockname()</td>
-<td align="left">返回套接字自己的地址。通常是一个元组(ipaddr,port)</td>
-</tr>
-<tr>
-<td align="left">s.setsockopt(level,optname,value)</td>
-<td align="left">设置给定套接字选项的值。</td>
-</tr>
-<tr>
-<td align="left">s.getsockopt(level,optname[.buflen])</td>
-<td align="left">返回套接字选项的值。</td>
-</tr>
-<tr>
-<td align="left">s.settimeout(timeout)</td>
-<td align="left">设置套接字操作的超时期，timeout是一个浮点数，单位是秒。值为None表示没有超时期。一般，超时期应该在刚创建套接字时设置，因为它们可能用于连接的操作（如connect()）</td>
-</tr>
-<tr>
-<td align="left">s.gettimeout()</td>
-<td align="left">返回当前超时期的值，单位是秒，如果没有设置超时期，则返回None。</td>
-</tr>
-<tr>
-<td align="left">s.fileno()</td>
-<td align="left">返回套接字的文件描述符。</td>
-</tr>
-<tr>
-<td align="left">s.setblocking(flag)</td>
-<td align="left">如果flag为0，则将套接字设为非阻塞模式，否则将套接字设为阻塞模式（默认值）。非阻塞模式下，如果调用recv()没有发现任何数据，或send()调用无法立即发送数据，那么将引起socket.error异常。</td>
-</tr>
-<tr>
-<td align="left">s.makefile()</td>
-<td align="left">创建一个与该套接字相关连的文件</td>
-</tr>
-</tbody></table>
-<h3 id="Python-Internet-模块"><a href="#Python-Internet-模块" class="headerlink" title="Python Internet 模块"></a>Python Internet 模块</h3><p>以下列出了 Python 网络编程的一些重要模块：</p>
-<table>
-<thead>
-<tr>
-<th align="left">协议</th>
-<th align="left">功能用处</th>
-<th align="left">端口号</th>
-<th align="left">Python 模块</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">HTTP</td>
-<td align="left">网页访问</td>
-<td align="left">80</td>
-<td align="left">httplib, urllib, xmlrpclib</td>
-</tr>
-<tr>
-<td align="left">NNTP</td>
-<td align="left">阅读和张贴新闻文章，俗称为”帖子”</td>
-<td align="left">119</td>
-<td align="left">nntplib</td>
-</tr>
-<tr>
-<td align="left">FTP</td>
-<td align="left">文件传输</td>
-<td align="left">20</td>
-<td align="left">ftplib, urllib</td>
-</tr>
-<tr>
-<td align="left">SMTP</td>
-<td align="left">发送邮件</td>
-<td align="left">25</td>
-<td align="left">smtplib</td>
-</tr>
-<tr>
-<td align="left">POP3</td>
-<td align="left">接收邮件</td>
-<td align="left">110</td>
-<td align="left">poplib</td>
-</tr>
-<tr>
-<td align="left">IMAP4</td>
-<td align="left">获取邮件</td>
-<td align="left">143</td>
-<td align="left">imaplib</td>
-</tr>
-<tr>
-<td align="left">Telnet</td>
-<td align="left">命令行</td>
-<td align="left">23</td>
-<td align="left">telnetlib</td>
-</tr>
-<tr>
-<td align="left">Gopher</td>
-<td align="left">信息查找</td>
-<td align="left">70</td>
-<td align="left">gopherlib, urllib</td>
-</tr>
-</tbody></table>
-<p>更多内容可以参阅官网的 <a target="_blank" rel="noopener" href="https://docs.python.org/2/library/socket.html">Python Socket Library and Modules</a>。</p>
-<h2 id="10、数据库"><a href="#10、数据库" class="headerlink" title="10、数据库"></a>10、数据库</h2><h2 id="11、正则表达式"><a href="#11、正则表达式" class="headerlink" title="11、正则表达式"></a>11、正则表达式</h2><h2 id="12、GUI"><a href="#12、GUI" class="headerlink" title="12、GUI"></a>12、GUI</h2><h2 id="13、其他：JSON，XML，SMTP等"><a href="#13、其他：JSON，XML，SMTP等" class="headerlink" title="13、其他：JSON，XML，SMTP等"></a>13、其他：JSON，XML，SMTP等</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/08/Python%E5%85%A5%E9%97%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux用户命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/Linux%E7%94%A8%E6%88%B7%E5%91%BD%E4%BB%A4/">Linux用户命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/07/Linux%E7%94%A8%E6%88%B7%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2017-12-07T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="useradd"><a href="#useradd" class="headerlink" title="useradd"></a>useradd</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">建立一个新用户账户testuser1，并设置UID为544，主目录为/usr/testuser1，属于users组</span></span><br><span class="line">useradd -u 544 -d /usr/testuser1 -g users -m testuser1 </span><br><span class="line"><span class="meta">#</span><span class="bash">(加-m 如果主目录不存在则自动创建)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="adduser-和-passwd"><a href="#adduser-和-passwd" class="headerlink" title="adduser 和 passwd"></a>adduser 和 passwd</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">使用管理员账号登陆系统，建立用户tmp_3452 密码3sdt5:Eawhg</span></span><br><span class="line">adduser tmp_3452</span><br><span class="line">passwd tmp_3452</span><br></pre></td></tr></table></figure>
-
-<h3 id="userdel删除用户"><a href="#userdel删除用户" class="headerlink" title="userdel删除用户"></a>userdel删除用户</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">删除刚创建的账号 tmp_3452</span></span><br><span class="line">userdel tmp_3452</span><br><span class="line"><span class="meta">#</span><span class="bash">连同用户目录一并删除</span></span><br><span class="line">userdel -f tmp_3452</span><br></pre></td></tr></table></figure>
-
-<h3 id="强制退出命令pkill"><a href="#强制退出命令pkill" class="headerlink" title="强制退出命令pkill"></a>强制退出命令pkill</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">(命令原型： pkill -<span class="built_in">kill</span> -t [TTY])</span></span><br><span class="line">pkill -kill -t ps1</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/07/Linux%E7%94%A8%E6%88%B7%E5%91%BD%E4%BB%A4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-多线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/02/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/02/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、时序控制"><a href="#1、时序控制" class="headerlink" title="1、时序控制"></a>1、时序控制</h2><p>​            保持同一时刻只有一个线程在工作，并且每个线程的执行时机可控,达到精准控制线程的目的。</p>
-<h3 id="1-1、利用volatile做状态机"><a href="#1-1、利用volatile做状态机" class="headerlink" title="1-1、利用volatile做状态机"></a>1-1、利用volatile做状态机</h3><p>这个方法是用轮询和状态机实现多个线程的执行控制，等同于同步，甚至不如。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a b c 三个线程来回切换，状态机的方式就是每次只有一个状态</span></span><br><span class="line"><span class="keyword">volatile</span> <span class="keyword">int</span> state = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//a 线程</span></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line"><span class="keyword">if</span> (state == <span class="number">0</span>)&#123;</span><br><span class="line">    state = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//b 线程</span></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line"><span class="keyword">if</span> (state == <span class="number">1</span>)&#123;</span><br><span class="line">    state = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//c 线程</span></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line"><span class="keyword">if</span> (state == <span class="number">2</span>)&#123;</span><br><span class="line">    state = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在复杂的设计中，有这样的场景。一些排他操作，需要让其他线程，停止等待结果，这个时候就是一个可选方案。</p>
-<p>使用这种方案的原因是，先有了多线程操作，然后线程之间需要同步协调。</p>
-<h3 id="1-2、synchronized-和-object的wait-notify"><a href="#1-2、synchronized-和-object的wait-notify" class="headerlink" title="1-2、synchronized 和 object的wait,notify"></a>1-2、synchronized 和 object的wait,notify</h3><p>这种方法，使用synchronized 实现线程间的同步，object的wait,notify 实现线程的阻塞和唤醒。关键在于object对象的选择。</p>
-<p>实现：三角波，0加到5，5再减少到0，如此循环</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TestSync</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Integer[] gobjects = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">final</span> Object lock = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">final</span> Integer MAX = <span class="number">50000</span>;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (i++ &lt; MAX) &#123;</span><br><span class="line">                set(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (lock) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">while</span> (gobjects[<span class="number">0</span>] &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">                        lock.wait();</span><br><span class="line">                    &#125;</span><br><span class="line">                    gobjects[<span class="number">0</span>] = gobjects[<span class="number">0</span>] + <span class="number">1</span>;</span><br><span class="line">                    lock.notifyAll();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Thread t2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (i++ &lt; MAX) &#123;</span><br><span class="line">                get(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">synchronized</span> (lock) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">while</span> (gobjects[<span class="number">0</span>] &lt;= <span class="number">0</span>) &#123; <span class="comment">//防止被唤醒，然而条件并没有满足</span></span><br><span class="line">                        lock.wait();</span><br><span class="line">                    &#125;</span><br><span class="line">                    gobjects[<span class="number">0</span>] = gobjects[<span class="number">0</span>] - <span class="number">1</span>;</span><br><span class="line">                    lock.notifyAll();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    t2.start();</span><br><span class="line">    t1.start();</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    System.out.println(<span class="string">&quot;last gobjects : &quot;</span> + gobjects[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>经典写法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(对象) &#123;</span><br><span class="line">    <span class="comment">//这边进行循环判断的原因是为了防止伪唤醒，也就是不是消费线程或者生产线程调用notify方法将waiting线程唤醒的</span></span><br><span class="line">    <span class="keyword">while</span>(条件)&#123;</span><br><span class="line">        对象.wait();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//进行生产或者消费活动</span></span><br><span class="line">    doSomething();</span><br><span class="line">    对象.notifyAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Synchronized的使用"><a href="#Synchronized的使用" class="headerlink" title="Synchronized的使用"></a>Synchronized的使用</h4><p>synchronized 使代码块同步，可以修饰对象，对象类型，对象方法。作用和被修饰元素的作用域相关。访问synchronized 修饰的代码块，需要先获取锁，执行结束或者异常后，释放锁。</p>
-<h5 id="类实例作用域"><a href="#类实例作用域" class="headerlink" title="类实例作用域"></a>类实例作用域</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SyncA</span> </span>&#123;</span><br><span class="line">    <span class="comment">//形式1，作用域是当前类的实例范围</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">funcA</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">    Object lock = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="comment">//形式2，作用域是当前类的实例范围</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">funcB</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (lock)&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//形式3，作用域是当前类的实例范围</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">funcC</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>)&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>A，B两个线程访问<strong>同一个</strong>SyncA实例的方法，会发生同步现象。先访问的线程持有锁，后访问线程阻塞，直到先访问的线程释放锁。</p>
-<h5 id="类作用域"><a href="#类作用域" class="headerlink" title="类作用域"></a>类作用域</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SyncB</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//形式1，作用域是当前类的所有实例范围</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">funcA</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> </span><br><span class="line">        Object lock = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="comment">//形式2，作用域是当前类的所有实例范围</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">funcB</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (lock)&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//形式3，作用域是当前类的所有实例范围</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">funcC</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (SyncB.class)&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>A，B两个线程访问<strong>不同</strong>的SyncA实例的方法，也会发生同步现象。先访问的线程持有锁，后访问线程阻塞，直到先访问的线程释放锁。</p>
-<h5 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h5><ul>
-<li>一个线程在访问一个对象的同步方法时，另一个线程可以同时访问这个对象的非同步方法。</li>
-<li>一个线程在访问一个对象的同步方法时，另一个线程不能同时访问这个同步方法。</li>
-<li>一个线程在访问一个对象的同步方法时，另一个线程不能同时访问这个对象的其他同步方法。</li>
-<li>一个线程在访问一个对象的同步方法时，该方法内调用对象的wait，另一个线程可以访问这个对象的同步方法。</li>
-<li>一个线程在访问一个对象的同步方法时，该方法内调用线程的sleep，另一个线程不能访问这个对象的同步方法。</li>
-</ul>
-<h3 id="1-3、Lock和Condition"><a href="#1-3、Lock和Condition" class="headerlink" title="1-3、Lock和Condition"></a>1-3、Lock和Condition</h3><p>实现”读空写满“阻塞</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用value 和 锁 一起模拟，读空写满操作。作为完整的框架，这没有太大意义，还需要中断或者阻塞之后，如何退出，锁的公平性等 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShareObject</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> value; <span class="comment">//真实存储的值,0为空，10为满</span></span><br><span class="line">        <span class="keyword">private</span> Lock lock; <span class="comment">//锁</span></span><br><span class="line">        <span class="keyword">private</span> Condition notFull;<span class="comment">//等待不满</span></span><br><span class="line">        <span class="keyword">private</span> Condition notEmpty;<span class="comment">//等待不空</span></span><br><span class="line"></span><br><span class="line">        ShareObject()&#123;</span><br><span class="line">            <span class="keyword">this</span>.value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span>.lock = <span class="keyword">new</span> ReentrantLock(<span class="keyword">true</span>);</span><br><span class="line">            <span class="keyword">this</span>.notFull = lock.newCondition();</span><br><span class="line">            <span class="keyword">this</span>.notEmpty = lock.newCondition();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">final</span> Lock tlock = <span class="keyword">this</span>.lock;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                tlock.lockInterruptibly();</span><br><span class="line">                <span class="keyword">while</span> (value == <span class="number">10</span>) &#123;</span><br><span class="line">                    notFull.await();</span><br><span class="line">                &#125;</span><br><span class="line">                value++;</span><br><span class="line">                notEmpty.signal();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                tlock.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">final</span> Lock tlock = <span class="keyword">this</span>.lock;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                tlock.lockInterruptibly();</span><br><span class="line">                <span class="keyword">while</span> (value == <span class="number">0</span>) &#123;</span><br><span class="line">                    notEmpty.await();</span><br><span class="line">                &#125;</span><br><span class="line">                value--;</span><br><span class="line">                notFull.signal();</span><br><span class="line">            &#125;<span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">                tlock.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">SetRunable</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> ShareObject shareObject;</span><br><span class="line">        SetRunable(ShareObject shareObject)&#123;</span><br><span class="line">            <span class="keyword">this</span>.shareObject = shareObject;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            shareObject.set();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">GetRunable</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> ShareObject shareObject;</span><br><span class="line">        GetRunable(ShareObject shareObject)&#123;</span><br><span class="line">            <span class="keyword">this</span>.shareObject = shareObject;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            shareObject.get();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">TestThreadLock</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ShareObject shareObject = <span class="keyword">new</span> ShareObject();</span><br><span class="line">        SetRunable setRunable = <span class="keyword">new</span> SetRunable(shareObject);</span><br><span class="line">        GetRunable getRunable = <span class="keyword">new</span> GetRunable(shareObject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        List&lt;Thread&gt; ts = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        List&lt;Thread&gt; tg = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> MAX = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; MAX ;i++)&#123;</span><br><span class="line">            ts.add(<span class="keyword">new</span> Thread(setRunable));</span><br><span class="line">            tg.add(<span class="keyword">new</span> Thread(getRunable));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; MAX ;i++)&#123;</span><br><span class="line">            ts.get(i).start();</span><br><span class="line">            tg.get(i).start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; MAX ;i++)&#123;</span><br><span class="line">            ts.get(i).join();</span><br><span class="line">            tg.get(i).join();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;last : &quot;</span> + shareObject.value);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/02/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/%E6%A0%91/">树</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/09/%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2017-06-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h3><p><strong>树（Tree）：</strong>n（n ≥ 0）个结点构成的有限集合。</p>
-<ul>
-<li>当n = 0 时，称为空树。</li>
-<li>对于任一颗非空树（n &gt; 0），它具备以下性质：<ul>
-<li>树中有一个称为”根（Root）”的特殊结点，用r 表示；</li>
-<li>其余结点（与r 相关联的）可分为m（m &gt; 0）个互不相交的有限集T1，T2，…，Tm，其中每个集合本身又是一颗树，称为原来树的”子树（SubTree）”。</li>
-<li>子树是不相交的</li>
-<li>除了根结点外，每个结点有且仅有一个父节点</li>
-<li>一颗N个结点的树有N-1条边<em>（我认为可以用构造性的存在性证明或是数学归纳法来证明这一点）</em></li>
-</ul>
-</li>
-</ul>
-<h3 id="树的一些基本术语："><a href="#树的一些基本术语：" class="headerlink" title="树的一些基本术语："></a>树的一些基本术语：</h3><p><strong>结点的度（Degree）：</strong>结点的子树个数<br><strong>树的度：</strong>树的所有结点中最大的度数<br><strong>叶结点（Leaf）：</strong>度为0的结点<br><strong>父结点（Parent）：</strong>有子树的结点是其子树的根结点的父结点<br><strong>子结点（Child）：</strong>若A结点是B结点的父结点，则称B结点是A结点的子结点；子结点也称孩子结点<br><strong>兄弟结点（Sibling）：</strong>具有同一父结点的各结点彼此是兄弟结点<br><strong>路径和路径长度（Path）：</strong>从结点n1到nk的路径为一个结点序列n1，n2，…，nk，ni是ni+1的父结点，路径所包含的边的个数为路径的长度<br><strong>祖先结点（Ancestor）：</strong>沿树根到某一结点路径上的所有结点都是这个结点的祖先结点<br><strong>子孙结点（Descendant）：</strong>某一结点的子树中的所有结点都是这个结点子孙<br><strong>结点的层次（Level）：</strong>规定根结点在1层，其它任一结点的层数时其父节点的层数加1<br><strong>树的深度（Depth）：</strong>树中所有结点中的最大层次是这棵树的深度</p>
-<h3 id="树的表示"><a href="#树的表示" class="headerlink" title="树的表示"></a>树的表示</h3><p>儿子-兄弟表示法<br>括号表示法</p>
-<h3 id="树的算法实现"><a href="#树的算法实现" class="headerlink" title="树的算法实现"></a>树的算法实现</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> ElementType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">ElementType data;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">child</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">sibling</span>;</span></span><br><span class="line">&#125; TreeNode;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接:"></a>链接:</h3><p><a target="_blank" rel="noopener" href="http://chuansong.me/n/729497552547">http://chuansong.me/n/729497552547</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/09/%E6%A0%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1554,7 +1148,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 will
+    		&copy; 2022 will
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1810,6 +1404,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">IDE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">压缩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
             
             <div class="clearfix"></div>
