@@ -137,6 +137,109 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Jmeter-安装以及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/06/Jmeter-%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">Jmeter 安装以及使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/06/Jmeter-%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-11-06T10:05:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>Jmeter 是一款使用Java开发的，开源免费的，测试工具， 主要用来做功能测试和性能测试（压力测试/负载测试）. 而且用Jmeter 来测试 Restful API, 非常好用。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://jmeter.apache.org/">https://jmeter.apache.org/</a></p>
+<p>入门：<a target="_blank" rel="noopener" href="https://jmeter.apache.org/usermanual/get-started.html">https://jmeter.apache.org/usermanual/get-started.html</a></p>
+<p>手册：<a target="_blank" rel="noopener" href="https://jmeter.apache.org/usermanual/index.html">https://jmeter.apache.org/usermanual/index.html</a></p>
+<p>中文网：<a target="_blank" rel="noopener" href="http://www.jmeter.com.cn/">http://www.jmeter.com.cn/</a></p>
+<p>中文入门：<a target="_blank" rel="noopener" href="http://www.jmeter.com.cn/category/manual">http://www.jmeter.com.cn/category/manual</a></p>
+<p>中文手册：<a target="_blank" rel="noopener" href="http://www.jmeter.com.cn/category/jmeter-book">http://www.jmeter.com.cn/category/jmeter-book</a></p>
+<h2 id="1、Jmter的安装"><a href="#1、Jmter的安装" class="headerlink" title="1、Jmter的安装"></a>1、Jmter的安装</h2><h3 id="1-1、java运行环境"><a href="#1-1、java运行环境" class="headerlink" title="1-1、java运行环境"></a>1-1、java运行环境</h3><p>jdk安装以及环境变量配置</p>
+<h3 id="1-1、安装jmeter及插件"><a href="#1-1、安装jmeter及插件" class="headerlink" title="1-1、安装jmeter及插件"></a>1-1、安装jmeter及插件</h3><h4 id="1-1-1、文件下载"><a href="#1-1-1、文件下载" class="headerlink" title="1-1-1、文件下载"></a>1-1-1、文件下载</h4><ul>
+<li>JMeter：<a target="_blank" rel="noopener" href="http://jmeter.apache.org/download_jmeter.cgi">http://jmeter.apache.org/download_jmeter.cgi</a></li>
+<li>JMeter插件：<a target="_blank" rel="noopener" href="http://jmeter-plugins.org/downloads/all/">http://jmeter-plugins.org/downloads/all/</a></li>
+</ul>
+<h4 id="1-1-2、配置环境变量"><a href="#1-1-2、配置环境变量" class="headerlink" title="1-1-2、配置环境变量"></a>1-1-2、配置环境变量</h4><ul>
+<li><p>JMETER_HOME：新建变量，变量值为jmeter的安装路径。</p>
+</li>
+<li><p>CLASSPATH ： 添加%JMETER_HOME%\lib\ext \ApacheJMeter_core.jar;%JMETER_HOME%\lib\jorphan.jar;%JMETER_HOME%\lib \logkit-1.2.jar;</p>
+</li>
+</ul>
+<h3 id="1-1-3、安装插件"><a href="#1-1-3、安装插件" class="headerlink" title="1-1-3、安装插件"></a>1-1-3、安装插件</h3><p>解压插件到d盘的jmeter文件目录下，解压后，在D:\jmeter\lib\ext中找到JMeterPlugins-Extras.jar,把JMeterPlugins-Extras.jar放到D:\jmeter\apache-jmeter-3.3\lib\ext目录中</p>
+<h3 id="1-1-4、测试"><a href="#1-1-4、测试" class="headerlink" title="1-1-4、测试"></a>1-1-4、测试</h3><h2 id="2、jmeter的使用"><a href="#2、jmeter的使用" class="headerlink" title="2、jmeter的使用"></a>2、jmeter的使用</h2><h3 id="2-1、添加线程测试"><a href="#2-1、添加线程测试" class="headerlink" title="2-1、添加线程测试"></a>2-1、添加线程测试</h3><h3 id="2-2、添加HTTP请求，设置相关参数"><a href="#2-2、添加HTTP请求，设置相关参数" class="headerlink" title="2-2、添加HTTP请求，设置相关参数"></a>2-2、添加HTTP请求，设置相关参数</h3><h3 id="2-3、添加监听器"><a href="#2-3、添加监听器" class="headerlink" title="2-3、添加监听器"></a>2-3、添加监听器</h3><p>“察看结果树”、“断言结果”、“断言持续时间”</p>
+<h3 id="2-4、开始测试"><a href="#2-4、开始测试" class="headerlink" title="2-4、开始测试"></a>2-4、开始测试</h3><h3 id="2-5、查看结果"><a href="#2-5、查看结果" class="headerlink" title="2-5、查看结果"></a>2-5、查看结果</h3><p>在“察看结果树”页面可以看到每个请求的响应结果；</p>
+<p>在“断言结果”页面可以看到每个请求是否超出断言时间。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">测试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">DevOps</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JMeter</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/06/Jmeter-%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-算法和数据结构题目最优解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -889,15 +992,15 @@
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">131072</span><br></pre></td></tr></table></figure>
 
-<h3 id="1-3、查看系统支持最大文件数"><a href="#1-3、查看系统支持最大文件数" class="headerlink" title="1-3、查看系统支持最大文件数"></a>1-3、查看系统支持最大文件数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max </span><br></pre></td></tr></table></figure>
+<h3 id="1-3、查看系统支持最大文件数"><a href="#1-3、查看系统支持最大文件数" class="headerlink" title="1-3、查看系统支持最大文件数"></a>1-3、查看系统支持最大文件数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">394854</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-4、查看cpu信息"><a href="#1-4、查看cpu信息" class="headerlink" title="1-4、查看cpu信息"></a>1-4、查看cpu信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo</span><br></pre></td></tr></table></figure>
 
-<h2 id="3、用户限制"><a href="#3、用户限制" class="headerlink" title="3、用户限制"></a>3、用户限制</h2><h3 id="3-1、ulimit帮助"><a href="#3-1、ulimit帮助" class="headerlink" title="3-1、ulimit帮助"></a>3-1、ulimit帮助</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help ulimit </span><br></pre></td></tr></table></figure>
+<h2 id="3、用户限制"><a href="#3、用户限制" class="headerlink" title="3、用户限制"></a>3、用户限制</h2><h3 id="3-1、ulimit帮助"><a href="#3-1、ulimit帮助" class="headerlink" title="3-1、ulimit帮助"></a>3-1、ulimit帮助</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help ulimit</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">ulimit: ulimit [-SHabcdefiklmnpqrstuvxPT] [限制]</span><br><span class="line">    修改 shell 资源限制。</span><br><span class="line">    </span><br><span class="line">    在允许此类控制的系统上，提供对于 shell 及其创建的进程所可用的</span><br><span class="line">    资源的控制。</span><br><span class="line">    </span><br><span class="line">    选项：</span><br><span class="line">      -S	使用软 (&#96;soft&#39;) 资源限制</span><br><span class="line">      -H	使用硬 (&#96;hard&#39;) 资源限制</span><br><span class="line">      -a	所有当前限制都被报告</span><br><span class="line">      -b	套接字缓存尺寸</span><br><span class="line">      -c	创建的核文件的最大尺寸</span><br><span class="line">      -d	一个进程的数据区的最大尺寸</span><br><span class="line">      -e	最高的调度优先级 (&#96;nice&#39;)</span><br><span class="line">      -f	有 shell 及其子进程可以写的最大文件尺寸</span><br><span class="line">      -i	最多的可以挂起的信号数</span><br><span class="line">      -k	分配给此进程的最大 kqueue 数量</span><br><span class="line">      -l	一个进程可以锁定的最大内存尺寸</span><br><span class="line">      -m	最大的内存进驻尺寸</span><br><span class="line">      -n	最多的打开的文件描述符个数</span><br><span class="line">      -p	管道缓冲区尺寸</span><br><span class="line">      -q	POSIX 信息队列的最大字节数</span><br><span class="line">      -r	实时调度的最大优先级</span><br><span class="line">      -s	最大栈尺寸</span><br><span class="line">      -t	最大的CPU时间，以秒为单位</span><br><span class="line">      -u	最大用户进程数</span><br><span class="line">      -v	虚拟内存尺寸</span><br><span class="line">      -x	最大的文件锁数量</span><br><span class="line">      -P	最大伪终端数量</span><br><span class="line">      -T	最大线程数量</span><br><span class="line">    </span><br><span class="line">    并非所有选项在所有系统上可用。</span><br><span class="line">    </span><br><span class="line">    如果提供了 LIMIT 变量，则它为指定资源的新的值；特别的 LIMIT 值为</span><br><span class="line">    &#96;soft&#39;、&#96;hard&#39;和&#96;unlimited&#39;，分别表示当前的软限制，硬限制和无限制。</span><br><span class="line">    否则打印指定资源的当前限制值，不带选项则假定为 -f</span><br><span class="line">    </span><br><span class="line">    取值都是 1024 字节为单位，除了 -t 以秒为单位，-p 以 512 字节递增，</span><br><span class="line">    -u 为无范围的进程数量。</span><br><span class="line">    </span><br><span class="line">    退出状态：</span><br><span class="line">    返回成功，除非使用了无效的选项或者错误发生。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">ulimit: ulimit [-SHabcdefiklmnpqrstuvxPT] [限制]</span><br><span class="line">    修改 shell 资源限制。</span><br><span class="line"></span><br><span class="line">    在允许此类控制的系统上，提供对于 shell 及其创建的进程所可用的</span><br><span class="line">    资源的控制。</span><br><span class="line"></span><br><span class="line">    选项：</span><br><span class="line">      -S 使用软 (&#96;soft&#39;) 资源限制</span><br><span class="line">      -H 使用硬 (&#96;hard&#39;) 资源限制</span><br><span class="line">      -a 所有当前限制都被报告</span><br><span class="line">      -b 套接字缓存尺寸</span><br><span class="line">      -c 创建的核文件的最大尺寸</span><br><span class="line">      -d 一个进程的数据区的最大尺寸</span><br><span class="line">      -e 最高的调度优先级 (&#96;nice&#39;)</span><br><span class="line">      -f 有 shell 及其子进程可以写的最大文件尺寸</span><br><span class="line">      -i 最多的可以挂起的信号数</span><br><span class="line">      -k 分配给此进程的最大 kqueue 数量</span><br><span class="line">      -l 一个进程可以锁定的最大内存尺寸</span><br><span class="line">      -m 最大的内存进驻尺寸</span><br><span class="line">      -n 最多的打开的文件描述符个数</span><br><span class="line">      -p 管道缓冲区尺寸</span><br><span class="line">      -q POSIX 信息队列的最大字节数</span><br><span class="line">      -r 实时调度的最大优先级</span><br><span class="line">      -s 最大栈尺寸</span><br><span class="line">      -t 最大的CPU时间，以秒为单位</span><br><span class="line">      -u 最大用户进程数</span><br><span class="line">      -v 虚拟内存尺寸</span><br><span class="line">      -x 最大的文件锁数量</span><br><span class="line">      -P 最大伪终端数量</span><br><span class="line">      -T 最大线程数量</span><br><span class="line"></span><br><span class="line">    并非所有选项在所有系统上可用。</span><br><span class="line"></span><br><span class="line">    如果提供了 LIMIT 变量，则它为指定资源的新的值；特别的 LIMIT 值为</span><br><span class="line">    &#96;soft&#39;、&#96;hard&#39;和&#96;unlimited&#39;，分别表示当前的软限制，硬限制和无限制。</span><br><span class="line">    否则打印指定资源的当前限制值，不带选项则假定为 -f</span><br><span class="line"></span><br><span class="line">    取值都是 1024 字节为单位，除了 -t 以秒为单位，-p 以 512 字节递增，</span><br><span class="line">    -u 为无范围的进程数量。</span><br><span class="line"></span><br><span class="line">    退出状态：</span><br><span class="line">    返回成功，除非使用了无效的选项或者错误发生。</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-2、ulimit显示"><a href="#3-2、ulimit显示" class="headerlink" title="3-2、ulimit显示"></a>3-2、ulimit显示</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -a</span><br></pre></td></tr></table></figure>
 
@@ -917,7 +1020,7 @@
 <h2 id="10、Netstat-显示各种网络相关信息"><a href="#10、Netstat-显示各种网络相关信息" class="headerlink" title="10、Netstat 显示各种网络相关信息"></a>10、Netstat 显示各种网络相关信息</h2><p>原文链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">https://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</a></p>
 <p>如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。</p>
 <h3 id="10-1、输出信息"><a href="#10-1、输出信息" class="headerlink" title="10-1、输出信息"></a>10-1、输出信息</h3><p>执行<code>netstat</code>后，其输出结果为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">激活Internet连接 (w&#x2F;o 服务器)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State      </span><br><span class="line">tcp        0      0 localhost:epmd          localhost:47653         ESTABLISHED</span><br><span class="line">tcp        0      0 localhost:47653         localhost:epmd          ESTABLISHED</span><br><span class="line">tcp        0      0 VM:epmd                 localhost:47179         TIME_WAIT  </span><br><span class="line">活跃的UNIX域套接字 (w&#x2F;o 服务器)</span><br><span class="line">Proto RefCnt Flags       Type       State         I-Node   路径</span><br><span class="line">unix  2      [ ]         数据报                41161    &#x2F;run&#x2F;user&#x2F;1000&#x2F;systemd&#x2F;notify</span><br><span class="line">unix  10     [ ]         数据报                29933    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;socket</span><br><span class="line">unix  3      [ ]         流        已连接     37474    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;stdout</span><br><span class="line">unix  3      [ ]         数据报                58367    </span><br><span class="line">unix  3      [ ]         流        已连接     41214    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br><span class="line">unix  3      [ ]         流        已连接     41363    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">激活Internet连接 (w&#x2F;o 服务器)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line">tcp        0      0 localhost:epmd          localhost:47653         ESTABLISHED</span><br><span class="line">tcp        0      0 localhost:47653         localhost:epmd          ESTABLISHED</span><br><span class="line">tcp        0      0 VM:epmd                 localhost:47179         TIME_WAIT</span><br><span class="line">活跃的UNIX域套接字 (w&#x2F;o 服务器)</span><br><span class="line">Proto RefCnt Flags       Type       State         I-Node   路径</span><br><span class="line">unix  2      [ ]         数据报                41161    &#x2F;run&#x2F;user&#x2F;1000&#x2F;systemd&#x2F;notify</span><br><span class="line">unix  10     [ ]         数据报                29933    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;socket</span><br><span class="line">unix  3      [ ]         流        已连接     37474    &#x2F;run&#x2F;systemd&#x2F;journal&#x2F;stdout</span><br><span class="line">unix  3      [ ]         数据报                58367</span><br><span class="line">unix  3      [ ]         流        已连接     41214    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br><span class="line">unix  3      [ ]         流        已连接     41363    &#x2F;run&#x2F;user&#x2F;1000&#x2F;bus</span><br></pre></td></tr></table></figure>
 
 <p>netstat的输出结果大致可以分为两个部分：</p>
 <table>
@@ -953,7 +1056,7 @@
 <h3 id="10-2、常见参数"><a href="#10-2、常见参数" class="headerlink" title="10-2、常见参数"></a>10-2、常见参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">常见参数</span><br><span class="line">-a (all)显示所有选项，默认不显示LISTEN相关</span><br><span class="line">-t (tcp)仅显示tcp相关选项</span><br><span class="line">-u (udp)仅显示udp相关选项</span><br><span class="line">-n 拒绝显示别名，能显示数字的全部转化成数字。</span><br><span class="line">-l 仅列出有在 Listen (监听) 的服務状态</span><br><span class="line"></span><br><span class="line">-p 显示建立相关链接的程序名</span><br><span class="line">-r 显示路由信息，路由表</span><br><span class="line">-e 显示扩展信息，例如uid等</span><br><span class="line">-s 按各个协议进行统计</span><br><span class="line">-c 每隔一个固定时间，执行该netstat命令。</span><br><span class="line"></span><br><span class="line">提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到</span><br></pre></td></tr></table></figure>
 
 <h3 id="10-3、使用案例"><a href="#10-3、使用案例" class="headerlink" title="10-3、使用案例"></a>10-3、使用案例</h3><h4 id="10-3-1、-列出所有端口-包括监听和未监听的"><a href="#10-3-1、-列出所有端口-包括监听和未监听的" class="headerlink" title="10-3-1、 列出所有端口 (包括监听和未监听的)"></a>10-3-1、 列出所有端口 (包括监听和未监听的)</h4><p> <strong>列出所有端口 netstat -a</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -a | more</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> udp        0      0 *:bootpc                *:*</span><br><span class="line"> </span><br><span class="line">Active UNIX domain sockets (servers and established)</span><br><span class="line"> Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6135     /tmp/.X11-unix/X0</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     5140     /var/run/acpid.socket</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -a | more</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> udp        0      0 *:bootpc                *:*</span><br><span class="line"></span><br><span class="line">Active UNIX domain sockets (servers and established)</span><br><span class="line"> Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     6135     /tmp/.X11-unix/X0</span><br><span class="line"> unix  2      [ ACC ]     STREAM     LISTENING     5140     /var/run/acpid.socket</span><br></pre></td></tr></table></figure>
 
 <p> <strong>列出所有 tcp 端口 netstat -at</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -at</span></span><br><span class="line"> Active Internet connections (servers and established)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 localhost:30037         *:*                     LISTEN</span><br><span class="line"> tcp        0      0 localhost:ipp           *:*                     LISTEN</span><br><span class="line"> tcp        0      0 *:smtp                  *:*                     LISTEN</span><br><span class="line"> tcp6       0      0 localhost:ipp           [::]:*                  LISTEN</span><br></pre></td></tr></table></figure>
@@ -977,7 +1080,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -s</span></span><br><span class="line"> Ip:</span><br><span class="line"> 11150 total packets received</span><br><span class="line"> 1 with invalid addresses</span><br><span class="line"> 0 forwarded</span><br><span class="line"> 0 incoming packets discarded</span><br><span class="line"> 11149 incoming packets delivered</span><br><span class="line"> 11635 requests sent out</span><br><span class="line"> Icmp:</span><br><span class="line"> 0 ICMP messages received</span><br><span class="line"> 0 input ICMP message failed.</span><br><span class="line"> Tcp:</span><br><span class="line"> 582 active connections openings</span><br><span class="line"> 2 failed connection attempts</span><br><span class="line"> 25 connection resets received</span><br><span class="line"> Udp:</span><br><span class="line"> 1183 packets received</span><br><span class="line"> 4 packets to unknown port received.</span><br><span class="line"> .....</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p> <strong>显示 TCP 或 UDP 端口的统计信息 netstat -st 或 -su</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -st </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netstat -su</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -st</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netstat -su</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="10-3-4、在-netstat-输出中显示-PID-和进程名称-netstat-p"><a href="#10-3-4、在-netstat-输出中显示-PID-和进程名称-netstat-p" class="headerlink" title="10-3-4、在 netstat 输出中显示 PID 和进程名称 netstat -p"></a>10-3-4、在 netstat 输出中显示 PID 和进程名称 netstat -p</h4><p>netstat -p 可以与其它开关一起使用，就可以添加 “PID/进程名称” 到 netstat 输出中，这样 debugging 的时候可以很方便的发现特定端口运行的程序。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -pt</span></span><br><span class="line"> Active Internet connections (w/o servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</span><br><span class="line"> tcp        1      0 ramesh-laptop.loc:47212 192.168.185.75:www        CLOSE_WAIT  2109/firefox</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:52750 lax:www ESTABLISHED 2109/firefox</span><br></pre></td></tr></table></figure>
@@ -989,8 +1092,6 @@
 <p>如果只是不想让这三个名称中的一个被显示，使用以下命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-ports</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-hosts</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> netsat -a --numeric-users</span></span><br></pre></td></tr></table></figure>
 
-
-
 <h4 id="10-3-6-持续输出-netstat-信息"><a href="#10-3-6-持续输出-netstat-信息" class="headerlink" title="10-3-6. 持续输出 netstat 信息"></a>10-3-6. 持续输出 netstat 信息</h4><p>netstat 将每隔一秒输出网络信息。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -c</span></span><br><span class="line"> Active Internet connections (w/o servers)</span><br><span class="line"> Proto Recv-Q Send-Q Local Address           Foreign Address         State</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:36130 101-101-181-225.ama:www ESTABLISHED</span><br><span class="line"> tcp        1      1 ramesh-laptop.loc:52564 101.11.169.230:www      CLOSING</span><br><span class="line"> tcp        0      0 ramesh-laptop.loc:43758 server-101-101-43-2:www ESTABLISHED</span><br><span class="line"> tcp        1      1 ramesh-laptop.loc:42367 101.101.34.101:www      CLOSING</span><br><span class="line"> ^C</span><br></pre></td></tr></table></figure>
 
@@ -999,16 +1100,16 @@
 <p>在输出的末尾，会有如下的信息</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">netstat: no support for `AF IPX&#x27; on this system.</span><br><span class="line">netstat: no support for `AF AX25&#x27; on this system.</span><br><span class="line">netstat: no support for `AF X25&#x27; on this system.</span><br><span class="line">netstat: no support for `AF NETROM&#x27; on this system.</span><br></pre></td></tr></table></figure>
 
-<h4 id><a href="#" class="headerlink" title></a></h4><h4 id="10-3-8-显示核心路由信息-netstat-r"><a href="#10-3-8-显示核心路由信息-netstat-r" class="headerlink" title="10-3-8. 显示核心路由信息 netstat -r"></a>10-3-8. 显示核心路由信息 netstat -r</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -r</span></span><br><span class="line"> Kernel IP routing table</span><br><span class="line"> Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface</span><br><span class="line"> 192.168.1.0     *               255.255.255.0   U         0 0          0 eth2</span><br><span class="line"> link-local      *               255.255.0.0     U         0 0          0 eth2</span><br><span class="line"> default         192.168.1.1     0.0.0.0         UG        0 0          0 eth2</span><br></pre></td></tr></table></figure>
+<p>####</p>
+<h4 id="10-3-8-显示核心路由信息-netstat-r"><a href="#10-3-8-显示核心路由信息-netstat-r" class="headerlink" title="10-3-8. 显示核心路由信息 netstat -r"></a>10-3-8. 显示核心路由信息 netstat -r</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -r</span></span><br><span class="line"> Kernel IP routing table</span><br><span class="line"> Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface</span><br><span class="line"> 192.168.1.0     *               255.255.255.0   U         0 0          0 eth2</span><br><span class="line"> link-local      *               255.255.0.0     U         0 0          0 eth2</span><br><span class="line"> default         192.168.1.1     0.0.0.0         UG        0 0          0 eth2</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意：</strong> 使用 netstat -rn 显示数字格式，不查询主机名称。</p>
-<h4 id="-1"><a href="#-1" class="headerlink" title></a></h4><h4 id="10-3-9-找出程序运行的端口"><a href="#10-3-9-找出程序运行的端口" class="headerlink" title="10-3-9. 找出程序运行的端口"></a><strong>10-3-9. 找出程序运行的端口</strong></h4><p><strong>并不是所有的进程都能找到，没有权限的会不显示，使用 root 权限查看所有的信息。</strong></p>
+<p>####</p>
+<h4 id="10-3-9-找出程序运行的端口"><a href="#10-3-9-找出程序运行的端口" class="headerlink" title="10-3-9. 找出程序运行的端口"></a><strong>10-3-9. 找出程序运行的端口</strong></h4><p><strong>并不是所有的进程都能找到，没有权限的会不显示，使用 root 权限查看所有的信息。</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -ap | grep ssh</span></span><br><span class="line"> tcp        1      0 dev-db:ssh           101.174.100.22:39213        CLOSE_WAIT  -</span><br><span class="line"> tcp        1      0 dev-db:ssh           101.174.100.22:57643        CLOSE_WAIT  -</span><br></pre></td></tr></table></figure>
 
 <p> <strong>找出运行在指定端口的进程</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -an | grep <span class="string">&#x27;:80&#x27;</span></span></span><br></pre></td></tr></table></figure>
-
-
 
 <h4 id="10-3-10-显示网络接口列表"><a href="#10-3-10-显示网络接口列表" class="headerlink" title="10-3-10. 显示网络接口列表"></a>10-3-10. 显示网络接口列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> netstat -i</span></span><br><span class="line"> Kernel Interface table</span><br><span class="line"> Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg</span><br><span class="line"> eth0       1500 0         0      0      0 0             0      0      0      0 BMU</span><br><span class="line"> eth2       1500 0     26196      0      0 0         26883      6      0      0 BMRU</span><br><span class="line"> lo        16436 0         4      0      0 0             4      0      0      0 LRU</span><br></pre></td></tr></table></figure>
 
@@ -1522,101 +1623,6 @@
 
 
   
-    <article id="post-线程池原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/">线程池原理</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2019-10-25T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、实现原理"><a href="#1、实现原理" class="headerlink" title="1、实现原理"></a>1、实现原理</h2><p>如果我们自己写一个线程池，那我们该如何实现呢？</p>
-<p>我们的目的是一次性创建一组线程，当需要再次使用的时候，就从创建好的线程中，取出一个线程执行任务。</p>
-<p>我们需要考虑这样几个问题，线程执行完成之后，不能再次执行，就需要让线程通过阻塞和唤醒的方式执行。</p>
-<p>所以，需要数据结构存储线程，当没有任务的时候，阻塞所有线程，有任务时候，唤醒线程执行。</p>
-<h2 id="2、源码阅读"><a href="#2、源码阅读" class="headerlink" title="2、源码阅读"></a>2、源码阅读</h2><p>​    源码版本：open-jdk 1.8</p>
-<h3 id="2-1、ThreadPoolExecutor结构"><a href="#2-1、ThreadPoolExecutor结构" class="headerlink" title="2-1、ThreadPoolExecutor结构"></a>2-1、ThreadPoolExecutor结构</h3><pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolExecutor</span> <span class="keyword">extends</span> <span class="title">AbstractExecutorService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> BlockingQueue&lt;Runnable&gt; workQueue;<span class="comment">//阻塞队列</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> HashSet&lt;Worker&gt; workers = <span class="keyword">new</span> HashSet&lt;&gt;();<span class="comment">//存储当前所在线程</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">new</span> ReentrantLock(); </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> ThreadFactory threadFactory;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> RejectedExecutionHandler handler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
-<h3 id="2-2、execute"><a href="#2-2、execute" class="headerlink" title="2-2、execute"></a>2-2、execute</h3><p>​    通常execute ，让线程池执行一个任务。其他执行方式，见线程池的使用</p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (command == <span class="keyword">null</span>)</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">       <span class="comment">//1， 小于核心线程数，创建线程，被记录在hashmap 中，并能够阻塞</span></span><br><span class="line">       <span class="comment">//阻塞原理，通过阻塞队列的“读空写满”</span></span><br><span class="line">      <span class="keyword">int</span> c = ctl.get();</span><br><span class="line">      <span class="keyword">if</span> (workerCountOf(c) &lt; corePoolSize) &#123;</span><br><span class="line">          <span class="keyword">if</span> (addWorker(command, <span class="keyword">true</span>))</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">          c = ctl.get();</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//2. 超过核心线程数，向阻塞队列提交任务，这是唤醒 1分支创建的线程</span></span><br><span class="line">      <span class="keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) &#123;</span><br><span class="line">          <span class="keyword">int</span> recheck = ctl.get();</span><br><span class="line">	<span class="comment">// 判断是否真的被激活执行了</span></span><br><span class="line">	<span class="comment">// 如果线程已经死，删除任务，走拒绝策略</span></span><br><span class="line">          <span class="keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))</span><br><span class="line">              reject(command);</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">if</span> (workerCountOf(recheck) == <span class="number">0</span>)<span class="comment">//如果没有线程，则重新启动线程，这是有可能的，因为可以设置核心线程失活</span></span><br><span class="line">              addWorker(<span class="keyword">null</span>, <span class="keyword">false</span>);</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">//3.如果还无法向阻塞队列添加任务，这时候尝试再创建线程，当然这个线程数小于最大线程数，true 或 false 表示是否是核心线程</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (!addWorker(command, <span class="keyword">false</span>))</span><br><span class="line">          reject(command);<span class="comment">//4.如果分支3也失败，那就采用拒绝策略</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
-<h3 id="2-3、runWorker"><a href="#2-3、runWorker" class="headerlink" title="2-3、runWorker"></a>2-3、runWorker</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">runWorker</span><span class="params">(Worker w)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">           <span class="keyword">while</span> (task != <span class="keyword">null</span> || (task = getTask()) != <span class="keyword">null</span>) &#123;<span class="comment">// 会阻塞</span></span><br><span class="line">               <span class="comment">//执行真正的任务</span></span><br><span class="line">                       task.run();</span><br><span class="line">               <span class="comment">//...</span></span><br><span class="line">           &#125;</span><br><span class="line">               </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> Runnable <span class="title">getTask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">       <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">               Runnable r = timed ?</span><br><span class="line">                   workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :</span><br><span class="line">                   workQueue.take();<span class="comment">// 这两个方法都使用了阻塞队列的&quot;读空写满&quot;</span></span><br><span class="line">               <span class="keyword">if</span> (r != <span class="keyword">null</span>)</span><br><span class="line">                   <span class="keyword">return</span> r;</span><br><span class="line">          <span class="comment">//...</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线程池</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/25/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next</a>
@@ -1940,6 +1946,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">select</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目录索引</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.zhongweimin.xyz">
-  <title>Bean 生命周期 | 浩瀚星海</title>
+  <title>目录索引 | 浩瀚星海</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="####Spring Bean初始化的流程![Spring Bean初始化的流程](Bean 生命周期&#x2F;spring-bean-lifecycle.png) ####示例  Bean 123456789101112131415161718192021222324252627282930313233343536373839class User implements InitializingBean">
+  <meta name="description" content="目录索引Linux多路复用线程池Linux用户命令Linux 资源查看和测试 cc++javaJava序列化Maven工程构建案例 golang模型工厂模式适配器模式门面模式、代理模式、适配器模式的区别策略模式单例模式状态机模式树二叉树模式匹配搜索和替换字符串去重令牌桶漏桶限流状态机模式模式匹配算法和数据结构题目最优解 AndroidAndroid平台Android系统源码Binder机制 Spr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bean 生命周期">
-<meta property="og:url" content="http://www.zhongweimin.xyz/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
+<meta property="og:title" content="目录索引">
+<meta property="og:url" content="http://www.zhongweimin.xyz/2022/08/15/%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95/index.html">
 <meta property="og:site_name" content="浩瀚星海">
-<meta property="og:description" content="####Spring Bean初始化的流程![Spring Bean初始化的流程](Bean 生命周期&#x2F;spring-bean-lifecycle.png) ####示例  Bean 123456789101112131415161718192021222324252627282930313233343536373839class User implements InitializingBean">
+<meta property="og:description" content="目录索引Linux多路复用线程池Linux用户命令Linux 资源查看和测试 cc++javaJava序列化Maven工程构建案例 golang模型工厂模式适配器模式门面模式、代理模式、适配器模式的区别策略模式单例模式状态机模式树二叉树模式匹配搜索和替换字符串去重令牌桶漏桶限流状态机模式模式匹配算法和数据结构题目最优解 AndroidAndroid平台Android系统源码Binder机制 Spr">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-05-07T13:01:24.000Z">
-<meta property="article:modified_time" content="2020-11-06T10:40:30.595Z">
+<meta property="article:published_time" content="2022-08-14T17:59:23.000Z">
+<meta property="article:modified_time" content="2022-08-15T13:34:52.407Z">
 <meta property="article:author" content="will">
-<meta property="article:tag" content="Spring">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="目录索引">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="浩瀚星海" type="application/atom+xml">
@@ -138,44 +137,32 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Bean 生命周期" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-目录索引" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Bean 生命周期
+      目录索引
     </h1>
   
 
         
-        <a href="/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="archive-article-date">
-  	<time datetime="2019-05-07T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
+        <a href="/2022/08/15/%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95/" class="archive-article-date">
+  	<time datetime="2022-08-14T17:59:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####Spring Bean初始化的流程<br>![Spring Bean初始化的流程](Bean 生命周期/spring-bean-lifecycle.png)</p>
-<p>####示例</p>
-<ul>
-<li><p>Bean</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class User implements InitializingBean , DisposableBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public User() &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(constructor)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;   </span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(setName&#x2F;setAttribute)&quot;);</span><br><span class="line">        this.name &#x3D; name;</span><br><span class="line">    &#125;   </span><br><span class="line">    @PostConstruct</span><br><span class="line">        public void postConstruct()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(postConstruct)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;MainConfig中@Bean 的initMethod</span><br><span class="line">    public void initMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(initMethod)&quot;);</span><br><span class="line">    &#125;   </span><br><span class="line">    &#x2F;&#x2F;InitializingBean接口的方法afterPropertiesSet</span><br><span class="line">    @Override</span><br><span class="line">        public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(afterPropertiesSet)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    @PreDestroy</span><br><span class="line">        public void preDestroy()&#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(preDestroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;DisposableBean接口的方法destroy</span><br><span class="line">    @Override</span><br><span class="line">        public void destroy() throws Exception &#123;</span><br><span class="line">            System.out.println(&quot;调用Bean的函数(destroy)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#x2F;&#x2F;MainConfig中@Bean 的destroyMethod</span><br><span class="line">    public void destroyMethod()&#123;</span><br><span class="line">        System.out.println(&quot;调用Bean的函数(destroyMethod)&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Bean流程監控</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class CustomBeanPostProcessor implements BeanPostProcessor &#123;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()&#x3D;&#x3D;User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessBeforeInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">    @Nullable</span><br><span class="line">        @Override</span><br><span class="line">        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException &#123;</span><br><span class="line">            if(bean.getClass()&#x3D;&#x3D;User.class)&#123;</span><br><span class="line">                System.out.println(&quot;调用postProcessAfterInitialization...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return bean;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Client</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">public class App &#123;</span><br><span class="line"></span><br><span class="line">    @Bean(initMethod &#x3D; &quot;initMethod&quot;,destroyMethod &#x3D; &quot;destroyMethod&quot;)</span><br><span class="line">        public User user()&#123;</span><br><span class="line">            return new User();</span><br><span class="line">        &#125;   </span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(App.class, args);</span><br><span class="line">    &#125;~  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Output</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">调用Bean的函数(constructor)</span><br><span class="line">调用postProcessBeforeInitialization...</span><br><span class="line">调用Bean的函数(postConstruct)</span><br><span class="line">调用Bean的函数(afterPropertiesSet)</span><br><span class="line">调用Bean的函数(initMethod)</span><br><span class="line">调用postProcessAfterInitialization...</span><br><span class="line">2019-05-09 00:33:00.526  INFO 4549 --- [           main] com.will.App                             : Started App in 3.664 seconds (JVM running for 6.588)</span><br><span class="line">调用Bean的函数(preDestroy)</span><br><span class="line">调用Bean的函数(destroy)</span><br><span class="line">调用Bean的函数(destroyMethod)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>####参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xrq730/p/6363055.html">https://www.cnblogs.com/xrq730/p/6363055.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/redcool/p/6397398.html">https://www.cnblogs.com/redcool/p/6397398.html</a></p>
+        <h1 id="目录索引"><a href="#目录索引" class="headerlink" title="目录索引"></a>目录索引</h1><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p><a href="%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8.md">多路复用</a><br><a href="%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8E%9F%E7%90%86.md">线程池</a><br><a href="Linux%E7%94%A8%E6%88%B7%E5%91%BD%E4%BB%A4.md">Linux用户命令</a><br><a href="Linux-%E8%B5%84%E6%BA%90%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%B5%8B%E8%AF%95.md">Linux 资源查看和测试</a></p>
+<h2 id="c"><a href="#c" class="headerlink" title="c"></a>c</h2><h2 id="c-1"><a href="#c-1" class="headerlink" title="c++"></a>c++</h2><h2 id="java"><a href="#java" class="headerlink" title="java"></a>java</h2><p><a href="Java%E5%BA%8F%E5%88%97%E5%8C%96.md">Java序列化</a><br><a href="Maven%E5%B7%A5%E7%A8%8B%E6%9E%84%E5%BB%BA%E6%A1%88%E4%BE%8B.md">Maven工程构建案例</a></p>
+<h2 id="golang"><a href="#golang" class="headerlink" title="golang"></a>golang</h2><h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p><a href="%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.md">工厂模式</a><br><a href="%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F.md">适配器模式</a><br><a href="%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB.md">门面模式、代理模式、适配器模式的区别</a><br><a href="%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.md">策略模式</a><br><a href="%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md">单例模式</a><br><a href="%E7%8A%B6%E6%80%81%E6%9C%BA%E6%A8%A1%E5%BC%8F.md">状态机模式</a><br><a href="%E6%A0%91.md">树</a><br><a href="%E4%BA%8C%E5%8F%89%E6%A0%91.md">二叉树</a><br><a href="%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D.md">模式匹配</a><br><a href="%E6%90%9C%E7%B4%A2%E5%92%8C%E6%9B%BF%E6%8D%A2.md">搜索和替换</a><br><a href="%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%BB%E9%87%8D.md">字符串去重</a><br><a href="%E4%BB%A4%E7%89%8C%E6%A1%B6%E6%BC%8F%E6%A1%B6%E9%99%90%E6%B5%81.md">令牌桶漏桶限流</a><br><a href="%E7%8A%B6%E6%80%81%E6%9C%BA%E6%A8%A1%E5%BC%8F.md">状态机模式</a><br><a href="%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D.md">模式匹配</a><br><a href="%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%A2%98%E7%9B%AE%E6%9C%80%E4%BC%98%E8%A7%A3.md">算法和数据结构题目最优解</a></p>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p><a href="Android%E5%B9%B3%E5%8F%B0.md">Android平台</a><br><a href="Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E7%A0%81.md">Android系统源码</a><br><a href="Binder%E6%9C%BA%E5%88%B6.md">Binder机制</a></p>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><p><a href="spring-boot-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE.md">spring boot 数据库配置</a><br><a href="spring-boot-%E6%B3%A8%E8%A7%A3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md">spring boot 注解使用指南</a><br><a href="Spring%E5%BC%95%E5%85%A5%E7%9A%84JavaConfig%E9%85%8D%E7%BD%AE%E5%BD%A2%E5%BC%8F.md">Spring引入的JavaConfig配置形式</a><br><a href="%E6%89%93%E9%80%9ASpring-Cloud.md">打通Spring Cloud</a><br><a href="Bean-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md">Bean 生命周期</a><br><a href="spring-boot-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE.md">spring boot 数据库配置</a><br><a href="SpringBoot-%E5%88%87%E9%9D%A2AOP.md">SpringBoot 切面AOP</a><br><a href="Springboot%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.md">Springboot读取配置文件及自定义配置文件</a><br><a href="Springboot%E9%85%8D%E7%BD%AE%E7%9B%91%E5%90%AC%E5%99%A8%E3%80%81%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8.md">Springboot配置监听器、过滤器和拦截器</a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><a href="%E5%A4%84%E7%90%86pdf.md">处理pdf</a><br><a href="%E5%A4%A7%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%A4%84%E7%90%86.md">大量字符串的处理</a><br><a href="%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88.md">分布式系统数据一致性方案</a><br><a href="%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.md">负载均衡</a><br><a href="%E6%95%B0%E6%8D%AE%E5%BA%93%E6%AF%94%E8%BE%83%E5%92%8C%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B.md">数据库比较和技术选型</a><br><a href="%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86.md">唯一标识</a><br><a href="%E4%BD%8D%E5%9B%BE%E7%9A%84%E6%80%9D%E6%83%B3.md">位图的思想</a><br><a href="Foxmail%E9%82%AE%E4%BB%B6%E9%83%A8%E7%BD%B2.md">Foxmail邮件部署</a><br><a href="Hexo-%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB.md">Hexo 创建文章、标签、分类</a><br><a href="Hexo-%E9%85%8D%E7%BD%AE.md">Hexo-配置</a><br><a href="Jmeter-%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8.md">Jmeter 安装以及使用</a><br><a href="mysql-%E9%94%99%E8%AF%AF%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3.md">mysql 错误以及解决</a><br><a href="mysql-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B.md">mysql 使用案例</a><br><a href="mysql-explain-%E8%AF%A6%E8%A7%A3.md">mysql explain 详解</a><br><a href="OAuth-2-0-%E6%8E%88%E6%9D%83%E6%9C%BA%E5%88%B6.md">OAuth 2.0 授权机制</a><br><a href="Python%E5%85%A5%E9%97%A8.md">Python入门</a><br><a href="Redis%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8.md">Redis安装以及使用</a><br><a href="RPC%E5%8E%9F%E7%90%86%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%A1%86%E6%9E%B6.md">RPC原理及常见框架</a><br><a href="vue-js%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF.md">vue.js前端技术</a></p>
 
       
 
@@ -210,11 +197,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">目录索引</a>
         		</li>
       		
 		</ul>
@@ -270,7 +253,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhongweimin.xyz/2019/05/07/Bean%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhongweimin.xyz/2022/08/15/%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -284,18 +267,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/05/08/Android%E5%B9%B3%E5%8F%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android平台
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/11/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F%E3%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">门面模式、代理模式、适配器模式的区别</div>
+    <a href="/2022/07/13/%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多路复用</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -322,7 +296,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95"><span class="toc-number">1.</span> <span class="toc-text">目录索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-number">1.1.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c"><span class="toc-number">1.2.</span> <span class="toc-text">c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c-1"><span class="toc-number">1.3.</span> <span class="toc-text">c++</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java"><span class="toc-number">1.4.</span> <span class="toc-text">java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#golang"><span class="toc-number">1.5.</span> <span class="toc-text">golang</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android"><span class="toc-number">1.7.</span> <span class="toc-text">Android</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring"><span class="toc-number">1.8.</span> <span class="toc-text">Spring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">1.9.</span> <span class="toc-text">其他</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -660,6 +634,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">select</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">目录索引</a>
               </li>
             
             <div class="clearfix"></div>
